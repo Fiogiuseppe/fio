@@ -1,10 +1,10 @@
 .section {
-  padding: 2rem var(--page-pad) 3.5rem;
-  background: var(--cream);
+  padding: 2rem clamp(1rem, 4vw, 2.5rem) 3.5rem;
+  background: var(--color-cream);
 }
 
 .inner {
-  width: var(--row-max);
+  width: min(1080px, 100%);
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -22,7 +22,7 @@
   font-size: clamp(18px, 2.2vw, 22px);
   line-height: 1.3;
   letter-spacing: -0.03em;
-  color: var(--black);
+  color: var(--color-ink);
 }
 
 .strong {

@@ -1,0 +1,98 @@
+.section {
+  padding: 1rem clamp(1rem, 4vw, 2.5rem) 4rem;
+  background: var(--color-cream);
+}
+
+.row {
+  width: min(1080px, 100%);
+  margin: 0 auto 4rem;
+}
+
+.row:last-child {
+  margin-bottom: 0;
+}
+
+.kicker {
+  margin: 0;
+  font-size: 1.25rem;
+  letter-spacing: -0.03em;
+}
+
+.dash {
+  margin: 0 0 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.projectTitle {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+
+.projectTitle a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.projectTitle a:hover {
+  color: var(--color-blue);
+}
+
+.bodyCopy {
+  margin: 0 0 1rem;
+  font-size: clamp(1.125rem, 2.2vw, 1.375rem);
+  line-height: 1.3;
+  letter-spacing: -0.03em;
+  max-width: 52ch;
+}
+
+.bodyCopy a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.bodyCopy a:hover {
+  color: var(--color-blue);
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.full {
+  display: block;
+  margin-top: 1rem;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.award {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 1.125rem;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.award:hover {
+  color: var(--color-blue);
+}
+
+@media (max-width: 768px) {
+  .split {
+    grid-template-columns: 1fr;
+  }
+}

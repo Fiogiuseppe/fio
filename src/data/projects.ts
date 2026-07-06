@@ -162,6 +162,7 @@ export const projects: Project[] = [
     role: 'Creative Direction',
     heroImage: `${WP}/2025/07/Giuseppe_Fioretti.png`,
     gallery: [`${WP}/2025/07/Giuseppe_Fioretti.png`],
+    media: [{ type: 'image', src: `${WP}/2025/07/Giuseppe_Fioretti.png`, alt: 'LEGO creative direction' }],
     description:
       'Creative direction work for one of the world\'s most beloved brands — where play meets purpose.',
     challenge: 'Balance global brand consistency with creative experimentation.',

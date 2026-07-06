@@ -12,8 +12,19 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-ink/10 bg-cream/90 backdrop-blur-md">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-5 md:px-10 md:py-6">
+    <header className="site-header sticky top-0 z-50 w-full border-b border-ink/10 bg-cream/95 backdrop-blur-md">
+      <div className="site-header__inner relative mx-auto flex w-full max-w-[100%] items-center justify-center px-6 py-4 md:gap-12 md:px-10 md:py-5">
+        <button
+          type="button"
+          className="absolute right-6 top-1/2 flex -translate-y-1/2 flex-col gap-1.5 md:hidden"
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          onClick={() => setOpen((v) => !v)}
+        >
+          <span className={cn('block h-0.5 w-6 bg-ink transition', open && 'translate-y-2 rotate-45')} />
+          <span className={cn('block h-0.5 w-6 bg-ink transition', open && 'opacity-0')} />
+          <span className={cn('block h-0.5 w-6 bg-ink transition', open && '-translate-y-2 -rotate-45')} />
+        </button>
+
         <Link
           href="/"
           className="shrink-0 no-underline"
@@ -26,48 +37,37 @@ export function Header() {
             width={288}
             height={84}
             priority
-            className="h-auto w-[min(260px,52vw)] md:w-[min(300px,28vw)]"
+            className="site-header__logo h-auto w-[min(148px,38vw)] md:w-[168px]"
           />
         </Link>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="site-header__nav hidden items-center justify-center gap-5 lg:gap-8 md:flex">
           {NAV.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               className={cn(
-                'text-sm uppercase tracking-widest no-underline transition-colors hover:text-blue',
+                'whitespace-nowrap text-base uppercase tracking-[0.14em] no-underline transition-colors hover:text-blue lg:text-[1.0625rem]',
                 pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href))
                   ? 'text-blue'
-                  : 'text-ink/70'
+                  : 'text-ink/75'
               )}
             >
               {item.label}
             </Link>
           ))}
         </nav>
-
-        <button
-          type="button"
-          className="flex flex-col gap-1.5 md:hidden"
-          aria-label={open ? 'Close menu' : 'Open menu'}
-          onClick={() => setOpen((v) => !v)}
-        >
-          <span className={cn('block h-0.5 w-6 bg-ink transition', open && 'translate-y-2 rotate-45')} />
-          <span className={cn('block h-0.5 w-6 bg-ink transition', open && 'opacity-0')} />
-          <span className={cn('block h-0.5 w-6 bg-ink transition', open && '-translate-y-2 -rotate-45')} />
-        </button>
       </div>
 
       {open && (
         <nav className="border-t border-ink/10 px-6 py-6 md:hidden">
-          <ul className="flex flex-col gap-4">
+          <ul className="flex flex-col items-center gap-4">
             {NAV.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
                   className={cn(
-                    'text-lg no-underline hover:text-blue',
+                    'text-lg uppercase tracking-[0.12em] no-underline hover:text-blue',
                     pathname === item.href ? 'text-blue' : 'text-ink'
                   )}
                   onClick={() => setOpen(false)}

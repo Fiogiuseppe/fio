@@ -15,9 +15,9 @@ export default function JournalPage() {
       <SectionIntro
         kicker="Writing"
         title="Journal"
-        description="Thoughts on Spiritual Design, branding, art, AI and the creative life."
+        description="Essays on design, art, culture and creativity — originally published on Medium, now here."
       />
-      <div className="mt-16 grid gap-16 md:grid-cols-2">
+      <div className="mt-16 flex flex-col gap-12">
         {articles.map((article) => (
           <JournalCard key={article.slug} article={article} />
         ))}

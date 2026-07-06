@@ -31,7 +31,11 @@ export function Header() {
 
   useEffect(() => {
     document.documentElement.classList.toggle('home-route', isHome);
-    return () => document.documentElement.classList.remove('home-route');
+    return () => {
+      document.documentElement.classList.remove('home-route');
+      document.documentElement.classList.remove('home-nav-compact');
+      document.documentElement.style.removeProperty('--home-nav-offset');
+    };
   }, [isHome]);
 
   useEffect(() => {

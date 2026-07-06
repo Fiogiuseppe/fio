@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "import:medium": "node scripts/import-medium-articles.mjs"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.3.2",

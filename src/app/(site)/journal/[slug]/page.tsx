@@ -29,7 +29,8 @@ export default async function ArticlePage({ params }: Props) {
 
   const isSvg = article.coverImage.endsWith('.svg');
   const isGif = article.coverImage.endsWith('.gif');
-  const paragraphs = article.content.split('\n\n').filter(Boolean);
+  const isRemoteCover = article.coverImage.startsWith('http');
+  const paragraphs = article.content?.split('\n\n').filter(Boolean) ?? [];
 
   return (
     <article>
@@ -41,14 +42,16 @@ export default async function ArticlePage({ params }: Props) {
           className="object-cover"
           priority
           sizes="100vw"
-          unoptimized={isSvg || isGif}
+          unoptimized={isSvg || isGif || isRemoteCover}
         />
       </div>
 
       <div className="mx-auto max-w-2xl px-6 py-16 md:px-10 md:py-24">
         <p className="text-xs uppercase tracking-widest text-ink/50">{formatDate(article.date)}</p>
         <h1 className="mt-4 font-display text-4xl md:text-5xl">{article.title}</h1>
-        <p className="mt-6 text-xl text-ink/60">{article.excerpt}</p>
+        {article.excerpt ? (
+          <p className="mt-6 text-xl text-ink/60">{article.excerpt}</p>
+        ) : null}
 
         <div className="mt-6 flex flex-wrap gap-2">
           {article.tags.map((tag) => (
@@ -56,11 +59,18 @@ export default async function ArticlePage({ params }: Props) {
           ))}
         </div>
 
-        <div className="mt-12 space-y-6 text-lg leading-relaxed text-ink/80">
-          {paragraphs.map((p) => (
-            <p key={p.slice(0, 40)}>{p}</p>
-          ))}
-        </div>
+        {article.contentHtml ? (
+          <div
+            className="journal-article__body mt-12"
+            dangerouslySetInnerHTML={{ __html: article.contentHtml }}
+          />
+        ) : (
+          <div className="mt-12 space-y-6 text-lg leading-relaxed text-ink/80">
+            {paragraphs.map((p) => (
+              <p key={p.slice(0, 40)}>{p}</p>
+            ))}
+          </div>
+        )}
       </div>
     </article>
   );

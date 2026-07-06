@@ -75,7 +75,10 @@ export interface Article {
   date: string;
   excerpt: string;
   coverImage: string;
-  content: string;
+  /** @deprecated Legacy plain-text articles — prefer contentHtml */
+  content?: string;
+  contentHtml?: string;
+  mediumUrl?: string;
   tags: string[];
 }
 

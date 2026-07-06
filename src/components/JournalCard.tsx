@@ -11,6 +11,7 @@ type JournalCardProps = {
 export function JournalCard({ article }: JournalCardProps) {
   const isSvg = article.coverImage.endsWith('.svg');
   const isGif = article.coverImage.endsWith('.gif');
+  const isRemote = article.coverImage.startsWith('http');
 
   return (
     <Link href={`/journal/${article.slug}`} className="group block no-underline">
@@ -22,7 +23,7 @@ export function JournalCard({ article }: JournalCardProps) {
             fill
             className="object-cover transition duration-700 group-hover:scale-[1.03]"
             sizes="(max-width:768px) 100vw, 50vw"
-            unoptimized={isSvg || isGif}
+            unoptimized={isSvg || isGif || isRemote}
           />
         </div>
         <div className="mt-5">

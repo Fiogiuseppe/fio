@@ -6,8 +6,10 @@ export default function HomePage() {
   return (
     <>
       <SpiritualDesignCover />
-      <HomeBio />
-      <HomeProjectsFeed />
+      <div className="home-below-fold">
+        <HomeBio />
+        <HomeProjectsFeed />
+      </div>
     </>
   );
 }

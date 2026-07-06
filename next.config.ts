@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
         hostname: 'fiogiuseppe.com',
         pathname: '/wp-content/uploads/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'cdn-images-1.medium.com',
+        pathname: '/**',
+      },
     ],
   },
 };

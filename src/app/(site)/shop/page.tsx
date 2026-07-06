@@ -1,8 +1,7 @@
 import type { Metadata } from 'next';
 import { SectionIntro } from '@/components/SectionIntro';
-import { PageSection } from '@/components/PageSection';
-import { ProductCard } from '@/components/ProductCard';
-import { editorial } from '@/lib/typography';
+import { CommerceProductGrid } from '@/components/CommerceProductGrid';
+import { editorialSpace } from '@/lib/editorial';
 import { getShopProducts } from '@/data/products';
 
 export const metadata: Metadata = {
@@ -14,18 +13,18 @@ export default function ShopPage() {
   const items = getShopProducts();
 
   return (
-    <PageSection>
-      <SectionIntro
-        kicker="Gallery shop"
-        title="Shop"
-        description="Everything here is made by hand — drawings, paintings and visceral works, often mixed on the same piece."
-      />
+    <>
+      <section className={`${editorialSpace.sectionX} ${editorialSpace.sectionY}`}>
+        <div className="mx-auto max-w-7xl">
+          <SectionIntro
+            kicker="Gallery shop"
+            title="Shop"
+            description="Everything here is made by hand — drawings, paintings and visceral works, often mixed on the same piece."
+          />
+        </div>
+      </section>
 
-      <div className={`grid gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10 ${editorial.stack.leadToContent}`}>
-        {items.map((product) => (
-          <ProductCard key={product.slug} product={product} />
-        ))}
-      </div>
-    </PageSection>
+      <CommerceProductGrid products={items} brandLine="Giuseppe Fioretti" />
+    </>
   );
 }

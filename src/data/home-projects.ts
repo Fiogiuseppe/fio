@@ -19,7 +19,7 @@ export const homeProjectConfigs: HomeProjectConfig[] = [
   {
     slug: 'urees',
     kicker: 'Last project',
-    blocks: [{ type: 'split', mediaIndices: [0, 1] }],
+    blocks: [],
   },
   {
     slug: 'desigual-sneakers-campaign',

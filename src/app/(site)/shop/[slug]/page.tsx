@@ -99,6 +99,14 @@ export default async function ProductPage({ params }: Props) {
                 <TypographyBody as="dd" measure={false}>{product.edition}</TypographyBody>
               </div>
             )}
+            {product.tags && product.tags.length > 0 && (
+              <div className="flex justify-between gap-4">
+                <TypographyLabel as="dt">Type</TypographyLabel>
+                <TypographyBody as="dd" measure={false} className="capitalize">
+                  {product.tags.join(' · ')}
+                </TypographyBody>
+              </div>
+            )}
           </dl>
 
           <div className={editorial.stack.block}>

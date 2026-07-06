@@ -1,0 +1,103 @@
+/**
+ * Contact page — inverted surface (black page, white chrome).
+ * Scoped via html.contact-route on /contact only.
+ */
+
+html.contact-route body {
+  background-color: var(--color-ink);
+  color: var(--color-on-dark);
+}
+
+html.contact-route .site-header--solid {
+  border-bottom-color: rgb(255 255 255 / 0.12);
+  background: rgb(10 10 10 / 0.98);
+  backdrop-filter: blur(10px);
+}
+
+html.contact-route .site-header__logo {
+  filter: brightness(0) invert(1);
+}
+
+html.contact-route .site-header__nav-link {
+  color: rgb(255 255 255 / 0.82);
+}
+
+html.contact-route .site-header__nav-link:hover,
+html.contact-route .site-header__nav-link--active {
+  color: var(--color-on-dark);
+}
+
+html.contact-route .site-header__menu-line {
+  background: var(--color-on-dark);
+}
+
+html.contact-route .site-header__mobile {
+  background: rgb(10 10 10 / 0.98);
+  border-top-color: rgb(255 255 255 / 0.12);
+}
+
+html.contact-route .site-header__mobile-link {
+  color: rgb(255 255 255 / 0.82);
+}
+
+html.contact-route .site-header__mobile-link.site-header__nav-link--active {
+  color: var(--color-on-dark);
+}
+
+html.contact-route .contact-page {
+  color: var(--color-on-dark);
+}
+
+html.contact-route .contact-page .text-ink\/50 {
+  color: rgb(255 255 255 / 0.5);
+}
+
+html.contact-route .contact-page .text-ink\/48 {
+  color: rgb(255 255 255 / 0.48);
+}
+
+html.contact-route .contact-page .text-ink\/72 {
+  color: rgb(255 255 255 / 0.72);
+}
+
+html.contact-route .contact-page .text-ink\/82 {
+  color: rgb(255 255 255 / 0.82);
+}
+
+html.contact-route .contact-page .text-on-light {
+  color: var(--color-on-dark);
+}
+
+html.contact-route .contact-form__field {
+  color: var(--color-on-dark);
+  border-bottom-color: rgb(255 255 255 / 0.28);
+}
+
+html.contact-route .contact-form__field:focus {
+  border-bottom-color: var(--color-blue);
+}
+
+html.contact-route .contact-form__field option {
+  color: var(--color-on-light);
+  background-color: var(--color-page);
+}
+
+html.contact-route .contact-form__submit {
+  border-color: var(--color-on-dark);
+  background: var(--color-on-dark);
+  color: var(--color-on-light);
+}
+
+html.contact-route .contact-form__submit:hover {
+  border-color: var(--color-blue);
+  background: var(--color-blue);
+  color: var(--color-on-dark);
+}
+
+html.contact-route .contact-form__success {
+  border-color: rgb(255 255 255 / 0.15);
+}
+
+html.contact-route .site-shell > footer {
+  border-top-color: rgb(255 255 255 / 0.08);
+}

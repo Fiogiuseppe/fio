@@ -20,7 +20,7 @@ export function ContactForm() {
 
   if (submitted) {
     return (
-      <div className="surface-soft border border-ink/10 p-8 md:p-12">
+      <div className="contact-form__success border border-ink/10 p-8 md:p-12">
         <TypographyCard>Message received</TypographyCard>
         <TypographyLead measure={false} className={editorial.stack.labelToTitle}>
           Thank you — Giuseppe will be in touch soon.
@@ -30,10 +30,10 @@ export function ContactForm() {
   }
 
   const fieldClass =
-    'w-full border-b border-ink/20 bg-transparent py-3 font-helvetica text-base outline-none focus:border-blue';
+    'contact-form__field w-full border-b bg-transparent py-3 font-helvetica text-base outline-none';
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-8">
+    <form onSubmit={handleSubmit} className="contact-form space-y-8">
       <div className="grid gap-8 md:grid-cols-2">
         <div>
           <TypographyLabel as="label" htmlFor="name" className="mb-2 block">
@@ -71,10 +71,7 @@ export function ContactForm() {
         <textarea id="message" name="message" rows={5} required className={`${fieldClass} resize-none`} />
       </div>
 
-      <button
-        type="submit"
-        className="border border-ink bg-ink px-8 py-3 text-on-dark transition hover:border-blue hover:bg-blue"
-      >
+      <button type="submit" className="contact-form__submit border px-8 py-3 transition">
         <TypographyButton as="span">Send message</TypographyButton>
       </button>
     </form>

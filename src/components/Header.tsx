@@ -17,6 +17,7 @@ export function Header() {
   const [homeNavCompact, setHomeNavCompact] = useState(false);
   const navRef = useRef<HTMLElement>(null);
   const isHome = pathname === '/';
+  const isContact = pathname === '/contact';
 
   const updateHomeNavPlacement = useCallback(() => {
     if (!isHome || !navRef.current) return;
@@ -35,6 +36,13 @@ export function Header() {
       document.documentElement.classList.remove('home-nav-compact');
     };
   }, [isHome]);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('contact-route', isContact);
+    return () => {
+      document.documentElement.classList.remove('contact-route');
+    };
+  }, [isContact]);
 
   useEffect(() => {
     if (!isHome) {

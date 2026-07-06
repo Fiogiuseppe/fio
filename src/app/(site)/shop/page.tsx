@@ -22,17 +22,9 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
 
   return (
     <>
-      <section className={styles.hero}>
+      <section className={styles.toolbar}>
         <div className={styles.pageWidth}>
-          <div className={styles.intro}>
-            <p className={styles.introKicker}>Gallery shop</p>
-            <h1 className={styles.introTitle}>Shop</h1>
-            <p className={styles.introDescription}>
-              Two ways to collect: handmade originals — paintings and ink poems — or signed
-              digital prints from the Visceral Poems series.
-            </p>
-          </div>
-
+          <h1 className={styles.srOnly}>Shop</h1>
           <Suspense fallback={null}>
             <ShopGroupFilter />
           </Suspense>
@@ -48,7 +40,6 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
                 {section.group === 'handmade' ? 'Handmade' : 'Digital'}
               </p>
             </div>
-            <p className={styles.sectionDescription}>{section.description}</p>
             <CommerceProductGrid
               products={section.products}
               brandLine="Giuseppe Fioretti"

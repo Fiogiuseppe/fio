@@ -10,7 +10,7 @@ export function PageSection({ children, className = '', tone = 'default' }: Page
   return (
     <section
       className={`${editorialSpace.sectionX} ${editorialSpace.sectionY} ${
-        tone === 'soft' ? 'bg-cream-soft' : ''
+        tone === 'soft' ? 'surface-soft bg-cream-soft' : ''
       } ${className}`}
     >
       <div className={grid.page}>{children}</div>

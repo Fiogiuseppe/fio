@@ -1,6 +1,6 @@
 .footer {
   background: var(--black);
-  color: var(--cream-soft);
+  color: var(--white);
   padding: 2.5rem var(--page-pad) 2rem;
 }
 
@@ -15,7 +15,7 @@
 }
 
 .nav a {
-  color: var(--cream-soft);
+  color: rgb(255 255 255 / 0.8);
   font-size: 15px;
   letter-spacing: -0.02em;
   text-transform: uppercase;
@@ -29,12 +29,12 @@
 .meta {
   text-align: center;
   font-size: 15px;
-  color: var(--cream-soft);
+  color: rgb(255 255 255 / 0.65);
   margin: 0;
 }
 
 .meta a {
-  color: var(--cream-soft);
+  color: rgb(255 255 255 / 0.65);
 }
 
 .bottom {
@@ -45,7 +45,7 @@
 
 .instagram {
   display: inline-flex;
-  color: var(--cream-soft);
+  color: rgb(255 255 255 / 0.8);
   line-height: 0;
 }
 

@@ -12,6 +12,7 @@ Read `docs/EDITORIAL_DESIGN_SYSTEM.md` before any UI change.
 
 - **Book test:** Would this still feel beautiful printed as a book? If no — redesign.
 - Paper background `#E6E0D5` + vector noise on **home only** — inner pages use pure white
+- **Contrast:** black text (`on-light`) on white/cream surfaces; white text (`on-dark`) on black surfaces — never invert
 - Use `Typography*` components only — never custom font sizes
 - Helvetica ~95%, Quartz ~5% (hero + quote only, max 6 words)
 - All Helvetica titles uppercase via components

@@ -1,0 +1,37 @@
+/**
+ * Contrast pairs — fiogiuseppe.com
+ * Light surfaces: black text. Dark surfaces: white text.
+ */
+
+.surface-light {
+  background-color: var(--color-page);
+  color: var(--color-on-light);
+}
+
+.surface-dark {
+  background-color: var(--color-ink);
+  color: var(--color-on-dark);
+}
+
+/* Light decorative surfaces (home paper, soft blocks) still use on-light text */
+.surface-paper,
+.surface-soft {
+  color: var(--color-on-light);
+}
+
+/* Descendants on dark surfaces default to white unless explicitly ink/blue */
+.surface-dark :where(a, button):not(:hover) {
+  color: inherit;
+}
+
+.surface-dark .text-on-dark-muted {
+  color: color-mix(in srgb, var(--color-on-dark) 65%, transparent);
+}
+
+.surface-dark .text-on-dark-subtle {
+  color: color-mix(in srgb, var(--color-on-dark) 40%, transparent);
+}
+
+.surface-dark .text-on-dark-faint {
+  color: color-mix(in srgb, var(--color-on-dark) 35%, transparent);
+}

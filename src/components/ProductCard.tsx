@@ -27,7 +27,7 @@ export function ProductCard({ product }: ProductCardProps) {
           />
           {product.availability === 'sold' && (
             <div className="absolute inset-0 flex items-center justify-center bg-ink/30">
-              <TypographyButton as="span" className="text-cream">
+              <TypographyButton as="span" className="text-on-dark">
                 Sold
               </TypographyButton>
             </div>

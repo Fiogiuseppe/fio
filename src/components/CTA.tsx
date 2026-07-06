@@ -16,10 +16,10 @@ export function CTA({ href, label, variant = 'primary', className }: CTAProps) {
       className={cn(
         'inline-block no-underline transition',
         variant === 'primary' &&
-          'border border-ink bg-ink px-8 py-3 text-cream hover:border-blue hover:bg-blue',
+          'border border-ink bg-ink px-8 py-3 text-on-dark hover:border-blue hover:bg-blue',
         variant === 'secondary' &&
-          'border border-ink px-8 py-3 text-ink hover:bg-ink hover:text-cream',
-        variant === 'ghost' && 'text-ink underline-offset-4 hover:text-blue hover:underline',
+          'border border-ink px-8 py-3 text-on-light hover:bg-ink hover:text-on-dark',
+        variant === 'ghost' && 'text-on-light underline-offset-4 hover:text-blue hover:underline',
         className
       )}
     >

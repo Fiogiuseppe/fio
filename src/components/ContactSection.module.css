@@ -83,7 +83,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: var(--cream-soft);
+  color: rgb(255 255 255 / 0.72);
 }
 
 .captchaInput {
@@ -111,7 +111,7 @@
 .status {
   margin-top: 1rem;
   text-align: center;
-  color: var(--cream-soft);
+  color: rgb(255 255 255 / 0.72);
 }
 
 @media (max-width: 640px) {

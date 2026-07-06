@@ -91,10 +91,14 @@ Body text: sentence case. Quartz: natural capitalization when appropriate.
 |-------|-------|-----|
 | Paper | `#E6E0D5` + noise | **Home only** — cover and home scroll |
 | Page | `#FFFFFF` | All inner pages — pure white, no texture |
-| Ink | `#0A0A0A` | Body text |
+| Ink | `#0A0A0A` | Body text on light surfaces |
+| On-light | `#0A0A0A` | Text on white/cream — mandatory on light backgrounds |
+| On-dark | `#FFFFFF` | Text on black — mandatory on dark backgrounds |
 | Blue | `#001FFF` | Accent, links, artwork |
 
 The paper surface must feel printed — **home only**. Inner pages use flat white (`--color-page`).
+
+**Contrast rule:** never black-on-black or white-on-white. Light surfaces → `on-light`. Dark surfaces (`surface-dark`, footer, primary CTAs) → `on-dark`.
 
 ---
 

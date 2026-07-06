@@ -20,7 +20,7 @@ export function ContactForm() {
 
   if (submitted) {
     return (
-      <div className="border border-ink/10 bg-cream-soft p-8 md:p-12">
+      <div className="surface-soft border border-ink/10 p-8 md:p-12">
         <TypographyCard>Message received</TypographyCard>
         <TypographyLead measure={false} className={editorial.stack.labelToTitle}>
           Thank you — Giuseppe will be in touch soon.
@@ -73,7 +73,7 @@ export function ContactForm() {
 
       <button
         type="submit"
-        className="border border-ink bg-ink px-8 py-3 text-cream transition hover:border-blue hover:bg-blue"
+        className="border border-ink bg-ink px-8 py-3 text-on-dark transition hover:border-blue hover:bg-blue"
       >
         <TypographyButton as="span">Send message</TypographyButton>
       </button>

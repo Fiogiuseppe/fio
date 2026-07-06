@@ -10,6 +10,7 @@ import {
   SPIRITUAL_COVER_READY_EVENT,
   computeHomeNavPlacement,
 } from '@/lib/home-header-placement';
+import { UreesNavSticker } from '@/components/UreesNavSticker';
 
 export function Header() {
   const pathname = usePathname();
@@ -112,21 +113,27 @@ export function Header() {
           className="site-header__nav"
           aria-label="Main"
         >
-          {NAV.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                'site-header__nav-link',
-                item.emphasis && 'site-header__nav-link--emphasis',
-                pathname === item.href || pathname.startsWith(`${item.href}/`)
-                  ? 'site-header__nav-link--active'
-                  : undefined
-              )}
-            >
-              {item.label}
-            </Link>
-          ))}
+          {NAV.map((item) => {
+            const active =
+              pathname === item.href || pathname.startsWith(`${item.href}/`);
+
+            if (item.sticker) {
+              return <UreesNavSticker key={item.href} active={active} />;
+            }
+
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  'site-header__nav-link',
+                  active ? 'site-header__nav-link--active' : undefined
+                )}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <button
@@ -146,23 +153,37 @@ export function Header() {
       {open && (
         <nav id="site-mobile-nav" className="site-header__mobile" aria-label="Main mobile">
           <ul className="site-header__mobile-list">
-            {NAV.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className={cn(
-                    'site-header__mobile-link',
-                    item.emphasis && 'site-header__nav-link--emphasis',
-                    pathname === item.href || pathname.startsWith(`${item.href}/`)
-                      ? 'site-header__nav-link--active'
-                      : undefined
-                  )}
-                  onClick={() => setOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
+            {NAV.map((item) => {
+              const active =
+                pathname === item.href || pathname.startsWith(`${item.href}/`);
+
+              if (item.sticker) {
+                return (
+                  <li key={item.href}>
+                    <UreesNavSticker
+                      active={active}
+                      mobile
+                      onNavigate={() => setOpen(false)}
+                    />
+                  </li>
+                );
+              }
+
+              return (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className={cn(
+                      'site-header__mobile-link',
+                      active ? 'site-header__nav-link--active' : undefined
+                    )}
+                    onClick={() => setOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </nav>
       )}

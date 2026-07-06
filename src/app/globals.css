@@ -3,6 +3,7 @@
 @import '../styles/contrast.css';
 @import '../styles/buttons.css';
 @import '../styles/contact-route.css';
+@import '../styles/urees-site.css';
 
 @font-face {
   font-family: 'Quartz Defio';
@@ -193,25 +194,6 @@ html.home-route .site-header__mobile {
 .site-header__nav-link:hover,
 .site-header__nav-link--active {
   color: #001fff;
-}
-
-.site-header__nav-link--emphasis {
-  padding: 0.4rem 0.7rem;
-  border: 1px solid rgb(10 10 10 / 0.35);
-}
-
-.site-header__nav-link--emphasis:hover,
-.site-header__nav-link--emphasis.site-header__nav-link--active {
-  border-color: #001fff;
-}
-
-html.contact-route .site-header__nav-link--emphasis {
-  border-color: rgb(255 255 255 / 0.55);
-}
-
-html.contact-route .site-header__nav-link--emphasis:hover,
-html.contact-route .site-header__nav-link--emphasis.site-header__nav-link--active {
-  border-color: var(--color-on-dark);
 }
 
 .site-header__menu-btn {

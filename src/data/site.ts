@@ -13,15 +13,15 @@ export const SITE = {
 export type NavItem = {
   readonly label: string;
   readonly href: string;
-  /** Framed in the nav — a separate brand, not a standard section */
-  readonly emphasis?: boolean;
+  /** Floating sticker in the nav — separate brand entry */
+  readonly sticker?: boolean;
 };
 
 export const NAV: readonly NavItem[] = [
   { label: 'Work', href: '/work' },
   { label: 'Services', href: '/services' },
   { label: 'Shop', href: '/shop' },
-  { label: 'UREES', href: '/urees', emphasis: true },
+  { label: 'UREES', href: '/urees', sticker: true },
   { label: 'Journal', href: '/journal' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },

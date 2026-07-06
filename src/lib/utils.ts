@@ -59,4 +59,8 @@ export function productCtaLabel(product: Product) {
   return 'Collect this piece';
 }
 
+export function productHref(product: Pick<Product, 'slug' | 'category'>) {
+  return product.category === 'urees' ? `/urees/shop/${product.slug}` : `/shop/${product.slug}`;
+}
+
 export const WP = 'https://fiogiuseppe.com/wp-content/uploads';

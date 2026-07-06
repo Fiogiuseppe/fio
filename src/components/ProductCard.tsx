@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Product } from '@/lib/types';
-import { availabilityLabel, formatPrice, productCtaLabel } from '@/lib/utils';
+import { availabilityLabel, formatPrice, productCtaLabel, productHref } from '@/lib/utils';
 import { TypographyButton, TypographyCard, TypographyMeta } from '@/components/typography';
 import { editorial } from '@/lib/typography';
 import { Badge } from './Badge';
@@ -14,7 +14,7 @@ export function ProductCard({ product }: ProductCardProps) {
   const isGif = product.images[0]?.endsWith('.gif');
 
   return (
-    <Link href={`/shop/${product.slug}`} className="group block no-underline">
+    <Link href={productHref(product)} className="group block no-underline">
       <article>
         <div className="relative aspect-[3/4] overflow-hidden bg-ink/5">
           <Image

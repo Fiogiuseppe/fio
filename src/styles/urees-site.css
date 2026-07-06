@@ -1,0 +1,49 @@
+/**
+ * UREES — dedicated brand world inside fiogiuseppe.com
+ */
+
+html.urees-route body {
+  background-color: #f4f2ec;
+  color: var(--color-on-light);
+}
+
+html.urees-route .site-header--solid {
+  background: rgb(244 242 236 / 0.96);
+  border-bottom-color: rgb(10 10 10 / 0.08);
+}
+
+.urees-site {
+  width: 100%;
+}
+
+.urees-site__hero {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 72vh;
+  overflow: hidden;
+  background: rgb(10 10 10 / 0.06);
+}
+
+.urees-site__hero img {
+  object-fit: cover;
+}
+
+.urees-site__shop {
+  scroll-margin-top: 5rem;
+}
+
+.urees-site__back {
+  font-family: var(--font-helvetica);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgb(10 10 10 / 0.5);
+  transition: color 180ms ease;
+}
+
+.urees-site__back:hover {
+  color: var(--color-blue);
+}

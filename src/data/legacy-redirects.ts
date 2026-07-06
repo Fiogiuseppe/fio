@@ -6,6 +6,8 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
   'new-desigual-sneakers-collection': '/work/desigual-sneakers-campaign',
   think_possible: '/work/urees',
   'spiritual-design': '/work/spiritual-design',
+  sec: '/work/sec-brunch',
+  'sec-brunch': '/work/sec-brunch',
   blog: '/journal',
   visceralpoems: '/shop',
   'art-by-giuseppe-fioretti': '/shop',

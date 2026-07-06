@@ -111,6 +111,19 @@ export default async function WorkDetailPage({ params }: Props) {
             <TypographyButton as="span">→ {project.award.label}</TypographyButton>
           </a>
         )}
+
+        {project.website && (
+          <a
+            href={project.website}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${editorial.stack.block} inline-block text-blue no-underline hover:underline`}
+          >
+            <TypographyButton as="span">
+              → {project.websiteLabel ?? project.website.replace(/^https?:\/\//, '')}
+            </TypographyButton>
+          </a>
+        )}
       </div>
 
       {project.media && project.media.length > 0 && (

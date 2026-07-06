@@ -48,16 +48,16 @@ export const FOOTER_LINKS = [
 
 export const OTHER_WORKS = [
   {
-    href: 'https://www.instagram.com/p/CkyPK69N3sB/',
+    href: '/work/zalio',
     image: `${WP}/2022/11/zalio_ig_fio-1-scaled.jpg`,
     alt: 'Zalio by Giuseppe Fió',
-    external: true,
+    external: false,
   },
   {
-    href: 'https://www.instagram.com/p/CavSZkFNRM-/?img_index=1',
+    href: '/work/sec-brunch',
     image: `${WP}/2024/06/sec-ig4-scaled.jpg`,
-    alt: 'Spiritual design',
-    external: true,
+    alt: 'Sec Brunch branding',
+    external: false,
   },
   {
     href: '/archive/marianna-carolina-sale',
@@ -66,16 +66,16 @@ export const OTHER_WORKS = [
     external: false,
   },
   {
-    href: 'https://www.instagram.com/p/CtOaVAYNWa9/?img_index=1',
+    href: '/urees',
     image: `${WP}/2024/06/Screenshot-2024-06-19-at-11.35.03.png`,
     alt: 'Urees logo',
-    external: true,
+    external: false,
   },
   {
-    href: 'https://www.instagram.com/p/C-VQc9KtioW/?img_index=1',
+    href: '/work/menomale',
     image: `${WP}/2024/06/Screenshot-2024-06-19-at-12.00.11.png`,
-    alt: 'menomale pizza logotype',
-    external: true,
+    alt: 'Menomale pizza logotype',
+    external: false,
   },
   {
     href: '/archive/master-en-produccion-artistica',

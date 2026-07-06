@@ -52,6 +52,9 @@ export interface Project {
   media?: ProjectMedia[];
   credits?: string;
   award?: { label: string; href: string };
+  /** External site — shown on project detail when set */
+  website?: string;
+  websiteLabel?: string;
   featured?: boolean;
 }
 

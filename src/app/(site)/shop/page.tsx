@@ -21,7 +21,7 @@ export default function ShopPage() {
         description="Everything here is made by hand — drawings, paintings and visceral works, often mixed on the same piece."
       />
 
-      <div className={`grid gap-12 sm:grid-cols-2 lg:grid-cols-3 ${editorial.stack.leadToContent}`}>
+      <div className={`grid gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10 ${editorial.stack.leadToContent}`}>
         {items.map((product) => (
           <ProductCard key={product.slug} product={product} />
         ))}

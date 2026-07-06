@@ -7,6 +7,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { spawn } from 'node:child_process';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUT = path.join(__dirname, '../src/data/products/visceral-poems.json');
@@ -258,8 +259,8 @@ async function fetchPostImagesFromHtml(code) {
   });
   if (!res.ok) return [];
   const html = await res.text();
-  const urls = [...html.matchAll(/https:\/\/scontent[^"\\]+cdninstagram\.com\/[^"\\]+\.jpg/g)].map(
-    (match) => match[0].replace(/\\u0026/g, '&').split('?')[0],
+  const urls = [...html.matchAll(/https:\/\/scontent[^"\\]+cdninstagram\.com\/[^"\\]+\.jpg[^"\\]*/g)].map(
+    (match) => match[0].replace(/\\u0026/g, '&'),
   );
   return [...new Set(urls)];
 }
@@ -321,9 +322,8 @@ function buildProductsFromItem(item, tag, seenUrls) {
       slide.display_url ??
       slide.thumbnail_src;
     if (!url) return;
-    const cleanUrl = url.split('?')[0];
-    if (seenUrls.has(cleanUrl)) return;
-    seenUrls.add(cleanUrl);
+    if (seenUrls.has(url)) return;
+    seenUrls.add(url);
 
     const title =
       slides.length > 1 ? `${titleFromCaption(caption)} — ${index + 1}` : titleFromCaption(caption);
@@ -334,7 +334,7 @@ function buildProductsFromItem(item, tag, seenUrls) {
         slug,
         title,
         shortDescription: 'Handmade ink original from @visceralpoems.',
-        images: [cleanUrl],
+        images: [url],
         formats: ['handmade'],
         tags: [tag, 'instagram'],
         igCode: code,
@@ -511,6 +511,14 @@ async function main() {
   const catalog = mergeUniqueProducts(products, igProducts);
 
   await fs.writeFile(OUT, `${JSON.stringify(catalog, null, 2)}\n`);
+
+  await new Promise((resolve, reject) => {
+    const child = spawn(process.execPath, [path.join(__dirname, 'host-visceral-poem-images.mjs')], {
+      stdio: 'inherit',
+    });
+    child.on('exit', (code) => (code === 0 ? resolve() : reject(new Error(`host images exited ${code}`))));
+  });
+
   const handmadeCount = catalog.filter((product) => product.formats?.includes('handmade')).length;
   const digitalCount = catalog.filter((product) => product.formats?.includes('digital')).length;
   console.log(`Wrote ${catalog.length} products (${handmadeCount} handmade, ${digitalCount} digital)`);

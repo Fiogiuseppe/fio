@@ -19,8 +19,8 @@
   color: var(--color-on-light);
 }
 
-/* Descendants on dark surfaces default to white unless explicitly ink/blue */
-.surface-dark :where(a, button):not(:hover) {
+/* Links on dark surfaces inherit white; button pairs use .btn-on-* classes */
+.surface-dark a:not([class*='btn-']):not(.text-blue) {
   color: inherit;
 }
 

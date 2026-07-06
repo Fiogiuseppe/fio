@@ -1,0 +1,94 @@
+/**
+ * Interactive contrast — buttons and CTAs always keep readable text.
+ * Pair classes set color on the control and all descendants.
+ */
+
+.btn-on-dark,
+.btn-on-light,
+.btn-outline-on-light,
+.btn-outline-on-dark {
+  display: inline-block;
+  border-width: 1px;
+  border-style: solid;
+  text-decoration: none;
+  transition:
+    color 180ms ease,
+    background-color 180ms ease,
+    border-color 180ms ease;
+}
+
+.btn-on-dark,
+.btn-on-dark :where(span, svg, *) {
+  color: var(--color-on-dark);
+}
+
+.btn-on-dark {
+  border-color: var(--color-ink);
+  background-color: var(--color-ink);
+}
+
+.btn-on-dark:hover,
+.btn-on-dark:hover :where(span, svg, *) {
+  border-color: var(--color-blue);
+  background-color: var(--color-blue);
+  color: var(--color-on-dark);
+}
+
+.btn-on-light,
+.btn-on-light :where(span, svg, *) {
+  color: var(--color-on-light);
+}
+
+.btn-on-light {
+  border-color: var(--color-on-dark);
+  background-color: var(--color-on-dark);
+}
+
+.btn-on-light:hover,
+.btn-on-light:hover :where(span, svg, *) {
+  border-color: var(--color-blue);
+  background-color: var(--color-blue);
+  color: var(--color-on-dark);
+}
+
+.btn-outline-on-light,
+.btn-outline-on-light :where(span, svg, *) {
+  color: var(--color-on-light);
+}
+
+.btn-outline-on-light {
+  border-color: var(--color-ink);
+  background-color: transparent;
+}
+
+.btn-outline-on-light:hover,
+.btn-outline-on-light:hover :where(span, svg, *) {
+  border-color: var(--color-ink);
+  background-color: var(--color-ink);
+  color: var(--color-on-dark);
+}
+
+.btn-outline-on-dark,
+.btn-outline-on-dark :where(span, svg, *) {
+  color: var(--color-on-dark);
+}
+
+.btn-outline-on-dark {
+  border-color: var(--color-on-dark);
+  background-color: transparent;
+}
+
+.btn-outline-on-dark:hover,
+.btn-outline-on-dark:hover :where(span, svg, *) {
+  border-color: var(--color-on-dark);
+  background-color: var(--color-on-dark);
+  color: var(--color-on-light);
+}
+
+.btn-on-dark:disabled,
+.btn-on-light:disabled,
+.btn-outline-on-light:disabled,
+.btn-outline-on-dark:disabled {
+  cursor: not-allowed;
+  opacity: 0.9;
+}

@@ -111,7 +111,7 @@ export default async function ProductPage({ params }: Props) {
                 type="button"
                 disabled
                 title="Stripe checkout coming soon"
-                className="cursor-not-allowed border border-ink bg-ink px-8 py-3 text-on-dark opacity-90"
+                className="btn-on-dark cursor-not-allowed px-8 py-3 opacity-90"
               >
                 <TypographyButton as="span">{productCtaLabel(product)} — soon</TypographyButton>
               </button>

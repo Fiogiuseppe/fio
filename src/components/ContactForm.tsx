@@ -71,7 +71,7 @@ export function ContactForm() {
         <textarea id="message" name="message" rows={5} required className={`${fieldClass} resize-none`} />
       </div>
 
-      <button type="submit" className="contact-form__submit border px-8 py-3 transition">
+      <button type="submit" className="btn-on-light contact-form__submit px-8 py-3">
         <TypographyButton as="span">Send message</TypographyButton>
       </button>
     </form>

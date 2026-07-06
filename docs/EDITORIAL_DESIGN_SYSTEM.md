@@ -100,6 +100,8 @@ The paper surface must feel printed — **home only**. Inner pages use flat whit
 
 **Contrast rule:** never black-on-black or white-on-white. Light surfaces → `on-light`. Dark surfaces (`surface-dark`, footer, primary CTAs) → `on-dark`.
 
+**Buttons:** always use `btn-on-dark` (black fill), `btn-on-light` (white fill on dark pages), `btn-outline-on-light`, or `btn-outline-on-dark` — they lock text color on the control and all descendants.
+
 ---
 
 ## Composition language

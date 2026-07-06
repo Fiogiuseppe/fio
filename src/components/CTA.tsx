@@ -14,12 +14,10 @@ export function CTA({ href, label, variant = 'primary', className }: CTAProps) {
     <Link
       href={href}
       className={cn(
-        'inline-block no-underline transition',
-        variant === 'primary' &&
-          'border border-ink bg-ink px-8 py-3 text-on-dark hover:border-blue hover:bg-blue',
-        variant === 'secondary' &&
-          'border border-ink px-8 py-3 text-on-light hover:bg-ink hover:text-on-dark',
-        variant === 'ghost' && 'text-on-light underline-offset-4 hover:text-blue hover:underline',
+        'transition',
+        variant === 'primary' && 'btn-on-dark px-8 py-3',
+        variant === 'secondary' && 'btn-outline-on-light px-8 py-3',
+        variant === 'ghost' && 'text-on-light underline-offset-4 no-underline hover:text-blue hover:underline',
         className
       )}
     >

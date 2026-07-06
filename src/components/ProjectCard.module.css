@@ -18,8 +18,9 @@
 }
 
 .media_hero {
-  min-height: 85vh;
   aspect-ratio: auto;
+  min-height: 100dvh;
+  min-height: 100svh;
 }
 
 .video {
@@ -30,12 +31,12 @@
 }
 
 .media_large {
-  aspect-ratio: auto;
-  min-height: min(70vh, 52rem);
+  aspect-ratio: 16 / 10;
+  min-height: 0;
 }
 
 .media_grid {
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1 / 1;
 }
 
 .overlay {

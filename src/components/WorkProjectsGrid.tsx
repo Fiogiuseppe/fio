@@ -1,5 +1,4 @@
 import { ProjectCard } from '@/components/ProjectCard';
-import { TypographyMeta } from '@/components/typography';
 import { getProject } from '@/data/projects';
 import { workProjectLayout } from '@/data/work-projects';
 import styles from './WorkProjectsGrid.module.css';
@@ -19,8 +18,6 @@ export function WorkProjectsGrid() {
 
   return (
     <section className={styles.section} aria-label="Work portfolio">
-      <TypographyMeta className={styles.kicker}>Work</TypographyMeta>
-
       {heroProject && (
         <div className={styles.hero}>
           <ProjectCard project={heroProject} variant="hero" priority />

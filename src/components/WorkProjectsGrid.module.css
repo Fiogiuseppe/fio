@@ -2,26 +2,22 @@
   padding: 0 0 4rem;
 }
 
-.kicker {
-  padding: 1.5rem clamp(1rem, 4vw, 2.5rem) 0;
-  margin: 0;
-}
-
 .hero {
   width: 100%;
 }
 
 .stack {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+  padding: clamp(1.25rem, 4vw, 3rem);
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: clamp(1rem, 2vw, 1.5rem);
-  padding: clamp(1rem, 2vw, 1.5rem);
+  padding: 0 clamp(1rem, 4vw, 2.5rem) clamp(1rem, 2vw, 1.5rem);
 }
 
 @media (max-width: 1024px) {
@@ -31,8 +27,13 @@
 }
 
 @media (max-width: 768px) {
-  .grid {
+  .stack {
     grid-template-columns: 1fr;
     padding: 1rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    padding: 0 1rem 1rem;
   }
 }

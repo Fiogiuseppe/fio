@@ -47,7 +47,6 @@ export type UreesHomepageSections = {
   };
   dreaming: {
     title: string;
-    image: string;
   };
   reviving: Array<{
     title: string;

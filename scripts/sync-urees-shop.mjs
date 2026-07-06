@@ -57,28 +57,27 @@ const HOMEPAGE_FALLBACK = {
   },
   dreaming: {
     title: 'DREAMING OF OUR PANTS WORN BY THOSE WHO HAVE INSPIRED US.',
-    image: `${BASE}/cdn/shop/files/2.png?v=1699637007&width=3840`,
   },
   reviving: [
     {
       title: 'REVIVING TIMELESS ICONS FRIDA',
-      image: `${BASE}/cdn/shop/files/3.png?v=1699637007&width=3840`,
+      image: `${BASE}/cdn/shop/files/2.png?v=1699637007&width=3840`,
     },
     {
       title: 'REVIVING ALBERT',
-      image: `${BASE}/cdn/shop/files/2_9624e6a5-78e6-461f-9e1b-6099c5b61e39.png?v=1699637007&width=3840`,
+      image: `${BASE}/cdn/shop/files/3.png?v=1699637001&width=3840`,
     },
     {
       title: 'REVIVING MARIE',
-      image: `${BASE}/cdn/shop/files/2_786b1b50-95c7-4f72-b7c3-bc452c15a23a.png?v=1699637007&width=3840`,
+      image: `${BASE}/cdn/shop/files/2_9624e6a5-78e6-461f-9e1b-6099c5b61e39.png?v=1699637023&width=3840`,
     },
     {
       title: 'REVIVING NERI',
-      image: `${BASE}/cdn/shop/files/2_67d68aa7-19fb-44c7-af53-d49b81046728.png?v=1699637007&width=3840`,
+      image: `${BASE}/cdn/shop/files/2_786b1b50-95c7-4f72-b7c3-bc452c15a23a.png?v=1699637033&width=3840`,
     },
     {
       title: 'REVIVING GALA',
-      image: `${BASE}/cdn/shop/files/Fio_TIM_WALKER_PHOTOGRAPY_exit_from_a_taxi._dinamic_pose._motio_76127803-ee0e-4966-8bea-bf57e6bacb79.png?v=1699637007&width=3840`,
+      image: `${BASE}/cdn/shop/files/2_67d68aa7-19fb-44c7-af53-d49b81046728.png?v=1699637013&width=3840`,
     },
   ],
   featuredNews: [],
@@ -119,6 +118,36 @@ function featuredNewsFromHtml(html) {
     .slice(0, 3);
 }
 
+function normalizeShopImageUrl(url) {
+  const cleaned = url.replace(/&amp;/g, '&').replace(/width=\d+/, 'width=3840');
+  if (cleaned.startsWith('http')) return cleaned;
+  return `https:${cleaned}`;
+}
+
+function revivingSlideshowFromHtml(html) {
+  const slideStart = html.indexOf('slideshow banner');
+  if (slideStart === -1) return null;
+
+  const slideEnd = html.indexOf('image-with-text', slideStart);
+  const slideshow = html.slice(slideStart, slideEnd > slideStart ? slideEnd : slideStart + 25000);
+  const slides = [];
+
+  for (const part of slideshow.split('slideshow__slide').slice(1)) {
+    const slide = part.split('slideshow__slide')[0];
+    const titleMatch = slide.match(/<h2[^>]*>([\s\S]*?)<\/h2>/);
+    const srcMatch = slide.match(/<img[^>]+src="([^"]+)"/);
+    if (!titleMatch || !srcMatch) continue;
+
+    const title = titleMatch[1].replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+    const image = normalizeShopImageUrl(srcMatch[1]);
+    if (!image.includes('/cdn/shop/files/')) continue;
+
+    slides.push({ title, image });
+  }
+
+  return slides.length > 0 ? slides : null;
+}
+
 function homepageFromHtml(html) {
   const heroBlock = html.match(/home\.jpg[\s\S]*?FIRST DROP UREES/i)?.[0] ?? html;
   const headlineMatch = heroBlock.match(/<h2[^>]*>([\s\S]*?)<\/h2>/i);
@@ -137,8 +166,17 @@ function homepageFromHtml(html) {
   const podcastImage = podcastBlock.match(/\/\/urees\.shop\/cdn\/shop\/files\/podcast[^"\s?]+/)?.[0];
   const spotifyUrl = podcastBlock.match(/https:\/\/open\.spotify\.com\/[^"\s]+/)?.[0];
 
+  const dreamingTitle = html.match(
+    /<h2[^>]*>\s*(DREAMING OF OUR PANTS[\s\S]*?)\s*<\/h2>/i,
+  )?.[1]?.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+  const revivingSlides = revivingSlideshowFromHtml(html);
+
   return {
     ...HOMEPAGE_FALLBACK,
+    dreaming: {
+      title: dreamingTitle || HOMEPAGE_FALLBACK.dreaming.title,
+    },
+    reviving: revivingSlides ?? HOMEPAGE_FALLBACK.reviving,
     hero: {
       headline,
       cta: { label: ctaLabel, href: '/pages/manifesto' },

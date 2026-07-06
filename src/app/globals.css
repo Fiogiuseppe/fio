@@ -447,6 +447,28 @@ html.home-route .spiritual-cover__svg {
   outline-offset: 3px;
 }
 
+.spiritual-cover__blue-square-hotspot {
+  position: absolute;
+  z-index: 4;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  touch-action: none;
+}
+
+.spiritual-cover__blue-square-hotspot--dragging {
+  cursor: grabbing;
+}
+
+.spiritual-cover__blue-square-hotspot:hover,
+.spiritual-cover__blue-square-hotspot:focus-visible {
+  background: rgb(0 31 255 / 0.08);
+  outline: 2px solid var(--color-blue);
+  outline-offset: 2px;
+}
+
 /* Legacy WordPress clone — isolated from new site */
 .legacy-archive {
   --cream: #e6e0d5;

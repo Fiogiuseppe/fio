@@ -9,7 +9,7 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
   blog: '/journal',
   visceralpoems: '/shop',
   'art-by-giuseppe-fioretti': '/shop',
-  cacophobia: '/shop/cacophobia',
+  cacophobia: '/cacophobia',
   the_conide: '/the-conide',
   'skin-is-the-new-canvas': '/shop#skin-is-the-new-canvas',
   'pee-pee': '/shop/pee-pee',

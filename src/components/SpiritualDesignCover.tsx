@@ -2,11 +2,13 @@
 
 import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { CACOPHOBIA_HREF } from '@/data/cacophobia';
 import {
   CONIDE_HREF,
   conideHotspotIsRound,
+  measureBlueSquareHotspot,
   measureConideHotspot,
-  type ConideHotspot,
+  type CoverHotspot,
 } from '@/lib/conide-cover-link';
 import {
   COVER_DRAG_THRESHOLD_PX,
@@ -36,6 +38,7 @@ export function SpiritualDesignCover() {
   const frameRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const conideLinkRef = useRef<HTMLAnchorElement>(null);
+  const blueSquareLinkRef = useRef<HTMLAnchorElement>(null);
   const dragState = useRef<DragState>({
     active: false,
     moved: false,
@@ -53,13 +56,15 @@ export function SpiritualDesignCover() {
   const dragLayersRef = useRef<Partial<Record<CoverDragId, SVGGElement>>>({});
 
   const [loaded, setLoaded] = useState(false);
-  const [hotspot, setHotspot] = useState<ConideHotspot | null>(null);
+  const [hotspot, setHotspot] = useState<CoverHotspot | null>(null);
+  const [blueSquareHotspot, setBlueSquareHotspot] = useState<CoverHotspot | null>(null);
   const [offsets, setOffsets] = useState<Record<CoverDragId, CoverOffset>>({
     conide: { x: 0, y: 0 },
     'blue-square': { x: 0, y: 0 },
   });
   const [draggingId, setDraggingId] = useState<CoverDragId | null>(null);
   const [suppressConideClick, setSuppressConideClick] = useState(false);
+  const [suppressBlueSquareClick, setSuppressBlueSquareClick] = useState(false);
 
   const updateHotspot = useCallback(() => {
     const frame = frameRef.current;
@@ -67,6 +72,7 @@ export function SpiritualDesignCover() {
     const svg = container?.querySelector('svg');
     if (!frame || !container || !svg) return;
     setHotspot(measureConideHotspot(svg, frame));
+    setBlueSquareHotspot(measureBlueSquareHotspot(svg, frame));
   }, []);
 
   const applyOffsetToLayer = useCallback((id: CoverDragId, offset: CoverOffset) => {
@@ -88,7 +94,7 @@ export function SpiritualDesignCover() {
       offsetsRef.current = { ...offsetsRef.current, [id]: offset };
       applyOffsetToLayer(id, offset);
       setOffsets({ ...offsetsRef.current });
-      if (id === 'conide') updateHotspot();
+      if (id === 'conide' || id === 'blue-square') updateHotspot();
     },
     [applyOffsetToLayer, updateHotspot]
   );
@@ -117,11 +123,16 @@ export function SpiritualDesignCover() {
       if (state.id === 'conide' && state.moved) {
         window.setTimeout(() => setSuppressConideClick(false), 0);
       }
+      if (state.id === 'blue-square' && state.moved) {
+        window.setTimeout(() => setSuppressBlueSquareClick(false), 0);
+      }
 
       const captureTarget =
         state.id === 'conide'
           ? conideLinkRef.current
-          : dragLayersRef.current[state.id];
+          : state.id === 'blue-square'
+            ? blueSquareLinkRef.current
+            : dragLayersRef.current[state.id];
 
       if (captureTarget?.hasPointerCapture(pointerId)) {
         captureTarget.releasePointerCapture(pointerId);
@@ -142,6 +153,7 @@ export function SpiritualDesignCover() {
         if (Math.hypot(dx, dy) < COVER_DRAG_THRESHOLD_PX) return;
         state.moved = true;
         if (state.id === 'conide') setSuppressConideClick(true);
+        if (state.id === 'blue-square') setSuppressBlueSquareClick(true);
       }
 
       updateDragOffset(state.id, {
@@ -222,50 +234,22 @@ export function SpiritualDesignCover() {
   }, [loaded, updateHotspot]);
 
   useEffect(() => {
-    if (!loaded) return;
-
-    const svg = containerRef.current?.querySelector('svg');
-    if (!svg) return;
-
-    const onSquarePointerDown = (event: PointerEvent) => {
-      const target = event.target;
-      if (!(target instanceof Element)) return;
-
-      const layer = target.closest<SVGGElement>('[data-cover-drag="blue-square"]');
-      if (!layer) return;
-
-      dragState.current = {
-        active: true,
-        moved: false,
-        id: 'blue-square',
-        startX: event.clientX,
-        startY: event.clientY,
-        originX: offsetsRef.current['blue-square'].x,
-        originY: offsetsRef.current['blue-square'].y,
-        pointerId: event.pointerId,
-      };
-      setDraggingId('blue-square');
-      layer.setPointerCapture(event.pointerId);
-      event.preventDefault();
-    };
-
     const onPointerUp = (event: PointerEvent) => finishDrag(event.pointerId);
 
-    svg.addEventListener('pointerdown', onSquarePointerDown);
     window.addEventListener('pointermove', onDragPointerMove);
     window.addEventListener('pointerup', onPointerUp);
     window.addEventListener('pointercancel', onPointerUp);
 
     return () => {
-      svg.removeEventListener('pointerdown', onSquarePointerDown);
       window.removeEventListener('pointermove', onDragPointerMove);
       window.removeEventListener('pointerup', onPointerUp);
       window.removeEventListener('pointercancel', onPointerUp);
     };
-  }, [finishDrag, loaded, onDragPointerMove]);
+  }, [finishDrag, onDragPointerMove]);
 
   const round = hotspot ? conideHotspotIsRound(hotspot) : true;
   const conideOffset = offsets.conide;
+  const blueSquareOffset = offsets['blue-square'];
 
   return (
     <section className="spiritual-cover surface-paper" aria-label="Home cover">
@@ -294,6 +278,27 @@ export function SpiritualDesignCover() {
             onPointerDown={(event) => startDrag('conide', event)}
             onClick={(event) => {
               if (suppressConideClick) event.preventDefault();
+            }}
+          />
+        ) : null}
+        {blueSquareHotspot ? (
+          <Link
+            ref={blueSquareLinkRef}
+            href={CACOPHOBIA_HREF}
+            className={`spiritual-cover__blue-square-hotspot${
+              draggingId === 'blue-square' ? ' spiritual-cover__blue-square-hotspot--dragging' : ''
+            }`}
+            style={{
+              left: blueSquareHotspot.left + blueSquareOffset.x,
+              top: blueSquareHotspot.top + blueSquareOffset.y,
+              width: blueSquareHotspot.width,
+              height: blueSquareHotspot.height,
+            }}
+            aria-label="Cacophobia — hidden project"
+            title="?"
+            onPointerDown={(event) => startDrag('blue-square', event)}
+            onClick={(event) => {
+              if (suppressBlueSquareClick) event.preventDefault();
             }}
           />
         ) : null}

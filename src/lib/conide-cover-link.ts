@@ -1,11 +1,14 @@
 export const CONIDE_HREF = '/the-conide';
 
-export type ConideHotspot = {
+export type CoverHotspot = {
   left: number;
   top: number;
   width: number;
   height: number;
 };
+
+/** @deprecated Use CoverHotspot */
+export type ConideHotspot = CoverHotspot;
 
 const VIEWBOX = { width: 1920, height: 1080 };
 
@@ -206,6 +209,38 @@ export function measureConideHotspot(
     measureFromBlackCircle(svg) ??
     fallbackHotspot(container)
   );
+}
+
+import { identifyBlueSquareElements } from '@/lib/spiritual-cover-drag';
+
+export function measureBlueSquareHotspot(
+  svg: SVGSVGElement,
+  container: HTMLElement
+): CoverHotspot | null {
+  const frame = svg.closest('.spiritual-cover__frame')?.getBoundingClientRect();
+  if (!frame) return null;
+
+  const elements = identifyBlueSquareElements(svg);
+  const union = unionClientRects(elements, 12);
+  if (union) {
+    return {
+      left: union.left - frame.left,
+      top: union.top - frame.top,
+      width: union.right - union.left,
+      height: union.bottom - union.top,
+    };
+  }
+
+  const width = container.clientWidth;
+  const height = container.clientHeight;
+  const size = Math.min(width, height) * 0.22;
+
+  return {
+    left: width * 0.7,
+    top: height * 0.58,
+    width: size,
+    height: size,
+  };
 }
 
 export function conideHotspotIsRound(hotspot: ConideHotspot) {

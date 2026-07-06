@@ -1,0 +1,120 @@
+.pageWidth {
+  width: min(120rem, calc(100% - 3rem));
+  margin-inline: auto;
+}
+
+.hero {
+  padding: 4rem 0 2rem;
+}
+
+.section {
+  padding: 4rem 0;
+}
+
+.intro {
+  margin: 0 auto;
+  max-width: 42rem;
+  text-align: center;
+}
+
+.introKicker {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-helvetica);
+  font-size: 0.6875rem;
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgb(10 10 10 / 0.42);
+}
+
+.introTitle {
+  margin: 0 0 1rem;
+  font-family: var(--font-helvetica);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.introDescription {
+  margin: 0;
+  font-family: var(--font-helvetica);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.6;
+  color: rgb(10 10 10 / 0.62);
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+}
+
+.filterButton {
+  border: 1px solid rgb(10 10 10 / 0.14);
+  background: transparent;
+  padding: 0.65rem 1rem;
+  font-family: var(--font-helvetica);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+.filterButton:hover {
+  border-color: rgb(10 10 10 / 0.35);
+}
+
+.filterButtonActive {
+  border-color: var(--color-ink);
+  background: var(--color-ink);
+  color: var(--color-on-dark);
+}
+
+.sectionHead {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-family: var(--font-helvetica);
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.25;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.sectionGroup {
+  margin: 0;
+  font-family: var(--font-helvetica);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgb(10 10 10 / 0.42);
+}
+
+.sectionDescription {
+  margin: 0 auto 2rem;
+  max-width: 40rem;
+  font-family: var(--font-helvetica);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  text-align: center;
+  color: rgb(10 10 10 / 0.58);
+}

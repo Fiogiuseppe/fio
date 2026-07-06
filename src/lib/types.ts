@@ -69,6 +69,8 @@ export interface Product {
   cta: ProductCta;
   /** Optional labels for filtering — e.g. pants, denim, print */
   tags?: string[];
+  /** Framed mockup preview — used by Visceral Poems when frame option is selected */
+  framedImage?: string;
 }
 
 /** Product fields stored in per-category JSON (category inferred from file). */

@@ -1,4 +1,10 @@
 import type { Product, ProductAvailability } from './types';
+import {
+  isVisceralPoemProduct,
+  visceralPoemFromPrice,
+  visceralPoemListPrice,
+} from '@/data/visceral-poems-pricing';
+import type { ShopGroup } from '@/data/shop-catalog';
 
 export function cn(...classes: Array<string | false | null | undefined>) {
   return classes.filter(Boolean).join(' ');
@@ -57,6 +63,27 @@ export function productCtaLabel(product: Product) {
   if (product.cta === 'sold' || product.availability === 'sold') return 'Sold';
   if (product.cta === 'request') return 'Request this piece';
   return 'Collect this piece';
+}
+
+export function productListPrice(product: Product, group?: ShopGroup) {
+  if (isVisceralPoemProduct(product.category)) {
+    const amount = group ? visceralPoemListPrice(group) : visceralPoemFromPrice();
+    return `From ${formatPrice(amount)}`;
+  }
+  return formatPrice(product.price, product.currency);
+}
+
+export function productBadgeLabel(product: Product, group?: ShopGroup) {
+  if (product.availability === 'sold') return 'Sold out';
+  if (product.cta === 'request' || product.availability === 'coming-soon') {
+    return 'Request piece';
+  }
+  if (isVisceralPoemProduct(product.category)) {
+    if (group === 'digital') return 'Digital print';
+    if (group === 'handmade') return 'Handmade';
+    return 'Handmade · Digital';
+  }
+  return 'Add to cart';
 }
 
 export function productHref(product: Pick<Product, 'slug' | 'category'>) {

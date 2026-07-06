@@ -1,30 +1,62 @@
+import { Suspense } from 'react';
 import type { Metadata } from 'next';
-import { SectionIntro } from '@/components/SectionIntro';
 import { CommerceProductGrid } from '@/components/CommerceProductGrid';
-import { editorialSpace } from '@/lib/editorial';
-import { getShopProducts } from '@/data/products';
+import { ShopGroupFilter } from '@/components/ShopGroupFilter';
+import { getShopSections, parseShopGroupFilter } from '@/data/shop-catalog';
+import styles from './shop.module.css';
 
 export const metadata: Metadata = {
   title: 'Shop — Giuseppe Fioretti',
-  description: 'Original handmade artworks — drawings, paintings and visceral pieces.',
+  description:
+    'Handmade paintings and Visceral Poems originals, plus signed digital prints from @visceralpoems.',
 };
 
-export default function ShopPage() {
-  const items = getShopProducts();
+type ShopPageProps = {
+  searchParams: Promise<{ group?: string }>;
+};
+
+export default async function ShopPage({ searchParams }: ShopPageProps) {
+  const { group } = await searchParams;
+  const filter = parseShopGroupFilter(group);
+  const sections = getShopSections(filter);
 
   return (
     <>
-      <section className={`${editorialSpace.sectionX} ${editorialSpace.sectionY}`}>
-        <div className="mx-auto max-w-7xl">
-          <SectionIntro
-            kicker="Gallery shop"
-            title="Shop"
-            description="Everything here is made by hand — drawings, paintings and visceral works, often mixed on the same piece."
-          />
+      <section className={styles.hero}>
+        <div className={styles.pageWidth}>
+          <div className={styles.intro}>
+            <p className={styles.introKicker}>Gallery shop</p>
+            <h1 className={styles.introTitle}>Shop</h1>
+            <p className={styles.introDescription}>
+              Two ways to collect: handmade originals — paintings and ink poems — or signed
+              digital prints from the Visceral Poems series.
+            </p>
+          </div>
+
+          <Suspense fallback={null}>
+            <ShopGroupFilter />
+          </Suspense>
         </div>
       </section>
 
-      <CommerceProductGrid products={items} brandLine="Giuseppe Fioretti" />
+      {sections.map((section) => (
+        <section key={section.id} className={styles.section} id={section.id}>
+          <div className={styles.pageWidth}>
+            <div className={styles.sectionHead}>
+              <h2 className={styles.sectionTitle}>{section.title}</h2>
+              <p className={styles.sectionGroup}>
+                {section.group === 'handmade' ? 'Handmade' : 'Digital'}
+              </p>
+            </div>
+            <p className={styles.sectionDescription}>{section.description}</p>
+            <CommerceProductGrid
+              products={section.products}
+              brandLine="Giuseppe Fioretti"
+              priceGroup={section.group}
+            />
+          </div>
+        </section>
+      ))}
     </>
   );
 }

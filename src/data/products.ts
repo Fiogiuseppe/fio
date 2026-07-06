@@ -14,13 +14,16 @@ export const shopCategories: ShopCategory[] = [
     description: 'Original paintings and visual experiments.',
     image: `${WP}/2025/07/Giuseppe_Fioretti_2.png`,
   },
-  {
-    slug: 'urees',
-    title: 'UREES',
-    description: 'One-of-one upcycled wearable pieces.',
-    image: `${WP}/2024/01/20230907_UREES02632.jpg`,
-  },
 ];
+
+export const UREES_BRAND = {
+  slug: 'urees',
+  title: 'UREES',
+  description: 'One-of-one upcycled wearable pieces — a separate universe where fashion, art and sustainability meet.',
+  image: `${WP}/2024/01/20230907_UREES02632.jpg`,
+  href: '/urees',
+  instagram: 'https://www.instagram.com/urees__/',
+} as const;
 
 export const products: Product[] = [
   {

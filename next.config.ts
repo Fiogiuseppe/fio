@@ -1,6 +1,15 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      {
+        source: '/shop/category/urees',
+        destination: '/urees',
+        permanent: true,
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {

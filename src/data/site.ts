@@ -10,10 +10,18 @@ export const SITE = {
   location: 'Copenhagen',
 } as const;
 
-export const NAV = [
+export type NavItem = {
+  readonly label: string;
+  readonly href: string;
+  /** Framed in the nav — a separate brand, not a standard section */
+  readonly emphasis?: boolean;
+};
+
+export const NAV: readonly NavItem[] = [
   { label: 'Work', href: '/work' },
   { label: 'Services', href: '/services' },
   { label: 'Shop', href: '/shop' },
+  { label: 'UREES', href: '/urees', emphasis: true },
   { label: 'Journal', href: '/journal' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },

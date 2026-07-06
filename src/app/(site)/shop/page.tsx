@@ -13,7 +13,7 @@ import { shopCategories } from '@/data/products';
 
 export const metadata: Metadata = {
   title: 'Shop — Giuseppe Fioretti',
-  description: 'Collect original artworks, paintings and one-of-one UREES pieces.',
+  description: 'Collect original artworks and paintings.',
 };
 
 export default function ShopPage() {
@@ -22,7 +22,7 @@ export default function ShopPage() {
       <SectionIntro
         kicker="Gallery shop"
         title="Shop"
-        description="Original artworks, paintings and wearable pieces — collected, not consumed."
+        description="Original artworks and paintings — collected, not consumed."
       />
 
       <div className={`grid gap-8 md:grid-cols-3 ${editorial.stack.leadToContent}`}>

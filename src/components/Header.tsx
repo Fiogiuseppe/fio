@@ -118,6 +118,7 @@ export function Header() {
               href={item.href}
               className={cn(
                 'site-header__nav-link',
+                item.emphasis && 'site-header__nav-link--emphasis',
                 pathname === item.href || pathname.startsWith(`${item.href}/`)
                   ? 'site-header__nav-link--active'
                   : undefined
@@ -151,7 +152,10 @@ export function Header() {
                   href={item.href}
                   className={cn(
                     'site-header__mobile-link',
-                    pathname === item.href ? 'site-header__nav-link--active' : undefined
+                    item.emphasis && 'site-header__nav-link--emphasis',
+                    pathname === item.href || pathname.startsWith(`${item.href}/`)
+                      ? 'site-header__nav-link--active'
+                      : undefined
                   )}
                   onClick={() => setOpen(false)}
                 >

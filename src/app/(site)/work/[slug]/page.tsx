@@ -64,17 +64,17 @@ export default async function WorkDetailPage({ params }: Props) {
             unoptimized={isGif || isSvg}
           />
         )}
+
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex flex-col items-start gap-2 bg-gradient-to-t from-ink/70 via-ink/30 to-transparent px-6 pb-8 pt-24 text-page md:gap-2.5 md:px-10 md:pb-10 md:pt-32">
+          <Badge className="text-page/80">{categoryLabel(project.category)} · {project.year}</Badge>
+          <TypographySection as="h1" className="m-0 text-page">
+            {project.title}
+          </TypographySection>
+          <TypographyLead className="m-0 max-w-2xl text-page/85">{project.subtitle}</TypographyLead>
+        </div>
       </div>
 
       <div className="mx-auto max-w-3xl px-6 py-16 md:px-10 md:py-24">
-        <Badge>
-          {categoryLabel(project.category)} · {project.year}
-        </Badge>
-        <TypographySection as="h1" className={editorial.stack.labelToTitle}>
-          {project.title}
-        </TypographySection>
-        <TypographyLead className={editorial.stack.titleToLead}>{project.subtitle}</TypographyLead>
-
         <dl className={`grid gap-6 border-t border-ink/10 pt-10 md:grid-cols-2 ${editorial.stack.block}`}>
           <div>
             <TypographyLabel as="dt">Client</TypographyLabel>

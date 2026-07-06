@@ -3,7 +3,6 @@ import Link from 'next/link';
 import type { Project } from '@/lib/types';
 import { categoryLabel, cn } from '@/lib/utils';
 import { TypographyCard, TypographyMeta } from '@/components/typography';
-import { editorial } from '@/lib/typography';
 import { Badge } from './Badge';
 import { CleanVideoEmbed } from './CleanVideoEmbed';
 import styles from './ProjectCard.module.css';
@@ -51,25 +50,20 @@ export function ProjectCard({ project, variant = 'grid', priority }: ProjectCard
               unoptimized={isGif || isSvg}
             />
           )}
-        </div>
-        <div className={cn(styles.copy, editorial.stack.block)}>
-          <Badge>
-            {categoryLabel(project.category)} · {project.year}
-          </Badge>
-          <TypographyCard
-            className={cn(
-              editorial.stack.labelToTitle,
-              'text-ink group-hover:text-blue',
-              variant === 'hero' && styles.titleHero
+
+          <div className={cn(styles.overlay, styles[`overlay_${variant}`])}>
+            <Badge className={styles.overlayBadge}>
+              {categoryLabel(project.category)} · {project.year}
+            </Badge>
+            <TypographyCard className={cn(styles.overlayTitle, variant === 'hero' && styles.titleHero)}>
+              {project.title}
+            </TypographyCard>
+            {variant !== 'grid' && (
+              <TypographyMeta as="p" className={styles.overlaySubtitle}>
+                {project.subtitle}
+              </TypographyMeta>
             )}
-          >
-            {project.title}
-          </TypographyCard>
-          {variant !== 'grid' && (
-            <TypographyMeta as="p" className={editorial.stack.labelToTitle}>
-              {project.subtitle}
-            </TypographyMeta>
-          )}
+          </div>
         </div>
       </article>
     </Link>

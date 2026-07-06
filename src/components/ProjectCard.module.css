@@ -38,21 +38,60 @@
   aspect-ratio: 4 / 3;
 }
 
-.copy {
-  padding: 1rem clamp(1rem, 4vw, 2.5rem) 0;
+.overlay {
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  padding: clamp(1.25rem, 4vw, 3rem);
+  padding-top: clamp(3rem, 14vw, 9rem);
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgb(10 10 10 / 0.16) 38%,
+    rgb(10 10 10 / 0.68) 100%
+  );
+  color: var(--color-page);
+  pointer-events: none;
 }
 
-.hero .copy {
-  padding-top: 1.25rem;
-  padding-bottom: 0.5rem;
+.overlay_hero {
+  gap: 0.45rem;
 }
 
-.large .copy {
-  padding-top: 1rem;
+.overlay_large {
+  gap: 0.4rem;
 }
 
-.grid .copy {
-  padding: 0.75rem 0 0;
+.overlay_grid {
+  padding: 0.85rem 1rem 1rem;
+  padding-top: 2.75rem;
+  gap: 0.2rem;
+}
+
+.overlayBadge {
+  color: rgb(247 247 242 / 0.78);
+}
+
+.overlayTitle {
+  margin: 0;
+  color: var(--color-page);
+  transition: color 220ms ease;
+}
+
+.link:hover .overlayTitle,
+.link:focus-visible .overlayTitle {
+  color: var(--color-blue);
+}
+
+.overlaySubtitle {
+  margin: 0;
+  max-width: 38ch;
+  color: rgb(247 247 242 / 0.82);
+  line-height: 1.45;
 }
 
 .titleHero {

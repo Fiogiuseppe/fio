@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { SectionIntro } from '@/components/SectionIntro';
 import { PageSection } from '@/components/PageSection';
+import { JournalAuthorMark } from '@/components/JournalAuthorMark';
 import { JournalCard } from '@/components/JournalCard';
 import { articles } from '@/data/articles';
 import gridStyles from '@/components/JournalGrid.module.css';
@@ -19,6 +20,7 @@ export default function JournalPage() {
         title="Journal"
         description="Essays on design, art, culture and creativity."
       />
+      <JournalAuthorMark />
       <div className={gridStyles.grid}>
         {articles.map((article) => (
           <JournalCard key={article.slug} article={article} compact />

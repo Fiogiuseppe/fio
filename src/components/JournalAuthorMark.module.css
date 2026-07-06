@@ -1,0 +1,31 @@
+.author {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  width: 100%;
+  max-width: 40rem;
+  margin: 2rem auto 0;
+}
+
+.portrait {
+  position: relative;
+  width: 5.75rem;
+  height: 5.75rem;
+  overflow: hidden;
+  border: 1px solid rgb(10 10 10 / 0.14);
+  border-radius: 50%;
+  background: rgb(10 10 10 / 0.04);
+}
+
+.portraitImage {
+  object-fit: cover;
+  object-position: center 18%;
+}
+
+@media (min-width: 768px) {
+  .portrait {
+    width: 6.5rem;
+    height: 6.5rem;
+  }
+}

@@ -7,9 +7,9 @@ import styles from './AboutPortrait.module.css';
 const CLOSED_PORTRAIT = '/images/about-portrait-closed.png';
 const OPEN_PORTRAIT = '/images/about-portrait-open.png';
 
-function randomBetween(min: number, max: number) {
-  return min + Math.random() * (max - min);
-}
+const FIRST_BLINK_MS = 3000;
+const BLINK_INTERVAL_MS = 6000;
+const EYES_OPEN_MS = 1500;
 
 export function AboutPortrait() {
   const [awake, setAwake] = useState(false);
@@ -26,14 +26,14 @@ export function AboutPortrait() {
         setAwake(true);
         closeTimeoutRef.current = setTimeout(() => {
           setAwake(false);
-          scheduleBlink(randomBetween(12000, 28000));
-        }, randomBetween(1400, 2400));
+          scheduleBlink(BLINK_INTERVAL_MS);
+        }, EYES_OPEN_MS);
       }, delayMs);
     }
 
     initialTimeoutRef.current = setTimeout(() => {
-      scheduleBlink(randomBetween(3000, 5500));
-    }, 1800);
+      scheduleBlink(FIRST_BLINK_MS);
+    }, 0);
 
     return () => {
       if (initialTimeoutRef.current) clearTimeout(initialTimeoutRef.current);

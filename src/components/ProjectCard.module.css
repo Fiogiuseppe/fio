@@ -78,8 +78,19 @@
 
 .overlayTitle {
   margin: 0;
+  max-width: min(92%, 20ch);
   color: var(--color-page);
+  text-wrap: balance;
   transition: color 220ms ease;
+}
+
+.overlay_hero .overlayTitle,
+.titleHero {
+  max-width: min(94%, 15ch);
+}
+
+.overlay_grid .overlayTitle {
+  max-width: min(90%, 11ch);
 }
 
 .link:hover .overlayTitle,

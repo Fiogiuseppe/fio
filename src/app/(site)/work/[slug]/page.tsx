@@ -16,6 +16,7 @@ import {
 import { editorial } from '@/lib/typography';
 import { getProject } from '@/data/projects';
 import { categoryLabel } from '@/lib/utils';
+import { splitOverlayTitle } from '@/lib/overlay-title';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -41,6 +42,7 @@ export default async function WorkDetailPage({ params }: Props) {
 
   const isGif = project.heroImage.endsWith('.gif');
   const isSvg = project.heroImage.endsWith('.svg');
+  const [titleLineOne, titleLineTwo] = splitOverlayTitle(project.title);
 
   return (
     <article>
@@ -67,8 +69,10 @@ export default async function WorkDetailPage({ params }: Props) {
 
         <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex flex-col items-start gap-2 bg-gradient-to-t from-ink/70 via-ink/30 to-transparent px-6 pb-8 pt-24 text-page md:gap-2.5 md:px-10 md:pb-10 md:pt-32">
           <Badge className="text-page/80">{categoryLabel(project.category)} · {project.year}</Badge>
-          <TypographySection as="h1" className="m-0 text-page">
-            {project.title}
+          <TypographySection as="h1" className="m-0 max-w-[min(94%,15ch)] text-balance text-page">
+            {titleLineOne}
+            <br />
+            {titleLineTwo}
           </TypographySection>
           <TypographyLead className="m-0 max-w-2xl text-page/85">{project.subtitle}</TypographyLead>
         </div>

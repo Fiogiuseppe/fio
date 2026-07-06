@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { Project } from '@/lib/types';
 import { categoryLabel, cn } from '@/lib/utils';
+import { splitOverlayTitle } from '@/lib/overlay-title';
 import { TypographyCard, TypographyMeta } from '@/components/typography';
 import { Badge } from './Badge';
 import { CleanVideoEmbed } from './CleanVideoEmbed';
@@ -19,6 +20,7 @@ export function ProjectCard({ project, variant = 'grid', priority }: ProjectCard
   const isGif = project.heroImage.endsWith('.gif');
   const isSvg = project.heroImage.endsWith('.svg');
   const href = project.slug === 'urees' ? '/urees' : `/work/${project.slug}`;
+  const [titleLineOne, titleLineTwo] = splitOverlayTitle(project.title);
 
   const sizes =
     variant === 'hero'
@@ -56,7 +58,9 @@ export function ProjectCard({ project, variant = 'grid', priority }: ProjectCard
               {categoryLabel(project.category)} · {project.year}
             </Badge>
             <TypographyCard className={cn(styles.overlayTitle, variant === 'hero' && styles.titleHero)}>
-              {project.title}
+              {titleLineOne}
+              <br />
+              {titleLineTwo}
             </TypographyCard>
             {variant !== 'grid' && (
               <TypographyMeta as="p" className={styles.overlaySubtitle}>

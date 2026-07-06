@@ -10,6 +10,8 @@ This is the visual DNA of fiogiuseppe.com. Every page, component, and interactio
 
 ## Design philosophy
 
+**The book test (mandatory):** Every design decision must answer one question — *Would this still feel beautiful if it were printed as a book?* If the answer is no, redesign it.
+
 Typography is not decoration. Typography creates hierarchy, rhythm, and silence. Whitespace is content. Images are narrative. Composition is communication. Nothing exists without purpose.
 
 If an element does not improve hierarchy, emotion, or clarity — remove it.
@@ -80,6 +82,19 @@ Body text: sentence case. Quartz: natural capitalization when appropriate.
 | Meta | `TypographyMeta` | Helvetica Light 12–14px, muted |
 | Button | `TypographyButton` | Helvetica Bold 14–16px, uppercase, verb first |
 | Quote | `TypographyQuote` | Quartz, centered, short artistic statements |
+
+---
+
+## Surface & color
+
+| Token | Value | Use |
+|-------|-------|-----|
+| Paper | `#E6E0D5` | Site background — warm uncoated stock |
+| Paper texture | `public/images/paper-background.svg` | Vector noise overlay (feTurbulence) |
+| Ink | `#0A0A0A` | Body text |
+| Blue | `#001FFF` | Accent, links, artwork |
+
+The paper surface must feel printed — never flat digital white. Use `.surface-paper` on full-bleed sections (home cover).
 
 ---
 

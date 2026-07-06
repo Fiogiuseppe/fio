@@ -10,12 +10,19 @@
 }
 
 @theme {
-  --color-cream: #f7f5e8;
-  --color-cream-soft: #f6eee1;
+  --color-cream: #e6e0d5;
+  --color-cream-soft: #ddd7cc;
   --color-ink: #0a0a0a;
   --color-blue: #001fff;
   --font-helvetica: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --font-quartz: 'Quartz Defio', Georgia, serif;
+}
+
+.surface-paper {
+  background-color: var(--color-cream);
+  background-image: url('/images/paper-background.svg');
+  background-position: center;
+  background-size: cover;
 }
 
 html {
@@ -23,7 +30,11 @@ html {
 }
 
 body {
-  @apply bg-cream text-ink antialiased;
+  @apply text-ink antialiased;
+  background-color: var(--color-cream);
+  background-image: url('/images/paper-background.svg');
+  background-position: center;
+  background-size: cover;
   font-family: var(--font-helvetica);
   font-size: 1rem;
   font-weight: 400;
@@ -61,7 +72,7 @@ a {
 
 .site-header--solid {
   border-bottom: 1px solid rgb(10 10 10 / 0.1);
-  background: rgb(247 245 232 / 0.95);
+  background: rgb(230 224 213 / 0.95);
   backdrop-filter: blur(10px);
 }
 
@@ -125,7 +136,7 @@ html.home-route .site-header--overlay .site-header__logo {
 }
 
 html.home-route .site-header__mobile {
-  background: rgb(247 245 232 / 0.94);
+  background: rgb(230 224 213 / 0.94);
   backdrop-filter: blur(10px);
 }
 
@@ -230,7 +241,7 @@ html.home-route .site-header__mobile {
 .site-header__mobile {
   display: block;
   border-top: 1px solid rgb(10 10 10 / 0.1);
-  background: rgb(247 245 232 / 0.98);
+  background: rgb(230 224 213 / 0.98);
   padding: 1.25rem clamp(1rem, 4vw, 2.5rem) 1.5rem;
   pointer-events: auto;
 }
@@ -288,7 +299,6 @@ html.home-route .site-header__mobile {
   width: 100%;
   min-height: 100dvh;
   min-height: 100svh;
-  background: var(--color-cream);
   border-bottom: 1px solid rgb(10 10 10 / 0.08);
 }
 
@@ -310,6 +320,7 @@ html.home-route main > .spiritual-cover:first-child {
 html.home-route .spiritual-cover__frame {
   position: absolute;
   inset: 0;
+  z-index: 1;
   display: block;
   min-height: 0;
 }
@@ -364,6 +375,7 @@ html.home-route .spiritual-cover__svg {
 
 .spiritual-cover__frame {
   position: relative;
+  z-index: 1;
   display: flex;
   width: 100%;
   min-height: 100svh;

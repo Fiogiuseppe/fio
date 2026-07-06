@@ -10,6 +10,8 @@ Read `docs/EDITORIAL_DESIGN_SYSTEM.md` before any UI change.
 
 ## Non-negotiables
 
+- **Book test:** Would this still feel beautiful printed as a book? If no — redesign.
+- Paper background `#E6E0D5` + vector noise on every page — never flat digital white
 - Use `Typography*` components only — never custom font sizes
 - Helvetica ~95%, Quartz ~5% (hero + quote only, max 6 words)
 - All Helvetica titles uppercase via components

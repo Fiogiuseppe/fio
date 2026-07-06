@@ -41,7 +41,7 @@ export function SpiritualDesignCover() {
   }, []);
 
   return (
-    <section className="spiritual-cover" aria-label="Home cover">
+    <section className="spiritual-cover surface-paper" aria-label="Home cover">
       <div className="spiritual-cover__frame">
         <div
           ref={containerRef}

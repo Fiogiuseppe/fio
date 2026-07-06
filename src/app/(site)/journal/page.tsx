@@ -14,6 +14,7 @@ export default function JournalPage() {
   return (
     <PageSection className="journal-index">
       <SectionIntro
+        align="center"
         kicker="Writing"
         title="Journal"
         description="Essays on design, art, culture and creativity."

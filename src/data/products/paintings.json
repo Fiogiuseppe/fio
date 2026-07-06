@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "cacophobia",
+    "title": "Cacophobia",
+    "shortDescription": "An exploration of fear, form and the human condition.",
+    "longStory": "Cacophobia examines what we turn away from — and what happens when we look anyway. Oil and emotion on canvas.",
+    "images": ["https://fiogiuseppe.com/wp-content/uploads/2021/05/IG-202117-scaled.jpg"],
+    "price": 2200,
+    "currency": "EUR",
+    "size": "120 × 160 cm",
+    "technique": "Oil on canvas",
+    "availability": "available",
+    "edition": "Original — 1 of 1",
+    "productType": "original",
+    "cta": "request"
+  },
+  {
+    "slug": "the-conide",
+    "title": "The Conide",
+    "shortDescription": "On the importance of the spectator in the art world.",
+    "longStory": "The Conide is a meditation on presence — the space between artist, work and witness. A painting that asks you to stay.",
+    "images": ["https://fiogiuseppe.com/wp-content/uploads/2021/05/FIO_1626-scaled.jpg"],
+    "price": 1800,
+    "currency": "EUR",
+    "size": "100 × 140 cm",
+    "technique": "Mixed media on canvas",
+    "availability": "sold",
+    "edition": "Original — 1 of 1",
+    "productType": "original",
+    "cta": "sold"
+  }
+]

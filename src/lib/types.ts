@@ -67,7 +67,12 @@ export interface Product {
   edition?: string;
   productType: ProductType;
   cta: ProductCta;
+  /** Optional labels for filtering — e.g. pants, denim, print */
+  tags?: string[];
 }
+
+/** Product fields stored in per-category JSON (category inferred from file). */
+export type ProductInput = Omit<Product, 'category'>;
 
 export interface Article {
   slug: string;

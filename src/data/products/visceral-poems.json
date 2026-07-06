@@ -1,0 +1,32 @@
+[
+  {
+    "slug": "visceral-poem-12",
+    "title": "Visceral Poem XII",
+    "shortDescription": "A visceral meditation on body, language and silence.",
+    "longStory": "Part of the Visceral Poems series — where poetry meets physical form. Each piece is a fragment of an inner landscape, rendered in ink and emotion.",
+    "images": ["https://fiogiuseppe.com/wp-content/uploads/2023/03/VISCERAL-POETRY-12-scaled.jpg"],
+    "price": 480,
+    "currency": "EUR",
+    "size": "70 × 100 cm",
+    "technique": "Ink on paper",
+    "availability": "available",
+    "edition": "Original — 1 of 1",
+    "productType": "original",
+    "cta": "buy"
+  },
+  {
+    "slug": "visceral-poem-limited",
+    "title": "Visceral Poem — Limited Print",
+    "shortDescription": "Limited edition archival print from the Visceral Poems series.",
+    "longStory": "A selected work from the series, reproduced as a museum-quality archival print in a strictly limited run.",
+    "images": ["https://fiogiuseppe.com/wp-content/uploads/2023/03/VISCERAL-POETRY-12-scaled.jpg"],
+    "price": 120,
+    "currency": "EUR",
+    "size": "50 × 70 cm",
+    "technique": "Archival pigment print",
+    "availability": "available",
+    "edition": "Edition of 25",
+    "productType": "print",
+    "cta": "buy"
+  }
+]

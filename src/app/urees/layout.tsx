@@ -2,6 +2,7 @@ import { Jost } from 'next/font/google';
 import type { Metadata } from 'next';
 import { UreesFooter } from '@/components/urees/UreesFooter';
 import { UreesHeader } from '@/components/urees/UreesHeader';
+import { UreesPortal } from '@/components/urees/UreesPortal';
 import './urees.css';
 
 const jost = Jost({
@@ -18,6 +19,7 @@ export const metadata: Metadata = {
 export default function UreesLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className={`urees-root ${jost.variable}`}>
+      <UreesPortal />
       <UreesHeader />
       <main>{children}</main>
       <UreesFooter />

@@ -37,4 +37,7 @@ export type UreesCatalog = {
   featuredHandles: string[];
   products: UreesProduct[];
   featured: UreesProduct[];
+  collections?: Array<{ handle: string; productHandles: string[] }>;
+  bestsellerHandles?: string[];
+  bestsellers?: UreesProduct[];
 };

@@ -1,51 +1,67 @@
 export const UREES_LOGO =
   'https://urees.shop/cdn/shop/files/Urees_Logo_9afae6b4-d876-4082-8c40-869d133e917b.png?v=1699536542&width=600';
 
-export const UREES_SHOP_URL = 'https://urees.shop';
+export const UREES_CART_URL = 'https://urees.shop/cart';
+export const UREES_CONTACT_EMAIL = 'info.urees@gmail.com';
 
-export const ureesNav = [
-  { label: 'Shop', href: '/urees#first-drop' },
-  { label: 'Pants', href: '/urees/collections/pants' },
-  { label: 'Manifesto', href: '/urees#manifesto' },
-  { label: 'News', href: '/urees#news' },
+/** Main navigation — matches urees.shop header */
+export const ureesMainNav = [
+  {
+    label: 'Best sellers',
+    href: '/urees/collections/discover-the-best-in-sustainable-fashion-best-sellers-collection-urees',
+  },
+  {
+    label: 'Custom',
+    href: '/urees/pages/discover-your-style-your-perfect-fit-urees-custom',
+  },
+  { label: 'Manifesto', href: '/urees/pages/manifesto' },
+  { label: 'News', href: '/urees/blogs/urees-news' },
+  { label: 'Contact', href: '/urees/pages/contact-1' },
 ] as const;
 
-export const ureesHomeSections = {
-  firstDrop: {
-    id: 'first-drop',
-    title: 'FIRST DROP UREES',
+export const ureesFooterNav = [
+  { label: 'Newsletter', href: '/urees/pages/join-our-newsletter-stay-informed-and-get-exclusive-updates' },
+  { label: 'Size guide', href: '/urees/pages/size-guide-by-urees' },
+  { label: 'Washing guide', href: '/urees/pages/care-for-your-urees-washing-and-maintenance-guide' },
+  { label: 'Urees news', href: '/urees/blogs/urees-news' },
+  {
+    label: 'Contact us',
+    href: `mailto:${UREES_CONTACT_EMAIL}?subject=hey%20fiogiuseppe`,
+    external: true,
   },
-  dreaming: {
-    id: 'dreaming',
-    title: 'DREAMING OF OUR PANTS WORN BY THOSE WHO HAVE INSPIRED US.',
-  },
+  { label: 'Privacy policy', href: '/urees/policies/privacy-policy' },
+  { label: 'Legal notice', href: '/urees/policies/legal-notice' },
+  { label: 'Refund policy', href: '/urees/policies/refund-policy' },
+  { label: 'Your privacy choices', href: '/urees/pages/data-sharing-opt-out' },
+  { label: 'Become our global Urees seller', href: '/urees/pages/become-our-global-urees-seller' },
+] as const;
+
+export const ureesPolicyNav = [
+  { label: 'Refund policy', href: '/urees/policies/refund-policy' },
+  { label: 'Privacy policy', href: '/urees/policies/privacy-policy' },
+  { label: 'Terms of service', href: '/urees/policies/terms-of-service' },
+  { label: 'Contact information', href: '/urees/policies/contact-information' },
+  { label: 'Legal notice', href: '/urees/policies/legal-notice' },
+] as const;
+
+export const ureesHomeCopy = {
+  firstDrop: { id: 'first-drop', title: 'FIRST DROP UREES' },
   manifesto: {
-    id: 'manifesto',
+    id: 'manifesto-preview',
     title: "CELEBRATE THE CLOTHES' HISTORICAL MEMORY",
     blocks: [
-      {
-        heading:
-          'UREES IS A LUXURY CONSCIOUS BRAND THAT TRANSFORMS USED GARMENTS INTO UNIQUE, HANDCRAFTED PIECES, CELEBRATING THEIR HISTORICAL MEMORY.',
-      },
-      {
-        heading:
-          'OUR MISSION IS TO GIVE NEW LIFE TO CLOTHING, CREATING UNISIZE, UNISEX, AND DISTINCTIVE GARMENTS.',
-      },
-      {
-        heading:
-          'WE BELIEVE IN PRESERVING AND HONORING THE STORIES EACH PIECE OF CLOTHING CARRIES.',
-      },
-      {
-        heading: 'Urees, Nothing is created, nothing is destroyed, everything is transformed.',
-        cta: { label: 'CHECK OUR MANIFESTO', href: `${UREES_SHOP_URL}/pages/manifesto` },
-      },
+      'UREES IS A LUXURY CONSCIOUS BRAND THAT TRANSFORMS USED GARMENTS INTO UNIQUE, HANDCRAFTED PIECES, CELEBRATING THEIR HISTORICAL MEMORY.',
+      'OUR MISSION IS TO GIVE NEW LIFE TO CLOTHING, CREATING UNISIZE, UNISEX, AND DISTINCTIVE GARMENTS.',
+      'WE BELIEVE IN PRESERVING AND HONORING THE STORIES EACH PIECE OF CLOTHING CARRIES.',
+      'Urees, Nothing is created, nothing is destroyed, everything is transformed.',
     ],
+    cta: { label: 'CHECK OUR MANIFESTO', href: '/urees/pages/manifesto' },
   },
   slowFashion: {
     id: 'slow-fashion',
     title: 'WE ARE SLOW FASHION',
     body: 'EMBRACING SLOW FASHION, WE PRIORITIZE QUALITY, DURABILITY, AND ETHICAL PRODUCTION, MINIMIZING WASTE AND PROMOTING SUSTAINABILITY THROUGHOUT OUR UNIQUE, LOCAL, AND ON-DEMAND CRAFTING PROCESS. EXPLORE OUR MANIFESTO FOR MORE.',
-    cta: { label: '+ info', href: `${UREES_SHOP_URL}/pages/manifesto` },
+    cta: { label: '+ info', href: '/urees/pages/manifesto' },
   },
   podcast: {
     id: 'podcast',
@@ -62,29 +78,9 @@ export const ureesHomeSections = {
   },
 } as const;
 
-export const ureesNews = [
-  {
-    title: 'Join the Urees Seller Family: Redefining Fashion One Unique Piece at a Time',
-    date: 'September 9, 2024',
-    tag: 'Urees Reuse',
-    href: `${UREES_SHOP_URL}/blogs/urees-news/join-the-urees-seller-family-redefining-fashion-one-unique-piece-at-a-time`,
-    excerpt:
-      "At Urees, we believe that fashion should tell a story—one of innovation, individuality, and responsible choices.",
-  },
-  {
-    title: 'Practical Guide for the Conscious Consumer: How to Embrace Sustainable Fashion in Your Daily Life',
-    date: 'June 20, 2024',
-    tag: 'Urees Reuse',
-    href: `${UREES_SHOP_URL}/blogs/urees-news/practical-guide-for-the-conscious-consumer-how-to-embrace-sustainable-fashion-in-your-daily-life`,
-    excerpt:
-      'In an increasingly environmentally and socially conscious world, the demand for sustainable fashion is on the rise.',
-  },
-  {
-    title: 'Upcycling: The Future of Sustainable Fashion',
-    date: 'June 18, 2024',
-    tag: 'Urees Reuse',
-    href: `${UREES_SHOP_URL}/blogs/urees-news/upcycling-the-future-of-sustainable-fashion`,
-    excerpt:
-      'Discover how upcycling is transforming the fashion industry in 2024.',
-  },
-] as const;
+/** Link back to the main Fiogiuseppe site */
+export const FIO_PORTAL = {
+  label: 'Giuseppe Fioretti',
+  href: '/',
+  hint: 'Back to fiogiuseppe.com',
+} as const;

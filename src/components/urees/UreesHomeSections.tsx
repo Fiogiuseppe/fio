@@ -1,6 +1,9 @@
+import Image from 'next/image';
 import Link from 'next/link';
+import { UreesBannerCarousel } from '@/components/urees/UreesBannerCarousel';
 import { UreesProductGrid } from '@/components/urees/UreesProductGrid';
-import { ureesHomeSections, ureesNews } from '@/data/urees/content';
+import { ureesHomeCopy } from '@/data/urees/content';
+import { formatUreesDate, ureesSite } from '@/data/urees';
 import type { UreesProduct } from '@/lib/urees-types';
 
 type UreesHomeSectionsProps = {
@@ -8,90 +11,108 @@ type UreesHomeSectionsProps = {
 };
 
 export function UreesHomeSections({ products }: UreesHomeSectionsProps) {
+  const { homepage, articles } = ureesSite;
+  const revivingSlides = homepage.reviving;
+
   return (
     <>
-      <section className="urees-section" id={ureesHomeSections.firstDrop.id}>
+      <section className="urees-hero-banner">
+        <Image
+          src={homepage.heroImage}
+          alt="Urees"
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+        />
+      </section>
+
+      <section className="urees-section" id={ureesHomeCopy.firstDrop.id}>
         <div className="urees-page-width">
-          <h2 className="urees-section__title">{ureesHomeSections.firstDrop.title}</h2>
+          <h2 className="urees-section__title">{ureesHomeCopy.firstDrop.title}</h2>
           <UreesProductGrid products={products} />
-          <div style={{ textAlign: 'center', marginTop: '2rem' }}>
+          <div className="urees-section__cta">
             <Link href="/urees/collections/pants" className="urees-button urees-button--secondary">
-              View all pants
+              View all
             </Link>
           </div>
         </div>
       </section>
 
-      <section className="urees-section urees-section--soft" id={ureesHomeSections.dreaming.id}>
-        <div className="urees-page-width urees-copy-block">
-          <h2 className="urees-section__title">{ureesHomeSections.dreaming.title}</h2>
-        </div>
-      </section>
+      <UreesBannerCarousel
+        slides={[{ title: homepage.dreaming.title, image: homepage.dreaming.image }]}
+      />
 
-      <section className="urees-section" id={ureesHomeSections.manifesto.id}>
+      {revivingSlides.map((slide) => (
+        <UreesBannerCarousel key={slide.title} slides={[slide]} />
+      ))}
+
+      <section className="urees-section" id={ureesHomeCopy.manifesto.id}>
         <div className="urees-page-width">
-          <h2 className="urees-section__title">{ureesHomeSections.manifesto.title}</h2>
+          <h2 className="urees-section__title">{ureesHomeCopy.manifesto.title}</h2>
           <div className="urees-copy-block">
-            {ureesHomeSections.manifesto.blocks.map((block) => (
-              <div key={block.heading} style={{ marginBottom: '2rem' }}>
-                <h3>{block.heading}</h3>
-                {'cta' in block && block.cta && (
-                  <a href={block.cta.href} className="urees-button" style={{ marginTop: '1rem' }}>
-                    {block.cta.label}
-                  </a>
-                )}
-              </div>
+            {ureesHomeCopy.manifesto.blocks.map((block) => (
+              <h3 key={block}>{block}</h3>
             ))}
+            <Link href={ureesHomeCopy.manifesto.cta.href} className="urees-button">
+              {ureesHomeCopy.manifesto.cta.label}
+            </Link>
           </div>
         </div>
       </section>
 
-      <section className="urees-section urees-section--soft" id={ureesHomeSections.slowFashion.id}>
+      <section className="urees-section urees-section--soft" id={ureesHomeCopy.slowFashion.id}>
         <div className="urees-page-width urees-copy-block">
-          <h2 className="urees-section__title">{ureesHomeSections.slowFashion.title}</h2>
-          <p>{ureesHomeSections.slowFashion.body}</p>
-          <a
-            href={ureesHomeSections.slowFashion.cta.href}
+          <h2 className="urees-section__title">{ureesHomeCopy.slowFashion.title}</h2>
+          <p>{ureesHomeCopy.slowFashion.body}</p>
+          <Link
+            href={ureesHomeCopy.slowFashion.cta.href}
             className="urees-button urees-button--secondary"
-            style={{ marginTop: '1.5rem' }}
           >
-            {ureesHomeSections.slowFashion.cta.label}
-          </a>
+            {ureesHomeCopy.slowFashion.cta.label}
+          </Link>
         </div>
       </section>
 
       <section className="urees-section" id="news">
         <div className="urees-page-width">
-          <h2 className="urees-section__title">Urees news</h2>
+          <div className="urees-section__head">
+            <h2 className="urees-section__title">Urees news</h2>
+            <Link href="/urees/blogs/urees-news" className="urees-text-link">
+              View all
+            </Link>
+          </div>
           <div className="urees-news-grid">
-            {ureesNews.map((article) => (
-              <a key={article.href} href={article.href} className="urees-news-card">
+            {articles.slice(0, 3).map((article) => (
+              <Link
+                key={article.handle}
+                href={`/urees/blogs/urees-news/${article.handle}`}
+                className="urees-news-card"
+              >
                 <h4>{article.title}</h4>
-                <p>{article.excerpt}</p>
-                <small>
-                  {article.date} · {article.tag}
-                </small>
-              </a>
+                <p>{article.bodyHtml.replace(/<[^>]+>/g, '').slice(0, 140)}…</p>
+                <small>{formatUreesDate(article.publishedAt)} · Urees Reuse</small>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="urees-section urees-section--soft" id={ureesHomeSections.podcast.id}>
+      <section className="urees-section urees-section--soft" id={ureesHomeCopy.podcast.id}>
         <div className="urees-page-width urees-copy-block">
-          <h2 className="urees-section__title">{ureesHomeSections.podcast.title}</h2>
-          <p>{ureesHomeSections.podcast.body}</p>
-          <p style={{ marginTop: '1rem', opacity: 0.7 }}>{ureesHomeSections.podcast.note}</p>
+          <h2 className="urees-section__title">{ureesHomeCopy.podcast.title}</h2>
+          <p>{ureesHomeCopy.podcast.body}</p>
+          <p className="urees-note">{ureesHomeCopy.podcast.note}</p>
         </div>
       </section>
 
-      <section className="urees-section" id={ureesHomeSections.instagram.id}>
+      <section className="urees-section" id={ureesHomeCopy.instagram.id}>
         <div className="urees-page-width urees-copy-block">
-          <h2 className="urees-section__title">{ureesHomeSections.instagram.title}</h2>
-          <a href={ureesHomeSections.instagram.href} className="urees-button">
-            {ureesHomeSections.instagram.handle}
+          <h2 className="urees-section__title">{ureesHomeCopy.instagram.title}</h2>
+          <a href={ureesHomeCopy.instagram.href} className="urees-button">
+            {ureesHomeCopy.instagram.handle}
           </a>
-          <p style={{ marginTop: '1.5rem' }}>{ureesHomeSections.instagram.tagline}</p>
+          <p className="urees-instagram-tagline">{ureesHomeCopy.instagram.tagline}</p>
         </div>
       </section>
     </>

@@ -48,7 +48,7 @@ function UreesHomeEntry({ intro }: { intro: string }) {
   return (
     <>
       <TypographyLead className={styles.bodyCopy}>{intro}</TypographyLead>
-      <Link href="/urees/collections/pants" className={styles.ureesHomeLogoLink}>
+      <Link href="/urees" className={styles.ureesHomeLogoLink}>
         <div className={styles.ureesHomeLogoWrap}>
           <Image
             src={UREES_LOGO}
@@ -59,7 +59,7 @@ function UreesHomeEntry({ intro }: { intro: string }) {
           />
         </div>
         <TypographyMeta className={styles.ureesHomeLogoCaption}>
-          Enter the Urees shop — view all pants
+          Enter Urees
         </TypographyMeta>
       </Link>
     </>

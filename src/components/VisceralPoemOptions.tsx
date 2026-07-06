@@ -11,6 +11,7 @@ import {
 } from '@/data/visceral-poems-pricing';
 import { formatPrice } from '@/lib/utils';
 import { TypographyBody } from '@/components/typography';
+import { ShopCheckoutButton } from '@/components/ShopCheckoutButton';
 import styles from './VisceralPoemOptions.module.css';
 
 type VisceralPoemOptionsProps = {
@@ -99,6 +100,14 @@ export function VisceralPoemOptions({ product }: VisceralPoemOptionsProps) {
             Frame preview uses a placeholder mockup. Final framed piece will use the real frame.
           </p>
         ) : null}
+
+        <ShopCheckoutButton
+          slug={product.slug}
+          format={format}
+          withFrame={withFrame}
+          label="Buy now"
+          className={styles.checkout}
+        />
 
         <TypographyBody measure={false} className={styles.story}>
           {product.longStory}

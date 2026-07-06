@@ -9,7 +9,7 @@ import {
 import { editorial } from '@/lib/typography';
 
 export function Footer() {
-  const explore = NAV.filter((item) => item.href !== '/');
+  const explore = NAV;
 
   return (
     <footer className="surface-dark border-t border-white/10">

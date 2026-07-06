@@ -118,7 +118,7 @@ export function Header() {
               href={item.href}
               className={cn(
                 'site-header__nav-link',
-                pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href))
+                pathname === item.href || pathname.startsWith(`${item.href}/`)
                   ? 'site-header__nav-link--active'
                   : undefined
               )}

@@ -8,7 +8,7 @@ import styles from './shop.module.css';
 export const metadata: Metadata = {
   title: 'Shop — Giuseppe Fioretti',
   description:
-    'Handmade paintings, Skin is the New Canvas with Claudia Sahuquillo, and Visceral Poems originals plus signed digital prints.',
+    'Handmade paintings, Skin is the New Canvas with Claudia Sahuquillo, handpainted works, and Visceral Poems originals plus signed digital prints.',
 };
 
 type ShopPageProps = {

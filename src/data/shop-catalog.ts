@@ -21,6 +21,7 @@ export type ShopSection = {
 };
 
 export const SKIN_CANVAS_COLLECTION_TAG = 'skin-is-the-new-canvas';
+export const HANDPAINTED_COLLECTION_TAG = 'handpainted';
 
 export function parseShopGroupFilter(value?: string | null): ShopGroupFilter {
   if (value === 'handmade' || value === 'digital') return value;
@@ -44,8 +45,13 @@ export function getShopSections(filter: ShopGroupFilter = 'all'): ShopSection[] 
   const skinCanvas = paintings.filter((product) =>
     product.tags?.includes(SKIN_CANVAS_COLLECTION_TAG)
   );
+  const handpainted = paintings.filter((product) =>
+    product.tags?.includes(HANDPAINTED_COLLECTION_TAG)
+  );
   const standalonePaintings = paintings.filter(
-    (product) => !product.tags?.includes(SKIN_CANVAS_COLLECTION_TAG)
+    (product) =>
+      !product.tags?.includes(SKIN_CANVAS_COLLECTION_TAG) &&
+      !product.tags?.includes(HANDPAINTED_COLLECTION_TAG)
   );
   const visceralPoems = shopProducts.filter((product) => product.category === 'visceral-poems');
   const handmadePoems = productsForGroup(visceralPoems, 'handmade');
@@ -62,6 +68,16 @@ export function getShopSections(filter: ShopGroupFilter = 'all'): ShopSection[] 
         group: 'handmade',
         brandLine: 'Giuseppe Fioretti × Claudia Sahuquillo',
         products: skinCanvas,
+      });
+    }
+
+    if (handpainted.length > 0) {
+      sections.push({
+        id: 'handpainted',
+        title: 'Handpainted',
+        description: 'Original handpainted works — shoes, studies and one-of-one pieces.',
+        group: 'handmade',
+        products: handpainted,
       });
     }
 

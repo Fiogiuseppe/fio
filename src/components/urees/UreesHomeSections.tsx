@@ -1,11 +1,12 @@
 import Link from 'next/link';
 import { UreesBannerCarousel } from '@/components/urees/UreesBannerCarousel';
 import { UreesHeroBanner } from '@/components/urees/UreesHeroBanner';
+import { UreesNewsSection } from '@/components/urees/UreesNewsSection';
 import { UreesPodcastSection } from '@/components/urees/UreesPodcastSection';
 import { UreesProductGrid } from '@/components/urees/UreesProductGrid';
 import { UreesVideoSection } from '@/components/urees/UreesVideoSection';
 import { ureesHomeCopy } from '@/data/urees/content';
-import { formatUreesDate, ureesSite } from '@/data/urees';
+import { ureesSite } from '@/data/urees';
 import type { UreesProduct } from '@/lib/urees-types';
 
 type UreesHomeSectionsProps = {
@@ -13,8 +14,19 @@ type UreesHomeSectionsProps = {
 };
 
 export function UreesHomeSections({ products }: UreesHomeSectionsProps) {
-  const { homepage, articles } = ureesSite;
+  const { homepage } = ureesSite;
   const revivingSlides = homepage.reviving;
+  const featuredNews =
+    homepage.featuredNews?.length > 0
+      ? homepage.featuredNews
+      : ureesSite.articles.slice(0, 3).map((article) => ({
+          handle: article.handle,
+          title: article.title,
+          image: article.image,
+          publishedAt: article.publishedAt,
+          tag: 'Urees Reuse',
+          excerpt: article.bodyHtml.replace(/<[^>]+>/g, '').slice(0, 160),
+        }));
 
   return (
     <>
@@ -73,29 +85,7 @@ export function UreesHomeSections({ products }: UreesHomeSectionsProps) {
         </div>
       </section>
 
-      <section className="urees-section" id="news">
-        <div className="urees-page-width">
-          <div className="urees-section__head">
-            <h2 className="urees-section__title">Urees news</h2>
-            <Link href="/urees/blogs/urees-news" className="urees-text-link">
-              View all
-            </Link>
-          </div>
-          <div className="urees-news-grid">
-            {articles.slice(0, 3).map((article) => (
-              <Link
-                key={article.handle}
-                href={`/urees/blogs/urees-news/${article.handle}`}
-                className="urees-news-card"
-              >
-                <h4>{article.title}</h4>
-                <p>{article.bodyHtml.replace(/<[^>]+>/g, '').slice(0, 140)}…</p>
-                <small>{formatUreesDate(article.publishedAt)} · Urees Reuse</small>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+      <UreesNewsSection articles={featuredNews} />
 
       <UreesPodcastSection
         title={homepage.podcast.title}

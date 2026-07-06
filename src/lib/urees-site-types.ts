@@ -19,6 +19,15 @@ export type UreesArticle = {
   path: string;
 };
 
+export type UreesFeaturedNewsArticle = {
+  handle: string;
+  title: string;
+  image: string;
+  publishedAt: string;
+  tag: string;
+  excerpt: string;
+};
+
 export type UreesHomepageSections = {
   heroImage: string;
   hero: {
@@ -44,6 +53,7 @@ export type UreesHomepageSections = {
     title: string;
     image: string;
   }>;
+  featuredNews: UreesFeaturedNewsArticle[];
 };
 
 export type UreesSiteData = {

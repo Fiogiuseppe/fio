@@ -81,7 +81,43 @@ const HOMEPAGE_FALLBACK = {
       image: `${BASE}/cdn/shop/files/Fio_TIM_WALKER_PHOTOGRAPY_exit_from_a_taxi._dinamic_pose._motio_76127803-ee0e-4966-8bea-bf57e6bacb79.png?v=1699637007&width=3840`,
     },
   ],
+  featuredNews: [],
 };
+
+function stripHtml(html) {
+  return html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
+function featuredNewsFromHtml(html) {
+  const idx = html.indexOf('Urees news');
+  if (idx === -1) return [];
+
+  const chunk = html.slice(idx, idx + 35000);
+  return chunk
+    .split('blog__post')
+    .slice(1)
+    .map((part) => {
+      const handle = part.match(/\/blogs\/urees-news\/([^"?]+)/)?.[1];
+      if (!handle) return null;
+
+      const titleMatch = part.match(/card__heading[\s\S]*?<a[^>]*>\s*([^<]+)/);
+      const imgMatch = part.match(/src="(\/\/urees\.shop\/cdn\/shop\/articles\/[^"]+)"/);
+      const timeMatch = part.match(/datetime="([^"]+)"/);
+      const tagMatch = part.match(/<\/time><\/span><span>([^<]+)<\/span>/);
+      const excMatch = part.match(/article-card__excerpt[\s\S]*?<p>([\s\S]*?)<\/p>/);
+
+      return {
+        handle,
+        title: titleMatch?.[1]?.replace(/\s+/g, ' ').trim() ?? '',
+        image: imgMatch ? `https:${imgMatch[1]}` : '',
+        publishedAt: timeMatch?.[1] ?? '',
+        tag: tagMatch?.[1]?.trim() ?? 'Urees Reuse',
+        excerpt: excMatch ? stripHtml(excMatch[1]) : '',
+      };
+    })
+    .filter((item) => Boolean(item?.handle))
+    .slice(0, 3);
+}
 
 function homepageFromHtml(html) {
   const heroBlock = html.match(/home\.jpg[\s\S]*?FIRST DROP UREES/i)?.[0] ?? html;
@@ -116,6 +152,7 @@ function homepageFromHtml(html) {
       image: podcastImage ? `https:${podcastImage}` : HOMEPAGE_FALLBACK.podcast.image,
       spotifyUrl: spotifyUrl ?? HOMEPAGE_FALLBACK.podcast.spotifyUrl,
     },
+    featuredNews: featuredNewsFromHtml(html),
   };
 }
 
@@ -187,7 +224,10 @@ function articleFromHtml(html, articlePath) {
       .trim();
   }
 
-  const imageMatch = html.match(/article-template__hero-container[\s\S]*?<img[^>]+src="(https:\/\/[^"]+)"/i);
+  const imageMatch =
+    html.match(/property="og:image"[^>]+content="(https:\/\/[^"]+)"/i) ??
+    html.match(/article-template__hero-container[\s\S]*?<img[^>]+src="(https:\/\/[^"]+)"/i) ??
+    html.match(/src="(https:\/\/[^"]*\/cdn\/shop\/articles\/[^"]+)"/i);
 
   return {
     handle,
@@ -260,6 +300,12 @@ async function main() {
   const articles = await syncBlogArticles();
   const homeHtml = await fetchText(`${BASE}/`);
   const homepage = homepageFromHtml(homeHtml);
+
+  for (const article of articles) {
+    const featured = homepage.featuredNews?.find((item) => item.handle === article.handle);
+    if (featured?.image && !article.image) article.image = featured.image;
+    if (featured?.excerpt && !article.bodyHtml) article.excerpt = featured.excerpt;
+  }
 
   const frontpage = collections.find((c) => c.handle === 'frontpage');
   const bestsellers = collections.find(

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { SectionIntro } from '@/components/SectionIntro';
+import { PageSection } from '@/components/PageSection';
 import { ServiceCard } from '@/components/ServiceCard';
 import { services } from '@/data/services';
 
@@ -10,8 +11,8 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
   return (
-    <div className="px-6 py-20 md:px-10 md:py-28">
-      <div className="mx-auto max-w-4xl">
+    <PageSection>
+      <div className="max-w-4xl">
         <SectionIntro
           kicker="Hire Giuseppe"
           title="Services"
@@ -23,6 +24,6 @@ export default function ServicesPage() {
           ))}
         </div>
       </div>
-    </div>
+    </PageSection>
   );
 }

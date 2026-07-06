@@ -23,19 +23,35 @@ html {
 
 body {
   @apply bg-cream text-ink antialiased;
-  font-family: var(--font-body);
+  font-family: var(--font-family-body);
   font-size: 18px;
-  line-height: 1.4;
+  line-height: 1.45;
   letter-spacing: -0.02em;
 }
 
 h1,
 h2,
-h3 {
-  font-family: var(--font-display);
+h3,
+.font-display {
+  font-family: var(--font-family-display);
   letter-spacing: -0.03em;
+}
+
+a {
+  color: inherit;
 }
 
 ::selection {
   background: #001fff22;
+}
+
+/* Legacy WordPress clone — isolated from new site */
+.legacy-archive {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.legacy-archive h1,
+.legacy-archive h2,
+.legacy-archive h3 {
+  font-family: 'Quartz Defio', Georgia, serif;
 }

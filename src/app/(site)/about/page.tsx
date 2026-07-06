@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import type { Metadata } from 'next';
 import { SectionIntro } from '@/components/SectionIntro';
+import { PageSection } from '@/components/PageSection';
 import { CTA } from '@/components/CTA';
 import { WP } from '@/lib/utils';
 
@@ -12,52 +13,50 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="px-6 py-20 md:px-10 md:py-28">
-      <div className="mx-auto max-w-7xl">
-        <div className="grid gap-16 lg:grid-cols-2 lg:gap-20">
-          <div>
-            <SectionIntro
-              kicker="About"
-              title="Giuseppe Fioretti"
-              description="Designer, art director, artist and creative thinker — building worlds where design, art and meaning meet."
-            />
-            <div className="mt-10 space-y-6 text-lg text-ink/75">
-              <p>
-                Italian by origin, Copenhagen by choice. Giuseppe works at the intersection of
-                branding, campaigns and visual storytelling — with experience at LEGO, Desigual and
-                beyond.
-              </p>
-              <p>
-                His practice is rooted in <em>Spiritual Design</em> — the belief that design
-                should align inner truth with outer form. Not decoration. Alignment.
-              </p>
-              <p>
-                Beyond client work, Giuseppe builds personal universes: <strong>UREES</strong>{' '}
-                (one-of-one upcycled wearable art) and <strong>Visceral Poems</strong> (poetic
-                artworks where language becomes physical).
-              </p>
-              <p>
-                He designs brands, directs campaigns, paints, writes and collects fragments of
-                culture — always with intention, never with noise.
-              </p>
-            </div>
-            <div className="mt-10 flex flex-wrap gap-4">
-              <CTA href="/work" label="View work" variant="secondary" />
-              <CTA href="/contact" label="Get in touch" />
-            </div>
+    <PageSection>
+      <div className="grid gap-16 lg:grid-cols-2 lg:gap-20">
+        <div>
+          <SectionIntro
+            kicker="About"
+            title="Giuseppe Fioretti"
+            description="Designer, art director, artist and creative thinker — building worlds where design, art and meaning meet."
+          />
+          <div className="mt-10 space-y-6 text-lg text-ink/75">
+            <p>
+              Italian by origin, Copenhagen by choice. Giuseppe works at the intersection of
+              branding, campaigns and visual storytelling — with experience at LEGO, Desigual and
+              beyond.
+            </p>
+            <p>
+              His practice is rooted in <em>Spiritual Design</em> — the belief that design should
+              align inner truth with outer form. Not decoration. Alignment.
+            </p>
+            <p>
+              Beyond client work, Giuseppe builds personal universes: <strong>UREES</strong> (one-of-one
+              upcycled wearable art) and <strong>Visceral Poems</strong> (poetic artworks where
+              language becomes physical).
+            </p>
+            <p>
+              He designs brands, directs campaigns, paints, writes and collects fragments of culture
+              — always with intention, never with noise.
+            </p>
           </div>
-
-          <div className="relative aspect-[3/4] overflow-hidden bg-ink/5 lg:aspect-auto lg:min-h-[600px]">
-            <Image
-              src={`${WP}/2025/07/Giuseppe_Fioretti.png`}
-              alt="Giuseppe Fioretti"
-              fill
-              className="object-cover"
-              sizes="(max-width:1024px) 100vw, 50vw"
-            />
+          <div className="mt-10 flex flex-wrap gap-4">
+            <CTA href="/work" label="View work" variant="secondary" />
+            <CTA href="/contact" label="Get in touch" />
           </div>
         </div>
+
+        <div className="relative aspect-[3/4] overflow-hidden bg-ink/5 lg:aspect-auto lg:min-h-[600px]">
+          <Image
+            src={`${WP}/2025/07/Giuseppe_Fioretti.png`}
+            alt="Giuseppe Fioretti"
+            fill
+            className="object-cover"
+            sizes="(max-width:1024px) 100vw, 50vw"
+          />
+        </div>
       </div>
-    </div>
+    </PageSection>
   );
 }

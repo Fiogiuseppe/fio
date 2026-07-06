@@ -2,6 +2,7 @@ import { Hero } from '@/components/Hero';
 import { ProjectCard } from '@/components/ProjectCard';
 import { JournalCard } from '@/components/JournalCard';
 import { SectionIntro } from '@/components/SectionIntro';
+import { PageSection } from '@/components/PageSection';
 import { CTA } from '@/components/CTA';
 import { getFeaturedProjects } from '@/data/projects';
 import { articles } from '@/data/articles';
@@ -34,40 +35,36 @@ export default function HomePage() {
         ]}
       />
 
-      <section className="border-t border-ink/10 px-6 py-20 md:px-10 md:py-28">
-        <div className="mx-auto max-w-7xl">
-          <SectionIntro
-            kicker="Selected work"
-            title="Projects that shaped the vision"
-            description="From global rebrands to personal universes — each project carries intention."
-          />
-          <div className="mt-14 grid gap-12 md:grid-cols-3 md:gap-8">
-            {featured.map((project, i) => (
-              <ProjectCard key={project.slug} project={project} priority={i === 0} />
-            ))}
-          </div>
-          <div className="mt-12">
-            <CTA href="/work" label="View all work" variant="ghost" />
-          </div>
+      <PageSection className="border-t border-ink/10">
+        <SectionIntro
+          kicker="Selected work"
+          title="Projects that shaped the vision"
+          description="From global rebrands to personal universes — each project carries intention."
+        />
+        <div className="mt-14 grid gap-12 md:grid-cols-3 md:gap-8">
+          {featured.map((project, i) => (
+            <ProjectCard key={project.slug} project={project} priority={i === 0} />
+          ))}
         </div>
-      </section>
+        <div className="mt-12">
+          <CTA href="/work" label="View all work" variant="ghost" />
+        </div>
+      </PageSection>
 
       {latestArticle && (
-        <section className="border-t border-ink/10 bg-cream-soft px-6 py-20 md:px-10 md:py-28">
-          <div className="mx-auto max-w-7xl">
-            <SectionIntro kicker="Journal" title="Thoughts & reflections" />
-            <div className="mt-14 max-w-2xl">
-              <JournalCard article={latestArticle} />
-            </div>
-            <div className="mt-12">
-              <CTA href="/journal" label="Read the journal" variant="ghost" />
-            </div>
+        <PageSection tone="soft" className="border-t border-ink/10">
+          <SectionIntro kicker="Journal" title="Thoughts & reflections" />
+          <div className="mt-14 max-w-2xl">
+            <JournalCard article={latestArticle} />
           </div>
-        </section>
+          <div className="mt-12">
+            <CTA href="/journal" label="Read the journal" variant="ghost" />
+          </div>
+        </PageSection>
       )}
 
-      <section className="border-t border-ink/10 px-6 py-20 md:px-10 md:py-28">
-        <div className="mx-auto max-w-7xl text-center">
+      <PageSection className="border-t border-ink/10">
+        <div className="text-center">
           <SectionIntro
             align="center"
             title="Let's build something together"
@@ -77,7 +74,7 @@ export default function HomePage() {
             <CTA href="/contact" label="Get in touch" />
           </div>
         </div>
-      </section>
+      </PageSection>
     </>
   );
 }

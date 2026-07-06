@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { SectionIntro } from '@/components/SectionIntro';
+import { PageSection } from '@/components/PageSection';
 import { ContactForm } from '@/components/ContactForm';
 import { SITE } from '@/data/site';
 
@@ -10,8 +11,8 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <div className="px-6 py-20 md:px-10 md:py-28">
-      <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-2 lg:gap-20">
+    <PageSection>
+      <div className="grid max-w-7xl gap-16 lg:grid-cols-2 lg:gap-20">
         <div>
           <SectionIntro
             kicker="Contact"
@@ -21,7 +22,7 @@ export default function ContactPage() {
           <div className="mt-10 space-y-6 text-ink/70">
             <div>
               <p className="text-xs uppercase tracking-widest text-ink/50">Email</p>
-              <a href={`mailto:${SITE.email}`} className="mt-1 block text-lg text-ink hover:text-blue">
+              <a href={`mailto:${SITE.email}`} className="mt-1 block text-lg text-blue hover:underline">
                 {SITE.email}
               </a>
             </div>
@@ -31,7 +32,7 @@ export default function ContactPage() {
                 href={SITE.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-1 block text-lg text-ink hover:text-blue"
+                className="mt-1 block text-lg text-blue hover:underline"
               >
                 @fiogiuseppe
               </a>
@@ -45,6 +46,6 @@ export default function ContactPage() {
 
         <ContactForm />
       </div>
-    </div>
+    </PageSection>
   );
 }

@@ -15,6 +15,13 @@ export type ProductType = 'original' | 'print' | 'one-of-one' | 'wearable';
 
 export type ProductCta = 'buy' | 'request' | 'sold';
 
+export type ProjectMedia = {
+  type: 'image' | 'gif';
+  src: string;
+  alt?: string;
+  fullWidth?: boolean;
+};
+
 export interface Project {
   slug: string;
   title: string;
@@ -26,10 +33,13 @@ export interface Project {
   heroImage: string;
   gallery: string[];
   description: string;
+  body?: string[];
+  media?: ProjectMedia[];
   challenge: string;
   solution: string;
   outcome: string;
   credits?: string;
+  award?: { label: string; href: string };
   featured?: boolean;
 }
 

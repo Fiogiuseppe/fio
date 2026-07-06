@@ -1,24 +1,22 @@
+import { TypographyMeta } from '@/components/typography';
 import { cn } from '@/lib/utils';
 
 type BadgeProps = {
   children: React.ReactNode;
-  variant?: 'default' | 'sold' | 'available' | 'soon';
-  className?: string;
+  variant?: 'default' | 'available' | 'sold';
 };
 
-export function Badge({ children, variant = 'default', className }: BadgeProps) {
+export function Badge({ children, variant = 'default' }: BadgeProps) {
   return (
-    <span
+    <TypographyMeta
+      as="span"
       className={cn(
-        'inline-block text-xs uppercase tracking-widest',
-        variant === 'default' && 'text-ink/50',
-        variant === 'sold' && 'text-ink/40',
-        variant === 'available' && 'text-ink',
-        variant === 'soon' && 'text-ink/60',
-        className
+        'inline-block',
+        variant === 'available' && 'text-blue',
+        variant === 'sold' && 'text-ink/35'
       )}
     >
       {children}
-    </span>
+    </TypographyMeta>
   );
 }

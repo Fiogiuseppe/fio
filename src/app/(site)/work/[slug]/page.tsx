@@ -5,6 +5,15 @@ import { Gallery } from '@/components/Gallery';
 import { ProjectMediaBlock } from '@/components/ProjectMediaBlock';
 import { Badge } from '@/components/Badge';
 import { CTA } from '@/components/CTA';
+import {
+  TypographyBody,
+  TypographyButton,
+  TypographyH2,
+  TypographyLabel,
+  TypographyLead,
+  TypographyMeta,
+} from '@/components/typography';
+import { editorial } from '@/lib/typography';
 import { getProject } from '@/data/projects';
 import { categoryLabel } from '@/lib/utils';
 
@@ -48,25 +57,33 @@ export default async function WorkDetailPage({ params }: Props) {
       </div>
 
       <div className="mx-auto max-w-3xl px-6 py-16 md:px-10 md:py-24">
-        <Badge>{categoryLabel(project.category)} · {project.year}</Badge>
-        <h1 className="mt-4 font-display text-4xl leading-tight md:text-6xl">{project.title}</h1>
-        <p className="mt-4 text-xl text-ink/70">{project.subtitle}</p>
+        <Badge>
+          {categoryLabel(project.category)} · {project.year}
+        </Badge>
+        <TypographyH2 as="h1" className={editorial.stack.labelToTitle}>
+          {project.title}
+        </TypographyH2>
+        <TypographyLead className={editorial.stack.titleToLead}>{project.subtitle}</TypographyLead>
 
-        <dl className="mt-10 grid gap-4 border-t border-ink/10 pt-10 text-sm md:grid-cols-2">
+        <dl className={`grid gap-6 border-t border-ink/10 pt-10 md:grid-cols-2 ${editorial.stack.block}`}>
           <div>
-            <dt className="text-xs uppercase tracking-widest text-ink/50">Client</dt>
-            <dd className="mt-1">{project.client}</dd>
+            <TypographyLabel as="dt">Client</TypographyLabel>
+            <TypographyBody as="dd" measure={false} className={editorial.stack.labelToTitle}>
+              {project.client}
+            </TypographyBody>
           </div>
           <div>
-            <dt className="text-xs uppercase tracking-widest text-ink/50">Role</dt>
-            <dd className="mt-1">{project.role}</dd>
+            <TypographyLabel as="dt">Role</TypographyLabel>
+            <TypographyBody as="dd" measure={false} className={editorial.stack.labelToTitle}>
+              {project.role}
+            </TypographyBody>
           </div>
         </dl>
 
-        <div className="mt-12 space-y-5 text-lg leading-relaxed text-ink/80">
-          <p>{project.description}</p>
+        <div className={`${editorial.stack.block} space-y-6`}>
+          <TypographyBody>{project.description}</TypographyBody>
           {project.body?.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
+            <TypographyBody key={paragraph}>{paragraph}</TypographyBody>
           ))}
         </div>
 
@@ -75,9 +92,9 @@ export default async function WorkDetailPage({ params }: Props) {
             href={project.award.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-8 inline-block text-sm uppercase tracking-widest text-blue no-underline hover:underline"
+            className={`${editorial.stack.block} inline-block text-blue no-underline hover:underline`}
           >
-            → {project.award.label}
+            <TypographyButton as="span">→ {project.award.label}</TypographyButton>
           </a>
         )}
       </div>
@@ -91,27 +108,29 @@ export default async function WorkDetailPage({ params }: Props) {
       )}
 
       <div className="mx-auto max-w-3xl px-6 pb-16 md:px-10 md:pb-24">
-        <div className="space-y-10 border-t border-ink/10 pt-16">
+        <div className="space-y-12 border-t border-ink/10 pt-16">
           <div>
-            <h2 className="font-display text-2xl">Challenge</h2>
-            <p className="mt-3 text-ink/70">{project.challenge}</p>
+            <TypographyH2>Challenge</TypographyH2>
+            <TypographyBody className={editorial.stack.sectionToContent}>{project.challenge}</TypographyBody>
           </div>
           <div>
-            <h2 className="font-display text-2xl">Solution</h2>
-            <p className="mt-3 text-ink/70">{project.solution}</p>
+            <TypographyH2>Solution</TypographyH2>
+            <TypographyBody className={editorial.stack.sectionToContent}>{project.solution}</TypographyBody>
           </div>
           <div>
-            <h2 className="font-display text-2xl">Outcome</h2>
-            <p className="mt-3 text-ink/70">{project.outcome}</p>
+            <TypographyH2>Outcome</TypographyH2>
+            <TypographyBody className={editorial.stack.sectionToContent}>{project.outcome}</TypographyBody>
           </div>
         </div>
 
         {project.credits && (
-          <p className="mt-10 text-sm text-ink/50">Credits: {project.credits}</p>
+          <TypographyMeta className={editorial.stack.block}>
+            Credits: {project.credits}
+          </TypographyMeta>
         )}
 
-        <div className="mt-16 flex flex-wrap gap-4">
-          <CTA href="/contact" label="Start a conversation" />
+        <div className={`flex flex-wrap gap-4 ${editorial.stack.page}`}>
+          <CTA href="/contact" label="Get in touch" />
           <CTA href="/work" label="All work" variant="ghost" />
         </div>
       </div>

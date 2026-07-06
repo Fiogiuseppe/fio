@@ -3,56 +3,31 @@
 }
 
 .compactInner {
-  display: flex;
+  display: grid;
   height: 100%;
   min-height: 0;
-  flex-direction: column;
-  gap: 0.65rem;
+  grid-template-rows: minmax(0, 1.15fr) auto;
+  gap: 0.75rem;
 }
 
 .compactMedia {
   position: relative;
-  flex: 1 1 auto;
   min-height: 0;
   overflow: hidden;
   background: rgb(10 10 10 / 0.05);
 }
 
 .compactCopy {
-  flex: 0 0 auto;
+  display: flex;
   min-height: 0;
-}
-
-.compactDate {
-  font-size: 0.625rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgb(10 10 10 / 0.45);
-}
-
-.compactTitle {
-  margin-top: 0.35rem;
-  font-family: var(--font-family-display);
-  font-size: clamp(0.8rem, 0.75rem + 0.35vw, 1rem);
-  line-height: 1.2;
-  color: var(--color-ink);
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  transition: color 200ms ease;
-}
-
-.compact:hover .compactTitle {
-  color: var(--color-blue);
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding-bottom: 0.15rem;
 }
 
 @media (min-width: 1024px) {
   .compactInner {
-    gap: 0.5rem;
-  }
-
-  .compactTitle {
-    -webkit-line-clamp: 2;
+    gap: 0.65rem;
   }
 }

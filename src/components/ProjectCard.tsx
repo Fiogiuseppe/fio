@@ -2,6 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { Project } from '@/lib/types';
 import { categoryLabel } from '@/lib/utils';
+import { TypographyH3, TypographyMeta } from '@/components/typography';
+import { editorial } from '@/lib/typography';
 import { Badge } from './Badge';
 
 type ProjectCardProps = {
@@ -27,12 +29,16 @@ export function ProjectCard({ project, priority }: ProjectCardProps) {
             unoptimized={isGif || isSvg}
           />
         </div>
-        <div className="mt-5">
-          <Badge>{categoryLabel(project.category)} · {project.year}</Badge>
-          <h3 className="mt-2 font-display text-2xl text-ink group-hover:text-blue md:text-3xl">
+        <div className={editorial.stack.block}>
+          <Badge>
+            {categoryLabel(project.category)} · {project.year}
+          </Badge>
+          <TypographyH3 className={`${editorial.stack.labelToTitle} text-ink group-hover:text-blue`}>
             {project.title}
-          </h3>
-          <p className="mt-2 text-ink/60">{project.subtitle}</p>
+          </TypographyH3>
+          <TypographyMeta as="p" className={editorial.stack.labelToTitle}>
+            {project.subtitle}
+          </TypographyMeta>
         </div>
       </article>
     </Link>

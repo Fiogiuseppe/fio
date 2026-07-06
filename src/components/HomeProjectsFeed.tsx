@@ -2,6 +2,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { getHomeProjects } from '@/data/home-projects';
 import type { Project, ProjectMedia } from '@/lib/types';
+import {
+  TypographyBody,
+  TypographyButton,
+  TypographyH2,
+  TypographyLead,
+  TypographyMeta,
+} from '@/components/typography';
 import styles from './HomeProjectsFeed.module.css';
 
 function mediaAt(project: Project, index: number): ProjectMedia | undefined {
@@ -38,7 +45,7 @@ function ProjectImage({
 
 function SneakersIntro() {
   return (
-    <p className={styles.bodyCopy}>
+    <TypographyBody className={styles.bodyCopy}>
       Sneakers collection campaign for{' '}
       <a href="https://www.instagram.com/desigual/" target="_blank" rel="noopener noreferrer">
         @desigual
@@ -47,7 +54,7 @@ function SneakersIntro() {
       <a href="https://www.instagram.com/olimpic.tv/" target="_blank" rel="noopener noreferrer">
         @olimpic.tv
       </a>
-    </p>
+    </TypographyBody>
   );
 }
 
@@ -67,19 +74,19 @@ export function HomeProjectsFeed() {
           <article key={project.slug} className={styles.row}>
             {config.kicker && (
               <>
-                <p className={styles.kicker}>{config.kicker}</p>
-                <p className={styles.dash}>–</p>
+                <TypographyMeta className={styles.kicker}>{config.kicker}</TypographyMeta>
+                <TypographyMeta className={styles.dash}>–</TypographyMeta>
               </>
             )}
 
-            <h2 className={styles.projectTitle}>
+            <TypographyH2 as="h2" className={styles.projectTitle}>
               <Link href={href}>{project.title}</Link>
-            </h2>
+            </TypographyH2>
 
             {project.slug === 'desigual-sneakers-campaign' ? (
               <SneakersIntro />
             ) : (
-              <p className={styles.bodyCopy}>{intro}</p>
+              <TypographyLead className={styles.bodyCopy}>{intro}</TypographyLead>
             )}
 
             {config.blocks.map((block, blockIndex) => {
@@ -126,7 +133,7 @@ export function HomeProjectsFeed() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                &gt; {project.award.label.toUpperCase()}
+                <TypographyButton as="span">&gt; {project.award.label}</TypographyButton>
               </a>
             )}
           </article>

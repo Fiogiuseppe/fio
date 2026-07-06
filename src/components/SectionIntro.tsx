@@ -1,20 +1,47 @@
+import {
+  TypographyH2,
+  TypographyHero,
+  TypographyLabel,
+  TypographyLead,
+} from '@/components/typography';
+import { editorial } from '@/lib/typography';
+
 type SectionIntroProps = {
   kicker?: string;
   title: string;
   description?: string;
   align?: 'left' | 'center';
+  /** Use Quartz hero voice — only for short emotional statements (max ~6 words). */
+  asHero?: boolean;
 };
 
-export function SectionIntro({ kicker, title, description, align = 'left' }: SectionIntroProps) {
+export function SectionIntro({
+  kicker,
+  title,
+  description,
+  align = 'left',
+  asHero = false,
+}: SectionIntroProps) {
+  const wrap = align === 'center' ? 'mx-auto max-w-3xl text-center' : 'max-w-3xl';
+
   return (
-    <div className={align === 'center' ? 'mx-auto max-w-3xl text-center' : 'max-w-3xl'}>
-      {kicker && (
-        <p className="mb-3 text-xs uppercase tracking-[0.2em] text-ink/50">{kicker}</p>
+    <div className={wrap}>
+      {kicker ? <TypographyLabel>{kicker}</TypographyLabel> : null}
+      {asHero ? (
+        <TypographyHero
+          as="h1"
+          className={kicker ? editorial.stack.labelToTitle : undefined}
+        >
+          {title}
+        </TypographyHero>
+      ) : (
+        <TypographyH2 as="h1" className={kicker ? editorial.stack.labelToTitle : undefined}>
+          {title}
+        </TypographyH2>
       )}
-      <h2 className="font-display text-4xl leading-tight md:text-5xl lg:text-6xl">{title}</h2>
-      {description && (
-        <p className="mt-5 text-lg text-ink/70 md:text-xl">{description}</p>
-      )}
+      {description ? (
+        <TypographyLead className={editorial.stack.titleToLead}>{description}</TypographyLead>
+      ) : null}
     </div>
   );
 }

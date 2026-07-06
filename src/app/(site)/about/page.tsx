@@ -3,6 +3,8 @@ import type { Metadata } from 'next';
 import { SectionIntro } from '@/components/SectionIntro';
 import { PageSection } from '@/components/PageSection';
 import { CTA } from '@/components/CTA';
+import { TypographyBody } from '@/components/typography';
+import { editorial } from '@/lib/typography';
 import { WP } from '@/lib/utils';
 
 export const metadata: Metadata = {
@@ -17,31 +19,32 @@ export default function AboutPage() {
       <div className="grid gap-16 lg:grid-cols-2 lg:gap-20">
         <div>
           <SectionIntro
+            asHero
             kicker="About"
             title="Giuseppe Fioretti"
             description="Designer, art director, artist and creative thinker — building worlds where design, art and meaning meet."
           />
-          <div className="mt-10 space-y-6 text-lg text-ink/75">
-            <p>
+          <div className={`${editorial.stack.leadToContent} space-y-6`}>
+            <TypographyBody>
               Italian by origin, Copenhagen by choice. Giuseppe works at the intersection of
               branding, campaigns and visual storytelling — with experience at LEGO, Desigual and
               beyond.
-            </p>
-            <p>
+            </TypographyBody>
+            <TypographyBody>
               His practice is rooted in <em>Spiritual Design</em> — the belief that design should
               align inner truth with outer form. Not decoration. Alignment.
-            </p>
-            <p>
+            </TypographyBody>
+            <TypographyBody>
               Beyond client work, Giuseppe builds personal universes: <strong>UREES</strong> (one-of-one
               upcycled wearable art) and <strong>Visceral Poems</strong> (poetic artworks where
               language becomes physical).
-            </p>
-            <p>
+            </TypographyBody>
+            <TypographyBody>
               He designs brands, directs campaigns, paints, writes and collects fragments of culture
               — always with intention, never with noise.
-            </p>
+            </TypographyBody>
           </div>
-          <div className="mt-10 flex flex-wrap gap-4">
+          <div className={`flex flex-wrap gap-4 ${editorial.stack.block}`}>
             <CTA href="/work" label="View work" variant="secondary" />
             <CTA href="/contact" label="Get in touch" />
           </div>

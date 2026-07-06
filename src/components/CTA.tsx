@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { TypographyButton } from '@/components/typography';
 import { cn } from '@/lib/utils';
 
 type CTAProps = {
@@ -13,14 +14,16 @@ export function CTA({ href, label, variant = 'primary', className }: CTAProps) {
     <Link
       href={href}
       className={cn(
-        'inline-block text-sm uppercase tracking-widest no-underline transition',
-        variant === 'primary' && 'border border-ink bg-ink px-6 py-3 text-cream hover:bg-blue hover:border-blue',
-        variant === 'secondary' && 'border border-ink px-6 py-3 text-ink hover:bg-ink hover:text-cream',
+        'inline-block no-underline transition',
+        variant === 'primary' &&
+          'border border-ink bg-ink px-8 py-3 text-cream hover:border-blue hover:bg-blue',
+        variant === 'secondary' &&
+          'border border-ink px-8 py-3 text-ink hover:bg-ink hover:text-cream',
         variant === 'ghost' && 'text-ink underline-offset-4 hover:text-blue hover:underline',
         className
       )}
     >
-      {label}
+      <TypographyButton as="span">{label}</TypographyButton>
     </Link>
   );
 }

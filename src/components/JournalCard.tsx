@@ -2,6 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { Article } from '@/lib/types';
 import { formatDate } from '@/lib/utils';
+import { TypographyH3, TypographyMeta } from '@/components/typography';
+import { editorial } from '@/lib/typography';
 import { Badge } from './Badge';
 import styles from './JournalCard.module.css';
 
@@ -33,8 +35,8 @@ export function JournalCard({ article, compact = false }: JournalCardProps) {
             />
           </div>
           <div className={styles.compactCopy}>
-            <p className={styles.compactDate}>{formatDate(article.date)}</p>
-            <h3 className={styles.compactTitle}>{article.title}</h3>
+            <TypographyMeta>{formatDate(article.date)}</TypographyMeta>
+            <TypographyH3 className="text-ink group-hover:text-blue">{article.title}</TypographyH3>
           </div>
         </article>
       </Link>
@@ -54,13 +56,15 @@ export function JournalCard({ article, compact = false }: JournalCardProps) {
             unoptimized={isSvg || isGif || isRemote}
           />
         </div>
-        <div className="mt-5">
-          <p className="text-xs uppercase tracking-widest text-ink/50">{formatDate(article.date)}</p>
-          <h3 className="mt-2 font-display text-2xl text-ink group-hover:text-blue md:text-3xl">
+        <div className={editorial.stack.block}>
+          <TypographyMeta>{formatDate(article.date)}</TypographyMeta>
+          <TypographyH3 className={`${editorial.stack.labelToTitle} text-ink group-hover:text-blue`}>
             {article.title}
-          </h3>
-          <p className="mt-3 text-ink/60">{article.excerpt}</p>
-          <div className="mt-4 flex flex-wrap gap-2">
+          </TypographyH3>
+          <TypographyMeta as="p" className={editorial.stack.labelToTitle}>
+            {article.excerpt}
+          </TypographyMeta>
+          <div className={`flex flex-wrap gap-2 ${editorial.stack.labelToTitle}`}>
             {article.tags.map((tag) => (
               <Badge key={tag}>{tag}</Badge>
             ))}

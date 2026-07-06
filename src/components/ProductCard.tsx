@@ -2,6 +2,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { Product } from '@/lib/types';
 import { availabilityLabel, formatPrice, productCtaLabel } from '@/lib/utils';
+import { TypographyButton, TypographyH3, TypographyMeta } from '@/components/typography';
+import { editorial } from '@/lib/typography';
 import { Badge } from './Badge';
 
 type ProductCardProps = {
@@ -25,23 +27,25 @@ export function ProductCard({ product }: ProductCardProps) {
           />
           {product.availability === 'sold' && (
             <div className="absolute inset-0 flex items-center justify-center bg-ink/30">
-              <span className="text-sm uppercase tracking-widest text-cream">Sold</span>
+              <TypographyButton as="span" className="text-cream">
+                Sold
+              </TypographyButton>
             </div>
           )}
         </div>
-        <div className="mt-5">
+        <div className={editorial.stack.block}>
           <Badge variant={product.availability === 'sold' ? 'sold' : 'available'}>
             {availabilityLabel(product.availability)}
           </Badge>
-          <h3 className="mt-2 font-display text-xl text-ink group-hover:text-blue md:text-2xl">
+          <TypographyH3 className={`${editorial.stack.labelToTitle} text-ink group-hover:text-blue`}>
             {product.title}
-          </h3>
-          <p className="mt-1 text-sm text-ink/60">{product.shortDescription}</p>
-          <div className="mt-3 flex items-baseline justify-between gap-4">
-            <span className="text-sm">{formatPrice(product.price, product.currency)}</span>
-            <span className="text-xs uppercase tracking-widest text-ink/50">
-              {productCtaLabel(product)}
-            </span>
+          </TypographyH3>
+          <TypographyMeta as="p" className={editorial.stack.labelToTitle}>
+            {product.shortDescription}
+          </TypographyMeta>
+          <div className={`flex items-baseline justify-between gap-4 ${editorial.stack.labelToTitle}`}>
+            <TypographyMeta>{formatPrice(product.price, product.currency)}</TypographyMeta>
+            <TypographyMeta>{productCtaLabel(product)}</TypographyMeta>
           </div>
         </div>
       </article>

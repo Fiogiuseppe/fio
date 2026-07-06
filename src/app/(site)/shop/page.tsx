@@ -3,6 +3,12 @@ import Link from 'next/link';
 import type { Metadata } from 'next';
 import { SectionIntro } from '@/components/SectionIntro';
 import { PageSection } from '@/components/PageSection';
+import {
+  TypographyBody,
+  TypographyH3,
+  TypographyLabel,
+} from '@/components/typography';
+import { editorial } from '@/lib/typography';
 import { shopCategories } from '@/data/products';
 
 export const metadata: Metadata = {
@@ -19,7 +25,7 @@ export default function ShopPage() {
         description="Original artworks, paintings and wearable pieces — collected, not consumed."
       />
 
-      <div className="mt-16 grid gap-8 md:grid-cols-3">
+      <div className={`grid gap-8 md:grid-cols-3 ${editorial.stack.leadToContent}`}>
         {shopCategories.map((cat) => {
           const isGif = cat.image.endsWith('.gif');
           return (
@@ -38,12 +44,14 @@ export default function ShopPage() {
                   unoptimized={isGif}
                 />
               </div>
-              <div className="mt-6 border-t border-ink/10 pt-6">
-                <h2 className="font-display text-3xl text-ink group-hover:text-blue">{cat.title}</h2>
-                <p className="mt-3 text-ink/60">{cat.description}</p>
-                <span className="mt-4 inline-block text-xs uppercase tracking-widest text-ink/40 group-hover:text-blue">
+              <div className={`border-t border-ink/10 pt-6 ${editorial.stack.block}`}>
+                <TypographyH3 className="text-ink group-hover:text-blue">{cat.title}</TypographyH3>
+                <TypographyBody measure={false} className={`${editorial.stack.sectionToContent} text-ink/60`}>
+                  {cat.description}
+                </TypographyBody>
+                <TypographyLabel className={`${editorial.stack.block} text-ink/40 group-hover:text-blue`}>
                   Explore drop →
-                </span>
+                </TypographyLabel>
               </div>
             </Link>
           );

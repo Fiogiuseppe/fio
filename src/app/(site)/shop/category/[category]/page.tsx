@@ -2,6 +2,8 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { SectionIntro } from '@/components/SectionIntro';
 import { ProductCard } from '@/components/ProductCard';
+import { TypographyMeta } from '@/components/typography';
+import { editorial } from '@/lib/typography';
 import { getProductsByCategory, shopCategories } from '@/data/products';
 import { categoryLabel } from '@/lib/utils';
 import type { ProductCategory } from '@/lib/types';
@@ -30,10 +32,10 @@ export default async function ShopCategoryPage({ params }: Props) {
     <div className="px-6 py-20 md:px-10 md:py-28">
       <div className="mx-auto max-w-7xl">
         <SectionIntro kicker="Shop" title={cat.title} description={cat.description} />
-        <p className="mt-4 text-sm uppercase tracking-widest text-ink/40">
+        <TypographyMeta className={editorial.stack.titleToLead}>
           {categoryLabel(category)} · {items.length} pieces
-        </p>
-        <div className="mt-14 grid gap-12 sm:grid-cols-2 lg:grid-cols-3">
+        </TypographyMeta>
+        <div className={`grid gap-12 sm:grid-cols-2 lg:grid-cols-3 ${editorial.stack.leadToContent}`}>
           {items.map((product) => (
             <ProductCard key={product.slug} product={product} />
           ))}

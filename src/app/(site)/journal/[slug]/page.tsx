@@ -2,6 +2,13 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { Badge } from '@/components/Badge';
+import {
+  TypographyBody,
+  TypographyH2,
+  TypographyLead,
+  TypographyMeta,
+} from '@/components/typography';
+import { editorial } from '@/lib/typography';
 import { getArticle } from '@/data/articles';
 import { formatDate } from '@/lib/utils';
 
@@ -47,13 +54,15 @@ export default async function ArticlePage({ params }: Props) {
       </div>
 
       <div className="mx-auto max-w-2xl px-6 py-16 md:px-10 md:py-24">
-        <p className="text-xs uppercase tracking-widest text-ink/50">{formatDate(article.date)}</p>
-        <h1 className="mt-4 font-display text-4xl md:text-5xl">{article.title}</h1>
+        <TypographyMeta>{formatDate(article.date)}</TypographyMeta>
+        <TypographyH2 as="h1" className={editorial.stack.labelToTitle}>
+          {article.title}
+        </TypographyH2>
         {article.excerpt ? (
-          <p className="mt-6 text-xl text-ink/60">{article.excerpt}</p>
+          <TypographyLead className={editorial.stack.titleToLead}>{article.excerpt}</TypographyLead>
         ) : null}
 
-        <div className="mt-6 flex flex-wrap gap-2">
+        <div className={`flex flex-wrap gap-2 ${editorial.stack.sectionToContent}`}>
           {article.tags.map((tag) => (
             <Badge key={tag}>{tag}</Badge>
           ))}
@@ -61,13 +70,13 @@ export default async function ArticlePage({ params }: Props) {
 
         {article.contentHtml ? (
           <div
-            className="journal-article__body mt-12"
+            className={`journal-article__body ${editorial.stack.block}`}
             dangerouslySetInnerHTML={{ __html: article.contentHtml }}
           />
         ) : (
-          <div className="mt-12 space-y-6 text-lg leading-relaxed text-ink/80">
+          <div className={`${editorial.stack.block} space-y-6`}>
             {paragraphs.map((p) => (
-              <p key={p.slice(0, 40)}>{p}</p>
+              <TypographyBody key={p.slice(0, 40)}>{p}</TypographyBody>
             ))}
           </div>
         )}

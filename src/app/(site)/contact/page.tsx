@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import { SectionIntro } from '@/components/SectionIntro';
 import { PageSection } from '@/components/PageSection';
 import { ContactForm } from '@/components/ContactForm';
+import { TypographyBody, TypographyLabel } from '@/components/typography';
+import { editorial } from '@/lib/typography';
 import { SITE } from '@/data/site';
 
 export const metadata: Metadata = {
@@ -19,27 +21,29 @@ export default function ContactPage() {
             title="Start a conversation"
             description="Whether it's a brand project, an artwork or a UREES piece — every collaboration begins here."
           />
-          <div className="mt-10 space-y-6 text-ink/70">
+          <div className={`${editorial.stack.leadToContent} space-y-8`}>
             <div>
-              <p className="text-xs uppercase tracking-widest text-ink/50">Email</p>
-              <a href={`mailto:${SITE.email}`} className="mt-1 block text-lg text-blue hover:underline">
-                {SITE.email}
+              <TypographyLabel>Email</TypographyLabel>
+              <a href={`mailto:${SITE.email}`} className={`${editorial.stack.labelToTitle} block text-blue no-underline hover:underline`}>
+                <TypographyBody measure={false}>{SITE.email}</TypographyBody>
               </a>
             </div>
             <div>
-              <p className="text-xs uppercase tracking-widest text-ink/50">Instagram</p>
+              <TypographyLabel>Instagram</TypographyLabel>
               <a
                 href={SITE.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-1 block text-lg text-blue hover:underline"
+                className={`${editorial.stack.labelToTitle} block text-blue no-underline hover:underline`}
               >
-                @fiogiuseppe
+                <TypographyBody measure={false}>@fiogiuseppe</TypographyBody>
               </a>
             </div>
             <div>
-              <p className="text-xs uppercase tracking-widest text-ink/50">Based in</p>
-              <p className="mt-1 text-lg">{SITE.location}</p>
+              <TypographyLabel>Based in</TypographyLabel>
+              <TypographyBody measure={false} className={editorial.stack.labelToTitle}>
+                {SITE.location}
+              </TypographyBody>
             </div>
           </div>
         </div>

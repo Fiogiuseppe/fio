@@ -1,65 +1,59 @@
 'use client';
 
 import { useState } from 'react';
+import {
+  TypographyBody,
+  TypographyButton,
+  TypographyH3,
+  TypographyLabel,
+  TypographyLead,
+} from '@/components/typography';
+import { editorial } from '@/lib/typography';
 
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // Prepared for Resend / API route integration
     setSubmitted(true);
   }
 
   if (submitted) {
     return (
       <div className="border border-ink/10 bg-cream-soft p-8 md:p-12">
-        <p className="font-display text-2xl">Message received.</p>
-        <p className="mt-3 text-ink/70">Thank you — Giuseppe will be in touch soon.</p>
+        <TypographyH3>Message received</TypographyH3>
+        <TypographyLead measure={false} className={editorial.stack.labelToTitle}>
+          Thank you — Giuseppe will be in touch soon.
+        </TypographyLead>
       </div>
     );
   }
 
+  const fieldClass =
+    'w-full border-b border-ink/20 bg-transparent py-3 font-helvetica text-base outline-none focus:border-blue';
+
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="grid gap-6 md:grid-cols-2">
+    <form onSubmit={handleSubmit} className="space-y-8">
+      <div className="grid gap-8 md:grid-cols-2">
         <div>
-          <label htmlFor="name" className="mb-2 block text-xs uppercase tracking-widest text-ink/50">
+          <TypographyLabel as="label" htmlFor="name" className="mb-2 block">
             Name
-          </label>
-          <input
-            id="name"
-            name="name"
-            type="text"
-            required
-            className="w-full border-b border-ink/20 bg-transparent py-3 outline-none focus:border-blue"
-          />
+          </TypographyLabel>
+          <input id="name" name="name" type="text" required className={fieldClass} />
         </div>
         <div>
-          <label htmlFor="email" className="mb-2 block text-xs uppercase tracking-widest text-ink/50">
+          <TypographyLabel as="label" htmlFor="email" className="mb-2 block">
             Email
-          </label>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            required
-            className="w-full border-b border-ink/20 bg-transparent py-3 outline-none focus:border-blue"
-          />
+          </TypographyLabel>
+          <input id="email" name="email" type="email" required className={fieldClass} />
         </div>
       </div>
 
       <div>
-        <label htmlFor="type" className="mb-2 block text-xs uppercase tracking-widest text-ink/50">
+        <TypographyLabel as="label" htmlFor="type" className="mb-2 block">
           Inquiry type
-        </label>
-        <select
-          id="type"
-          name="type"
-          required
-          className="w-full border-b border-ink/20 bg-transparent py-3 outline-none focus:border-blue"
-          defaultValue=""
-        >
+        </TypographyLabel>
+        <select id="type" name="type" required className={fieldClass} defaultValue="">
           <option value="" disabled>
             Select...
           </option>
@@ -71,23 +65,17 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="message" className="mb-2 block text-xs uppercase tracking-widest text-ink/50">
+        <TypographyLabel as="label" htmlFor="message" className="mb-2 block">
           Message
-        </label>
-        <textarea
-          id="message"
-          name="message"
-          rows={5}
-          required
-          className="w-full resize-none border-b border-ink/20 bg-transparent py-3 outline-none focus:border-blue"
-        />
+        </TypographyLabel>
+        <textarea id="message" name="message" rows={5} required className={`${fieldClass} resize-none`} />
       </div>
 
       <button
         type="submit"
-        className="border border-ink bg-ink px-8 py-3 text-sm uppercase tracking-widest text-cream transition hover:bg-blue hover:border-blue"
+        className="border border-ink bg-ink px-8 py-3 text-cream transition hover:border-blue hover:bg-blue"
       >
-        Send message
+        <TypographyButton as="span">Send message</TypographyButton>
       </button>
     </form>
   );

@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
@@ -12,13 +13,21 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-ink/10 bg-cream/90 backdrop-blur-md">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-10">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-5 md:px-10 md:py-6">
         <Link
           href="/"
-          className="font-display text-lg tracking-tight text-ink no-underline hover:text-blue md:text-xl"
+          className="shrink-0 no-underline"
+          aria-label={SITE.name}
           onClick={() => setOpen(false)}
         >
-          {SITE.name}
+          <Image
+            src="/images/logo.svg"
+            alt={SITE.name}
+            width={288}
+            height={84}
+            priority
+            className="h-auto w-[min(260px,52vw)] md:w-[min(300px,28vw)]"
+          />
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">

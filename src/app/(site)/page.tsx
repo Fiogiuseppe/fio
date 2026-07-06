@@ -1,3 +1,4 @@
+import { SpiritualDesignCover } from '@/components/SpiritualDesignCover';
 import { Hero } from '@/components/Hero';
 import { ProjectCard } from '@/components/ProjectCard';
 import { JournalCard } from '@/components/JournalCard';
@@ -13,6 +14,8 @@ export default function HomePage() {
 
   return (
     <>
+      <SpiritualDesignCover />
+
       <Hero
         title="A creative universe"
         subtitle="Designer, art director, artist and founder of UREES — building brands, campaigns and visual worlds from Copenhagen."

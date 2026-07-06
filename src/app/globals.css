@@ -45,6 +45,51 @@ a {
   background: #001fff22;
 }
 
+.spiritual-cover {
+  background: var(--color-cream);
+  border-bottom: 1px solid rgb(10 10 10 / 0.08);
+}
+
+.spiritual-cover__link {
+  display: block;
+  text-decoration: none;
+}
+
+.spiritual-cover__canvas {
+  width: 100%;
+  max-height: min(100vh, 56.25vw);
+  margin: 0 auto;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 600ms ease;
+}
+
+.spiritual-cover__canvas--ready {
+  opacity: 1;
+}
+
+.spiritual-cover__svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.spiritual-cover__caption {
+  margin: 0;
+  padding: 1rem 1.5rem 1.5rem;
+  text-align: center;
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgb(10 10 10 / 0.45);
+}
+
+@media (min-width: 768px) {
+  .spiritual-cover__caption {
+    padding-bottom: 2rem;
+  }
+}
+
 /* Legacy WordPress clone — isolated from new site */
 .legacy-archive {
   font-family: Arial, Helvetica, sans-serif;

@@ -51,12 +51,9 @@ export function UreesHomeSections({ products }: UreesHomeSectionsProps) {
       <UreesVideoSection mp4={homepage.video.mp4} poster={homepage.video.poster} />
 
       <UreesBannerCarousel
-        slides={[{ title: homepage.dreaming.title, image: homepage.dreaming.image }]}
+        sectionHeading={homepage.dreaming.title}
+        slides={revivingSlides}
       />
-
-      {revivingSlides.map((slide) => (
-        <UreesBannerCarousel key={slide.title} slides={[slide]} />
-      ))}
 
       <section className="urees-section" id={ureesHomeCopy.manifesto.id}>
         <div className="urees-page-width">

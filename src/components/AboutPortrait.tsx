@@ -26,14 +26,14 @@ export function AboutPortrait() {
         setAwake(true);
         closeTimeoutRef.current = setTimeout(() => {
           setAwake(false);
-          scheduleBlink(randomBetween(14000, 32000));
-        }, randomBetween(1400, 2400));
+          scheduleBlink(randomBetween(14000, 34000));
+        }, randomBetween(1500, 2600));
       }, delayMs);
     }
 
     initialTimeoutRef.current = setTimeout(() => {
-      scheduleBlink(randomBetween(3500, 6500));
-    }, 2000);
+      scheduleBlink(randomBetween(4000, 7000));
+    }, 2200);
 
     return () => {
       if (initialTimeoutRef.current) clearTimeout(initialTimeoutRef.current);
@@ -54,18 +54,17 @@ export function AboutPortrait() {
           fill
           priority
           sizes="(max-width: 1024px) 100vw, 50vw"
-          className={styles.closed}
+          className={styles.portrait}
         />
 
-        <div className={styles.openEyes} aria-hidden="true">
-          <Image
-            src={OPEN_PORTRAIT}
-            alt=""
-            fill
-            sizes="(max-width: 1024px) 100vw, 50vw"
-            className={styles.open}
-          />
-        </div>
+        <Image
+          src={OPEN_PORTRAIT}
+          alt=""
+          fill
+          sizes="(max-width: 1024px) 100vw, 50vw"
+          className={styles.portraitOpen}
+          aria-hidden
+        />
       </div>
     </figure>
   );

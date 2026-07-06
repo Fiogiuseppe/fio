@@ -20,52 +20,33 @@
   }
 }
 
-.closed,
-.open {
+.portrait,
+.portraitOpen {
   object-fit: contain;
   object-position: center top;
   filter: grayscale(1) contrast(1.04);
 }
 
-.open {
-  transform: scale(1.14) translate(3.4%, -3.1%);
-  transform-origin: 38% 36%;
-}
-
-.openEyes {
-  position: absolute;
-  inset: 0;
+.portraitOpen {
   opacity: 0;
-  pointer-events: none;
-  transform: scale(1);
-  transition:
-    opacity 0.1s ease-out,
-    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-  mask-image:
-    radial-gradient(ellipse 10% 4.5% at 38% 40.6%, #000 90%, transparent 100%),
-    radial-gradient(ellipse 10% 4.5% at 62% 40.6%, #000 90%, transparent 100%);
-  mask-composite: add;
-  -webkit-mask-image:
-    radial-gradient(ellipse 10% 4.5% at 38% 40.6%, #000 90%, transparent 100%),
-    radial-gradient(ellipse 10% 4.5% at 62% 40.6%, #000 90%, transparent 100%);
-  -webkit-mask-composite: source-over;
+  transition: opacity 0.11s ease-out;
 }
 
-.awake .openEyes {
+.awake .portraitOpen {
   opacity: 1;
-  transform: scale(1.008);
-  transition:
-    opacity 0.14s ease-out 0.04s,
-    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 0.16s ease-out 0.03s;
+}
+
+.figure:not(.awake) .portraitOpen {
+  transition: opacity 0.28s ease-in;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .openEyes {
+  .portraitOpen {
     transition: none;
   }
 
-  .awake .openEyes {
+  .awake .portraitOpen {
     opacity: 0;
-    transform: none;
   }
 }

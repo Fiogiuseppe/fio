@@ -3,6 +3,7 @@ import { SectionIntro } from '@/components/SectionIntro';
 import { PageSection } from '@/components/PageSection';
 import { JournalCard } from '@/components/JournalCard';
 import { articles } from '@/data/articles';
+import gridStyles from '@/components/JournalGrid.module.css';
 
 export const metadata: Metadata = {
   title: 'Journal — Giuseppe Fioretti',
@@ -11,15 +12,15 @@ export const metadata: Metadata = {
 
 export default function JournalPage() {
   return (
-    <PageSection>
+    <PageSection className="journal-index">
       <SectionIntro
         kicker="Writing"
         title="Journal"
-        description="Essays on design, art, culture and creativity — originally published on Medium, now here."
+        description="Essays on design, art, culture and creativity."
       />
-      <div className="mt-16 flex flex-col gap-12">
+      <div className={gridStyles.grid}>
         {articles.map((article) => (
-          <JournalCard key={article.slug} article={article} />
+          <JournalCard key={article.slug} article={article} compact />
         ))}
       </div>
     </PageSection>

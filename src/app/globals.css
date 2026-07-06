@@ -479,3 +479,19 @@ html.home-route .spiritual-cover__svg {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+
+/* Journal index — 5×5 grid on desktop */
+.journal-index {
+  padding-top: clamp(2.5rem, 5vw, 4rem);
+  padding-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+@media (min-width: 1024px) {
+  .journal-index > div {
+    max-width: none;
+  }
+
+  .journal-index .max-w-3xl {
+    max-width: 42rem;
+  }
+}

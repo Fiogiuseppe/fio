@@ -29,7 +29,7 @@ export default function JournalPage() {
       {specialArticles.map((article) => (
         <JournalSpecialFlyer key={article.slug} article={article} />
       ))}
-      <div className={gridStyles.grid}>
+      <div className={gridStyles.grid} data-journal-list>
         {regularArticles.map((article) => (
           <JournalCard key={article.slug} article={article} compact />
         ))}

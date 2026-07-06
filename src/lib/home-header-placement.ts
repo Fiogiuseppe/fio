@@ -1,8 +1,10 @@
 const HEADER_BAND_RATIO = 0.22;
 const SAFE_MARGIN_PX = 24;
 
+const BLUE_PATH_SELECTOR = 'path.cls-4, path[fill="#001FFF"], path[fill="#001fff"]';
+
 function blueTopBand(svg: SVGSVGElement): { left: number; right: number } | null {
-  const paths = svg.querySelectorAll<SVGGraphicsElement>('path.cls-4');
+  const paths = svg.querySelectorAll<SVGGraphicsElement>(BLUE_PATH_SELECTOR);
   const bandBottom = window.innerHeight * HEADER_BAND_RATIO;
   let left = Infinity;
   let right = 0;
@@ -21,7 +23,6 @@ function blueTopBand(svg: SVGSVGElement): { left: number; right: number } | null
 }
 
 export type HomeNavPlacement = {
-  offsetPx: number;
   useCompactNav: boolean;
 };
 
@@ -30,27 +31,26 @@ export function computeHomeNavPlacement(
   svg: SVGSVGElement | null
 ): HomeNavPlacement {
   const margin = SAFE_MARGIN_PX;
-  const viewportRight = window.innerWidth - margin;
-  const blue = svg ? blueTopBand(svg) : null;
-  const safeLeft = blue ? blue.right + margin : margin;
-  const safeRight = viewportRight;
-  const safeWidth = Math.max(0, safeRight - safeLeft);
+  const headerInner = nav.closest('.site-header__inner');
+  const innerRect = headerInner?.getBoundingClientRect();
+  const logo = headerInner?.querySelector('.site-header__logo-link');
+  const logoRect = logo?.getBoundingClientRect();
 
-  if (safeWidth < 300 || nav.scrollWidth > safeWidth - 12) {
-    return { offsetPx: 0, useCompactNav: true };
+  const availableRight = (innerRect?.right ?? window.innerWidth) - margin;
+  const minLeft = logoRect ? logoRect.right + margin : margin;
+  const availableWidth = availableRight - minLeft;
+
+  if (availableWidth < 280 || nav.scrollWidth > availableWidth - 8) {
+    return { useCompactNav: true };
   }
 
   const navRect = nav.getBoundingClientRect();
-  const safeCenter = safeLeft + safeWidth / 2;
-  const navCenter = navRect.left + navRect.width / 2;
-  let offset = safeCenter - navCenter;
+  const blue = svg ? blueTopBand(svg) : null;
+  if (blue && navRect.left < blue.right + margin) {
+    return { useCompactNav: true };
+  }
 
-  const nextLeft = navRect.left + offset;
-  const nextRight = nextLeft + navRect.width;
-  if (nextLeft < safeLeft) offset += safeLeft - nextLeft;
-  if (nextRight > safeRight) offset -= nextRight - safeRight;
-
-  return { offsetPx: offset, useCompactNav: false };
+  return { useCompactNav: false };
 }
 
 export const SPIRITUAL_COVER_READY_EVENT = 'spiritual-cover-ready';

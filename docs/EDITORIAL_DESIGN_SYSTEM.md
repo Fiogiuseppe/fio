@@ -89,12 +89,12 @@ Body text: sentence case. Quartz: natural capitalization when appropriate.
 
 | Token | Value | Use |
 |-------|-------|-----|
-| Paper | `#E6E0D5` | Site background — warm uncoated stock |
-| Paper texture | `public/images/paper-background.svg` | Vector noise overlay (feTurbulence) |
+| Paper | `#E6E0D5` + noise | **Home only** — cover and home scroll |
+| Page | `#FFFFFF` | All inner pages — pure white, no texture |
 | Ink | `#0A0A0A` | Body text |
 | Blue | `#001FFF` | Accent, links, artwork |
 
-The paper surface must feel printed — never flat digital white. Use `.surface-paper` on full-bleed sections (home cover).
+The paper surface must feel printed — **home only**. Inner pages use flat white (`--color-page`).
 
 ---
 

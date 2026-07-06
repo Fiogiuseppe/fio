@@ -22,9 +22,8 @@ export function Header() {
     if (!isHome || !navRef.current) return;
 
     const svg = document.querySelector<SVGSVGElement>('.spiritual-cover__svg');
-    const { offsetPx, useCompactNav } = computeHomeNavPlacement(navRef.current, svg);
+    const { useCompactNav } = computeHomeNavPlacement(navRef.current, svg);
 
-    document.documentElement.style.setProperty('--home-nav-offset', `${offsetPx}px`);
     setHomeNavCompact(useCompactNav);
     document.documentElement.classList.toggle('home-nav-compact', useCompactNav);
   }, [isHome]);
@@ -34,14 +33,12 @@ export function Header() {
     return () => {
       document.documentElement.classList.remove('home-route');
       document.documentElement.classList.remove('home-nav-compact');
-      document.documentElement.style.removeProperty('--home-nav-offset');
     };
   }, [isHome]);
 
   useEffect(() => {
     if (!isHome) {
       document.documentElement.classList.remove('home-nav-compact');
-      document.documentElement.style.removeProperty('--home-nav-offset');
       setHomeNavCompact(false);
       return;
     }
@@ -61,7 +58,6 @@ export function Header() {
       window.removeEventListener(SPIRITUAL_COVER_READY_EVENT, onLayout);
       observer?.disconnect();
       document.documentElement.classList.remove('home-nav-compact');
-      document.documentElement.style.removeProperty('--home-nav-offset');
     };
   }, [isHome, updateHomeNavPlacement]);
 
@@ -96,8 +92,8 @@ export function Header() {
           <Image
             src="/images/logo.svg"
             alt={SITE.name}
-            width={288}
-            height={84}
+            width={320}
+            height={93}
             priority
             className="site-header__logo"
           />
@@ -107,7 +103,6 @@ export function Header() {
           ref={navRef}
           className="site-header__nav"
           aria-label="Main"
-          style={isHome ? { transform: 'translateX(var(--home-nav-offset, 0px))' } : undefined}
         >
           {NAV.map((item) => (
             <Link

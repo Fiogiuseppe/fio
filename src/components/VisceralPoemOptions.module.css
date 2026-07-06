@@ -1,0 +1,94 @@
+.root {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .root {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 3rem;
+    align-items: start;
+  }
+}
+
+.preview {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: rgb(10 10 10 / 0.04);
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.legend {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-helvetica);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.choiceRow {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.choice {
+  border: 1px solid rgb(10 10 10 / 0.14);
+  background: transparent;
+  padding: 0.85rem 1rem;
+  font-family: var(--font-helvetica);
+  font-size: 0.8125rem;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.choice:hover {
+  border-color: rgb(10 10 10 / 0.35);
+}
+
+.choiceActive {
+  border-color: var(--color-ink);
+  background: rgb(10 10 10 / 0.04);
+}
+
+.price {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgb(10 10 10 / 0.1);
+  font-family: var(--font-helvetica);
+  font-size: 0.9375rem;
+}
+
+.priceLabel {
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgb(10 10 10 / 0.45);
+}
+
+.frameNote {
+  margin: 0;
+  font-family: var(--font-helvetica);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: rgb(10 10 10 / 0.55);
+}

@@ -1,4 +1,5 @@
 import type { Product, ProductAvailability } from './types';
+import { isVisceralPoemProduct, visceralPoemFromPrice } from '@/data/visceral-poems-pricing';
 
 export function cn(...classes: Array<string | false | null | undefined>) {
   return classes.filter(Boolean).join(' ');
@@ -57,6 +58,13 @@ export function productCtaLabel(product: Product) {
   if (product.cta === 'sold' || product.availability === 'sold') return 'Sold';
   if (product.cta === 'request') return 'Request this piece';
   return 'Collect this piece';
+}
+
+export function productListPrice(product: Product) {
+  if (isVisceralPoemProduct(product.category)) {
+    return `From ${formatPrice(visceralPoemFromPrice())}`;
+  }
+  return formatPrice(product.price, product.currency);
 }
 
 export function productHref(product: Pick<Product, 'slug' | 'category'>) {

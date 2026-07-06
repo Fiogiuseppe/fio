@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Product } from '@/lib/types';
-import { formatPrice, productHref } from '@/lib/utils';
+import { productHref, productListPrice } from '@/lib/utils';
 import styles from './CommerceProductGrid.module.css';
 
 type CommerceProductCardProps = {
@@ -37,7 +37,7 @@ export function CommerceProductCard({ product, brandLine }: CommerceProductCardP
       <div>
         <h3 className={styles.title}>{product.title}</h3>
         <p className={styles.brand}>{brandLine}</p>
-        <p className={styles.price}>{formatPrice(product.price, product.currency)}</p>
+        <p className={styles.price}>{productListPrice(product)}</p>
         <span className={styles.badge}>{badgeLabel(product)}</span>
       </div>
     </Link>

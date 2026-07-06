@@ -24,6 +24,7 @@ export function SpiritualDesignCover() {
 
       svg.setAttribute('role', 'img');
       svg.setAttribute('aria-label', 'Spiritual Design — When design serves something greater, it becomes sacred.');
+      svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       svg.classList.add('spiritual-cover__svg');
       svg.removeAttribute('width');
       svg.removeAttribute('height');
@@ -46,10 +47,10 @@ export function SpiritualDesignCover() {
           ref={containerRef}
           className={`spiritual-cover__canvas ${loaded ? 'spiritual-cover__canvas--ready' : ''}`}
         />
+        <p className="spiritual-cover__caption">
+          Spiritual Design — when design serves something greater, it becomes sacred.
+        </p>
       </Link>
-      <p className="spiritual-cover__caption">
-        Spiritual Design — when design serves something greater, it becomes sacred.
-      </p>
     </section>
   );
 }

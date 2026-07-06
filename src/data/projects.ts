@@ -19,9 +19,6 @@ function archiveProject(opts: {
   return {
     ...opts,
     gallery: [opts.heroImage],
-    challenge: opts.description,
-    solution: 'Concept, design and visual direction across the project.',
-    outcome: 'Selected work from Giuseppe Fioretti\'s portfolio.',
   };
 }
 
@@ -55,12 +52,6 @@ export const projects: Project[] = [
       { type: 'image', src: `${WP}/2021/05/19WWTKXI_2000_B-scaled.jpg`, alt: 'Desigual product' },
       { type: 'image', src: `${WP}/2021/05/19WSHP01_2000_X-copia.jpg`, alt: 'Desigual product' },
     ],
-    challenge:
-      'Reconnect a global fashion brand with its founding spirit without losing contemporary relevance.',
-    solution:
-      'A new logo and visual identity system — launched as a living campaign across HQ, retail and product.',
-    outcome:
-      'LAUS Award 2020 / Wood Pencil 2020. A refreshed brand narrative adopted across markets.',
     award: {
       label: 'LAUS Award 2020 / Wood Pencil 2020',
       href: 'https://www.adg-fad.org/es/laus/proyecto/rebranding-para-desigual',
@@ -119,9 +110,6 @@ export const projects: Project[] = [
         fullWidth: true,
       },
     ],
-    challenge: 'Introduce a new product category with a fresh visual language.',
-    solution: 'Panoramic campaign assets and motion-led storytelling across web and social.',
-    outcome: 'A high-impact launch that positioned sneakers as a natural extension of the brand.',
     featured: true,
   },
   {
@@ -147,11 +135,6 @@ export const projects: Project[] = [
       { type: 'image', src: `${WP}/2024/01/20230907_UREES02632.jpg`, alt: 'UREES piece' },
       { type: 'image', src: `${WP}/2024/01/20230907_UREES02606-scaled.jpg`, alt: 'UREES piece' },
     ],
-    challenge: 'Build a brand that sits between fashion, art and sustainability without compromise.',
-    solution:
-      'A philosophy-first approach: every garment is unique, every process is visible, every piece tells a story.',
-    outcome:
-      'A growing collector community and a distinct visual identity that lives in Work and Shop.',
     credits: 'Giuseppe Fioretti',
     featured: true,
   },
@@ -171,9 +154,6 @@ export const projects: Project[] = [
       'I do not design to impress, I design to align. To align what I feel with what the world needs.',
       'Design becomes sacred when we create with awareness. That is Spiritual Design.',
     ],
-    challenge: 'Articulate a philosophy that bridges design, art and inner life.',
-    solution: 'Visual language, writing and spatial thinking as one coherent expression.',
-    outcome: 'A framework that informs all of Giuseppe\'s creative work.',
     featured: true,
   },
   {
@@ -193,12 +173,6 @@ export const projects: Project[] = [
       'Design Lead at Our LEGO Agency on The Play Maker — LEGO\'s first brand campaign built entirely through a comedy lens.',
       'Jason Momoa crashes a brick-built boardroom to remind the world why play matters. Created with Chaos x Magic, directed by Rhys Thomas.',
     ],
-    challenge:
-      'Cut through modern distractions and remind families that just five hours of play a week transforms wellbeing — without preaching.',
-    solution:
-      'A fearless comedy campaign: PSA-style film, brick-built sets, and a visual system centred on the simple "brick click" as a gateway to play.',
-    outcome:
-      'Global launch across social, experiential and retail ahead of World Play Day — play repositioned as essential, not optional.',
     credits: 'Our LEGO Agency · Chaos x Magic · Stink UK',
     featured: true,
   },

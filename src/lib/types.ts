@@ -50,9 +50,6 @@ export interface Project {
   description: string;
   body?: string[];
   media?: ProjectMedia[];
-  challenge: string;
-  solution: string;
-  outcome: string;
   credits?: string;
   award?: { label: string; href: string };
   featured?: boolean;

@@ -5,7 +5,6 @@ import { Gallery } from '@/components/Gallery';
 import { ProjectMediaBlock } from '@/components/ProjectMediaBlock';
 import { CleanVideoEmbed } from '@/components/CleanVideoEmbed';
 import { Badge } from '@/components/Badge';
-import { CTA } from '@/components/CTA';
 import {
   TypographyBody,
   TypographyButton,
@@ -118,33 +117,13 @@ export default async function WorkDetailPage({ params }: Props) {
         </div>
       )}
 
-      <div className="mx-auto max-w-3xl px-6 pb-16 md:px-10 md:pb-24">
-        <div className="space-y-12 border-t border-ink/10 pt-16">
-          <div>
-            <TypographySection>Challenge</TypographySection>
-            <TypographyBody className={editorial.stack.sectionToContent}>{project.challenge}</TypographyBody>
-          </div>
-          <div>
-            <TypographySection>Solution</TypographySection>
-            <TypographyBody className={editorial.stack.sectionToContent}>{project.solution}</TypographyBody>
-          </div>
-          <div>
-            <TypographySection>Outcome</TypographySection>
-            <TypographyBody className={editorial.stack.sectionToContent}>{project.outcome}</TypographyBody>
-          </div>
-        </div>
-
-        {project.credits && (
-          <TypographyMeta className={editorial.stack.block}>
+      {project.credits && (
+        <div className="mx-auto max-w-3xl px-6 pb-16 md:px-10 md:pb-24">
+          <TypographyMeta className="border-t border-ink/10 pt-10">
             Credits: {project.credits}
           </TypographyMeta>
-        )}
-
-        <div className={`flex flex-wrap gap-4 ${editorial.stack.page}`}>
-          <CTA href="/contact" label="Get in touch" />
-          <CTA href="/work" label="All work" variant="ghost" />
         </div>
-      </div>
+      )}
 
       {project.gallery.length > 0 && !project.media && (
         <div className="border-t border-ink/10 px-6 py-16 md:px-10 md:py-24">

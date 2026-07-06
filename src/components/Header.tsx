@@ -3,19 +3,63 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { NAV, SITE } from '@/data/site';
 import { cn } from '@/lib/utils';
+import {
+  SPIRITUAL_COVER_READY_EVENT,
+  computeHomeNavPlacement,
+} from '@/lib/home-header-placement';
 
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [homeNavCompact, setHomeNavCompact] = useState(false);
+  const navRef = useRef<HTMLElement>(null);
   const isHome = pathname === '/';
+
+  const updateHomeNavPlacement = useCallback(() => {
+    if (!isHome || !navRef.current) return;
+
+    const svg = document.querySelector<SVGSVGElement>('.spiritual-cover__svg');
+    const { offsetPx, useCompactNav } = computeHomeNavPlacement(navRef.current, svg);
+
+    document.documentElement.style.setProperty('--home-nav-offset', `${offsetPx}px`);
+    setHomeNavCompact(useCompactNav);
+    document.documentElement.classList.toggle('home-nav-compact', useCompactNav);
+  }, [isHome]);
 
   useEffect(() => {
     document.documentElement.classList.toggle('home-route', isHome);
     return () => document.documentElement.classList.remove('home-route');
   }, [isHome]);
+
+  useEffect(() => {
+    if (!isHome) {
+      document.documentElement.classList.remove('home-nav-compact');
+      document.documentElement.style.removeProperty('--home-nav-offset');
+      setHomeNavCompact(false);
+      return;
+    }
+
+    updateHomeNavPlacement();
+
+    const onLayout = () => updateHomeNavPlacement();
+    window.addEventListener('resize', onLayout);
+    window.addEventListener(SPIRITUAL_COVER_READY_EVENT, onLayout);
+
+    const cover = document.querySelector('.spiritual-cover__canvas');
+    const observer = cover ? new ResizeObserver(onLayout) : null;
+    if (cover && observer) observer.observe(cover);
+
+    return () => {
+      window.removeEventListener('resize', onLayout);
+      window.removeEventListener(SPIRITUAL_COVER_READY_EVENT, onLayout);
+      observer?.disconnect();
+      document.documentElement.classList.remove('home-nav-compact');
+      document.documentElement.style.removeProperty('--home-nav-offset');
+    };
+  }, [isHome, updateHomeNavPlacement]);
 
   useEffect(() => {
     setOpen(false);
@@ -34,7 +78,8 @@ export function Header() {
     <header
       className={cn(
         'site-header z-50 w-full',
-        isHome ? 'site-header--overlay' : 'site-header--solid sticky top-0'
+        isHome ? 'site-header--overlay' : 'site-header--solid sticky top-0',
+        isHome && homeNavCompact && 'site-header--home-compact'
       )}
     >
       <div className="site-header__inner">
@@ -54,7 +99,12 @@ export function Header() {
           />
         </Link>
 
-        <nav className="site-header__nav" aria-label="Main">
+        <nav
+          ref={navRef}
+          className="site-header__nav"
+          aria-label="Main"
+          style={isHome ? { transform: 'translateX(var(--home-nav-offset, 0px))' } : undefined}
+        >
           {NAV.map((item) => (
             <Link
               key={item.href}

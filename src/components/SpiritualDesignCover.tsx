@@ -30,6 +30,7 @@ export function SpiritualDesignCover() {
 
       animateSpiritualDesignSvg(svg);
       setLoaded(true);
+      window.dispatchEvent(new Event('spiritual-cover-ready'));
     }
 
     load().catch(() => setLoaded(true));

@@ -3,31 +3,8 @@
 }
 
 .compactInner {
-  display: grid;
-  height: 100%;
-  min-height: 0;
-  grid-template-rows: minmax(0, 1.15fr) auto;
-  gap: 0.75rem;
-}
-
-.compactMedia {
-  position: relative;
-  min-height: 0;
-  overflow: hidden;
-  background: rgb(10 10 10 / 0.05);
-}
-
-.compactCopy {
   display: flex;
-  min-height: 0;
   flex-direction: column;
-  justify-content: flex-end;
   gap: 0.5rem;
-  padding-bottom: 0.15rem;
-}
-
-@media (min-width: 1024px) {
-  .compactInner {
-    gap: 0.65rem;
-  }
+  padding: 0.15rem 0;
 }

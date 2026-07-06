@@ -14,6 +14,27 @@ export function formatDate(date: string) {
   );
 }
 
+/** Drop a leading Medium cover figure when it repeats the article hero image. */
+export function stripLeadingCoverFigure(html: string, coverImage: string) {
+  const trimmed = html.trimStart();
+  const match = trimmed.match(/^<figure>[\s\S]*?<\/figure>/);
+  if (!match) return html;
+
+  const figure = match[0];
+  const srcMatch = figure.match(/src="([^"]+)"/);
+  if (!srcMatch) return html;
+
+  const figureSrc = srcMatch[1];
+  const coverKey = coverImage.split('/').pop() ?? coverImage;
+  const figureKey = figureSrc.split('/').pop() ?? figureSrc;
+
+  if (figureSrc === coverImage || figureKey === coverKey) {
+    return trimmed.slice(match[0].length).trimStart();
+  }
+
+  return html;
+}
+
 export function categoryLabel(category: string) {
   return category
     .split('-')

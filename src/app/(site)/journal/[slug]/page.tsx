@@ -1,7 +1,7 @@
-import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { Badge } from '@/components/Badge';
+import { PageSection } from '@/components/PageSection';
 import {
   TypographyBody,
   TypographySection,
@@ -10,7 +10,7 @@ import {
 } from '@/components/typography';
 import { editorial } from '@/lib/typography';
 import { getArticle } from '@/data/articles';
-import { formatDate } from '@/lib/utils';
+import { formatDate, stripLeadingCoverFigure } from '@/lib/utils';
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -34,26 +34,14 @@ export default async function ArticlePage({ params }: Props) {
   const article = getArticle(slug);
   if (!article) notFound();
 
-  const isSvg = article.coverImage.endsWith('.svg');
-  const isGif = article.coverImage.endsWith('.gif');
-  const isRemoteCover = article.coverImage.startsWith('http');
   const paragraphs = article.content?.split('\n\n').filter(Boolean) ?? [];
+  const contentHtml = article.contentHtml
+    ? stripLeadingCoverFigure(article.contentHtml, article.coverImage)
+    : null;
 
   return (
-    <article>
-      <div className="relative aspect-[21/9] w-full overflow-hidden bg-ink/5">
-        <Image
-          src={article.coverImage}
-          alt={article.title}
-          fill
-          className="object-cover"
-          priority
-          sizes="100vw"
-          unoptimized={isSvg || isGif || isRemoteCover}
-        />
-      </div>
-
-      <div className="mx-auto max-w-2xl px-6 py-16 md:px-10 md:py-24">
+    <PageSection>
+      <article className="mx-auto max-w-2xl">
         <TypographyMeta>{formatDate(article.date)}</TypographyMeta>
         <TypographySection as="h1" className={editorial.stack.labelToTitle}>
           {article.title}
@@ -68,10 +56,10 @@ export default async function ArticlePage({ params }: Props) {
           ))}
         </div>
 
-        {article.contentHtml ? (
+        {contentHtml ? (
           <div
             className={`journal-article__body ${editorial.stack.block}`}
-            dangerouslySetInnerHTML={{ __html: article.contentHtml }}
+            dangerouslySetInnerHTML={{ __html: contentHtml }}
           />
         ) : (
           <div className={`${editorial.stack.block} space-y-6`}>
@@ -80,7 +68,7 @@ export default async function ArticlePage({ params }: Props) {
             ))}
           </div>
         )}
-      </div>
-    </article>
+      </article>
+    </PageSection>
   );
 }

@@ -20,6 +20,7 @@ export function UreesFlyingSticker() {
   const [reducedMotion, setReducedMotion] = useState(false);
 
   const isUreesRoute = pathname === '/urees' || pathname.startsWith('/urees/');
+  const isJournalRoute = pathname === '/journal' || pathname.startsWith('/journal/');
 
   useEffect(() => {
     pausedRef.current = paused;
@@ -34,7 +35,7 @@ export function UreesFlyingSticker() {
   }, []);
 
   useEffect(() => {
-    if (isUreesRoute || reducedMotion) return;
+    if (isUreesRoute || isJournalRoute || reducedMotion) return;
 
     const el = ref.current;
     if (!el) return;
@@ -109,9 +110,9 @@ export function UreesFlyingSticker() {
       window.cancelAnimationFrame(frame);
       window.removeEventListener('resize', onResize);
     };
-  }, [isUreesRoute, reducedMotion]);
+  }, [isUreesRoute, isJournalRoute, reducedMotion]);
 
-  if (isUreesRoute) return null;
+  if (isUreesRoute || isJournalRoute) return null;
 
   return (
     <Link

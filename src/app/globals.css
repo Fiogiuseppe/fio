@@ -428,6 +428,7 @@ html.home-route .spiritual-cover__svg {
 .journal-index {
   padding-top: 4rem;
   padding-bottom: 3rem;
+  overflow-x: clip;
 }
 
 @media (min-width: 1024px) {

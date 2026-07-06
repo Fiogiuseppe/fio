@@ -1,0 +1,166 @@
+.stage {
+  position: relative;
+  width: 100%;
+  max-width: 52rem;
+  margin: 2.5rem auto 0;
+  padding: 0 clamp(1rem, 4vw, 2.5rem) 1rem;
+  min-height: 0;
+}
+
+.flyer {
+  display: block;
+  width: min(100%, 22rem);
+  margin: 0 auto;
+  color: inherit;
+  text-decoration: none;
+  perspective: 900px;
+}
+
+.popup {
+  position: relative;
+  overflow: hidden;
+  border: 2px solid var(--color-ink);
+  background: var(--color-page);
+  box-shadow:
+    0 28px 60px rgb(10 10 10 / 0.14),
+    8px 10px 0 var(--color-blue);
+  transform: rotate(-5deg);
+  animation: conide-float 7s ease-in-out infinite;
+  transition:
+    transform 220ms ease,
+    box-shadow 220ms ease,
+    border-color 220ms ease;
+}
+
+.flyer:hover .popup,
+.flyer:focus-visible .popup {
+  border-color: var(--color-blue);
+  box-shadow:
+    0 34px 70px rgb(10 10 10 / 0.18),
+    10px 12px 0 var(--color-ink);
+  transform: rotate(-2deg) translateY(-6px) scale(1.02);
+  animation-play-state: paused;
+}
+
+.chrome {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 0.75rem;
+  border-bottom: 2px solid var(--color-ink);
+  background: rgb(10 10 10 / 0.04);
+}
+
+.dot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background: var(--color-ink);
+  opacity: 0.22;
+}
+
+.chromeTitle {
+  margin-left: auto;
+  font-family: var(--font-helvetica);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-blue);
+}
+
+.media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: rgb(10 10 10 / 0.05);
+}
+
+.image {
+  object-fit: cover;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 1rem 1rem 1.15rem;
+  text-align: left;
+}
+
+.kicker {
+  margin: 0;
+  font-family: var(--font-helvetica);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgb(10 10 10 / 0.5);
+}
+
+.title {
+  margin: 0;
+}
+
+.excerpt {
+  display: -webkit-box;
+  overflow: hidden;
+  margin: 0;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+
+.tail {
+  margin: 0.15rem 0 0;
+  font-family: var(--font-helvetica);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-ink);
+}
+
+.flyer:hover .tail,
+.flyer:focus-visible .tail {
+  color: var(--color-blue);
+}
+
+@keyframes conide-float {
+  0%,
+  100% {
+    transform: rotate(-5deg) translateY(0);
+  }
+
+  50% {
+    transform: rotate(-3deg) translateY(-10px);
+  }
+}
+
+@media (min-width: 900px) {
+  .stage {
+    min-height: 18rem;
+    margin-bottom: 1rem;
+  }
+
+  .flyer {
+    position: absolute;
+    top: -0.5rem;
+    right: clamp(0.5rem, 3vw, 2rem);
+    width: min(22rem, 38vw);
+    margin: 0;
+    z-index: 2;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .popup {
+    animation: none;
+    transform: rotate(-4deg);
+  }
+
+  .flyer:hover .popup,
+  .flyer:focus-visible .popup {
+    transform: rotate(-3deg) translateY(-4px);
+  }
+}

@@ -3,6 +3,7 @@ import { SectionIntro } from '@/components/SectionIntro';
 import { PageSection } from '@/components/PageSection';
 import { JournalAuthorMark } from '@/components/JournalAuthorMark';
 import { JournalCard } from '@/components/JournalCard';
+import { JournalSpecialFlyer } from '@/components/JournalSpecialFlyer';
 import { getJournalArticles } from '@/data/articles';
 import gridStyles from '@/components/JournalGrid.module.css';
 
@@ -25,16 +26,9 @@ export default function JournalPage() {
         description="Essays on design, art, culture and creativity."
       />
       <JournalAuthorMark />
-      {specialArticles.length > 0 ? (
-        <div className={gridStyles.specialSection}>
-          <p className={gridStyles.specialLabel}>Special</p>
-          <div className={gridStyles.specialGrid}>
-            {specialArticles.map((article) => (
-              <JournalCard key={article.slug} article={article} special />
-            ))}
-          </div>
-        </div>
-      ) : null}
+      {specialArticles.map((article) => (
+        <JournalSpecialFlyer key={article.slug} article={article} />
+      ))}
       <div className={gridStyles.grid}>
         {regularArticles.map((article) => (
           <JournalCard key={article.slug} article={article} compact />

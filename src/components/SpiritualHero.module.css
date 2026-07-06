@@ -1,0 +1,14 @@
+.hero {
+  background: var(--cream);
+  padding: 0;
+}
+
+.link {
+  display: block;
+  line-height: 0;
+}
+
+.artwork {
+  width: 100%;
+  height: auto;
+}

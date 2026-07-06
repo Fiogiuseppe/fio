@@ -1,0 +1,56 @@
+.footer {
+  background: var(--black);
+  color: var(--cream-soft);
+  padding: 2.5rem 2rem 2rem;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem 1.5rem;
+  list-style: none;
+  margin: 0 0 1.5rem;
+  padding: 0;
+}
+
+.nav a {
+  color: var(--cream-soft);
+  font-size: 15px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.nav a:hover {
+  color: var(--white);
+  text-decoration: none;
+}
+
+.meta {
+  text-align: center;
+  font-size: 15px;
+  color: var(--cream-soft);
+  margin: 0;
+}
+
+.meta a {
+  color: var(--cream-soft);
+}
+
+.bottom {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.instagram {
+  display: inline-flex;
+  color: var(--cream-soft);
+  font-size: 29px;
+  line-height: 1;
+}
+
+.instagram:hover {
+  color: var(--white);
+  text-decoration: none;
+}

@@ -1,11 +1,14 @@
-.hero {
+.shell {
+  position: relative;
   background: var(--cream);
-  padding: 0;
+}
+
+.hero {
+  line-height: 0;
 }
 
 .link {
   display: block;
-  line-height: 0;
 }
 
 .artwork {

@@ -1,19 +1,15 @@
-import { SiteHeader } from '@/components/SiteHeader';
 import { SpiritualHero } from '@/components/SpiritualHero';
 import { BioSection } from '@/components/BioSection';
 import { FeaturedProjects } from '@/components/FeaturedProjects';
-import { WorksGrid } from '@/components/WorksGrid';
-import { HobbiesSection } from '@/components/HobbiesSection';
-import { WorkshopSection } from '@/components/WorkshopSection';
+import { WorksGrid, HobbiesSection, WorkshopSection } from '@/components/HobbiesSection';
 import { ContactSection } from '@/components/ContactSection';
 import { SiteFooter } from '@/components/SiteFooter';
 
 export default function HomePage() {
   return (
     <>
-      <SiteHeader />
+      <SpiritualHero />
       <main>
-        <SpiritualHero />
         <BioSection />
         <FeaturedProjects />
         <WorksGrid />

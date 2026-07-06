@@ -37,58 +37,68 @@ export function ContactSection() {
   }
 
   return (
-    <section className={styles.section} id="contact" aria-labelledby="contact-title">
-      <div className={styles.inner}>
-        <p className={styles.lead}>
+    <>
+      <div className={styles.prelude}>
+        <p className={styles.preludeText}>
           Let&apos;s talk <em>here.</em>
         </p>
-        <h1 className={styles.heading} id="contact-title">
-          Write me here
-        </h1>
-        <form className={styles.form} onSubmit={handleSubmit}>
-          <div className={styles.row}>
-            <div className={styles.field}>
-              <label htmlFor="name">Name</label>
-              <input className={styles.input} id="name" name="name" placeholder="Name" required />
-            </div>
-            <div className={styles.field}>
-              <label htmlFor="email">Email</label>
-              <input
-                className={styles.input}
-                id="email"
-                name="email"
-                type="email"
-                placeholder="Email"
-                required
-              />
-            </div>
-          </div>
-          <div className={styles.field}>
-            <label htmlFor="message">Message</label>
-            <textarea className={styles.textarea} id="message" name="message" placeholder="Message" required />
-          </div>
-          <div className={styles.actions}>
-            <div className={styles.captcha}>
-              <span>
-                {captcha.a} + {captcha.b} =
-              </span>
-              <input
-                className={styles.captchaInput}
-                inputMode="numeric"
-                value={captchaValue}
-                onChange={(event) => setCaptchaValue(event.target.value)}
-                required
-                aria-label="Captcha answer"
-              />
-            </div>
-            <button className={styles.submit} type="submit">
-              Send
-            </button>
-          </div>
-          {status === 'error' && <p className={styles.status}>Captcha incorrect. Try again.</p>}
-          {status === 'sent' && <p className={styles.status}>Opening your email client…</p>}
-        </form>
       </div>
-    </section>
+      <section className={styles.section} id="contact" aria-labelledby="contact-title">
+        <div className={styles.inner}>
+          <h1 className={styles.heading} id="contact-title">
+            Write me here
+          </h1>
+          <form className={styles.form} onSubmit={handleSubmit}>
+            <div className={styles.row}>
+              <div className={styles.field}>
+                <label htmlFor="name">Name</label>
+                <input className={styles.input} id="name" name="name" placeholder="Name" required />
+              </div>
+              <div className={styles.field}>
+                <label htmlFor="email">Email</label>
+                <input
+                  className={styles.input}
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="Email"
+                  required
+                />
+              </div>
+            </div>
+            <div className={styles.field}>
+              <label htmlFor="message">Message</label>
+              <textarea
+                className={styles.textarea}
+                id="message"
+                name="message"
+                placeholder="Message"
+                required
+              />
+            </div>
+            <div className={styles.actions}>
+              <div className={styles.captcha}>
+                <span>
+                  {captcha.a} + {captcha.b} =
+                </span>
+                <input
+                  className={styles.captchaInput}
+                  inputMode="numeric"
+                  value={captchaValue}
+                  onChange={(event) => setCaptchaValue(event.target.value)}
+                  required
+                  aria-label="Captcha answer"
+                />
+              </div>
+              <button className={styles.submit} type="submit">
+                Send
+              </button>
+            </div>
+            {status === 'error' && <p className={styles.status}>Captcha incorrect. Try again.</p>}
+            {status === 'sent' && <p className={styles.status}>Opening your email client…</p>}
+          </form>
+        </div>
+      </section>
+    </>
   );
 }

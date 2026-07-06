@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { SITE } from '@/data/site';
 import styles from './SiteHeader.module.css';
 
-export function SiteHeader() {
+export function SiteHeader({ staticHeader = false }: { staticHeader?: boolean }) {
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${staticHeader ? styles.headerStatic : ''}`}>
       <div className={styles.inner}>
         <Link
           className={styles.contact}
@@ -18,12 +18,12 @@ export function SiteHeader() {
             className={styles.logo}
             src="/images/logo.svg"
             alt={SITE.name}
-            width={220}
-            height={48}
+            width={200}
+            height={44}
             priority
           />
         </Link>
-        <span className={styles.location}>{SITE.location}</span>
+        <span className={styles.spacer} aria-hidden="true" />
       </div>
     </header>
   );

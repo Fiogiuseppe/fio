@@ -35,7 +35,7 @@ export default async function ProjectPage({ params }: Props) {
 
   return (
     <>
-      <SiteHeader />
+      <SiteHeader staticHeader />
       <main className={styles.page}>
         <Link className={styles.back} href="/">
           ← Home

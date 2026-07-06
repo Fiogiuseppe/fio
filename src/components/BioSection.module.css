@@ -1,14 +1,14 @@
 .section {
+  padding: 2rem var(--page-pad) 3.5rem;
   background: var(--cream);
-  padding: 4rem 2rem;
 }
 
 .inner {
-  max-width: var(--max-width);
+  width: var(--row-max);
   margin: 0 auto;
   display: grid;
-  grid-template-columns: minmax(240px, 360px) 1fr;
-  gap: 3rem;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
   align-items: start;
 }
 
@@ -19,23 +19,27 @@
 
 .copy p {
   margin: 0 0 1.25rem;
-  font-size: clamp(18px, 2vw, 22px);
+  font-size: clamp(18px, 2.2vw, 22px);
   line-height: 1.3;
   letter-spacing: -0.03em;
+  color: var(--black);
+}
+
+.strong {
+  font-weight: 700;
+}
+
+.underline {
+  text-decoration: underline;
 }
 
 .quote {
   font-style: italic;
-  margin-top: 1.5rem !important;
+  font-weight: 400;
 }
 
 @media (max-width: 900px) {
   .inner {
     grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .portraitWrap {
-    max-width: 360px;
   }
 }

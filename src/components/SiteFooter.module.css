@@ -1,7 +1,7 @@
 .footer {
   background: var(--black);
   color: var(--cream-soft);
-  padding: 2.5rem 2rem 2rem;
+  padding: 2.5rem var(--page-pad) 2rem;
 }
 
 .nav {
@@ -46,11 +46,16 @@
 .instagram {
   display: inline-flex;
   color: var(--cream-soft);
-  font-size: 29px;
-  line-height: 1;
+  line-height: 0;
 }
 
 .instagram:hover {
   color: var(--white);
   text-decoration: none;
+}
+
+.instagram svg {
+  width: 29px;
+  height: 29px;
+  fill: currentColor;
 }

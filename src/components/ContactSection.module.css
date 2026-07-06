@@ -1,28 +1,35 @@
+.prelude {
+  background: var(--cream);
+  padding: 4rem var(--page-pad) 5rem;
+  text-align: center;
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 50% 100%, 0 85%);
+}
+
+.preludeText {
+  margin: 0;
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: var(--black);
+}
+
+.preludeText em {
+  font-style: normal;
+  color: var(--blue);
+}
+
 .section {
   position: relative;
   background: var(--black);
   color: var(--white);
-  padding: 5rem 2rem 4rem;
-  clip-path: polygon(0 6%, 50% 0, 100% 6%, 100% 100%, 0 100%);
+  padding: 4rem var(--page-pad) 4rem;
+  margin-top: -3rem;
 }
 
 .inner {
   max-width: 720px;
   margin: 0 auto;
-}
-
-.lead {
-  text-align: center;
-  font-size: clamp(28px, 5vw, 48px);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  margin: 0 0 2.5rem;
-  line-height: 1.05;
-}
-
-.lead em {
-  font-style: normal;
-  color: var(--blue);
 }
 
 .heading {
@@ -94,17 +101,11 @@
   color: var(--white);
   padding: 0.65rem 1.5rem;
   cursor: pointer;
-  text-transform: capitalize;
 }
 
 .submit:hover {
   background: var(--white);
   color: var(--black);
-}
-
-.submit:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
 }
 
 .status {
@@ -118,8 +119,12 @@
     grid-template-columns: 1fr;
   }
 
-  .section {
+  .prelude {
     clip-path: none;
-    padding-top: 4rem;
+    padding-bottom: 3rem;
+  }
+
+  .section {
+    margin-top: 0;
   }
 }

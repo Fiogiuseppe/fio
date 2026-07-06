@@ -126,11 +126,6 @@ html.home-route .site-header--overlay .site-header__nav-link--active {
   color: var(--color-ink);
 }
 
-.site-header__mobile {
-  background: transparent;
-  backdrop-filter: none;
-}
-
 .site-header--overlay .site-header__inner,
 .site-header--overlay .site-header__logo-link,
 .site-header--overlay .site-header__nav-link,
@@ -234,6 +229,8 @@ html.home-route .site-header--overlay .site-header__nav-link--active {
   display: block;
   border-top: 0;
   padding: 1.25rem clamp(1rem, 4vw, 2.5rem) 1.5rem;
+  background: transparent;
+  backdrop-filter: none;
   pointer-events: auto;
 }
 

@@ -4,10 +4,10 @@ import type { Metadata } from 'next';
 import { Badge } from '@/components/Badge';
 import { Gallery } from '@/components/Gallery';
 import { CTA } from '@/components/CTA';
+import { ShopCheckoutButton } from '@/components/ShopCheckoutButton';
 import { VisceralPoemOptions } from '@/components/VisceralPoemOptions';
 import {
   TypographyBody,
-  TypographyButton,
   TypographySection,
   TypographyLabel,
   TypographyLead,
@@ -50,6 +50,7 @@ export default async function ProductPage({ params }: Props) {
   const isGif = product.images[0]?.endsWith('.gif');
   const isSold = product.availability === 'sold';
   const isComingSoon = product.availability === 'coming-soon';
+  const canCheckout = !isSold && !isComingSoon;
 
   return (
     <article className="px-6 py-12 md:px-10 md:py-20">
@@ -127,22 +128,14 @@ export default async function ProductPage({ params }: Props) {
                 ) : isComingSoon ? (
                   <CTA href="/contact" label="Request this piece" variant="secondary" />
                 ) : (
-                  <button
-                    type="button"
-                    disabled
-                    title="Stripe checkout coming soon"
-                    className="btn-on-dark cursor-not-allowed px-8 py-3 opacity-90"
-                  >
-                    <TypographyButton as="span">{productCtaLabel(product)} — soon</TypographyButton>
-                  </button>
+                  <ShopCheckoutButton slug={product.slug} label={productCtaLabel(product)} />
                 )}
-                <TypographyMeta className={editorial.stack.labelToTitle}>
-                  Checkout via Stripe will be available soon. For now,{' '}
-                  <a href="/contact" className="text-blue">
-                    contact Giuseppe
-                  </a>{' '}
-                  to collect.
-                </TypographyMeta>
+                {canCheckout ? (
+                  <TypographyMeta className={editorial.stack.labelToTitle}>
+                    Secure checkout with Stripe. Enter your shipping address and we will deliver
+                    your piece to your door.
+                  </TypographyMeta>
+                ) : null}
               </div>
             </div>
           </div>
@@ -150,7 +143,7 @@ export default async function ProductPage({ params }: Props) {
 
         {isVisceralPoem ? (
           <div className={`mt-10 border-t border-ink/10 pt-10 ${editorial.stack.block}`}>
-            <dl className="mb-8 space-y-4">
+            <dl className="space-y-4">
               <div className="flex justify-between gap-4">
                 <TypographyLabel as="dt">From</TypographyLabel>
                 <TypographyBody as="dd" measure={false}>
@@ -171,37 +164,37 @@ export default async function ProductPage({ params }: Props) {
               )}
             </dl>
 
-            {isSold ? (
+            {canCheckout ? (
+              <TypographyMeta className={editorial.stack.labelToTitle}>
+                Secure checkout with Stripe. Choose your format above, then complete payment and
+                shipping details. More pieces on{' '}
+                <a
+                  href="https://www.instagram.com/visceralpoems/"
+                  className="text-blue"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  @visceralpoems
+                </a>
+                .
+              </TypographyMeta>
+            ) : isSold ? (
               <TypographyMeta>This piece has been collected.</TypographyMeta>
-            ) : (
-              <>
-                <CTA href="/contact" label="Order this poem" variant="secondary" />
-                <TypographyMeta className={editorial.stack.labelToTitle}>
-                  Select format and frame above, then{' '}
-                  <a href="/contact" className="text-blue">
-                    contact Giuseppe
-                  </a>{' '}
-                  to place your order. More pieces on{' '}
-                  <a
-                    href="https://www.instagram.com/visceralpoems/"
-                    className="text-blue"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    @visceralpoems
-                  </a>
-                  .
-                </TypographyMeta>
-              </>
-            )}
+            ) : null}
           </div>
         ) : null}
       </div>
 
-      <div className={`mx-auto max-w-3xl ${editorial.stack.page}`}>
-        <TypographySection>The story</TypographySection>
-        <TypographyBody className={editorial.stack.sectionToContent}>{product.longStory}</TypographyBody>
-      </div>
+      {!isVisceralPoem ? (
+        <div className={`mx-auto max-w-7xl ${editorial.stack.page}`}>
+          <div className="max-w-3xl">
+            <TypographySection>The story</TypographySection>
+            <TypographyBody className={editorial.stack.sectionToContent}>
+              {product.longStory}
+            </TypographyBody>
+          </div>
+        </div>
+      ) : null}
 
       {!isVisceralPoem && product.images.length > 1 && (
         <div className={`mx-auto max-w-7xl ${editorial.stack.block}`}>

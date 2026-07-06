@@ -67,6 +67,8 @@ export interface Service {
   ctaLabel: string;
 }
 
+export type ProductFormat = 'handmade' | 'digital';
+
 export interface Product {
   slug: string;
   title: string;
@@ -86,6 +88,8 @@ export interface Product {
   tags?: string[];
   /** Framed mockup preview — used by Visceral Poems when frame option is selected */
   framedImage?: string;
+  /** Shop availability by format — defaults to digital for legacy visceral poems */
+  formats?: ProductFormat[];
 }
 
 /** Product fields stored in per-category JSON (category inferred from file). */

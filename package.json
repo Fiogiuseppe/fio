@@ -10,6 +10,7 @@
     "import:medium": "node scripts/import-medium-articles.mjs",
     "import:products": "node scripts/import-products.mjs",
     "generate:visceral-poems": "node scripts/generate-visceral-poems.mjs",
+    "sync:visceral-poems": "node scripts/sync-visceral-poems-ig.mjs",
     "sync:urees": "node scripts/sync-urees-shop.mjs"
   },
   "dependencies": {
@@ -18,6 +19,7 @@
     "postcss": "^8.5.16",
     "react": "19.2.4",
     "react-dom": "19.2.4",
+    "stripe": "^22.3.0",
     "tailwindcss": "^4.3.2"
   },
   "devDependencies": {

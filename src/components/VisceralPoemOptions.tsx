@@ -3,12 +3,15 @@
 import Image from 'next/image';
 import { useMemo, useState } from 'react';
 import type { Product } from '@/lib/types';
+import { getProductShopGroups } from '@/data/shop-catalog';
 import {
   VISCERAL_POEMS_PRICING,
   visceralPoemPrice,
   type VisceralPoemFormat,
 } from '@/data/visceral-poems-pricing';
 import { formatPrice } from '@/lib/utils';
+import { TypographyBody } from '@/components/typography';
+import { ShopCheckoutButton } from '@/components/ShopCheckoutButton';
 import styles from './VisceralPoemOptions.module.css';
 
 type VisceralPoemOptionsProps = {
@@ -16,7 +19,9 @@ type VisceralPoemOptionsProps = {
 };
 
 export function VisceralPoemOptions({ product }: VisceralPoemOptionsProps) {
-  const [format, setFormat] = useState<VisceralPoemFormat>('handmade');
+  const groups = getProductShopGroups(product);
+  const defaultFormat: VisceralPoemFormat = groups.includes('handmade') ? 'handmade' : 'digital';
+  const [format, setFormat] = useState<VisceralPoemFormat>(defaultFormat);
   const [withFrame, setWithFrame] = useState(false);
 
   const price = visceralPoemPrice(format, withFrame);
@@ -47,7 +52,9 @@ export function VisceralPoemOptions({ product }: VisceralPoemOptionsProps) {
         <fieldset className={styles.fieldset}>
           <legend className={styles.legend}>Format</legend>
           <div className={styles.choiceRow}>
-            {(Object.keys(VISCERAL_POEMS_PRICING) as VisceralPoemFormat[]).map((key) => (
+            {(Object.keys(VISCERAL_POEMS_PRICING) as VisceralPoemFormat[])
+              .filter((key) => groups.includes(key))
+              .map((key) => (
               <button
                 key={key}
                 type="button"
@@ -93,6 +100,18 @@ export function VisceralPoemOptions({ product }: VisceralPoemOptionsProps) {
             Frame preview uses a placeholder mockup. Final framed piece will use the real frame.
           </p>
         ) : null}
+
+        <ShopCheckoutButton
+          slug={product.slug}
+          format={format}
+          withFrame={withFrame}
+          label="Buy now"
+          className={styles.checkout}
+        />
+
+        <TypographyBody measure={false} className={styles.story}>
+          {product.longStory}
+        </TypographyBody>
       </div>
     </div>
   );

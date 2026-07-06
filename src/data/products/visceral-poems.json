@@ -2,7 +2,7 @@
   {
     "slug": "visceral-poem-12",
     "title": "Visceral Poem 12",
-    "shortDescription": "A visceral poem where language meets ink and emotion.",
+    "shortDescription": "Signed digital print — a visceral poem where language meets ink and emotion.",
     "longStory": "Born in transit — on buses between cities, on planes between countries — each Visceral Poem is a fragment of an inner landscape. Available as a handmade original or as a signed digital print, with an optional frame.",
     "images": [
       "https://fiogiuseppe.com/wp-content/uploads/2023/03/VISCERAL-POETRY-12-scaled.jpg"
@@ -15,14 +15,18 @@
     "availability": "available",
     "productType": "print",
     "cta": "buy",
+    "formats": [
+      "digital"
+    ],
     "tags": [
-      "poem"
+      "poem",
+      "digital"
     ]
   },
   {
     "slug": "visceral-poem-92",
     "title": "Visceral Poem 92",
-    "shortDescription": "A visceral poem where language meets ink and emotion.",
+    "shortDescription": "Signed digital print — a visceral poem where language meets ink and emotion.",
     "longStory": "Born in transit — on buses between cities, on planes between countries — each Visceral Poem is a fragment of an inner landscape. Available as a handmade original or as a signed digital print, with an optional frame.",
     "images": [
       "https://fiogiuseppe.com/wp-content/uploads/2023/03/VISCERAL-POETRY-92-scaled.jpg"
@@ -35,14 +39,18 @@
     "availability": "available",
     "productType": "print",
     "cta": "buy",
+    "formats": [
+      "digital"
+    ],
     "tags": [
-      "poem"
+      "poem",
+      "digital"
     ]
   },
   {
     "slug": "visceral-poem-102",
     "title": "Visceral Poem 102",
-    "shortDescription": "A visceral poem where language meets ink and emotion.",
+    "shortDescription": "Signed digital print — a visceral poem where language meets ink and emotion.",
     "longStory": "Born in transit — on buses between cities, on planes between countries — each Visceral Poem is a fragment of an inner landscape. Available as a handmade original or as a signed digital print, with an optional frame.",
     "images": [
       "https://fiogiuseppe.com/wp-content/uploads/2023/03/VISCERAL-POETRY-102-scaled.jpg"
@@ -55,14 +63,18 @@
     "availability": "available",
     "productType": "print",
     "cta": "buy",
+    "formats": [
+      "digital"
+    ],
     "tags": [
-      "poem"
+      "poem",
+      "digital"
     ]
   },
   {
     "slug": "visceral-poem-121",
     "title": "Visceral Poem 121",
-    "shortDescription": "A visceral poem where language meets ink and emotion.",
+    "shortDescription": "Signed digital print — a visceral poem where language meets ink and emotion.",
     "longStory": "Born in transit — on buses between cities, on planes between countries — each Visceral Poem is a fragment of an inner landscape. Available as a handmade original or as a signed digital print, with an optional frame.",
     "images": [
       "https://fiogiuseppe.com/wp-content/uploads/2023/03/VISCERAL-POETRY-121-scaled.jpg"
@@ -75,14 +87,18 @@
     "availability": "available",
     "productType": "print",
     "cta": "buy",
+    "formats": [
+      "digital"
+    ],
     "tags": [
-      "poem"
+      "poem",
+      "digital"
     ]
   },
   {
     "slug": "visceral-poem-126",
     "title": "Visceral Poem 126",
-    "shortDescription": "A visceral poem where language meets ink and emotion.",
+    "shortDescription": "Signed digital print — a visceral poem where language meets ink and emotion.",
     "longStory": "Born in transit — on buses between cities, on planes between countries — each Visceral Poem is a fragment of an inner landscape. Available as a handmade original or as a signed digital print, with an optional frame.",
     "images": [
       "https://fiogiuseppe.com/wp-content/uploads/2023/03/VISCERAL-POETRY-126-scaled.jpg"
@@ -95,14 +111,18 @@
     "availability": "available",
     "productType": "print",
     "cta": "buy",
+    "formats": [
+      "digital"
+    ],
     "tags": [
-      "poem"
+      "poem",
+      "digital"
     ]
   },
   {
     "slug": "visceral-poem-132",
     "title": "Visceral Poem 132",
-    "shortDescription": "A visceral poem where language meets ink and emotion.",
+    "shortDescription": "Signed digital print — a visceral poem where language meets ink and emotion.",
     "longStory": "Born in transit — on buses between cities, on planes between countries — each Visceral Poem is a fragment of an inner landscape. Available as a handmade original or as a signed digital print, with an optional frame.",
     "images": [
       "https://fiogiuseppe.com/wp-content/uploads/2023/03/VISCERAL-POETRY-132-scaled.jpg"
@@ -115,14 +135,18 @@
     "availability": "available",
     "productType": "print",
     "cta": "buy",
+    "formats": [
+      "digital"
+    ],
     "tags": [
-      "poem"
+      "poem",
+      "digital"
     ]
   },
   {
     "slug": "visceral-poem-137",
     "title": "Visceral Poem 137",
-    "shortDescription": "A visceral poem where language meets ink and emotion.",
+    "shortDescription": "Signed digital print — a visceral poem where language meets ink and emotion.",
     "longStory": "Born in transit — on buses between cities, on planes between countries — each Visceral Poem is a fragment of an inner landscape. Available as a handmade original or as a signed digital print, with an optional frame.",
     "images": [
       "https://fiogiuseppe.com/wp-content/uploads/2023/03/VISCERAL-POETRY-137-scaled.jpg"
@@ -135,14 +159,42 @@
     "availability": "available",
     "productType": "print",
     "cta": "buy",
+    "formats": [
+      "digital"
+    ],
     "tags": [
-      "poem"
+      "poem",
+      "digital"
+    ]
+  },
+  {
+    "slug": "visceral-poem-138",
+    "title": "Visceral Poem 138",
+    "shortDescription": "Signed digital print — a visceral poem where language meets ink and emotion.",
+    "longStory": "Born in transit — on buses between cities, on planes between countries — each Visceral Poem is a fragment of an inner landscape. Available as a handmade original or as a signed digital print, with an optional frame.",
+    "images": [
+      "https://fiogiuseppe.com/wp-content/uploads/2023/03/VISCERAL-POETRY-138-scaled.jpg"
+    ],
+    "framedImage": "https://fiogiuseppe.com/wp-content/uploads/2023/03/Poster-Mockup-Creatlon_2-scaled.jpg",
+    "price": 10,
+    "currency": "EUR",
+    "size": "A3",
+    "technique": "Ink on paper",
+    "availability": "available",
+    "productType": "print",
+    "cta": "buy",
+    "formats": [
+      "digital"
+    ],
+    "tags": [
+      "poem",
+      "digital"
     ]
   },
   {
     "slug": "escribujo-29",
     "title": "Escribujo 29",
-    "shortDescription": "Unique escribujo from the Visceral Poems street series.",
+    "shortDescription": "Signed digital print of an escribujo from the Visceral Poems street series.",
     "longStory": "Born in transit — on buses between cities, on planes between countries — each Visceral Poem is a fragment of an inner landscape. Available as a handmade original or as a signed digital print, with an optional frame.",
     "images": [
       "https://fiogiuseppe.com/wp-content/uploads/2023/03/IG-STORIES-29-scaled.jpg"
@@ -155,14 +207,18 @@
     "availability": "available",
     "productType": "print",
     "cta": "buy",
+    "formats": [
+      "digital"
+    ],
     "tags": [
-      "escribujo"
+      "escribujo",
+      "digital"
     ]
   },
   {
     "slug": "escribujo-38",
     "title": "Escribujo 38",
-    "shortDescription": "Unique escribujo from the Visceral Poems street series.",
+    "shortDescription": "Signed digital print of an escribujo from the Visceral Poems street series.",
     "longStory": "Born in transit — on buses between cities, on planes between countries — each Visceral Poem is a fragment of an inner landscape. Available as a handmade original or as a signed digital print, with an optional frame.",
     "images": [
       "https://fiogiuseppe.com/wp-content/uploads/2023/03/IG-STORIES-38-scaled.jpg"
@@ -175,14 +231,18 @@
     "availability": "available",
     "productType": "print",
     "cta": "buy",
+    "formats": [
+      "digital"
+    ],
     "tags": [
-      "escribujo"
+      "escribujo",
+      "digital"
     ]
   },
   {
     "slug": "escribujo-56",
     "title": "Escribujo 56",
-    "shortDescription": "Unique escribujo from the Visceral Poems street series.",
+    "shortDescription": "Signed digital print of an escribujo from the Visceral Poems street series.",
     "longStory": "Born in transit — on buses between cities, on planes between countries — each Visceral Poem is a fragment of an inner landscape. Available as a handmade original or as a signed digital print, with an optional frame.",
     "images": [
       "https://fiogiuseppe.com/wp-content/uploads/2023/03/IG-STORIES-56-scaled.jpg"
@@ -195,14 +255,18 @@
     "availability": "available",
     "productType": "print",
     "cta": "buy",
+    "formats": [
+      "digital"
+    ],
     "tags": [
-      "escribujo"
+      "escribujo",
+      "digital"
     ]
   },
   {
     "slug": "escribujo-57",
     "title": "Escribujo 57",
-    "shortDescription": "Unique escribujo from the Visceral Poems street series.",
+    "shortDescription": "Signed digital print of an escribujo from the Visceral Poems street series.",
     "longStory": "Born in transit — on buses between cities, on planes between countries — each Visceral Poem is a fragment of an inner landscape. Available as a handmade original or as a signed digital print, with an optional frame.",
     "images": [
       "https://fiogiuseppe.com/wp-content/uploads/2023/03/IG-STORIES-57-scaled.jpg"
@@ -215,14 +279,18 @@
     "availability": "available",
     "productType": "print",
     "cta": "buy",
+    "formats": [
+      "digital"
+    ],
     "tags": [
-      "escribujo"
+      "escribujo",
+      "digital"
     ]
   },
   {
     "slug": "escribujo-78",
     "title": "Escribujo 78",
-    "shortDescription": "Unique escribujo from the Visceral Poems street series.",
+    "shortDescription": "Signed digital print of an escribujo from the Visceral Poems street series.",
     "longStory": "Born in transit — on buses between cities, on planes between countries — each Visceral Poem is a fragment of an inner landscape. Available as a handmade original or as a signed digital print, with an optional frame.",
     "images": [
       "https://fiogiuseppe.com/wp-content/uploads/2023/03/IG-STORIES-78-scaled.jpg"
@@ -235,14 +303,18 @@
     "availability": "available",
     "productType": "print",
     "cta": "buy",
+    "formats": [
+      "digital"
+    ],
     "tags": [
-      "escribujo"
+      "escribujo",
+      "digital"
     ]
   },
   {
     "slug": "escribujo-84",
     "title": "Escribujo 84",
-    "shortDescription": "Unique escribujo from the Visceral Poems street series.",
+    "shortDescription": "Signed digital print of an escribujo from the Visceral Poems street series.",
     "longStory": "Born in transit — on buses between cities, on planes between countries — each Visceral Poem is a fragment of an inner landscape. Available as a handmade original or as a signed digital print, with an optional frame.",
     "images": [
       "https://fiogiuseppe.com/wp-content/uploads/2023/03/IG-STORIES-84-scaled.jpg"
@@ -255,14 +327,18 @@
     "availability": "available",
     "productType": "print",
     "cta": "buy",
+    "formats": [
+      "digital"
+    ],
     "tags": [
-      "escribujo"
+      "escribujo",
+      "digital"
     ]
   },
   {
     "slug": "escribujo-100",
     "title": "Escribujo 100",
-    "shortDescription": "Unique escribujo from the Visceral Poems street series.",
+    "shortDescription": "Signed digital print of an escribujo from the Visceral Poems street series.",
     "longStory": "Born in transit — on buses between cities, on planes between countries — each Visceral Poem is a fragment of an inner landscape. Available as a handmade original or as a signed digital print, with an optional frame.",
     "images": [
       "https://fiogiuseppe.com/wp-content/uploads/2023/03/IG-STORIES-100-scaled.jpg"
@@ -275,14 +351,18 @@
     "availability": "available",
     "productType": "print",
     "cta": "buy",
+    "formats": [
+      "digital"
+    ],
     "tags": [
-      "escribujo"
+      "escribujo",
+      "digital"
     ]
   },
   {
     "slug": "escribujo-106",
     "title": "Escribujo 106",
-    "shortDescription": "Unique escribujo from the Visceral Poems street series.",
+    "shortDescription": "Signed digital print of an escribujo from the Visceral Poems street series.",
     "longStory": "Born in transit — on buses between cities, on planes between countries — each Visceral Poem is a fragment of an inner landscape. Available as a handmade original or as a signed digital print, with an optional frame.",
     "images": [
       "https://fiogiuseppe.com/wp-content/uploads/2023/03/IG-STORIES-106-scaled.jpg"
@@ -295,14 +375,18 @@
     "availability": "available",
     "productType": "print",
     "cta": "buy",
+    "formats": [
+      "digital"
+    ],
     "tags": [
-      "escribujo"
+      "escribujo",
+      "digital"
     ]
   },
   {
     "slug": "escribujo-mesa-de-trabajo",
     "title": "Escribujo — Mesa de trabajo",
-    "shortDescription": "Unique escribujo from the Visceral Poems street series.",
+    "shortDescription": "Signed digital print of an escribujo from the Visceral Poems street series.",
     "longStory": "Born in transit — on buses between cities, on planes between countries — each Visceral Poem is a fragment of an inner landscape. Available as a handmade original or as a signed digital print, with an optional frame.",
     "images": [
       "https://fiogiuseppe.com/wp-content/uploads/2023/03/IG-STORIES_Mesa-de-trabajo-1-copia-2-scaled.jpg"
@@ -315,8 +399,104 @@
     "availability": "available",
     "productType": "print",
     "cta": "buy",
+    "formats": [
+      "digital"
+    ],
     "tags": [
-      "escribujo"
+      "escribujo",
+      "digital"
+    ]
+  },
+  {
+    "slug": "amor",
+    "title": "Amor",
+    "shortDescription": "Handmade poster — Amor by Visceral Poems.",
+    "longStory": "Born in transit — on buses between cities, on planes between countries — each Visceral Poem is a fragment of an inner landscape. Available as a handmade original or as a signed digital print, with an optional frame.",
+    "images": [
+      "https://fiogiuseppe.com/wp-content/uploads/2023/03/Poster-Mockup-Creatlon_2-scaled.jpg"
+    ],
+    "framedImage": "https://fiogiuseppe.com/wp-content/uploads/2023/03/Poster-Mockup-Creatlon_2-scaled.jpg",
+    "price": 10,
+    "currency": "EUR",
+    "size": "A3",
+    "technique": "Ink on paper",
+    "availability": "available",
+    "productType": "print",
+    "cta": "buy",
+    "formats": [
+      "handmade"
+    ],
+    "tags": [
+      "poster"
+    ]
+  },
+  {
+    "slug": "visceral-poem-poster",
+    "title": "Visceral Poem — Poster",
+    "shortDescription": "Handmade signed poster from the Visceral Poems series.",
+    "longStory": "Born in transit — on buses between cities, on planes between countries — each Visceral Poem is a fragment of an inner landscape. Available as a handmade original or as a signed digital print, with an optional frame.",
+    "images": [
+      "https://fiogiuseppe.com/wp-content/uploads/2023/03/Poster-Mockup-Creatlon-copia-scaled.jpg"
+    ],
+    "framedImage": "https://fiogiuseppe.com/wp-content/uploads/2023/03/Poster-Mockup-Creatlon_2-scaled.jpg",
+    "price": 10,
+    "currency": "EUR",
+    "size": "A3",
+    "technique": "Ink on paper",
+    "availability": "available",
+    "productType": "print",
+    "cta": "buy",
+    "formats": [
+      "handmade"
+    ],
+    "tags": [
+      "poster"
+    ]
+  },
+  {
+    "slug": "jamas",
+    "title": "Jamás",
+    "shortDescription": "Handmade poster — Jamás by Visceral Poems.",
+    "longStory": "Born in transit — on buses between cities, on planes between countries — each Visceral Poem is a fragment of an inner landscape. Available as a handmade original or as a signed digital print, with an optional frame.",
+    "images": [
+      "https://fiogiuseppe.com/wp-content/uploads/2023/03/Poster-Mockup-Creatlon_3-scaled.jpg"
+    ],
+    "framedImage": "https://fiogiuseppe.com/wp-content/uploads/2023/03/Poster-Mockup-Creatlon_2-scaled.jpg",
+    "price": 10,
+    "currency": "EUR",
+    "size": "A3",
+    "technique": "Ink on paper",
+    "availability": "available",
+    "productType": "print",
+    "cta": "buy",
+    "formats": [
+      "handmade"
+    ],
+    "tags": [
+      "poster"
+    ]
+  },
+  {
+    "slug": "still-loving-you",
+    "title": "Still Loving You",
+    "shortDescription": "Handmade poster — Still Loving You by Visceral Poems.",
+    "longStory": "Born in transit — on buses between cities, on planes between countries — each Visceral Poem is a fragment of an inner landscape. Available as a handmade original or as a signed digital print, with an optional frame.",
+    "images": [
+      "https://fiogiuseppe.com/wp-content/uploads/2023/03/Poster-Mockup-Creatlon_4-scaled.jpg"
+    ],
+    "framedImage": "https://fiogiuseppe.com/wp-content/uploads/2023/03/Poster-Mockup-Creatlon_2-scaled.jpg",
+    "price": 10,
+    "currency": "EUR",
+    "size": "A3",
+    "technique": "Ink on paper",
+    "availability": "available",
+    "productType": "print",
+    "cta": "buy",
+    "formats": [
+      "handmade"
+    ],
+    "tags": [
+      "poster"
     ]
   }
 ]

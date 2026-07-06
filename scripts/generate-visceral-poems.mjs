@@ -50,8 +50,8 @@ const products = CATALOG.map(({ file, title }) => {
     slug,
     title,
     shortDescription: isEscribujo
-      ? 'Unique escribujo from the Visceral Poems street series.'
-      : 'A visceral poem where language meets ink and emotion.',
+      ? 'Signed digital print of an escribujo from the Visceral Poems street series.'
+      : 'Signed digital print — a visceral poem where language meets ink and emotion.',
     longStory:
       'Born in transit — on buses between cities, on planes between countries — each Visceral Poem is a fragment of an inner landscape. Available as a handmade original or as a signed digital print, with an optional frame.',
     images: [`${BASE}/${file}`],
@@ -63,7 +63,8 @@ const products = CATALOG.map(({ file, title }) => {
     availability: 'available',
     productType: 'print',
     cta: 'buy',
-    tags: isEscribujo ? ['escribujo'] : ['poem'],
+    formats: ['digital'],
+    tags: isEscribujo ? ['escribujo', 'digital'] : ['poem', 'digital'],
   };
 });
 

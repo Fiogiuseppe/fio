@@ -10,6 +10,7 @@
     "import:medium": "node scripts/import-medium-articles.mjs",
     "import:products": "node scripts/import-products.mjs",
     "generate:visceral-poems": "node scripts/generate-visceral-poems.mjs",
+    "sync:visceral-poems": "node scripts/sync-visceral-poems-ig.mjs",
     "sync:urees": "node scripts/sync-urees-shop.mjs"
   },
   "dependencies": {

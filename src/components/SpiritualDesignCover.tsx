@@ -8,15 +8,58 @@ import {
   measureConideHotspot,
   type ConideHotspot,
 } from '@/lib/conide-cover-link';
+import {
+  COVER_DRAG_THRESHOLD_PX,
+  loadCoverOffset,
+  saveCoverOffset,
+  setupCoverDragLayers,
+  storageKeyForDragId,
+  type CoverDragId,
+  type CoverOffset,
+} from '@/lib/spiritual-cover-drag';
 import { animateSpiritualDesignSvg } from '@/lib/spiritual-design-animation';
 
 const SVG_SRC = '/images/spiritual-design-def.svg';
 
+type DragState = {
+  active: boolean;
+  moved: boolean;
+  id: CoverDragId | null;
+  startX: number;
+  startY: number;
+  originX: number;
+  originY: number;
+  pointerId: number;
+};
+
 export function SpiritualDesignCover() {
   const frameRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const conideLinkRef = useRef<HTMLAnchorElement>(null);
+  const dragState = useRef<DragState>({
+    active: false,
+    moved: false,
+    id: null,
+    startX: 0,
+    startY: 0,
+    originX: 0,
+    originY: 0,
+    pointerId: -1,
+  });
+  const offsetsRef = useRef<Record<CoverDragId, CoverOffset>>({
+    conide: { x: 0, y: 0 },
+    'blue-square': { x: 0, y: 0 },
+  });
+  const dragLayersRef = useRef<Partial<Record<CoverDragId, SVGGElement>>>({});
+
   const [loaded, setLoaded] = useState(false);
   const [hotspot, setHotspot] = useState<ConideHotspot | null>(null);
+  const [offsets, setOffsets] = useState<Record<CoverDragId, CoverOffset>>({
+    conide: { x: 0, y: 0 },
+    'blue-square': { x: 0, y: 0 },
+  });
+  const [draggingId, setDraggingId] = useState<CoverDragId | null>(null);
+  const [suppressConideClick, setSuppressConideClick] = useState(false);
 
   const updateHotspot = useCallback(() => {
     const frame = frameRef.current;
@@ -25,6 +68,108 @@ export function SpiritualDesignCover() {
     if (!frame || !container || !svg) return;
     setHotspot(measureConideHotspot(svg, frame));
   }, []);
+
+  const applyOffsetToLayer = useCallback((id: CoverDragId, offset: CoverOffset) => {
+    const group = dragLayersRef.current[id];
+    if (!group) return;
+    if (!offset.x && !offset.y) {
+      group.removeAttribute('transform');
+      return;
+    }
+    group.setAttribute('transform', `translate(${offset.x} ${offset.y})`);
+  }, []);
+
+  const persistOffset = useCallback((id: CoverDragId, offset: CoverOffset) => {
+    saveCoverOffset(storageKeyForDragId(id), offset);
+  }, []);
+
+  const updateDragOffset = useCallback(
+    (id: CoverDragId, offset: CoverOffset) => {
+      offsetsRef.current = { ...offsetsRef.current, [id]: offset };
+      applyOffsetToLayer(id, offset);
+      setOffsets({ ...offsetsRef.current });
+      if (id === 'conide') updateHotspot();
+    },
+    [applyOffsetToLayer, updateHotspot]
+  );
+
+  const finishDrag = useCallback(
+    (pointerId: number) => {
+      const state = dragState.current;
+      if (!state.active || !state.id) return;
+
+      if (state.moved) {
+        persistOffset(state.id, offsetsRef.current[state.id]);
+      }
+
+      dragState.current = {
+        active: false,
+        moved: false,
+        id: null,
+        startX: 0,
+        startY: 0,
+        originX: 0,
+        originY: 0,
+        pointerId: -1,
+      };
+      setDraggingId(null);
+
+      if (state.id === 'conide' && state.moved) {
+        window.setTimeout(() => setSuppressConideClick(false), 0);
+      }
+
+      const captureTarget =
+        state.id === 'conide'
+          ? conideLinkRef.current
+          : dragLayersRef.current[state.id];
+
+      if (captureTarget?.hasPointerCapture(pointerId)) {
+        captureTarget.releasePointerCapture(pointerId);
+      }
+    },
+    [persistOffset]
+  );
+
+  const onDragPointerMove = useCallback(
+    (event: PointerEvent) => {
+      const state = dragState.current;
+      if (!state.active || !state.id || event.pointerId !== state.pointerId) return;
+
+      const dx = event.clientX - state.startX;
+      const dy = event.clientY - state.startY;
+
+      if (!state.moved) {
+        if (Math.hypot(dx, dy) < COVER_DRAG_THRESHOLD_PX) return;
+        state.moved = true;
+        if (state.id === 'conide') setSuppressConideClick(true);
+      }
+
+      updateDragOffset(state.id, {
+        x: state.originX + dx,
+        y: state.originY + dy,
+      });
+    },
+    [updateDragOffset]
+  );
+
+  const startDrag = useCallback(
+    (id: CoverDragId, event: React.PointerEvent<HTMLElement>) => {
+      dragState.current = {
+        active: true,
+        moved: false,
+        id,
+        startX: event.clientX,
+        startY: event.clientY,
+        originX: offsetsRef.current[id].x,
+        originY: offsetsRef.current[id].y,
+        pointerId: event.pointerId,
+      };
+      setDraggingId(id);
+      event.currentTarget.setPointerCapture(event.pointerId);
+      event.preventDefault();
+    },
+    []
+  );
 
   useEffect(() => {
     let cancelled = false;
@@ -46,6 +191,13 @@ export function SpiritualDesignCover() {
       svg.removeAttribute('height');
 
       animateSpiritualDesignSvg(svg);
+
+      const storedConide = loadCoverOffset(storageKeyForDragId('conide'));
+      const storedSquare = loadCoverOffset(storageKeyForDragId('blue-square'));
+      offsetsRef.current = { conide: storedConide, 'blue-square': storedSquare };
+      setOffsets(offsetsRef.current);
+
+      dragLayersRef.current = setupCoverDragLayers(svg);
       setLoaded(true);
       window.dispatchEvent(new Event('spiritual-cover-ready'));
 
@@ -69,27 +221,80 @@ export function SpiritualDesignCover() {
     return () => window.removeEventListener('resize', onResize);
   }, [loaded, updateHotspot]);
 
+  useEffect(() => {
+    if (!loaded) return;
+
+    const svg = containerRef.current?.querySelector('svg');
+    if (!svg) return;
+
+    const onSquarePointerDown = (event: PointerEvent) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+
+      const layer = target.closest<SVGGElement>('[data-cover-drag="blue-square"]');
+      if (!layer) return;
+
+      dragState.current = {
+        active: true,
+        moved: false,
+        id: 'blue-square',
+        startX: event.clientX,
+        startY: event.clientY,
+        originX: offsetsRef.current['blue-square'].x,
+        originY: offsetsRef.current['blue-square'].y,
+        pointerId: event.pointerId,
+      };
+      setDraggingId('blue-square');
+      layer.setPointerCapture(event.pointerId);
+      event.preventDefault();
+    };
+
+    const onPointerUp = (event: PointerEvent) => finishDrag(event.pointerId);
+
+    svg.addEventListener('pointerdown', onSquarePointerDown);
+    window.addEventListener('pointermove', onDragPointerMove);
+    window.addEventListener('pointerup', onPointerUp);
+    window.addEventListener('pointercancel', onPointerUp);
+
+    return () => {
+      svg.removeEventListener('pointerdown', onSquarePointerDown);
+      window.removeEventListener('pointermove', onDragPointerMove);
+      window.removeEventListener('pointerup', onPointerUp);
+      window.removeEventListener('pointercancel', onPointerUp);
+    };
+  }, [finishDrag, loaded, onDragPointerMove]);
+
   const round = hotspot ? conideHotspotIsRound(hotspot) : true;
+  const conideOffset = offsets.conide;
 
   return (
     <section className="spiritual-cover surface-paper" aria-label="Home cover">
       <div ref={frameRef} className="spiritual-cover__frame">
         <div
           ref={containerRef}
-          className={`spiritual-cover__canvas ${loaded ? 'spiritual-cover__canvas--ready' : ''}`}
+          className={`spiritual-cover__canvas ${loaded ? 'spiritual-cover__canvas--ready' : ''}${
+            draggingId ? ` spiritual-cover__canvas--dragging-${draggingId}` : ''
+          }`}
         />
         {hotspot ? (
           <Link
+            ref={conideLinkRef}
             href={CONIDE_HREF}
-            className={`spiritual-cover__conide-hotspot${round ? ' spiritual-cover__conide-hotspot--round' : ''}`}
+            className={`spiritual-cover__conide-hotspot${round ? ' spiritual-cover__conide-hotspot--round' : ''}${
+              draggingId === 'conide' ? ' spiritual-cover__conide-hotspot--dragging' : ''
+            }`}
             style={{
-              left: hotspot.left,
-              top: hotspot.top,
+              left: hotspot.left + conideOffset.x,
+              top: hotspot.top + conideOffset.y,
               width: hotspot.width,
               height: hotspot.height,
             }}
             aria-label="The Conide — I have seen a Conide"
             title="The Conide"
+            onPointerDown={(event) => startDrag('conide', event)}
+            onClick={(event) => {
+              if (suppressConideClick) event.preventDefault();
+            }}
           />
         ) : null}
       </div>

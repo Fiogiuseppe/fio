@@ -39,6 +39,68 @@ function unionClientRects(elements: SVGGraphicsElement[], pad: number) {
   };
 }
 
+function isBlackFill(fill: string) {
+  const value = fill.toLowerCase();
+  return value === 'black' || value === '#000' || value === '#000000';
+}
+
+function measureFromBlackDotCluster(svg: SVGSVGElement): ConideHotspot | null {
+  const paths = Array.from(svg.querySelectorAll('path'));
+  let best: { path: SVGPathElement; dots: number; size: number } | null = null;
+
+  for (const path of paths) {
+    const bbox = path.getBBox();
+    if (bbox.width < 48 || bbox.width > 180 || bbox.height < 48 || bbox.height > 180) continue;
+    if (Math.abs(bbox.width - bbox.height) > 36) continue;
+    if (!isBlackFill(path.getAttribute('fill') || '')) continue;
+
+    const cx = bbox.x + bbox.width / 2;
+    const cy = bbox.y + bbox.height / 2;
+    let dots = 0;
+
+    for (const dot of paths) {
+      const box = dot.getBBox();
+      if (box.width > 14 || box.height > 14) continue;
+      if (!isBlackFill(dot.getAttribute('fill') || '')) continue;
+      const px = box.x + box.width / 2;
+      const py = box.y + box.height / 2;
+      if (Math.hypot(px - cx, py - cy) < 72) dots += 1;
+    }
+
+    if (dots < 4) continue;
+
+    const size = bbox.width * bbox.height;
+    if (!best || dots > best.dots || (dots === best.dots && size < best.size)) {
+      best = { path, dots, size };
+    }
+  }
+
+  if (!best) return null;
+
+  const frame = svg.closest('.spiritual-cover__frame')?.getBoundingClientRect();
+  if (!frame) return null;
+
+  const bbox = best.path.getBBox();
+  const cx = bbox.x + bbox.width / 2;
+  const cy = bbox.y + bbox.height / 2;
+  const cluster = paths.filter((path) => {
+    const box = path.getBBox();
+    const px = box.x + box.width / 2;
+    const py = box.y + box.height / 2;
+    return Math.hypot(px - cx, py - cy) < 84;
+  });
+
+  const union = unionClientRects(cluster, 16);
+  if (!union) return null;
+
+  return {
+    left: union.left - frame.left,
+    top: union.top - frame.top,
+    width: union.right - union.left,
+    height: union.bottom - union.top,
+  };
+}
+
 function measureFromBlueDotCluster(svg: SVGSVGElement): ConideHotspot | null {
   const paths = Array.from(svg.querySelectorAll('path'));
   const blueDots = paths.filter((path) => {
@@ -89,6 +151,8 @@ function measureFromBlackCircle(svg: SVGSVGElement): ConideHotspot | null {
     for (const dot of paths) {
       const b = dot.getBBox();
       if (b.width > 14 || b.height > 14) continue;
+      const dotFill = (dot.getAttribute('fill') || '').toLowerCase();
+      if (!isBlueFill(dotFill) && !isBlackFill(dotFill)) continue;
       const px = b.x + b.width / 2;
       const py = b.y + b.height / 2;
       if (Math.hypot(px - cx, py - cy) < 72) dots += 1;
@@ -124,8 +188,8 @@ function fallbackHotspot(container: HTMLElement): ConideHotspot {
   const size = Math.min(width, height) * 0.11;
 
   return {
-    left: width * 0.245,
-    top: height * 0.74,
+    left: width * 0.78,
+    top: height * 0.08,
     width: size,
     height: size,
   };
@@ -137,6 +201,7 @@ export function measureConideHotspot(
   container: HTMLElement
 ): ConideHotspot {
   return (
+    measureFromBlackDotCluster(svg) ??
     measureFromBlueDotCluster(svg) ??
     measureFromBlackCircle(svg) ??
     fallbackHotspot(container)

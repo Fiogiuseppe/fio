@@ -12,12 +12,6 @@ html.contact-route body {
   color: var(--color-on-dark);
 }
 
-html.contact-route .site-header--solid {
-  border-bottom-color: rgb(255 255 255 / 0.12);
-  background: rgb(10 10 10 / 0.98);
-  backdrop-filter: blur(10px);
-}
-
 html.contact-route .site-header__logo {
   filter: brightness(0) invert(1);
 }
@@ -33,11 +27,6 @@ html.contact-route .site-header__nav-link--active {
 
 html.contact-route .site-header__menu-line {
   background: var(--color-on-dark);
-}
-
-html.contact-route .site-header__mobile {
-  background: rgb(10 10 10 / 0.98);
-  border-top-color: rgb(255 255 255 / 0.12);
 }
 
 html.contact-route .site-header__mobile-link {

@@ -7,11 +7,6 @@ html.urees-route body {
   color: var(--color-on-light);
 }
 
-html.urees-route .site-header--solid {
-  background: rgb(244 242 236 / 0.96);
-  border-bottom-color: rgb(10 10 10 / 0.08);
-}
-
 .urees-site {
   width: 100%;
 }

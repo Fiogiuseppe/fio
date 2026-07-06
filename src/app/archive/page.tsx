@@ -5,19 +5,22 @@ import { WorksGrid, HobbiesSection, WorkshopSection } from '@/components/Hobbies
 import { ContactSection } from '@/components/ContactSection';
 import { SiteFooter } from '@/components/SiteFooter';
 
-export default function HomePage() {
+export const metadata = {
+  title: 'Archive — Original WordPress clone',
+  robots: { index: false },
+};
+
+export default function ArchivePage() {
   return (
-    <>
+    <div className="legacy-archive">
       <SpiritualHero />
-      <main>
-        <BioSection />
-        <FeaturedProjects />
-        <WorksGrid />
-        <HobbiesSection />
-        <WorkshopSection />
-        <ContactSection />
-      </main>
+      <BioSection />
+      <FeaturedProjects />
+      <WorksGrid />
+      <HobbiesSection />
+      <WorkshopSection />
+      <ContactSection />
       <SiteFooter />
-    </>
+    </div>
   );
 }

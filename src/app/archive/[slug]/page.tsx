@@ -5,13 +5,12 @@ import { SiteHeader } from '@/components/SiteHeader';
 import { SiteFooter } from '@/components/SiteFooter';
 import { ContactSection } from '@/components/ContactSection';
 import { getAllProjectSlugs, getProjectPage } from '@/data/pages';
-import styles from '../project.module.css';
+import styles from '../../project.module.css';
 
 type Props = {
   params: Promise<{ slug: string }>;
 };
 
-/** @deprecated Use /archive/[slug] — kept for old bookmarks */
 export function generateStaticParams() {
   return getAllProjectSlugs().map((slug) => ({ slug }));
 }
@@ -20,10 +19,14 @@ export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
   const page = getProjectPage(slug);
   if (!page) return {};
-  return { title: `${page.title} — Giuseppe Fioretti`, description: page.description };
+  return {
+    title: `${page.title} — Archive`,
+    description: page.description,
+    robots: { index: false },
+  };
 }
 
-export default async function LegacyProjectPage({ params }: Props) {
+export default async function ArchiveProjectPage({ params }: Props) {
   const { slug } = await params;
   const page = getProjectPage(slug);
   if (!page) notFound();

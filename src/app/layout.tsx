@@ -5,20 +5,20 @@ import './globals.css';
 export const metadata: Metadata = {
   title: SITE.title,
   description: SITE.description,
-  metadataBase: new URL('https://fiogiuseppe.vercel.app'),
+  metadataBase: new URL(SITE.url),
   openGraph: {
     title: SITE.title,
     description: SITE.description,
-    url: 'https://fiogiuseppe.vercel.app',
+    url: SITE.url,
     siteName: SITE.name,
-    locale: 'it_IT',
+    locale: 'en_US',
     type: 'website',
   },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="it">
+    <html lang="en">
       <body>{children}</body>
     </html>
   );

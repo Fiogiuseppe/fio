@@ -59,6 +59,12 @@
   margin-top: 1rem;
 }
 
+.video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+
 .image {
   display: block;
   width: 100%;

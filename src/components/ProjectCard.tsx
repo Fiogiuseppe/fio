@@ -5,6 +5,7 @@ import { categoryLabel, cn } from '@/lib/utils';
 import { TypographyCard, TypographyMeta } from '@/components/typography';
 import { editorial } from '@/lib/typography';
 import { Badge } from './Badge';
+import { CleanVideoEmbed } from './CleanVideoEmbed';
 import styles from './ProjectCard.module.css';
 
 export type ProjectCardVariant = 'hero' | 'large' | 'grid';
@@ -24,22 +25,32 @@ export function ProjectCard({ project, variant = 'grid', priority }: ProjectCard
     variant === 'hero'
       ? '100vw'
       : variant === 'large'
-        ? '(max-width: 768px) 100vw, 50vw'
+        ? '100vw'
         : '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw';
 
   return (
     <Link href={href} className={cn('group block no-underline', styles.link, styles[variant])}>
       <article>
         <div className={cn(styles.media, styles[`media_${variant}`])}>
-          <Image
-            src={project.heroImage}
-            alt={project.title}
-            fill
-            className={styles.image}
-            sizes={sizes}
-            priority={priority}
-            unoptimized={isGif || isSvg}
-          />
+          {project.heroVideo && variant === 'hero' ? (
+            <CleanVideoEmbed
+              youtubeId={project.heroVideo.youtubeId}
+              title={project.title}
+              poster={project.heroVideo.poster ?? project.heroImage}
+              mode="ambient"
+              className={styles.video}
+            />
+          ) : (
+            <Image
+              src={project.heroImage}
+              alt={project.title}
+              fill
+              className={styles.image}
+              sizes={sizes}
+              priority={priority}
+              unoptimized={isGif || isSvg}
+            />
+          )}
         </div>
         <div className={cn(styles.copy, editorial.stack.block)}>
           <Badge>

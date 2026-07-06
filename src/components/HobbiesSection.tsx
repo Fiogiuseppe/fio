@@ -91,14 +91,9 @@ export function HobbiesSection() {
             ignorance and take art for what it is, a great dinner with friends where there is no one
             who knows how to eat better than the other.&rdquo;
           </p>
-          <a
-            className={styles.conideLink}
-            href="https://www.adg-fad.org/es/laus/proyecto/rebranding-para-desigual"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <Link className={styles.conideLink} href="/the-conide">
             &gt; &ldquo;I have seen a Conide&rdquo; – 2017
-          </a>
+          </Link>
         </div>
       </div>
     </section>
@@ -116,7 +111,7 @@ export function WorkshopSection() {
           <Link href="/expanding-drawing">Expanding drawing</Link>
         </h3>
         <p className={styles.bodyCopy}>The experience of drawing with space.</p>
-        <Link href="/the_conide" className={styles.workshopImage}>
+        <Link href="/the-conide" className={styles.workshopImage}>
           <Image
             src={`${WP}/2021/05/FIO_1626-scaled.jpg`}
             alt="The Conide"

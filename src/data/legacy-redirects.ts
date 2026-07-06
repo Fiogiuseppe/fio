@@ -10,7 +10,7 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
   visceralpoems: '/shop',
   'art-by-giuseppe-fioretti': '/shop',
   cacophobia: '/shop/cacophobia',
-  the_conide: '/shop/the-conide',
+  the_conide: '/the-conide',
   'giuseppe-fioretti-career-timeline': '/about',
 };
 

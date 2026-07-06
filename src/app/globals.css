@@ -396,6 +396,15 @@ html.home-route .spiritual-cover__svg {
   height: 100%;
 }
 
+.spiritual-cover__conide-link {
+  cursor: pointer;
+}
+
+.spiritual-cover__conide-link:focus-visible {
+  outline: 2px solid var(--color-blue);
+  outline-offset: 3px;
+}
+
 /* Legacy WordPress clone — isolated from new site */
 .legacy-archive {
   --cream: #e6e0d5;

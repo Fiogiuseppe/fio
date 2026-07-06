@@ -11,9 +11,9 @@
   width: 100%;
 }
 
-.split {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+.stack {
+  display: flex;
+  flex-direction: column;
   gap: 0;
 }
 
@@ -31,10 +31,6 @@
 }
 
 @media (max-width: 768px) {
-  .split {
-    grid-template-columns: 1fr;
-  }
-
   .grid {
     grid-template-columns: 1fr;
     padding: 1rem;

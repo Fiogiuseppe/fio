@@ -10,6 +10,10 @@ export const SITE = {
   location: 'Copenhagen',
 } as const;
 
+/** High-res author portrait for Journal (fiogiuseppe.com). */
+export const JOURNAL_AUTHOR_PORTRAIT =
+  'https://fiogiuseppe.com/wp-content/uploads/2025/07/Giuseppe_Fioretti.png';
+
 /** Giuseppe's Medium profile photo — from https://medium.com/@fiogiuseppe RSS */
 export const MEDIUM_AUTHOR_PORTRAIT =
   'https://cdn-images-1.medium.com/fit/c/300/300/0*zk9JlJODJoO6qCUh';
@@ -38,7 +42,7 @@ export const FOOTER_LINKS = [
   { label: 'VISCERAL POEMS', href: '/archive/visceralpoems' },
   { label: 'SOME ART', href: '/archive/art-by-giuseppe-fioretti' },
   { label: 'CACOPHOBIA', href: '/archive/cacophobia' },
-  { label: 'THE CONIDE', href: '/archive/the_conide' },
+  { label: 'THE CONIDE', href: '/the-conide' },
   { label: 'CAREER TIMELINE', href: '/archive/giuseppe-fioretti-career-timeline' },
 ] as const;
 

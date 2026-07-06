@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { Gallery } from '@/components/Gallery';
 import { ProjectMediaBlock } from '@/components/ProjectMediaBlock';
+import { CleanVideoEmbed } from '@/components/CleanVideoEmbed';
 import { Badge } from '@/components/Badge';
 import { CTA } from '@/components/CTA';
 import {
@@ -45,15 +46,25 @@ export default async function WorkDetailPage({ params }: Props) {
   return (
     <article>
       <div className="relative aspect-[16/9] w-full overflow-hidden bg-ink/5 md:aspect-[21/9]">
-        <Image
-          src={project.heroImage}
-          alt={project.title}
-          fill
-          className="object-cover"
-          priority
-          sizes="100vw"
-          unoptimized={isGif || isSvg}
-        />
+        {project.heroVideo ? (
+          <CleanVideoEmbed
+            youtubeId={project.heroVideo.youtubeId}
+            title={project.title}
+            poster={project.heroVideo.poster ?? project.heroImage}
+            mode="cinema"
+            className="absolute inset-0 h-full w-full"
+          />
+        ) : (
+          <Image
+            src={project.heroImage}
+            alt={project.title}
+            fill
+            className="object-cover"
+            priority
+            sizes="100vw"
+            unoptimized={isGif || isSvg}
+          />
+        )}
       </div>
 
       <div className="mx-auto max-w-3xl px-6 py-16 md:px-10 md:py-24">

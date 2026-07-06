@@ -26,3 +26,54 @@
   -webkit-line-clamp: 2;
   line-clamp: 2;
 }
+
+.special {
+  display: block;
+  padding: 0 0 2.5rem;
+  border-bottom: 1px solid rgb(10 10 10 / 0.12);
+}
+
+.specialInner {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.specialMedia {
+  overflow: hidden;
+  background: rgb(10 10 10 / 0.04);
+}
+
+.specialImage {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.specialCopy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  text-align: center;
+}
+
+@media (min-width: 720px) {
+  .specialInner {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 1.5rem;
+    text-align: left;
+  }
+
+  .specialCopy {
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .special .excerpt {
+    margin-inline: 0;
+    max-width: none;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+  }
+}

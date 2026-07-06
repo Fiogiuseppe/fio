@@ -28,7 +28,7 @@ export function WorkProjectsGrid() {
       )}
 
       {largeProjects.length > 0 && (
-        <div className={styles.split}>
+        <div className={styles.stack}>
           {largeProjects.map((project, index) => (
             <ProjectCard
               key={project.slug}

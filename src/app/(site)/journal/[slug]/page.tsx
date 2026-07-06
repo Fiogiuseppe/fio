@@ -51,6 +51,7 @@ export default async function ArticlePage({ params }: Props) {
         ) : null}
 
         <div className={`flex flex-wrap gap-2 ${editorial.stack.sectionToContent}`}>
+          {article.special ? <Badge>Special</Badge> : null}
           {article.tags.map((tag) => (
             <Badge key={tag}>{tag}</Badge>
           ))}

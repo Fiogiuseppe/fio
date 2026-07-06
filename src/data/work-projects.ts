@@ -5,7 +5,7 @@ export type WorkProjectRef = {
   slot: WorkLayoutSlot;
 };
 
-/** Work page order — hero, split pair, then 3-col grid (fiogiuseppe.com works order). */
+/** Work page order — hero, two full-bleed rows, then 3-col grid (fiogiuseppe.com works order). */
 export const workProjectLayout: WorkProjectRef[] = [
   { slug: 'lego-playmaker-jason-momoa', slot: 'hero' },
   { slug: 'desigual-sneakers-campaign', slot: 'large' },

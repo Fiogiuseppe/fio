@@ -1,7 +1,31 @@
 import type { Article } from '@/lib/types';
+import { CONIDE_HERO, CONIDE_IMAGES, CONIDE_INTRO } from './conide';
 
 /** Imported from https://medium.com/@fiogiuseppe — run scripts/import-medium-articles.mjs to refresh */
 export const articles: Article[] = [
+  {
+    slug: 'i-have-seen-a-conide',
+    title: 'I Have Seen a Conide',
+    date: '2017-01-01',
+    excerpt:
+      'A project on the connector of ideas — giving meaning to creators whose work is not yet recognized as art.',
+    coverImage: CONIDE_HERO,
+    tags: ['art', 'philosophy', 'conide'],
+    special: true,
+    contentHtml: `<h2>I Have Seen a Conide</h2>
+<p><em>Giuseppe Fioretti · “Conide. The xoxo of art” — 2017</em></p>
+<figure><img alt="The Conide by Giuseppe Fioretti" src="${CONIDE_HERO}" /></figure>
+<p>${CONIDE_INTRO}</p>
+<p>This individual is named “Conide” through a creative process based on the Latin etymological model: <strong>Connector</strong> + <strong>Ideas</strong> = connector of ideas — someone capable of creating a connection of ideas.</p>
+<p>The mission is to identify all those people who create objects that are not understood, in order to sustain and support that incomprehensibility. An example of a Conide is Marcel Duchamp, who changed the meaning of the word “art.” Some of Van Gogh’s paintings were used to close chicken coops and were later sold for exorbitant amounts.</p>
+<p>Recognizing the Conide is a way of considering our ignorance and taking art for what it is — a great dinner with friends where there is no one who knows how to eat better than another. The Conides hide behind the misunderstandings of the public or art experts. Every time we say “this is art” or “this is not art,” we are inevitably generating Conides.</p>
+<figure><img alt="Marcel Duchamp" src="${CONIDE_IMAGES.duchamp}" /><figcaption>Marcel Duchamp — one of the most important Conide in history.</figcaption></figure>
+<figure><img alt="David Ostrowski" src="${CONIDE_IMAGES.ostrowski}" /><figcaption>David Ostrowski — for us it is art, for them it will be conide.</figcaption></figure>
+<figure><img alt="Eduardo Kac — Alba" src="${CONIDE_IMAGES.kac}" /><figcaption>Eduardo Kac — Alba, the glowing rabbit. Is this art?</figcaption></figure>
+<figure><img alt="I HAVE SEEN A CONIDE illustration" src="${CONIDE_IMAGES.illustration}" /><figcaption>I HAVE SEEN A CONIDE (Ho visto un Conide) — Illustration Claudia Sahuquillo</figcaption></figure>
+<blockquote><p>“The tricks (conide) of today are the truths (Artist) of tomorrow” — @toiletpapermagazineofficial</p></blockquote>
+<p><a href="/the-conide">Read the full project →</a></p>`,
+  },
   {
     slug: 'the-pause-as-a-designtool',
     title: "The Pause as a DesignTool",
@@ -106,4 +130,10 @@ export const articles: Article[] = [
 
 export function getArticle(slug: string) {
   return articles.find((a) => a.slug === slug);
+}
+
+export function getJournalArticles() {
+  const special = articles.filter((a) => a.special);
+  const regular = articles.filter((a) => !a.special);
+  return [...special, ...regular];
 }

@@ -15,11 +15,24 @@ export type ProductType = 'original' | 'print' | 'one-of-one' | 'wearable';
 
 export type ProductCta = 'buy' | 'request' | 'sold';
 
-export type ProjectMedia = {
-  type: 'image' | 'gif';
-  src: string;
-  alt?: string;
-  fullWidth?: boolean;
+export type ProjectMedia =
+  | {
+      type: 'image' | 'gif';
+      src: string;
+      alt?: string;
+      fullWidth?: boolean;
+    }
+  | {
+      type: 'video';
+      youtubeId: string;
+      poster?: string;
+      alt?: string;
+      fullWidth?: boolean;
+    };
+
+export type ProjectHeroVideo = {
+  youtubeId: string;
+  poster?: string;
 };
 
 export interface Project {
@@ -31,6 +44,8 @@ export interface Project {
   client: string;
   role: string;
   heroImage: string;
+  /** Optional YouTube hero — ambient loop on work index; poster used as fallback image */
+  heroVideo?: ProjectHeroVideo;
   gallery: string[];
   description: string;
   body?: string[];
@@ -87,6 +102,8 @@ export interface Article {
   contentHtml?: string;
   mediumUrl?: string;
   tags: string[];
+  /** Editorial feature — shown first on the journal index */
+  special?: boolean;
 }
 
 export interface ShopCategory {

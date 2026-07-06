@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { attachConideHomeLink } from '@/lib/conide-cover-link';
 import { animateSpiritualDesignSvg } from '@/lib/spiritual-design-animation';
 
 const SVG_SRC = '/images/spiritual-design-def.svg';
@@ -29,6 +30,7 @@ export function SpiritualDesignCover() {
       svg.removeAttribute('height');
 
       animateSpiritualDesignSvg(svg);
+      attachConideHomeLink(svg);
       setLoaded(true);
       window.dispatchEvent(new Event('spiritual-cover-ready'));
     }

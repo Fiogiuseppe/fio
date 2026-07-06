@@ -1,5 +1,6 @@
 import type { Project, WorkCategory } from '@/lib/types';
 import { WP } from '@/lib/utils';
+import { LEGO_PLAYMAKER_VIDEO_ID } from '@/lib/youtube';
 
 const LEGO_PLAYMAKER_HERO =
   'https://www.lego.com/cdn/cs/set/assets/bltcc39700f3dea9f86/00-OG-WPD_CAMPAIGNPAGE-OG-01.jpg';
@@ -184,8 +185,8 @@ export const projects: Project[] = [
     client: 'LEGO',
     role: 'Design Lead',
     heroImage: LEGO_PLAYMAKER_HERO,
+    heroVideo: { youtubeId: LEGO_PLAYMAKER_VIDEO_ID, poster: LEGO_PLAYMAKER_HERO },
     gallery: [LEGO_PLAYMAKER_HERO],
-    media: [{ type: 'image', src: LEGO_PLAYMAKER_HERO, alt: 'LEGO The Play Maker campaign', fullWidth: true }],
     description:
       'Global Never Stop Playing campaign starring Jason Momoa — a comedy-led PSA to reverse the family play deficit, culminating in World Play Day.',
     body: [

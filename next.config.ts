@@ -6,6 +6,16 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: '/the_conide',
+        destination: '/the-conide',
+        permanent: true,
+      },
+      {
+        source: '/the_conide/:path*',
+        destination: '/the-conide',
+        permanent: true,
+      },
+      {
         source: '/shop/category/:category',
         destination: '/shop',
         permanent: true,

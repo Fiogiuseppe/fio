@@ -1,0 +1,78 @@
+.frame {
+  position: relative;
+  overflow: hidden;
+  background: #0a0a0a;
+}
+
+.iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  border: 0;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.frame_cinema .iframe {
+  width: 100%;
+  height: 100%;
+  transform: none;
+  top: 0;
+  left: 0;
+  pointer-events: auto;
+}
+
+.posterButton {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  background: #0a0a0a;
+}
+
+.posterImage {
+  object-fit: cover;
+}
+
+.play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgb(10 10 10 / 0.28);
+  transition: background 200ms ease;
+}
+
+.posterButton:hover .play,
+.posterButton:focus-visible .play {
+  background: rgb(10 10 10 / 0.4);
+}
+
+.playIcon {
+  display: grid;
+  place-items: center;
+  width: 4.5rem;
+  height: 4.5rem;
+  border-radius: 999px;
+  background: rgb(246 238 225 / 0.92);
+  color: #0a0a0a;
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

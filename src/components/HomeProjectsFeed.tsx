@@ -10,7 +10,16 @@ import {
   TypographyLead,
   TypographyMeta,
 } from '@/components/typography';
+import { CleanVideoEmbed } from '@/components/CleanVideoEmbed';
 import styles from './HomeProjectsFeed.module.css';
+
+function mediaKey(item: ProjectMedia) {
+  return item.type === 'video' ? item.youtubeId : item.src;
+}
+
+function isRasterMedia(item: ProjectMedia): item is ProjectMedia & { type: 'image' | 'gif'; src: string } {
+  return item.type !== 'video';
+}
 
 function mediaAt(project: Project, index: number): ProjectMedia | undefined {
   return project.media?.[index];
@@ -118,7 +127,8 @@ export function HomeProjectsFeed() {
               if (block.type === 'split') {
                 const items = block.mediaIndices
                   .map((index) => mediaAt(project, index))
-                  .filter((item): item is ProjectMedia => Boolean(item));
+                  .filter((item): item is ProjectMedia => Boolean(item))
+                  .filter(isRasterMedia);
 
                 if (!items.length) return null;
 
@@ -126,7 +136,7 @@ export function HomeProjectsFeed() {
                   <div key={`split-${blockIndex}`} className={styles.split}>
                     {items.map((item) => (
                       <ProjectImage
-                        key={item.src}
+                        key={mediaKey(item)}
                         href={href}
                         src={item.src}
                         alt={item.alt ?? project.title}
@@ -137,6 +147,35 @@ export function HomeProjectsFeed() {
               }
 
               const item = mediaAt(project, block.mediaIndex);
+
+              if (item?.type === 'video') {
+                return (
+                  <Link key={`full-${blockIndex}`} href={href} className={styles.full}>
+                    <CleanVideoEmbed
+                      youtubeId={item.youtubeId}
+                      title={item.alt ?? project.title}
+                      poster={item.poster}
+                      mode="ambient"
+                      className={styles.video}
+                    />
+                  </Link>
+                );
+              }
+
+              if (project.heroVideo && !item) {
+                return (
+                  <Link key={`full-${blockIndex}`} href={href} className={styles.full}>
+                    <CleanVideoEmbed
+                      youtubeId={project.heroVideo.youtubeId}
+                      title={project.title}
+                      poster={project.heroVideo.poster ?? project.heroImage}
+                      mode="ambient"
+                      className={styles.video}
+                    />
+                  </Link>
+                );
+              }
+
               const src = item?.src ?? project.heroImage;
               const alt = item?.alt ?? project.title;
 

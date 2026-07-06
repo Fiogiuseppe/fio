@@ -198,10 +198,16 @@ export default async function ProductPage({ params }: Props) {
         ) : null}
       </div>
 
-      <div className={`mx-auto max-w-3xl ${editorial.stack.page}`}>
-        <TypographySection>The story</TypographySection>
-        <TypographyBody className={editorial.stack.sectionToContent}>{product.longStory}</TypographyBody>
-      </div>
+      {!isVisceralPoem ? (
+        <div className={`mx-auto max-w-7xl ${editorial.stack.page}`}>
+          <div className="max-w-3xl">
+            <TypographySection>The story</TypographySection>
+            <TypographyBody className={editorial.stack.sectionToContent}>
+              {product.longStory}
+            </TypographyBody>
+          </div>
+        </div>
+      ) : null}
 
       {!isVisceralPoem && product.images.length > 1 && (
         <div className={`mx-auto max-w-7xl ${editorial.stack.block}`}>

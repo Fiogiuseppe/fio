@@ -10,6 +10,7 @@ import {
   type VisceralPoemFormat,
 } from '@/data/visceral-poems-pricing';
 import { formatPrice } from '@/lib/utils';
+import { TypographyBody } from '@/components/typography';
 import styles from './VisceralPoemOptions.module.css';
 
 type VisceralPoemOptionsProps = {
@@ -98,6 +99,10 @@ export function VisceralPoemOptions({ product }: VisceralPoemOptionsProps) {
             Frame preview uses a placeholder mockup. Final framed piece will use the real frame.
           </p>
         ) : null}
+
+        <TypographyBody measure={false} className={styles.story}>
+          {product.longStory}
+        </TypographyBody>
       </div>
     </div>
   );

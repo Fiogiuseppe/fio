@@ -107,7 +107,7 @@ export function VisceralPoemOptions({ product }: VisceralPoemOptionsProps) {
 
         {withFrame ? (
           <p className={styles.frameNote}>
-            Frame preview — white frame with kraft mat. Final piece may vary slightly in size.
+            Frame preview — white frame, kraft mat, artwork centered. Final piece may vary slightly in size.
           </p>
         ) : null}
 

@@ -8,8 +8,6 @@ export const SITE = {
   contactEmail: 'fiogiuseppe@gmail.com',
   instagram: 'https://www.instagram.com/fiogiuseppe/',
   location: 'Copenhagen',
-  headerLocation: 'copenhagen',
-  headerYear: '2024',
 } as const;
 
 export const NAV = [

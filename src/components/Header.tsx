@@ -58,11 +58,6 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="site-header__meta hidden md:flex" aria-hidden="true">
-          <span className="site-header__location">{SITE.headerLocation}</span>
-          <span className="site-header__year">{SITE.headerYear}</span>
-        </div>
-
         <button
           type="button"
           className="site-header__menu-btn md:hidden"
@@ -93,9 +88,6 @@ export function Header() {
               </li>
             ))}
           </ul>
-          <p className="site-header__mobile-meta">
-            {SITE.headerLocation} · {SITE.headerYear}
-          </p>
         </nav>
       )}
     </header>

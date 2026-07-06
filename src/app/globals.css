@@ -131,27 +131,6 @@ a {
   color: #001fff;
 }
 
-.site-header__meta {
-  justify-self: end;
-  align-items: center;
-  gap: 0.65rem;
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  color: rgb(10 10 10 / 0.82);
-}
-
-.site-header__location {
-  text-transform: lowercase;
-}
-
-.site-header__year {
-  display: inline-block;
-  transform: rotate(90deg);
-  transform-origin: center;
-  letter-spacing: 0.02em;
-}
-
 .site-header__menu-btn {
   position: absolute;
   right: clamp(1rem, 4vw, 2.5rem);
@@ -210,14 +189,6 @@ a {
   color: rgb(10 10 10 / 0.82);
 }
 
-.site-header__mobile-meta {
-  margin: 1rem 0 0;
-  text-align: center;
-  font-size: 0.85rem;
-  letter-spacing: 0.08em;
-  text-transform: lowercase;
-  color: rgb(10 10 10 / 0.5);
-}
 
 @media (min-width: 1024px) {
   .site-header__logo {
@@ -245,7 +216,7 @@ html.home-route main > .spiritual-cover:first-child {
   padding-top: 0;
 }
 
-html.home-route .spiritual-cover__link {
+html.home-route .spiritual-cover__frame {
   min-height: 100svh;
   min-height: 100dvh;
 }
@@ -258,7 +229,7 @@ html.home-route .spiritual-cover__canvas {
   padding-top: clamp(4.25rem, 8vw, 5.5rem);
 }
 
-.spiritual-cover__link {
+.spiritual-cover__frame {
   position: relative;
   display: flex;
   min-height: calc(100dvh - var(--spiritual-caption-space));
@@ -266,7 +237,6 @@ html.home-route .spiritual-cover__canvas {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-decoration: none;
 }
 
 .spiritual-cover__canvas {
@@ -296,28 +266,6 @@ html.home-route .spiritual-cover__canvas {
   height: 100%;
   max-width: 100%;
   max-height: 100%;
-}
-
-.spiritual-cover__caption {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin: 0;
-  padding: 0.75rem 1.5rem 1.25rem;
-  text-align: center;
-  font-size: 0.7rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: rgb(10 10 10 / 0.45);
-  pointer-events: none;
-}
-
-@media (min-width: 768px) {
-  .spiritual-cover__caption {
-    padding-bottom: 1.75rem;
-    font-size: 0.75rem;
-  }
 }
 
 /* Legacy WordPress clone — isolated from new site */

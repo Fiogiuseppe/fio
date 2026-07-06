@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { animateSpiritualDesignSvg } from '@/lib/spiritual-design-animation';
 
@@ -23,7 +22,7 @@ export function SpiritualDesignCover() {
       if (!svg) return;
 
       svg.setAttribute('role', 'img');
-      svg.setAttribute('aria-label', 'Spiritual Design — When design serves something greater, it becomes sacred.');
+      svg.setAttribute('aria-label', 'Home cover artwork');
       svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
       svg.classList.add('spiritual-cover__svg');
       svg.removeAttribute('width');
@@ -41,16 +40,13 @@ export function SpiritualDesignCover() {
   }, []);
 
   return (
-    <section className="spiritual-cover" aria-label="Spiritual Design">
-      <Link href="/work/spiritual-design" className="spiritual-cover__link">
+    <section className="spiritual-cover" aria-label="Home cover">
+      <div className="spiritual-cover__frame">
         <div
           ref={containerRef}
           className={`spiritual-cover__canvas ${loaded ? 'spiritual-cover__canvas--ready' : ''}`}
         />
-        <p className="spiritual-cover__caption sr-only">
-          Spiritual Design — when design serves something greater, it becomes sacred.
-        </p>
-      </Link>
+      </div>
     </section>
   );
 }

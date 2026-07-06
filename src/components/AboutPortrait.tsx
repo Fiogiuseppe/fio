@@ -25,13 +25,14 @@ export function AboutPortrait() {
         closeTimeoutRef.current = setTimeout(() => {
           setAwake(false);
           scheduleBlink();
-        }, randomBetween(700, 1100));
-      }, randomBetween(5000, 12000));
+        }, randomBetween(1600, 3000));
+      }, randomBetween(12000, 30000));
     }
 
-    scheduleBlink();
+    const initialDelay = setTimeout(scheduleBlink, 6000);
 
     return () => {
+      clearTimeout(initialDelay);
       if (blinkTimeoutRef.current) clearTimeout(blinkTimeoutRef.current);
       if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
     };
@@ -39,7 +40,7 @@ export function AboutPortrait() {
 
   return (
     <figure
-      className={`${styles.figure} ${awake ? styles.figureAwake : ''}`}
+      className={`${styles.figure} ${awake ? styles.awake : ''}`}
       aria-label="Giuseppe Fioretti"
     >
       <div className={styles.frame}>
@@ -52,18 +53,11 @@ export function AboutPortrait() {
           className={styles.portrait}
         />
 
-        <div className={`${styles.eye} ${styles.eyeLeft}`}>
-          <div className={styles.eyeOpen}>
-            <span className={styles.pupil} />
-            <span className={styles.highlight} />
-          </div>
-        </div>
-
-        <div className={`${styles.eye} ${styles.eyeRight}`}>
-          <div className={styles.eyeOpen}>
-            <span className={styles.pupil} />
-            <span className={styles.highlight} />
-          </div>
+        <div className={styles.eyeReveal} aria-hidden="true">
+          <span className={`${styles.eye} ${styles.eyeLeft}`} />
+          <span className={`${styles.eye} ${styles.eyeRight}`} />
+          <span className={`${styles.eyelid} ${styles.eyelidLeft}`} />
+          <span className={`${styles.eyelid} ${styles.eyelidRight}`} />
         </div>
       </div>
     </figure>

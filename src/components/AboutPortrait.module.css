@@ -1,25 +1,29 @@
+.figure {
+  margin: 0;
+  width: 100%;
+}
+
 .frame {
   position: relative;
-  aspect-ratio: 3 / 4;
+  width: 100%;
+  max-width: 32rem;
+  margin-inline: auto;
+  aspect-ratio: 771 / 1024;
   overflow: hidden;
-  background: rgb(10 10 10 / 0.05);
+  background: rgb(10 10 10 / 0.04);
 }
 
 @media (min-width: 1024px) {
   .frame {
-    aspect-ratio: auto;
-    min-height: 600px;
+    max-width: none;
+    margin-inline: 0;
   }
 }
 
 .portrait {
-  position: absolute;
-  inset: 0;
-}
-
-.image {
-  object-fit: cover;
-  object-position: center 12%;
+  object-fit: contain;
+  object-position: center top;
+  filter: grayscale(1) contrast(1.04);
 }
 
 .eyeReveal {
@@ -72,7 +76,6 @@
   box-shadow: 0 1px 3px rgb(0 0 0 / 0.12);
   transform: translateY(0);
   transition: transform 0.55s cubic-bezier(0.33, 1, 0.68, 1);
-  pointer-events: none;
 }
 
 .eyelidLeft {
@@ -98,5 +101,14 @@
   .eye,
   .eyelid {
     transition: none;
+  }
+
+  .awake .eye {
+    opacity: 0;
+    transform: scaleY(0.35);
+  }
+
+  .awake .eyelid {
+    transform: translateY(0);
   }
 }

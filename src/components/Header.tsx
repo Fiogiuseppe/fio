@@ -18,6 +18,7 @@ export function Header() {
   const navRef = useRef<HTMLElement>(null);
   const isHome = pathname === '/';
   const isContact = pathname === '/contact';
+  const isShop = pathname === '/shop' || pathname.startsWith('/shop/');
 
   const updateHomeNavPlacement = useCallback(() => {
     if (!isHome || !navRef.current) return;
@@ -43,6 +44,13 @@ export function Header() {
       document.documentElement.classList.remove('contact-route');
     };
   }, [isContact]);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('shop-route', isShop);
+    return () => {
+      document.documentElement.classList.remove('shop-route');
+    };
+  }, [isShop]);
 
   useEffect(() => {
     if (!isHome) {

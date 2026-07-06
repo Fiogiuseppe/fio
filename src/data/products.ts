@@ -1,20 +1,5 @@
-import type { Product, ShopCategory } from '@/lib/types';
+import type { Product } from '@/lib/types';
 import { WP } from '@/lib/utils';
-
-export const shopCategories: ShopCategory[] = [
-  {
-    slug: 'visceral-poems',
-    title: 'Visceral Poems',
-    description: 'Original poetic artworks and limited editions.',
-    image: `${WP}/2023/03/VISCERAL-POETRY-12-scaled.jpg`,
-  },
-  {
-    slug: 'paintings',
-    title: 'Paintings',
-    description: 'Original paintings and visual experiments.',
-    image: `${WP}/2025/07/Giuseppe_Fioretti_2.png`,
-  },
-];
 
 export const UREES_BRAND = {
   slug: 'urees',
@@ -136,4 +121,9 @@ export function getProduct(slug: string) {
 
 export function getProductsByCategory(category: string) {
   return products.filter((p) => p.category === category);
+}
+
+/** Gallery shop — handmade works only; UREES lives at /urees */
+export function getShopProducts() {
+  return products.filter((p) => p.category !== 'urees');
 }

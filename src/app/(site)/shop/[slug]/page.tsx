@@ -24,8 +24,8 @@ import {
 type Props = { params: Promise<{ slug: string }> };
 
 export async function generateStaticParams() {
-  const { products } = await import('@/data/products');
-  return products.map((p) => ({ slug: p.slug }));
+  const { getShopProducts } = await import('@/data/products');
+  return getShopProducts().map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ProductPage({ params }: Props) {
   const { slug } = await params;
   const product = getProduct(slug);
-  if (!product) notFound();
+  if (!product || product.category === 'urees') notFound();
 
   const isGif = product.images[0]?.endsWith('.gif');
   const isSold = product.availability === 'sold';

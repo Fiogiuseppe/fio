@@ -400,6 +400,26 @@ html.home-route .spiritual-cover__svg {
   cursor: pointer;
 }
 
+.spiritual-cover__conide-hotspot {
+  position: absolute;
+  z-index: 4;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.spiritual-cover__conide-hotspot--round {
+  border-radius: 50%;
+}
+
+.spiritual-cover__conide-hotspot:hover,
+.spiritual-cover__conide-hotspot:focus-visible {
+  background: rgb(0 31 255 / 0.1);
+  outline: 2px solid var(--color-blue);
+  outline-offset: 3px;
+}
+
 .spiritual-cover__conide-link:focus-visible {
   outline: 2px solid var(--color-blue);
   outline-offset: 3px;

@@ -1,16 +1,83 @@
-const CONIDE_HREF = '/the-conide';
+export const CONIDE_HREF = '/the-conide';
 
-/** Attach a click target to the Conide icon inside the home spiritual-design SVG. */
-export function attachConideHomeLink(svg: SVGSVGElement) {
-  if (svg.querySelector('[data-conide-link]')) return;
+export type ConideHotspot = {
+  left: number;
+  top: number;
+  width: number;
+  height: number;
+};
 
+const VIEWBOX = { width: 1920, height: 1080 };
+
+function isBlueFill(fill: string) {
+  const value = fill.toLowerCase();
+  return value === '#001fff' || value === 'rgb(0, 31, 255)';
+}
+
+function unionClientRects(elements: SVGGraphicsElement[], pad: number) {
+  let left = Infinity;
+  let top = Infinity;
+  let right = -Infinity;
+  let bottom = -Infinity;
+
+  for (const element of elements) {
+    const rect = element.getBoundingClientRect();
+    if (rect.width < 0.5 || rect.height < 0.5) continue;
+    left = Math.min(left, rect.left);
+    top = Math.min(top, rect.top);
+    right = Math.max(right, rect.right);
+    bottom = Math.max(bottom, rect.bottom);
+  }
+
+  if (!Number.isFinite(left)) return null;
+
+  return {
+    left: left - pad,
+    top: top - pad,
+    right: right + pad,
+    bottom: bottom + pad,
+  };
+}
+
+function measureFromBlueDotCluster(svg: SVGSVGElement): ConideHotspot | null {
+  const paths = Array.from(svg.querySelectorAll('path'));
+  const blueDots = paths.filter((path) => {
+    if (!isBlueFill(path.getAttribute('fill') || '')) return false;
+    const box = path.getBBox();
+    return (
+      box.x >= 470 &&
+      box.x <= 610 &&
+      box.y >= 820 &&
+      box.y <= 930 &&
+      box.width <= 14 &&
+      box.height <= 14
+    );
+  });
+
+  if (blueDots.length < 4) return null;
+
+  const union = unionClientRects(blueDots, 28);
+  if (!union) return null;
+
+  const frame = svg.closest('.spiritual-cover__frame')?.getBoundingClientRect();
+  if (!frame) return null;
+
+  return {
+    left: union.left - frame.left,
+    top: union.top - frame.top,
+    width: union.right - union.left,
+    height: union.bottom - union.top,
+  };
+}
+
+function measureFromBlackCircle(svg: SVGSVGElement): ConideHotspot | null {
   const paths = Array.from(svg.querySelectorAll('path'));
   let best: { path: SVGPathElement; dots: number; size: number } | null = null;
 
   for (const path of paths) {
     const bbox = path.getBBox();
-    if (bbox.width < 70 || bbox.width > 130 || bbox.height < 70 || bbox.height > 130) continue;
-    if (Math.abs(bbox.width - bbox.height) > 20) continue;
+    if (bbox.width < 48 || bbox.width > 180 || bbox.height < 48 || bbox.height > 180) continue;
+    if (Math.abs(bbox.width - bbox.height) > 36) continue;
 
     const fill = (path.getAttribute('fill') || path.style.fill || '').toLowerCase();
     if (fill !== 'black' && fill !== '#000' && fill !== '#000000') continue;
@@ -21,13 +88,13 @@ export function attachConideHomeLink(svg: SVGSVGElement) {
 
     for (const dot of paths) {
       const b = dot.getBBox();
-      if (b.width > 10 || b.height > 10) continue;
+      if (b.width > 14 || b.height > 14) continue;
       const px = b.x + b.width / 2;
       const py = b.y + b.height / 2;
-      if (Math.hypot(px - cx, py - cy) < 60) dots += 1;
+      if (Math.hypot(px - cx, py - cy) < 72) dots += 1;
     }
 
-    if (dots < 5) continue;
+    if (dots < 4) continue;
 
     const size = bbox.width * bbox.height;
     if (!best || dots > best.dots || (dots === best.dots && size < best.size)) {
@@ -35,55 +102,49 @@ export function attachConideHomeLink(svg: SVGSVGElement) {
     }
   }
 
-  if (!best) return;
+  if (!best) return null;
 
-  const anchor = pathClusterAnchor(svg, best.path, paths);
-  anchor.setAttribute('data-conide-link', 'true');
-  anchor.setAttribute('href', CONIDE_HREF);
-  anchor.setAttribute('aria-label', 'The Conide — I have seen a Conide');
-  anchor.classList.add('spiritual-cover__conide-link');
+  const frame = svg.closest('.spiritual-cover__frame')?.getBoundingClientRect();
+  if (!frame) return null;
 
-  const bbox = best.path.getBBox();
-  const pad = 12;
-  const hit = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-  hit.setAttribute('x', String(bbox.x - pad));
-  hit.setAttribute('y', String(bbox.y - pad));
-  hit.setAttribute('width', String(bbox.width + pad * 2));
-  hit.setAttribute('height', String(bbox.height + pad * 2));
-  hit.setAttribute('fill', 'transparent');
-  hit.setAttribute('pointer-events', 'all');
-  anchor.appendChild(hit);
+  const rect = best.path.getBoundingClientRect();
+  const pad = 16;
+
+  return {
+    left: rect.left - frame.left - pad,
+    top: rect.top - frame.top - pad,
+    width: rect.width + pad * 2,
+    height: rect.height + pad * 2,
+  };
 }
 
-function pathClusterAnchor(
+function fallbackHotspot(container: HTMLElement): ConideHotspot {
+  const width = container.clientWidth;
+  const height = container.clientHeight;
+  const size = Math.min(width, height) * 0.11;
+
+  return {
+    left: width * 0.245,
+    top: height * 0.74,
+    width: size,
+    height: size,
+  };
+}
+
+/** Locate the Conide icon on the home spiritual-design cover for a click hotspot. */
+export function measureConideHotspot(
   svg: SVGSVGElement,
-  circlePath: SVGPathElement,
-  paths: SVGPathElement[]
-): SVGAElement {
-  const NS = 'http://www.w3.org/2000/svg';
-  const link = document.createElementNS(NS, 'a') as SVGAElement;
-  const bbox = circlePath.getBBox();
-  const cx = bbox.x + bbox.width / 2;
-  const cy = bbox.y + bbox.height / 2;
-
-  const cluster = paths.filter((path) => {
-    const b = path.getBBox();
-    const px = b.x + b.width / 2;
-    const py = b.y + b.height / 2;
-    return Math.hypot(px - cx, py - cy) < 65;
-  });
-
-  const parent = circlePath.parentNode;
-  if (!parent) {
-    svg.appendChild(link);
-    link.appendChild(circlePath);
-    cluster.forEach((p) => {
-      if (p !== circlePath) link.appendChild(p);
-    });
-    return link;
-  }
-
-  parent.insertBefore(link, circlePath);
-  cluster.forEach((path) => link.appendChild(path));
-  return link;
+  container: HTMLElement
+): ConideHotspot {
+  return (
+    measureFromBlueDotCluster(svg) ??
+    measureFromBlackCircle(svg) ??
+    fallbackHotspot(container)
+  );
 }
+
+export function conideHotspotIsRound(hotspot: ConideHotspot) {
+  return Math.abs(hotspot.width - hotspot.height) < 24;
+}
+
+export { VIEWBOX as CONIDE_COVER_VIEWBOX };

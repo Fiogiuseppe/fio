@@ -2,6 +2,22 @@ import type { NextConfig } from 'next';
 
 const ureesProductSlugs = ['urees-piece-026', 'urees-drop-02'];
 
+const workToShopRedirects = [
+  'art-hag',
+  'tutti-in-uno',
+  'art-ig-20213',
+  'pee-pee',
+  'skin-is-the-new-canvas',
+  'eyes',
+  'art-ig-2021',
+] as const;
+
+const workToShopDestinations: Record<string, string> = {
+  'art-hag': '/shop/drawing-hag',
+  'art-ig-20213': '/shop/artwork-blue-study',
+  'art-ig-2021': '/shop/artwork-visual-study',
+};
+
 const nextConfig: NextConfig = {
   async redirects() {
     return [
@@ -28,6 +44,11 @@ const nextConfig: NextConfig = {
       ...ureesProductSlugs.map((slug) => ({
         source: `/shop/${slug}`,
         destination: `/urees/shop/${slug}`,
+        permanent: true,
+      })),
+      ...workToShopRedirects.map((slug) => ({
+        source: `/work/${slug}`,
+        destination: workToShopDestinations[slug] ?? `/shop/${slug}`,
         permanent: true,
       })),
     ];

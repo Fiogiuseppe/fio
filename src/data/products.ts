@@ -3,6 +3,7 @@ import { WP } from '@/lib/utils';
 import categoriesData from './products/categories.json';
 import visceralPoemsData from './products/visceral-poems.json';
 import paintingsData from './products/paintings.json';
+import skinIsTheNewCanvasData from './products/skin-is-the-new-canvas.json';
 import ureesData from './products/urees.json';
 
 export const UREES_BRAND = {
@@ -19,7 +20,7 @@ export const PRODUCTS_PER_PAGE = 12;
 
 const CATEGORY_FILES: Record<ProductCategory, ProductInput[]> = {
   'visceral-poems': visceralPoemsData as ProductInput[],
-  paintings: paintingsData as ProductInput[],
+  paintings: [...(paintingsData as ProductInput[]), ...(skinIsTheNewCanvasData as ProductInput[])],
   urees: ureesData as ProductInput[],
 };
 

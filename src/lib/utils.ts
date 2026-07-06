@@ -66,6 +66,9 @@ export function productCtaLabel(product: Product) {
 }
 
 export function productListPrice(product: Product, group?: ShopGroup) {
+  if (product.availability === 'coming-soon' || (product.cta === 'request' && product.price <= 0)) {
+    return 'On request';
+  }
   if (isVisceralPoemProduct(product.category)) {
     const amount = group ? visceralPoemListPrice(group) : visceralPoemFromPrice();
     return `From ${formatPrice(amount)}`;
@@ -74,6 +77,9 @@ export function productListPrice(product: Product, group?: ShopGroup) {
 }
 
 export function productListPriceValue(product: Product, group?: ShopGroup) {
+  if (product.availability === 'coming-soon' || (product.cta === 'request' && product.price <= 0)) {
+    return 'On request';
+  }
   if (isVisceralPoemProduct(product.category)) {
     const amount = group ? visceralPoemListPrice(group) : visceralPoemFromPrice();
     return formatPrice(amount);

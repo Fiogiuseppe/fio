@@ -97,7 +97,7 @@ export default async function ProductPage({ params }: Props) {
                 <div className="flex justify-between gap-4">
                   <TypographyLabel as="dt">Price</TypographyLabel>
                   <TypographyBody as="dd" measure={false}>
-                    {formatPrice(product.price, product.currency)}
+                    {productListPriceValue(product, priceGroup)}
                   </TypographyBody>
                 </div>
                 {product.size && (

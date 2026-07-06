@@ -17,7 +17,10 @@ export type ShopSection = {
   description: string;
   group: ShopGroup;
   products: Product[];
+  brandLine?: string;
 };
+
+export const SKIN_CANVAS_COLLECTION_TAG = 'skin-is-the-new-canvas';
 
 export function parseShopGroupFilter(value?: string | null): ShopGroupFilter {
   if (value === 'handmade' || value === 'digital') return value;
@@ -38,19 +41,37 @@ function productsForGroup(products: Product[], group: ShopGroup) {
 export function getShopSections(filter: ShopGroupFilter = 'all'): ShopSection[] {
   const shopProducts = getShopProducts();
   const paintings = shopProducts.filter((product) => product.category === 'paintings');
+  const skinCanvas = paintings.filter((product) =>
+    product.tags?.includes(SKIN_CANVAS_COLLECTION_TAG)
+  );
+  const standalonePaintings = paintings.filter(
+    (product) => !product.tags?.includes(SKIN_CANVAS_COLLECTION_TAG)
+  );
   const visceralPoems = shopProducts.filter((product) => product.category === 'visceral-poems');
   const handmadePoems = productsForGroup(visceralPoems, 'handmade');
   const digitalPoems = productsForGroup(visceralPoems, 'digital');
   const sections: ShopSection[] = [];
 
   if (filter === 'all' || filter === 'handmade') {
-    if (paintings.length > 0) {
+    if (skinCanvas.length > 0) {
+      sections.push({
+        id: 'skin-is-the-new-canvas',
+        title: 'Skin is the New Canvas',
+        description:
+          'Paintings and photography with Claudia Sahuquillo — body as canvas, shot by Giuseppe Fioretti.',
+        group: 'handmade',
+        brandLine: 'Giuseppe Fioretti × Claudia Sahuquillo',
+        products: skinCanvas,
+      });
+    }
+
+    if (standalonePaintings.length > 0) {
       sections.push({
         id: 'handmade-paintings',
         title: 'Paintings',
         description: 'Original handmade paintings on canvas — one-of-one pieces.',
         group: 'handmade',
-        products: paintings,
+        products: standalonePaintings,
       });
     }
 

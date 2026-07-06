@@ -11,6 +11,13 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
   'art-by-giuseppe-fioretti': '/shop',
   cacophobia: '/shop/cacophobia',
   the_conide: '/the-conide',
+  'skin-is-the-new-canvas': '/shop#skin-is-the-new-canvas',
+  'pee-pee': '/shop/pee-pee',
+  'tutti-in-uno': '/shop/tutti-in-uno',
+  eyes: '/shop/eyes',
+  'art-hag': '/shop/drawing-hag',
+  'art-ig-20213': '/shop/artwork-blue-study',
+  'art-ig-2021': '/shop/artwork-visual-study',
   'giuseppe-fioretti-career-timeline': '/about',
 };
 

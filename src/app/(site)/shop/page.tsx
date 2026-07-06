@@ -8,7 +8,7 @@ import styles from './shop.module.css';
 export const metadata: Metadata = {
   title: 'Shop — Giuseppe Fioretti',
   description:
-    'Handmade paintings and Visceral Poems originals, plus signed digital prints from @visceralpoems.',
+    'Handmade paintings, Skin is the New Canvas with Claudia Sahuquillo, and Visceral Poems originals plus signed digital prints.',
 };
 
 type ShopPageProps = {
@@ -39,10 +39,13 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
               <p className={styles.sectionGroup}>
                 {section.group === 'handmade' ? 'Handmade' : 'Digital'}
               </p>
+              {section.description ? (
+                <p className={styles.sectionDescription}>{section.description}</p>
+              ) : null}
             </div>
             <CommerceProductGrid
               products={section.products}
-              brandLine="Giuseppe Fioretti"
+              brandLine={section.brandLine ?? 'Giuseppe Fioretti'}
               priceGroup={section.group}
             />
           </div>

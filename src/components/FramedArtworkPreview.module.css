@@ -1,0 +1,101 @@
+.scene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #f3f1ec;
+}
+
+.wall {
+  position: absolute;
+  inset: 0 0 28% 0;
+  background: linear-gradient(180deg, #f8f6f2 0%, #efede8 100%);
+}
+
+.baseboard {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 28%;
+  height: 2.4%;
+  background: linear-gradient(180deg, #e8e2d8 0%, #d8d0c4 100%);
+  box-shadow: 0 1px 0 rgb(10 10 10 / 0.06);
+}
+
+.floor {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 28%;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #dccdb5 0,
+      #dccdb5 11%,
+      #d0c0a6 11%,
+      #d0c0a6 11.35%
+    ),
+    linear-gradient(180deg, #e8dcc8 0%, #cdbb9d 100%);
+}
+
+.frameGroup {
+  position: absolute;
+  left: 50%;
+  bottom: 10%;
+  width: 54%;
+  aspect-ratio: 3 / 4;
+  transform: translateX(-50%) perspective(900px) rotateY(-4deg);
+  transform-origin: center bottom;
+}
+
+.frameShadow {
+  position: absolute;
+  inset: 8% -8% -4% 12%;
+  background: rgb(10 10 10 / 0.16);
+  filter: blur(14px);
+  transform: skewX(-6deg);
+}
+
+.frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  padding: 2.6% 2.2%;
+  box-shadow:
+    0 1px 0 rgb(255 255 255 / 0.9) inset,
+    0 14px 28px rgb(10 10 10 / 0.14),
+    0 4px 10px rgb(10 10 10 / 0.08);
+}
+
+.mat {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    linear-gradient(155deg, rgb(255 255 255 / 0.1), transparent 45%),
+    #c9b08a;
+}
+
+.paper {
+  position: relative;
+  width: 48%;
+  height: 48%;
+  background: #fff;
+  box-shadow: 0 0 0 1px rgb(10 10 10 / 0.05);
+}
+
+.image {
+  object-fit: contain;
+  object-position: center;
+}
+
+@media (min-width: 1024px) {
+  .frameGroup {
+    width: 50%;
+    bottom: 11%;
+  }
+}

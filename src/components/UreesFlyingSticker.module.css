@@ -84,6 +84,10 @@ html.contact-route .flyingPaused .inner {
   border-color: var(--color-blue);
 }
 
+html.shop-route .flying {
+  display: none;
+}
+
 @media (max-width: 767px) {
   .inner {
     padding: 0.7rem 1.15rem;

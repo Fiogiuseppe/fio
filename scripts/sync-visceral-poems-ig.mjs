@@ -7,12 +7,16 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { spawn } from 'node:child_process';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUT = path.join(__dirname, '../src/data/products/visceral-poems.json');
 const IG_CACHE = path.join(__dirname, 'data/visceral-poems-ig-handmade.json');
+const FEED_PAGES_DIR = path.join(__dirname, 'data/ig-feed-pages');
 const BASE = 'https://fiogiuseppe.com/wp-content/uploads/2023/03';
 const FRAME_MOCKUP = `${BASE}/Poster-Mockup-Creatlon_2-scaled.jpg`;
+
+const EXCLUDED_IG_CODES = new Set(['C69CZk3qIxZ', 'C69CKd5qj3w', 'C69B51MKtYc', 'C5nhdPEKiVg']);
 
 const HEADERS = {
   'User-Agent':
@@ -83,7 +87,7 @@ function slugify(title) {
     .replace(/^-|-$/g, '');
 }
 
-function baseProduct({ slug, title, shortDescription, images, formats, tags = [] }) {
+function baseProduct({ slug, title, shortDescription, images, formats, tags = [], igCode }) {
   return {
     slug,
     title,
@@ -101,6 +105,7 @@ function baseProduct({ slug, title, shortDescription, images, formats, tags = []
     cta: 'buy',
     formats,
     tags,
+    ...(igCode ? { igCode } : {}),
   };
 }
 
@@ -121,14 +126,67 @@ function wpProduct({ file, title, shortDescription, formats, tags }) {
 }
 
 function titleFromCaption(caption) {
+  const hashtagTitles = caption.match(/#([\w\u00C0-\u024F]+)/gi);
+  if (hashtagTitles?.length) {
+    const named = hashtagTitles
+      .map((tag) => tag.slice(1))
+      .filter((tag) => !/visceralpoems|escribujos|napoli|barcelona|amor/i.test(tag))
+      .map((tag) => tag.charAt(0).toUpperCase() + tag.slice(1));
+    if (named.length > 0) return named.join(' · ');
+  }
+
   const cleaned = caption
     .replace(/#[\w]+/g, '')
     .replace(/@\w+/g, '')
     .replace(/\s+/g, ' ')
     .trim();
-  const first = cleaned.split(/[.!?]/)[0]?.trim();
+  const first = cleaned.split(/[.!?¿¡]/)[0]?.trim();
   if (first && first.length > 3 && first.length < 80) return first;
   return cleaned.slice(0, 60) || 'Visceral Poem';
+}
+
+function captionText(item) {
+  return item.caption?.text ?? item.edge_media_to_caption?.edges?.[0]?.node?.text ?? item.caption ?? '';
+}
+
+function carouselCount(item) {
+  return item.carousel_media?.length ?? item.edge_sidecar_to_children?.edges?.length ?? 0;
+}
+
+function isExcludedHandmade(caption) {
+  if (!caption?.trim()) return true;
+  if (/@iqos|smell like|colab with|thank you/i.test(caption)) return true;
+  if (/resistendo sulla parete|alguien se llevó el cartel|pensando en ti 📸/i.test(caption)) return true;
+  if (/el arte, ese poderoso canal de expresión/i.test(caption)) return true;
+  if (/^yes\s*[….]+\s*better/i.test(caption.replace(/#[\w]+/g, '').trim())) return true;
+  if (/\byes\b[\s….]*better\b/i.test(caption)) return true;
+
+  if (/#visceralpoems|#escribujos/i.test(caption)) return false;
+
+  const text = caption
+    .replace(/#[\w\u00C0-\u024F]+/gi, '')
+    .replace(/@\w+/g, '')
+    .replace(/[\u{1F300}-\u{1FAFF}]/gu, '')
+    .trim();
+  if (text.length < 3) return true;
+  return false;
+}
+
+function classifyHandmadeTag(caption, slides) {
+  if (isExcludedHandmade(caption)) return null;
+  if (/some handmade #visceralpoems available/i.test(caption)) return 'handmade';
+  if (/#escribujos/i.test(caption)) return 'escribujo';
+  if (/writing and drawing at the same time/i.test(caption) && slides > 3) return 'notebook';
+  if (/#visceralpoems/i.test(caption)) return 'poem';
+
+  const text = caption
+    .replace(/#[\w\u00C0-\u024F]+/gi, '')
+    .replace(/@\w+/g, '')
+    .replace(/[\u{1F300}-\u{1FAFF}]/gu, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+  if (text.length >= 4 && text.length <= 140) return 'poem';
+  return null;
 }
 
 async function sleep(ms) {
@@ -158,12 +216,63 @@ async function fetchFeed(maxId) {
   return res.json();
 }
 
+async function saveFeedPage(pageIndex, data) {
+  await fs.mkdir(FEED_PAGES_DIR, { recursive: true });
+  await fs.writeFile(
+    path.join(FEED_PAGES_DIR, `feed-page-${String(pageIndex).padStart(2, '0')}.json`),
+    `${JSON.stringify(data)}\n`,
+  );
+}
+
+async function loadSavedFeedPages() {
+  const queue = [];
+  const seen = new Set();
+
+  function addItem(item) {
+    const code = item.code ?? item.shortcode;
+    if (!code || seen.has(code)) return;
+    seen.add(code);
+    queue.push(item);
+  }
+
+  try {
+    const files = (await fs.readdir(FEED_PAGES_DIR)).filter((name) => name.endsWith('.json')).sort();
+    for (const name of files) {
+      const raw = await fs.readFile(path.join(FEED_PAGES_DIR, name), 'utf8');
+      const data = JSON.parse(raw);
+      if (data.data?.user?.edge_owner_to_timeline_media) {
+        for (const edge of data.data.user.edge_owner_to_timeline_media.edges) addItem(edge.node);
+      }
+      if (data.items) for (const item of data.items) addItem(item);
+    }
+  } catch {
+    // no saved pages yet
+  }
+
+  return queue;
+}
+
+async function fetchPostImagesFromHtml(code) {
+  const res = await fetch(`https://www.instagram.com/p/${code}/`, {
+    headers: { 'User-Agent': HEADERS['User-Agent'] },
+    redirect: 'follow',
+  });
+  if (!res.ok) return [];
+  const html = await res.text();
+  const urls = [...html.matchAll(/https:\/\/scontent[^"\\]+cdninstagram\.com\/[^"\\]+\.jpg[^"\\]*/g)].map(
+    (match) => match[0].replace(/\\u0026/g, '&'),
+  );
+  return [...new Set(urls)];
+}
+
 async function loadIgCache() {
   try {
     const raw = await fs.readFile(IG_CACHE, 'utf8');
     const parsed = JSON.parse(raw);
     if (!Array.isArray(parsed)) return [];
-    return parsed.map((entry) =>
+    return parsed
+      .filter((entry) => !entry.igCode || !EXCLUDED_IG_CODES.has(entry.igCode))
+      .map((entry) =>
       entry.longStory
         ? entry
         : baseProduct({
@@ -174,6 +283,7 @@ async function loadIgCache() {
             images: entry.images,
             formats: entry.formats ?? ['handmade'],
             tags: entry.tags ?? ['instagram'],
+            igCode: entry.igCode,
           }),
     );
   } catch {
@@ -186,80 +296,165 @@ async function saveIgCache(products) {
   await fs.writeFile(IG_CACHE, `${JSON.stringify(products, null, 2)}\n`);
 }
 
-async function fetchInstagramHandmade() {
+function normalizeItem(item) {
+  const code = item.code ?? item.shortcode;
+  const caption = captionText(item);
+  return {
+    code,
+    caption: { text: caption },
+    carousel_media: item.carousel_media,
+    image_versions2: item.image_versions2,
+    edge_sidecar_to_children: item.edge_sidecar_to_children,
+  };
+}
+
+function buildProductsFromItem(item, tag, seenUrls) {
+  const code = item.code ?? item.shortcode;
+  const caption = captionText(item);
+  const slides = item.carousel_media?.length
+    ? item.carousel_media
+    : item.edge_sidecar_to_children?.edges?.map((edge) => edge.node) ?? [item];
+  const products = [];
+
+  slides.forEach((slide, index) => {
+    const url =
+      slide.image_versions2?.candidates?.[0]?.url ??
+      slide.display_url ??
+      slide.thumbnail_src;
+    if (!url) return;
+    if (seenUrls.has(url)) return;
+    seenUrls.add(url);
+
+    const title =
+      slides.length > 1 ? `${titleFromCaption(caption)} — ${index + 1}` : titleFromCaption(caption);
+    const slug = `${slugify(title)}-${code}${slides.length > 1 ? `-${index + 1}` : ''}`;
+
+    products.push(
+      baseProduct({
+        slug,
+        title,
+        shortDescription: 'Handmade ink original from @visceralpoems.',
+        images: [url],
+        formats: ['handmade'],
+        tags: [tag, 'instagram'],
+        igCode: code,
+      }),
+    );
+  });
+
+  return products;
+}
+
+async function buildProductsFromHtml(code, caption, tag, seenUrls) {
+  const urls = await fetchPostImagesFromHtml(code);
+  if (!urls.length) return [];
+
+  const products = [];
+  urls.forEach((url, index) => {
+    if (seenUrls.has(url)) return;
+    seenUrls.add(url);
+    const title =
+      urls.length > 1 ? `${titleFromCaption(caption)} — ${index + 1}` : titleFromCaption(caption);
+    const slug = `${slugify(title)}-${code}${urls.length > 1 ? `-${index + 1}` : ''}`;
+    products.push(
+      baseProduct({
+        slug,
+        title,
+        shortDescription: 'Handmade ink original from @visceralpoems.',
+        images: [url],
+        formats: ['handmade'],
+        tags: [tag, 'instagram'],
+        igCode: code,
+      }),
+    );
+  });
+  return products;
+}
+
+function mergeIgProducts(existing, incoming) {
+  const byKey = new Map();
+  for (const product of [...existing, ...incoming]) {
+    const slideMatch = product.slug.match(/-(\d+)$/);
+    const slide = slideMatch ? slideMatch[1] : '1';
+    const key = product.igCode ? `${product.igCode}:${slide}` : product.images?.[0];
+    if (!key) continue;
+    if (!byKey.has(key)) {
+      byKey.set(key, product);
+      continue;
+    }
+    const current = byKey.get(key);
+    const prefer =
+      product.images?.[0]?.includes('scontent') && !current.images?.[0]?.includes('scontent')
+        ? product
+        : current;
+    byKey.set(key, prefer);
+  }
+  return [...byKey.values()];
+}
+
+async function fetchInstagramHandmade(cachedProducts = []) {
+  const seenUrls = new Set(cachedProducts.map((product) => product.images?.[0]).filter(Boolean));
+  const handmade = [];
+  const cachedByCode = new Set(cachedProducts.map((product) => product.igCode).filter(Boolean));
+  const queue = [];
+  const seenCodes = new Set();
+
+  function enqueue(item) {
+    const code = item.code ?? item.shortcode;
+    if (!code || seenCodes.has(code)) return;
+    seenCodes.add(code);
+    queue.push(item);
+  }
+
   const profileRes = await fetchWithRetry(
     'https://www.instagram.com/api/v1/users/web_profile_info/?username=visceralpoems',
     { headers: HEADERS },
   );
 
-  if (!profileRes.ok) {
-    console.warn(`Instagram profile API returned ${profileRes.status} — using cached handmade pieces.`);
-    return null;
+  if (profileRes.ok) {
+    const profile = await profileRes.json();
+    await saveFeedPage(0, profile);
+    const timeline = profile.data?.user?.edge_owner_to_timeline_media;
+    for (const edge of timeline?.edges ?? []) enqueue(edge.node);
+
+    let maxId = timeline?.page_info?.end_cursor ?? null;
+    for (let page = 0; page < 12 && maxId; page++) {
+      const feed = await fetchFeed(maxId);
+      if (!feed?.items?.length || feed.require_login) break;
+      await saveFeedPage(page + 1, feed);
+      for (const item of feed.items) enqueue(item);
+      maxId = feed.more_available ? feed.next_max_id : null;
+      await sleep(2500);
+    }
+  } else {
+    console.warn(`Instagram profile API returned ${profileRes.status} — using saved feed pages.`);
   }
 
-  const profile = await profileRes.json();
-  const handmade = [];
-  const seenUrls = new Set();
+  for (const item of await loadSavedFeedPages()) enqueue(item);
 
-  function addFromItem(item, titleOverride, tag) {
-    const media = item.carousel_media?.length ? item.carousel_media : [item];
-    media.forEach((slide, index) => {
-      const url = slide.image_versions2?.candidates?.[0]?.url;
-      if (!url || seenUrls.has(url)) return;
-      seenUrls.add(url);
-      const caption = item.caption?.text ?? '';
-      const title =
-        titleOverride ??
-        (media.length > 1 ? `${titleFromCaption(caption)} — ${index + 1}` : titleFromCaption(caption));
-      const slug = `${slugify(title)}-${item.code}${media.length > 1 ? `-${index + 1}` : ''}`;
-      handmade.push(
-        baseProduct({
-          slug,
-          title,
-          shortDescription: 'Handmade ink original from @visceralpoems.',
-          images: [url.split('?')[0]],
-          formats: ['handmade'],
-          tags: [tag, 'instagram'],
-        }),
-      );
-    });
+  const htmlQueue = [];
+  const codesWithApi = new Set();
+
+  for (const raw of queue) {
+    const item = normalizeItem(raw);
+    if (EXCLUDED_IG_CODES.has(item.code)) continue;
+    const caption = captionText(item);
+    const tag = classifyHandmadeTag(caption, carouselCount(raw));
+    if (!tag) continue;
+
+    const fromApi = buildProductsFromItem(item, tag, seenUrls);
+    if (fromApi.length > 0) {
+      handmade.push(...fromApi);
+      codesWithApi.add(item.code);
+    } else if (!codesWithApi.has(item.code) && !cachedByCode.has(item.code)) {
+      htmlQueue.push({ code: item.code, caption, tag });
+    }
   }
 
-  const timeline = profile.data?.user?.edge_owner_to_timeline_media;
-  const queue = [...(timeline?.edges ?? []).map((edge) => edge.node)];
-
-  let maxId = timeline?.page_info?.end_cursor ?? null;
-  for (let page = 0; page < 8 && maxId; page++) {
-    const feed = await fetchFeed(maxId);
-    if (!feed?.items?.length) break;
-    queue.push(...feed.items);
-    maxId = feed.more_available ? feed.next_max_id : null;
-    await sleep(2000);
-  }
-
-  for (const item of queue) {
-    const caption = item.caption?.text ?? item.edge_media_to_caption?.edges?.[0]?.node?.text ?? '';
-    const code = item.code ?? item.shortcode;
-    const normalized = {
-      code,
-      caption: { text: caption },
-      carousel_media: item.carousel_media,
-      image_versions2: item.image_versions2,
-    };
-
-    if (/some handmade #visceralpoems available/i.test(caption)) {
-      addFromItem(normalized, null, 'handmade');
-      continue;
-    }
-
-    if (/#escribujos/i.test(caption)) {
-      addFromItem(normalized, null, 'escribujo');
-      continue;
-    }
-
-    if (/writing and drawing at the same time/i.test(caption) && item.carousel_media?.length > 3) {
-      addFromItem(normalized, null, 'notebook');
-    }
+  for (const entry of htmlQueue) {
+    await sleep(800);
+    const fromHtml = await buildProductsFromHtml(entry.code, entry.caption, entry.tag, seenUrls);
+    handmade.push(...fromHtml);
   }
 
   return handmade;
@@ -302,24 +497,28 @@ async function main() {
     ),
   ];
 
-  const igHandmade = await fetchInstagramHandmade();
-  let igProducts = igHandmade;
+  const cached = await loadIgCache();
+  const igHandmade = await fetchInstagramHandmade(cached);
+  const igProducts = mergeIgProducts(cached, igHandmade);
 
-  if (igHandmade === null) {
-    igProducts = await loadIgCache();
-    if (igProducts.length > 0) {
-      console.log(`Loaded ${igProducts.length} handmade pieces from cache.`);
-    } else {
-      console.warn('No IG cache yet — run sync again when Instagram rate limit clears.');
-    }
-  } else if (igHandmade.length > 0) {
-    await saveIgCache(igHandmade);
-    console.log(`Cached ${igHandmade.length} handmade pieces from @visceralpoems.`);
+  if (igProducts.length > 0) {
+    await saveIgCache(igProducts);
+    console.log(`Cached ${igProducts.length} handmade pieces from @visceralpoems.`);
+  } else {
+    console.warn('No handmade pieces found — check Instagram access or saved feed pages.');
   }
 
   const catalog = mergeUniqueProducts(products, igProducts);
 
   await fs.writeFile(OUT, `${JSON.stringify(catalog, null, 2)}\n`);
+
+  await new Promise((resolve, reject) => {
+    const child = spawn(process.execPath, [path.join(__dirname, 'host-visceral-poem-images.mjs')], {
+      stdio: 'inherit',
+    });
+    child.on('exit', (code) => (code === 0 ? resolve() : reject(new Error(`host images exited ${code}`))));
+  });
+
   const handmadeCount = catalog.filter((product) => product.formats?.includes('handmade')).length;
   const digitalCount = catalog.filter((product) => product.formats?.includes('digital')).length;
   console.log(`Wrote ${catalog.length} products (${handmadeCount} handmade, ${digitalCount} digital)`);

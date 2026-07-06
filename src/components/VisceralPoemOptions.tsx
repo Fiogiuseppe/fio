@@ -12,6 +12,7 @@ import {
 import { formatPrice } from '@/lib/utils';
 import { TypographyBody } from '@/components/typography';
 import { ShopCheckoutButton } from '@/components/ShopCheckoutButton';
+import { FramedArtworkPreview } from '@/components/FramedArtworkPreview';
 import styles from './VisceralPoemOptions.module.css';
 
 type VisceralPoemOptionsProps = {
@@ -25,8 +26,8 @@ export function VisceralPoemOptions({ product }: VisceralPoemOptionsProps) {
   const [withFrame, setWithFrame] = useState(false);
 
   const price = visceralPoemPrice(format, withFrame);
-  const image = withFrame && product.framedImage ? product.framedImage : product.images[0];
-  const isGif = image?.endsWith('.gif');
+  const artwork = product.images[0];
+  const isGif = artwork?.endsWith('.gif');
 
   const formatLabel = useMemo(
     () => VISCERAL_POEMS_PRICING[format].label,
@@ -35,17 +36,26 @@ export function VisceralPoemOptions({ product }: VisceralPoemOptionsProps) {
 
   return (
     <div className={styles.root}>
-      <div className={styles.preview}>
-        <Image
-          key={image}
-          src={image}
-          alt={product.title}
-          fill
-          className="object-cover"
-          sizes="(max-width:1024px) 100vw, 50vw"
-          unoptimized={isGif}
-          priority
-        />
+      <div className={`${styles.preview} ${withFrame ? styles.previewFramed : ''}`}>
+        {withFrame ? (
+          <FramedArtworkPreview
+            src={artwork}
+            alt={product.title}
+            unoptimized={isGif}
+            priority
+          />
+        ) : (
+          <Image
+            key={artwork}
+            src={artwork}
+            alt={product.title}
+            fill
+            className={styles.artwork}
+            sizes="(max-width:1024px) 100vw, 50vw"
+            unoptimized={isGif}
+            priority
+          />
+        )}
       </div>
 
       <div className={styles.options}>
@@ -97,7 +107,7 @@ export function VisceralPoemOptions({ product }: VisceralPoemOptionsProps) {
 
         {withFrame ? (
           <p className={styles.frameNote}>
-            Frame preview uses a placeholder mockup. Final framed piece will use the real frame.
+            Frame preview — white frame with kraft mat. Final piece may vary slightly in size.
           </p>
         ) : null}
 

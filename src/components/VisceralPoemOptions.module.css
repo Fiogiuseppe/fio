@@ -15,7 +15,16 @@
   position: relative;
   aspect-ratio: 4 / 5;
   overflow: hidden;
-  background: rgb(10 10 10 / 0.04);
+  background: #ececec;
+}
+
+.previewFramed {
+  background: transparent;
+}
+
+.artwork {
+  object-fit: contain;
+  object-position: center;
 }
 
 .options {

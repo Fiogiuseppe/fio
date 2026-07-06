@@ -3,31 +3,31 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NAV, SITE } from '@/data/site';
 import { cn } from '@/lib/utils';
 
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const isHome = pathname === '/';
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('home-route', isHome);
+    return () => document.documentElement.classList.remove('home-route');
+  }, [isHome]);
 
   return (
-    <header className="site-header sticky top-0 z-50 w-full border-b border-ink/10 bg-cream/95 backdrop-blur-md">
-      <div className="site-header__inner relative mx-auto flex w-full max-w-[100%] items-center justify-center px-6 py-4 md:gap-12 md:px-10 md:py-5">
-        <button
-          type="button"
-          className="absolute right-6 top-1/2 flex -translate-y-1/2 flex-col gap-1.5 md:hidden"
-          aria-label={open ? 'Close menu' : 'Open menu'}
-          onClick={() => setOpen((v) => !v)}
-        >
-          <span className={cn('block h-0.5 w-6 bg-ink transition', open && 'translate-y-2 rotate-45')} />
-          <span className={cn('block h-0.5 w-6 bg-ink transition', open && 'opacity-0')} />
-          <span className={cn('block h-0.5 w-6 bg-ink transition', open && '-translate-y-2 -rotate-45')} />
-        </button>
-
+    <header
+      className={cn(
+        'site-header z-50 w-full',
+        isHome ? 'site-header--overlay' : 'site-header--solid sticky top-0'
+      )}
+    >
+      <div className="site-header__inner">
         <Link
           href="/"
-          className="shrink-0 no-underline"
+          className="site-header__logo-link"
           aria-label={SITE.name}
           onClick={() => setOpen(false)}
         >
@@ -37,38 +37,54 @@ export function Header() {
             width={288}
             height={84}
             priority
-            className="site-header__logo h-auto w-[min(148px,38vw)] md:w-[168px]"
+            className="site-header__logo"
           />
         </Link>
 
-        <nav className="site-header__nav hidden items-center justify-center gap-5 lg:gap-8 md:flex">
+        <nav className="site-header__nav hidden md:flex" aria-label="Main">
           {NAV.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               className={cn(
-                'whitespace-nowrap text-base uppercase tracking-[0.14em] no-underline transition-colors hover:text-blue lg:text-[1.0625rem]',
+                'site-header__nav-link',
                 pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href))
-                  ? 'text-blue'
-                  : 'text-ink/75'
+                  ? 'site-header__nav-link--active'
+                  : undefined
               )}
             >
               {item.label}
             </Link>
           ))}
         </nav>
+
+        <div className="site-header__meta hidden md:flex" aria-hidden="true">
+          <span className="site-header__location">{SITE.headerLocation}</span>
+          <span className="site-header__year">{SITE.headerYear}</span>
+        </div>
+
+        <button
+          type="button"
+          className="site-header__menu-btn md:hidden"
+          aria-label={open ? 'Close menu' : 'Open menu'}
+          onClick={() => setOpen((v) => !v)}
+        >
+          <span className={cn('site-header__menu-line', open && 'site-header__menu-line--open-a')} />
+          <span className={cn('site-header__menu-line', open && 'site-header__menu-line--open-b')} />
+          <span className={cn('site-header__menu-line', open && 'site-header__menu-line--open-c')} />
+        </button>
       </div>
 
       {open && (
-        <nav className="border-t border-ink/10 px-6 py-6 md:hidden">
-          <ul className="flex flex-col items-center gap-4">
+        <nav className="site-header__mobile md:hidden" aria-label="Main mobile">
+          <ul className="site-header__mobile-list">
             {NAV.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
                   className={cn(
-                    'text-lg uppercase tracking-[0.12em] no-underline hover:text-blue',
-                    pathname === item.href ? 'text-blue' : 'text-ink'
+                    'site-header__mobile-link',
+                    pathname === item.href ? 'site-header__nav-link--active' : undefined
                   )}
                   onClick={() => setOpen(false)}
                 >
@@ -77,6 +93,9 @@ export function Header() {
               </li>
             ))}
           </ul>
+          <p className="site-header__mobile-meta">
+            {SITE.headerLocation} · {SITE.headerYear}
+          </p>
         </nav>
       )}
     </header>

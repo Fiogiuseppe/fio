@@ -45,6 +45,190 @@ a {
   background: #001fff22;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.site-shell {
+  position: relative;
+  width: 100%;
+}
+
+.site-header {
+  width: 100%;
+}
+
+.site-header--solid {
+  border-bottom: 1px solid rgb(10 10 10 / 0.1);
+  background: rgb(247 245 232 / 0.95);
+  backdrop-filter: blur(10px);
+}
+
+.site-header--overlay {
+  position: absolute;
+  inset: 0 0 auto;
+  border: 0;
+  background: transparent;
+  pointer-events: none;
+}
+
+.site-header--overlay .site-header__inner,
+.site-header--overlay .site-header__logo-link,
+.site-header--overlay .site-header__nav-link,
+.site-header--overlay .site-header__menu-btn {
+  pointer-events: auto;
+}
+
+.site-header__inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  width: 100%;
+  min-height: 4.5rem;
+  padding: 1.1rem clamp(1rem, 4vw, 2.5rem) 0.9rem;
+}
+
+.site-header__logo-link {
+  justify-self: start;
+  line-height: 0;
+  text-decoration: none;
+}
+
+.site-header__logo {
+  display: block;
+  width: min(132px, 30vw);
+  height: auto;
+}
+
+.site-header__nav {
+  justify-self: center;
+  align-items: center;
+  gap: clamp(0.85rem, 2.2vw, 1.75rem);
+}
+
+.site-header__nav-link {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgb(10 10 10 / 0.78);
+  transition: color 180ms ease;
+  white-space: nowrap;
+}
+
+.site-header__nav-link:hover,
+.site-header__nav-link--active {
+  color: #001fff;
+}
+
+.site-header__meta {
+  justify-self: end;
+  align-items: center;
+  gap: 0.65rem;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: rgb(10 10 10 / 0.82);
+}
+
+.site-header__location {
+  text-transform: lowercase;
+}
+
+.site-header__year {
+  display: inline-block;
+  transform: rotate(90deg);
+  transform-origin: center;
+  letter-spacing: 0.02em;
+}
+
+.site-header__menu-btn {
+  position: absolute;
+  right: clamp(1rem, 4vw, 2.5rem);
+  top: 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  border: 0;
+  background: transparent;
+  padding: 0;
+}
+
+.site-header__menu-line {
+  display: block;
+  width: 1.5rem;
+  height: 2px;
+  background: #0a0a0a;
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.site-header__menu-line--open-a {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.site-header__menu-line--open-b {
+  opacity: 0;
+}
+
+.site-header__menu-line--open-c {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.site-header__mobile {
+  border-top: 1px solid rgb(10 10 10 / 0.1);
+  background: rgb(247 245 232 / 0.98);
+  padding: 1.25rem clamp(1rem, 4vw, 2.5rem) 1.5rem;
+  pointer-events: auto;
+}
+
+.site-header__mobile-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.site-header__mobile-link {
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgb(10 10 10 / 0.82);
+}
+
+.site-header__mobile-meta {
+  margin: 1rem 0 0;
+  text-align: center;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: lowercase;
+  color: rgb(10 10 10 / 0.5);
+}
+
+@media (min-width: 1024px) {
+  .site-header__logo {
+    width: 148px;
+  }
+
+  .site-header__nav-link {
+    font-size: 1.0625rem;
+  }
+}
+
 .spiritual-cover {
   --spiritual-caption-space: 3.25rem;
   position: relative;
@@ -55,24 +239,23 @@ a {
   border-bottom: 1px solid rgb(10 10 10 / 0.08);
 }
 
-/* Pull under sticky header so the portada fills the first screen */
-main > .spiritual-cover:first-child {
-  margin-top: calc(-1 * clamp(4.5rem, 11vw, 5.75rem));
-  padding-top: clamp(4.5rem, 11vw, 5.75rem);
+/* Home: header floats over Spiritual Design portada */
+html.home-route main > .spiritual-cover:first-child {
+  margin-top: 0;
+  padding-top: 0;
 }
 
-.site-header__inner {
-  min-height: 3.75rem;
+html.home-route .spiritual-cover__link {
+  min-height: 100svh;
+  min-height: 100dvh;
 }
 
-.site-header__logo {
-  display: block;
-}
-
-@media (min-width: 768px) {
-  .site-header__inner {
-    min-height: 4.25rem;
-  }
+html.home-route .spiritual-cover__canvas {
+  width: min(100%, calc(100svh * 1.7778));
+  width: min(100%, calc(100dvh * 1.7778));
+  max-height: 100svh;
+  max-height: 100dvh;
+  padding-top: clamp(4.25rem, 8vw, 5.5rem);
 }
 
 .spiritual-cover__link {

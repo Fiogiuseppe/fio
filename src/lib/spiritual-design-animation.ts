@@ -1,6 +1,10 @@
 const BLUE = '#001fff';
+
 const STROKE_DURATION_MS = 900;
 const STAGGER_MS = 55;
+
+const BLUE_PATH_SELECTOR = 'path.st2, path.cls-4';
+const LINE_SELECTOR = 'line.st1, line.cls-2, path.cls-2';
 
 function prefersReducedMotion() {
   return typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -49,30 +53,18 @@ function animateLine(line: SVGLineElement, delay: number) {
 }
 
 export function animateSpiritualDesignSvg(svg: SVGSVGElement) {
+  const bluePaths = sortByPosition(
+    Array.from(svg.querySelectorAll(BLUE_PATH_SELECTOR)) as SVGPathElement[]
+  );
+
   if (prefersReducedMotion()) {
-    svg.querySelectorAll('path').forEach((node) => {
-      const path = node as SVGPathElement;
-      if (path.classList.contains('st2')) {
-        path.style.fill = BLUE;
-      }
+    bluePaths.forEach((path) => {
+      path.style.fill = BLUE;
     });
     return;
   }
 
-  const junk = svg.querySelectorAll('path:not(.st2):not(.st1):not(.st0)');
-  junk.forEach((node) => {
-    const path = node as SVGPathElement;
-    const d = path.getAttribute('d') ?? '';
-    if (/M4\d{3}/.test(d)) {
-      path.style.display = 'none';
-    }
-  });
-
-  const bluePaths = sortByPosition(
-    Array.from(svg.querySelectorAll('path.st2')) as SVGPathElement[]
-  );
-  const lines = Array.from(svg.querySelectorAll('line.st1')) as SVGLineElement[];
-
+  const lines = Array.from(svg.querySelectorAll(LINE_SELECTOR)) as SVGLineElement[];
   lines.forEach((line, index) => animateLine(line, index * 120));
 
   let delay = 500;

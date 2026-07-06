@@ -47,7 +47,7 @@ export function SpiritualDesignCover() {
           ref={containerRef}
           className={`spiritual-cover__canvas ${loaded ? 'spiritual-cover__canvas--ready' : ''}`}
         />
-        <p className="spiritual-cover__caption">
+        <p className="spiritual-cover__caption sr-only">
           Spiritual Design — when design serves something greater, it becomes sacred.
         </p>
       </Link>

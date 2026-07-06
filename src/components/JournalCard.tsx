@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import type { Article } from '@/lib/types';
 import { formatDate } from '@/lib/utils';
-import { TypographyCard, TypographyMeta } from '@/components/typography';
+import { TypographyBody, TypographyCard, TypographyMeta } from '@/components/typography';
 import { editorial } from '@/lib/typography';
 import { Badge } from './Badge';
 import styles from './JournalCard.module.css';
@@ -20,7 +20,12 @@ export function JournalCard({ article, compact = false }: JournalCardProps) {
       >
         <article className={styles.compactInner}>
           <TypographyMeta>{formatDate(article.date)}</TypographyMeta>
-          <TypographyCard className="text-ink group-hover:text-blue">{article.title}</TypographyCard>
+          <TypographyCard className="text-on-light group-hover:text-blue">{article.title}</TypographyCard>
+          {article.excerpt ? (
+            <TypographyBody measure={false} className={styles.excerpt}>
+              {article.excerpt}
+            </TypographyBody>
+          ) : null}
         </article>
       </Link>
     );

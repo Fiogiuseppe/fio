@@ -1,10 +1,24 @@
 .compact {
+  display: block;
   min-height: 0;
+  padding: 2rem 0;
+  border-bottom: 1px solid rgb(10 10 10 / 0.12);
+}
+
+.compact:first-child {
+  border-top: 1px solid rgb(10 10 10 / 0.12);
 }
 
 .compactInner {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  padding: 0.15rem 0;
+  gap: 0.65rem;
+}
+
+.excerpt {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
 }

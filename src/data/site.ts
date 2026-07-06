@@ -10,6 +10,10 @@ export const SITE = {
   location: 'Copenhagen',
 } as const;
 
+/** Giuseppe's Medium profile photo — from https://medium.com/@fiogiuseppe RSS */
+export const MEDIUM_AUTHOR_PORTRAIT =
+  'https://cdn-images-1.medium.com/fit/c/300/300/0*zk9JlJODJoO6qCUh';
+
 export type NavItem = {
   readonly label: string;
   readonly href: string;
@@ -19,7 +23,6 @@ export const NAV: readonly NavItem[] = [
   { label: 'Work', href: '/work' },
   { label: 'Services', href: '/services' },
   { label: 'Shop', href: '/shop' },
-  { label: 'UREES', href: '/urees' },
   { label: 'Journal', href: '/journal' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },

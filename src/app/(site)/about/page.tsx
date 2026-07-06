@@ -1,11 +1,10 @@
-import Image from 'next/image';
 import type { Metadata } from 'next';
+import { AboutPortrait } from '@/components/AboutPortrait';
 import { SectionIntro } from '@/components/SectionIntro';
 import { PageSection } from '@/components/PageSection';
 import { CTA } from '@/components/CTA';
 import { TypographyBody } from '@/components/typography';
 import { editorial } from '@/lib/typography';
-import { WP } from '@/lib/utils';
 
 export const metadata: Metadata = {
   title: 'About — Giuseppe Fioretti',
@@ -50,15 +49,7 @@ export default function AboutPage() {
           </div>
         </div>
 
-        <div className="relative aspect-[3/4] overflow-hidden bg-ink/5 lg:aspect-auto lg:min-h-[600px]">
-          <Image
-            src={`${WP}/2025/07/Giuseppe_Fioretti.png`}
-            alt="Giuseppe Fioretti"
-            fill
-            className="object-cover"
-            sizes="(max-width:1024px) 100vw, 50vw"
-          />
-        </div>
+        <AboutPortrait />
       </div>
     </PageSection>
   );

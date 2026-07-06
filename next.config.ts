@@ -39,6 +39,11 @@ const nextConfig: NextConfig = {
         hostname: 'urees.shop',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'cdn-images-1.medium.com',
+        pathname: '/**',
+      },
     ],
   },
 };

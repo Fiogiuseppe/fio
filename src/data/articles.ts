@@ -23,8 +23,7 @@ export const articles: Article[] = [
 <figure><img alt="David Ostrowski" src="${CONIDE_IMAGES.ostrowski}" /><figcaption>David Ostrowski — for us it is art, for them it will be conide.</figcaption></figure>
 <figure><img alt="Eduardo Kac — Alba" src="${CONIDE_IMAGES.kac}" /><figcaption>Eduardo Kac — Alba, the glowing rabbit. Is this art?</figcaption></figure>
 <figure><img alt="I HAVE SEEN A CONIDE illustration" src="${CONIDE_IMAGES.illustration}" /><figcaption>I HAVE SEEN A CONIDE (Ho visto un Conide) — Illustration Claudia Sahuquillo</figcaption></figure>
-<blockquote><p>“The tricks (conide) of today are the truths (Artist) of tomorrow” — @toiletpapermagazineofficial</p></blockquote>
-<p><a href="/the-conide">Read the full project →</a></p>`,
+<blockquote><p>“The tricks (conide) of today are the truths (Artist) of tomorrow” — @toiletpapermagazineofficial</p></blockquote>`,
   },
   {
     slug: 'the-pause-as-a-designtool',

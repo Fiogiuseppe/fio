@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { getHomeProjects } from '@/data/home-projects';
+import { UREES_LOGO } from '@/data/urees/content';
 import type { Project, ProjectMedia } from '@/lib/types';
 import {
   TypographyBody,
@@ -43,6 +44,27 @@ function ProjectImage({
   );
 }
 
+function UreesHomeEntry({ intro }: { intro: string }) {
+  return (
+    <>
+      <TypographyLead className={styles.bodyCopy}>{intro}</TypographyLead>
+      <Link href="/urees/collections/pants" className={styles.ureesHomeLogoLink}>
+        <div className={styles.ureesHomeLogoWrap}>
+          <Image
+            src={UREES_LOGO}
+            alt="Urees"
+            width={280}
+            height={76}
+            className={styles.ureesHomeLogo}
+          />
+        </div>
+        <TypographyMeta className={styles.ureesHomeLogoCaption}>
+          Enter the Urees shop — view all pants
+        </TypographyMeta>
+      </Link>
+    </>
+  );
+}
 function SneakersIntro() {
   return (
     <TypographyBody className={styles.bodyCopy}>
@@ -64,7 +86,7 @@ export function HomeProjectsFeed() {
   return (
     <section className={styles.section} aria-label="Selected projects">
       {entries.map(({ config, project }) => {
-        const href = `/work/${project.slug}`;
+        const href = project.slug === 'urees' ? '/urees' : `/work/${project.slug}`;
         const intro =
           config.intro ??
           project.body?.[0] ??
@@ -83,13 +105,16 @@ export function HomeProjectsFeed() {
               <Link href={href}>{project.title}</Link>
             </TypographySection>
 
-            {project.slug === 'desigual-sneakers-campaign' ? (
+            {project.slug === 'urees' ? (
+              <UreesHomeEntry intro={intro} />
+            ) : project.slug === 'desigual-sneakers-campaign' ? (
               <SneakersIntro />
             ) : (
               <TypographyLead className={styles.bodyCopy}>{intro}</TypographyLead>
             )}
 
-            {config.blocks.map((block, blockIndex) => {
+            {project.slug !== 'urees' &&
+              config.blocks.map((block, blockIndex) => {
               if (block.type === 'split') {
                 const items = block.mediaIndices
                   .map((index) => mediaAt(project, index))

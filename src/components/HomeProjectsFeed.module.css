@@ -76,6 +76,36 @@
   color: var(--color-blue);
 }
 
+.urees-home-logo-link {
+  display: block;
+  margin-top: 1rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.urees-home-logo-wrap {
+  display: grid;
+  place-items: center;
+  min-height: 18rem;
+  padding: 3rem 1.5rem;
+  background: #ffffff;
+}
+
+.urees-home-logo {
+  width: min(14rem, 60vw);
+  height: auto;
+}
+
+.urees-home-logo-caption {
+  display: block;
+  margin-top: 0.75rem;
+  text-align: center;
+}
+
+.urees-home-logo-link:hover .urees-home-logo-caption {
+  color: var(--color-blue);
+}
+
 @media (max-width: 768px) {
   .split {
     grid-template-columns: 1fr;

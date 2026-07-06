@@ -10,7 +10,12 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'cdn-images-1.medium.com',
+        hostname: 'cdn.shopify.com',
+        pathname: '/s/files/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'urees.shop',
         pathname: '/**',
       },
     ],

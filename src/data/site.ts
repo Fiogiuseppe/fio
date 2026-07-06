@@ -26,7 +26,7 @@ export const WP = 'https://fiogiuseppe.com/wp-content/uploads';
 export const FOOTER_LINKS = [
   { label: 'BLOG', href: '/archive/blog' },
   { label: 'SPIRITUAL DESIGN', href: '/archive/spiritual-design' },
-  { label: 'UREES', href: '/archive/think_possible' },
+  { label: 'UREES', href: '/urees' },
   { label: 'VISCERAL POEMS', href: '/archive/visceralpoems' },
   { label: 'SOME ART', href: '/archive/art-by-giuseppe-fioretti' },
   { label: 'CACOPHOBIA', href: '/archive/cacophobia' },

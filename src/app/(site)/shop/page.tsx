@@ -1,16 +1,25 @@
+import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { CommerceProductGrid } from '@/components/CommerceProductGrid';
-import { getProductsByCategory, shopCategories } from '@/data/products';
+import { ShopGroupFilter } from '@/components/ShopGroupFilter';
+import { getShopSections, parseShopGroupFilter } from '@/data/shop-catalog';
 import styles from './shop.module.css';
 
 export const metadata: Metadata = {
   title: 'Shop — Giuseppe Fioretti',
-  description: 'Original handmade artworks — drawings, paintings and visceral pieces.',
+  description:
+    'Handmade paintings and Visceral Poems originals, plus signed digital prints from @visceralpoems.',
 };
 
-const GALLERY_CATEGORIES = shopCategories.filter((category) => category.slug !== 'urees');
+type ShopPageProps = {
+  searchParams: Promise<{ group?: string }>;
+};
 
-export default function ShopPage() {
+export default async function ShopPage({ searchParams }: ShopPageProps) {
+  const { group } = await searchParams;
+  const filter = parseShopGroupFilter(group);
+  const sections = getShopSections(filter);
+
   return (
     <>
       <section className={styles.hero}>
@@ -19,27 +28,35 @@ export default function ShopPage() {
             <p className={styles.introKicker}>Gallery shop</p>
             <h1 className={styles.introTitle}>Shop</h1>
             <p className={styles.introDescription}>
-              Everything here is made by hand — drawings, paintings and visceral works, often
-              mixed on the same piece.
+              Two ways to collect: handmade originals — paintings and ink poems — or signed
+              digital prints from the Visceral Poems series.
             </p>
           </div>
+
+          <Suspense fallback={null}>
+            <ShopGroupFilter />
+          </Suspense>
         </div>
       </section>
 
-      {GALLERY_CATEGORIES.map((category) => {
-        const products = getProductsByCategory(category.slug);
-
-        if (products.length === 0) return null;
-
-        return (
-          <section key={category.slug} className={styles.section}>
-            <div className={styles.pageWidth}>
-              <h2 className={styles.sectionTitle}>{category.title}</h2>
-              <CommerceProductGrid products={products} brandLine="Giuseppe Fioretti" />
+      {sections.map((section) => (
+        <section key={section.id} className={styles.section} id={section.id}>
+          <div className={styles.pageWidth}>
+            <div className={styles.sectionHead}>
+              <h2 className={styles.sectionTitle}>{section.title}</h2>
+              <p className={styles.sectionGroup}>
+                {section.group === 'handmade' ? 'Handmade' : 'Digital'}
+              </p>
             </div>
-          </section>
-        );
-      })}
+            <p className={styles.sectionDescription}>{section.description}</p>
+            <CommerceProductGrid
+              products={section.products}
+              brandLine="Giuseppe Fioretti"
+              priceGroup={section.group}
+            />
+          </div>
+        </section>
+      ))}
     </>
   );
 }

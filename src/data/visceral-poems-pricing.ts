@@ -27,6 +27,12 @@ export function visceralPoemFromPrice() {
   return VISCERAL_POEMS_PRICING.digital.withoutFrame;
 }
 
+export function visceralPoemListPrice(group: 'handmade' | 'digital') {
+  return group === 'handmade'
+    ? VISCERAL_POEMS_PRICING.handmade.withoutFrame
+    : visceralPoemFromPrice();
+}
+
 export function isVisceralPoemProduct(category: string) {
   return category === 'visceral-poems';
 }

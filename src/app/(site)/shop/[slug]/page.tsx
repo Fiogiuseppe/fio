@@ -14,6 +14,7 @@ import {
   TypographyMeta,
 } from '@/components/typography';
 import { editorial } from '@/lib/typography';
+import { getProductShopGroups } from '@/data/shop-catalog';
 import { isVisceralPoemProduct } from '@/data/visceral-poems-pricing';
 import { getProduct } from '@/data/products';
 import {
@@ -21,7 +22,7 @@ import {
   categoryLabel,
   formatPrice,
   productCtaLabel,
-  productListPrice,
+  productListPriceValue,
 } from '@/lib/utils';
 
 type Props = { params: Promise<{ slug: string }> };
@@ -51,6 +52,11 @@ export default async function ProductPage({ params }: Props) {
   const isSold = product.availability === 'sold';
   const isComingSoon = product.availability === 'coming-soon';
   const canCheckout = !isSold && !isComingSoon;
+  const priceGroup = isVisceralPoem
+    ? getProductShopGroups(product).includes('handmade')
+      ? 'handmade'
+      : 'digital'
+    : undefined;
 
   return (
     <article className="px-6 py-12 md:px-10 md:py-20">
@@ -147,7 +153,7 @@ export default async function ProductPage({ params }: Props) {
               <div className="flex justify-between gap-4">
                 <TypographyLabel as="dt">From</TypographyLabel>
                 <TypographyBody as="dd" measure={false}>
-                  {productListPrice(product)}
+                  {productListPriceValue(product, priceGroup)}
                 </TypographyBody>
               </div>
               {product.size && (

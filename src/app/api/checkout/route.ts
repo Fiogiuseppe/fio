@@ -32,7 +32,10 @@ export async function POST(request: Request) {
     const message = error instanceof Error ? error.message : 'Checkout failed';
 
     if (message.includes('STRIPE_SECRET_KEY')) {
-      return NextResponse.json({ error: 'Payments are not configured yet' }, { status: 503 });
+      return NextResponse.json(
+        { error: 'Online checkout is being set up. Please contact Giuseppe to place your order.' },
+        { status: 503 },
+      );
     }
 
     const status = message.includes('not found') ? 404 : 400;

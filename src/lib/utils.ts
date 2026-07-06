@@ -73,6 +73,14 @@ export function productListPrice(product: Product, group?: ShopGroup) {
   return formatPrice(product.price, product.currency);
 }
 
+export function productListPriceValue(product: Product, group?: ShopGroup) {
+  if (isVisceralPoemProduct(product.category)) {
+    const amount = group ? visceralPoemListPrice(group) : visceralPoemFromPrice();
+    return formatPrice(amount);
+  }
+  return formatPrice(product.price, product.currency);
+}
+
 export function productBadgeLabel(product: Product, group?: ShopGroup) {
   if (product.availability === 'sold') return 'Sold out';
   if (product.cta === 'request' || product.availability === 'coming-soon') {

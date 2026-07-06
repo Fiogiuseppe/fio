@@ -22,6 +22,16 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: '/shop/cacophobia',
+        destination: '/cacophobia',
+        permanent: true,
+      },
+      {
+        source: '/shop/the-conide',
+        destination: '/the-conide',
+        permanent: true,
+      },
+      {
         source: '/the_conide',
         destination: '/the-conide',
         permanent: true,

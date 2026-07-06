@@ -162,7 +162,20 @@ async function loadIgCache() {
   try {
     const raw = await fs.readFile(IG_CACHE, 'utf8');
     const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? parsed : [];
+    if (!Array.isArray(parsed)) return [];
+    return parsed.map((entry) =>
+      entry.longStory
+        ? entry
+        : baseProduct({
+            slug: entry.slug,
+            title: entry.title,
+            shortDescription:
+              entry.shortDescription ?? 'Handmade ink original from @visceralpoems.',
+            images: entry.images,
+            formats: entry.formats ?? ['handmade'],
+            tags: entry.tags ?? ['instagram'],
+          }),
+    );
   } catch {
     return [];
   }

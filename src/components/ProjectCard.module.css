@@ -1,0 +1,52 @@
+.link {
+  color: inherit;
+}
+
+.media {
+  position: relative;
+  overflow: hidden;
+  background: color-mix(in srgb, var(--ink) 5%, transparent);
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 700ms ease-out;
+}
+
+.link:hover .image {
+  transform: scale(1.03);
+}
+
+.media_hero {
+  min-height: 85vh;
+  aspect-ratio: auto;
+}
+
+.media_large {
+  aspect-ratio: 4 / 3;
+}
+
+.media_grid {
+  aspect-ratio: 4 / 3;
+}
+
+.copy {
+  padding: 1rem clamp(1rem, 4vw, 2.5rem) 0;
+}
+
+.hero .copy {
+  padding-top: 1.25rem;
+  padding-bottom: 0.5rem;
+}
+
+.large .copy {
+  padding-top: 1rem;
+}
+
+.grid .copy {
+  padding: 0.75rem 0 0;
+}
+
+.titleHero {
+  font-size: clamp(1.75rem, 3vw + 0.5rem, 3rem);
+}

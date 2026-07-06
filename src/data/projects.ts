@@ -1,5 +1,28 @@
-import type { Project } from '@/lib/types';
+import type { Project, WorkCategory } from '@/lib/types';
 import { WP } from '@/lib/utils';
+
+const LEGO_PLAYMAKER_HERO =
+  'https://www.lego.com/cdn/cs/set/assets/bltcc39700f3dea9f86/00-OG-WPD_CAMPAIGNPAGE-OG-01.jpg';
+
+function archiveProject(opts: {
+  slug: string;
+  title: string;
+  subtitle: string;
+  category: WorkCategory;
+  year: number;
+  client: string;
+  role: string;
+  heroImage: string;
+  description: string;
+}): Project {
+  return {
+    ...opts,
+    gallery: [opts.heroImage],
+    challenge: opts.description,
+    solution: 'Concept, design and visual direction across the project.',
+    outcome: 'Selected work from Giuseppe Fioretti\'s portfolio.',
+  };
+}
 
 export const projects: Project[] = [
   {
@@ -153,23 +176,175 @@ export const projects: Project[] = [
     featured: true,
   },
   {
-    slug: 'lego-creative-direction',
-    title: 'LEGO Creative Direction',
-    subtitle: 'Play, imagination and visual storytelling at scale',
-    category: 'creative-direction',
-    year: 2023,
+    slug: 'lego-playmaker-jason-momoa',
+    title: 'The Play Maker x LEGO',
+    subtitle: 'Never Stop Playing — Jason Momoa as LEGO Playmaker for World Play Day',
+    category: 'campaign',
+    year: 2026,
     client: 'LEGO',
-    role: 'Creative Direction',
-    heroImage: `${WP}/2025/07/Giuseppe_Fioretti.png`,
-    gallery: [`${WP}/2025/07/Giuseppe_Fioretti.png`],
-    media: [{ type: 'image', src: `${WP}/2025/07/Giuseppe_Fioretti.png`, alt: 'LEGO creative direction' }],
+    role: 'Design Lead',
+    heroImage: LEGO_PLAYMAKER_HERO,
+    gallery: [LEGO_PLAYMAKER_HERO],
+    media: [{ type: 'image', src: LEGO_PLAYMAKER_HERO, alt: 'LEGO The Play Maker campaign', fullWidth: true }],
     description:
-      'Creative direction work for one of the world\'s most beloved brands — where play meets purpose.',
-    challenge: 'Balance global brand consistency with creative experimentation.',
-    solution: 'Visual systems and campaign thinking rooted in imagination and cultural relevance.',
-    outcome: 'Work that honours LEGO\'s legacy while pushing creative boundaries.',
+      'Global Never Stop Playing campaign starring Jason Momoa — a comedy-led PSA to reverse the family play deficit, culminating in World Play Day.',
+    body: [
+      'Design Lead at Our LEGO Agency on The Play Maker — LEGO\'s first brand campaign built entirely through a comedy lens.',
+      'Jason Momoa crashes a brick-built boardroom to remind the world why play matters. Created with Chaos x Magic, directed by Rhys Thomas.',
+    ],
+    challenge:
+      'Cut through modern distractions and remind families that just five hours of play a week transforms wellbeing — without preaching.',
+    solution:
+      'A fearless comedy campaign: PSA-style film, brick-built sets, and a visual system centred on the simple "brick click" as a gateway to play.',
+    outcome:
+      'Global launch across social, experiential and retail ahead of World Play Day — play repositioned as essential, not optional.',
+    credits: 'Our LEGO Agency · Chaos x Magic · Stink UK',
     featured: true,
   },
+  archiveProject({
+    slug: 'the-magazine',
+    title: 'The Magazine',
+    subtitle: 'Editorial layout and visual storytelling',
+    category: 'art-direction',
+    year: 2021,
+    client: 'Personal',
+    role: 'Art Direction & Design',
+    heroImage: `${WP}/2021/05/Giuseppe_Fioretti_The_Magazine.jpeg`,
+    description: 'Editorial design exploring magazine layout, typography and visual narrative.',
+  }),
+  archiveProject({
+    slug: 'marianna-carolina-sale',
+    title: 'Marianna Carolina Sale',
+    subtitle: 'Editorial and visual project',
+    category: 'art-direction',
+    year: 2021,
+    client: 'Marianna Carolina Sale',
+    role: 'Creative Direction',
+    heroImage: `${WP}/2021/05/mariannacarolinasale.gif`,
+    description: 'Editorial and visual project for Marianna Carolina Sale.',
+  }),
+  archiveProject({
+    slug: 'dmoors',
+    title: "D'MOORS",
+    subtitle: 'Brand identity and visual system',
+    category: 'branding',
+    year: 2021,
+    client: "D'MOORS",
+    role: 'Brand Design',
+    heroImage: `${WP}/2021/05/LOGO_Instagram-1.jpg`,
+    description: "Visual identity and brand design for D'MOORS.",
+  }),
+  archiveProject({
+    slug: 'naculture',
+    title: "NA'CULTURE",
+    subtitle: 'Cultural branding and visual identity',
+    category: 'branding',
+    year: 2021,
+    client: "NA'CULTURE",
+    role: 'Brand Design',
+    heroImage: `${WP}/2021/05/Giuseppe_Fioretti_Naculture.jpeg`,
+    description: "Brand identity exploring culture, craft and contemporary visual language.",
+  }),
+  archiveProject({
+    slug: 'master-en-produccion-artistica',
+    title: 'Master en Producción Artística',
+    subtitle: 'Academic and artistic production',
+    category: 'personal-project',
+    year: 2021,
+    client: 'Academic',
+    role: 'Artist & Designer',
+    heroImage: `${WP}/2021/05/Giuseppe_Fioretti_MPA.jpeg`,
+    description: 'Academic and artistic production work from the Master en Producción Artística.',
+  }),
+  archiveProject({
+    slug: 'gonzalo-doctor-branding',
+    title: 'Gonzalo Doctor',
+    subtitle: 'Brand identity across personal and business ventures',
+    category: 'branding',
+    year: 2021,
+    client: 'Gonzalo Doctor',
+    role: 'Brand Identity',
+    heroImage: `${WP}/2021/08/IG-2021-scaled.jpg`,
+    description:
+      'Brand identity for Gonzalo Doctor — personal brand and business ventures for a client who became a creative collaborator.',
+  }),
+  archiveProject({
+    slug: 'art-hag',
+    title: 'Drawing',
+    subtitle: 'Ink on paper',
+    category: 'personal-project',
+    year: 2021,
+    client: 'Personal',
+    role: 'Artist',
+    heroImage: `${WP}/2021/05/HAG-scaled.jpg`,
+    description: 'Drawing by Giuseppe Fioretti — part of the art practice beyond commercial work.',
+  }),
+  archiveProject({
+    slug: 'tutti-in-uno',
+    title: 'Tutti in Uno',
+    subtitle: 'Mixed media artwork',
+    category: 'personal-project',
+    year: 2021,
+    client: 'Personal',
+    role: 'Artist',
+    heroImage: `${WP}/2021/08/tutti-in-uno.jpg`,
+    description: 'Mixed media artwork exploring form, colour and composition.',
+  }),
+  archiveProject({
+    slug: 'art-ig-20213',
+    title: 'Artwork',
+    subtitle: 'Visual exploration',
+    category: 'personal-project',
+    year: 2021,
+    client: 'Personal',
+    role: 'Artist',
+    heroImage: `${WP}/2021/05/IG-20213-scaled.jpg`,
+    description: 'Selected artwork from Giuseppe Fioretti\'s personal practice.',
+  }),
+  archiveProject({
+    slug: 'pee-pee',
+    title: 'Pee Pee',
+    subtitle: 'Art project',
+    category: 'personal-project',
+    year: 2021,
+    client: 'Personal',
+    role: 'Artist',
+    heroImage: `${WP}/2021/05/IG-202131-scaled.jpg`,
+    description: 'Art project by Giuseppe Fioretti.',
+  }),
+  archiveProject({
+    slug: 'skin-is-the-new-canvas',
+    title: 'Skin is the New Canvas',
+    subtitle: 'Body as canvas',
+    category: 'personal-project',
+    year: 2021,
+    client: 'Personal',
+    role: 'Artist',
+    heroImage: `${WP}/2021/05/IG-202114-scaled.jpg`,
+    description: 'Visual exploration on body and canvas.',
+  }),
+  archiveProject({
+    slug: 'eyes',
+    title: 'Eyes',
+    subtitle: 'Artwork',
+    category: 'personal-project',
+    year: 2021,
+    client: 'Personal',
+    role: 'Artist',
+    heroImage: `${WP}/2021/05/EYES-scaled.jpg`,
+    description: 'Artwork exploring gaze, perception and the human figure.',
+  }),
+  archiveProject({
+    slug: 'art-ig-2021',
+    title: 'Artwork',
+    subtitle: 'Visual study',
+    category: 'personal-project',
+    year: 2021,
+    client: 'Personal',
+    role: 'Artist',
+    heroImage: `${WP}/2021/05/IG-2021-scaled.jpg`,
+    description: 'Selected artwork from Giuseppe Fioretti\'s personal practice.',
+  }),
 ];
 
 export function getProject(slug: string) {

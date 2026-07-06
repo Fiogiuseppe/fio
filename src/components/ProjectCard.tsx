@@ -1,44 +1,64 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Project } from '@/lib/types';
-import { categoryLabel } from '@/lib/utils';
+import { categoryLabel, cn } from '@/lib/utils';
 import { TypographyCard, TypographyMeta } from '@/components/typography';
 import { editorial } from '@/lib/typography';
 import { Badge } from './Badge';
+import styles from './ProjectCard.module.css';
+
+export type ProjectCardVariant = 'hero' | 'large' | 'grid';
 
 type ProjectCardProps = {
   project: Project;
+  variant?: ProjectCardVariant;
   priority?: boolean;
 };
 
-export function ProjectCard({ project, priority }: ProjectCardProps) {
+export function ProjectCard({ project, variant = 'grid', priority }: ProjectCardProps) {
   const isGif = project.heroImage.endsWith('.gif');
   const isSvg = project.heroImage.endsWith('.svg');
+  const href = project.slug === 'urees' ? '/urees' : `/work/${project.slug}`;
+
+  const sizes =
+    variant === 'hero'
+      ? '100vw'
+      : variant === 'large'
+        ? '(max-width: 768px) 100vw, 50vw'
+        : '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw';
 
   return (
-    <Link href={`/work/${project.slug}`} className="group block no-underline">
+    <Link href={href} className={cn('group block no-underline', styles.link, styles[variant])}>
       <article>
-        <div className="relative aspect-[4/3] overflow-hidden bg-ink/5">
+        <div className={cn(styles.media, styles[`media_${variant}`])}>
           <Image
             src={project.heroImage}
             alt={project.title}
             fill
-            className="object-cover transition duration-700 group-hover:scale-[1.03]"
-            sizes="(max-width:768px) 100vw, 50vw"
+            className={styles.image}
+            sizes={sizes}
             priority={priority}
             unoptimized={isGif || isSvg}
           />
         </div>
-        <div className={editorial.stack.block}>
+        <div className={cn(styles.copy, editorial.stack.block)}>
           <Badge>
             {categoryLabel(project.category)} · {project.year}
           </Badge>
-          <TypographyCard className={`${editorial.stack.labelToTitle} text-ink group-hover:text-blue`}>
+          <TypographyCard
+            className={cn(
+              editorial.stack.labelToTitle,
+              'text-ink group-hover:text-blue',
+              variant === 'hero' && styles.titleHero
+            )}
+          >
             {project.title}
           </TypographyCard>
-          <TypographyMeta as="p" className={editorial.stack.labelToTitle}>
-            {project.subtitle}
-          </TypographyMeta>
+          {variant !== 'grid' && (
+            <TypographyMeta as="p" className={editorial.stack.labelToTitle}>
+              {project.subtitle}
+            </TypographyMeta>
+          )}
         </div>
       </article>
     </Link>

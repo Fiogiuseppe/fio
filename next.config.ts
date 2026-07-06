@@ -44,6 +44,11 @@ const nextConfig: NextConfig = {
         hostname: 'cdn-images-1.medium.com',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'www.lego.com',
+        pathname: '/cdn/**',
+      },
     ],
   },
 };

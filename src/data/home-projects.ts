@@ -40,7 +40,7 @@ export const homeProjectConfigs: HomeProjectConfig[] = [
     blocks: [],
   },
   {
-    slug: 'lego-creative-direction',
+    slug: 'lego-playmaker-jason-momoa',
     blocks: [{ type: 'full', mediaIndex: 0 }],
   },
 ];

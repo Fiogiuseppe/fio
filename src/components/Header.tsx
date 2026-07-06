@@ -17,6 +17,19 @@ export function Header() {
     return () => document.documentElement.classList.remove('home-route');
   }, [isHome]);
 
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
+
+  useEffect(() => {
+    const desktop = window.matchMedia('(min-width: 768px)');
+    const closeOnDesktop = () => {
+      if (desktop.matches) setOpen(false);
+    };
+    desktop.addEventListener('change', closeOnDesktop);
+    return () => desktop.removeEventListener('change', closeOnDesktop);
+  }, []);
+
   return (
     <header
       className={cn(
@@ -41,7 +54,7 @@ export function Header() {
           />
         </Link>
 
-        <nav className="site-header__nav hidden md:flex" aria-label="Main">
+        <nav className="site-header__nav" aria-label="Main">
           {NAV.map((item) => (
             <Link
               key={item.href}
@@ -60,8 +73,10 @@ export function Header() {
 
         <button
           type="button"
-          className="site-header__menu-btn md:hidden"
+          className="site-header__menu-btn"
           aria-label={open ? 'Close menu' : 'Open menu'}
+          aria-expanded={open}
+          aria-controls="site-mobile-nav"
           onClick={() => setOpen((v) => !v)}
         >
           <span className={cn('site-header__menu-line', open && 'site-header__menu-line--open-a')} />
@@ -71,7 +86,7 @@ export function Header() {
       </div>
 
       {open && (
-        <nav className="site-header__mobile md:hidden" aria-label="Main mobile">
+        <nav id="site-mobile-nav" className="site-header__mobile" aria-label="Main mobile">
           <ul className="site-header__mobile-list">
             {NAV.map((item) => (
               <li key={item.href}>

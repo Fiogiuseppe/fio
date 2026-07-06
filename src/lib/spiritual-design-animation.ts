@@ -3,7 +3,7 @@ const BLUE = '#001fff';
 const STROKE_DURATION_MS = 900;
 const STAGGER_MS = 55;
 
-const BLUE_PATH_SELECTOR = 'path.st2, path.cls-4';
+const BLUE_PATH_SELECTOR = 'path.st2, path.cls-4, path[fill="#001FFF"], path[fill="#001fff"]';
 const LINE_SELECTOR = 'line.st1, line.cls-2, path.cls-2';
 
 function prefersReducedMotion() {

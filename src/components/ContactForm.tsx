@@ -4,7 +4,7 @@ import { useState } from 'react';
 import {
   TypographyBody,
   TypographyButton,
-  TypographyH3,
+  TypographyCard,
   TypographyLabel,
   TypographyLead,
 } from '@/components/typography';
@@ -21,7 +21,7 @@ export function ContactForm() {
   if (submitted) {
     return (
       <div className="border border-ink/10 bg-cream-soft p-8 md:p-12">
-        <TypographyH3>Message received</TypographyH3>
+        <TypographyCard>Message received</TypographyCard>
         <TypographyLead measure={false} className={editorial.stack.labelToTitle}>
           Thank you — Giuseppe will be in touch soon.
         </TypographyLead>

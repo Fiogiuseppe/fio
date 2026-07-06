@@ -5,7 +5,7 @@ import { SectionIntro } from '@/components/SectionIntro';
 import { PageSection } from '@/components/PageSection';
 import {
   TypographyBody,
-  TypographyH3,
+  TypographyCard,
   TypographyLabel,
 } from '@/components/typography';
 import { editorial } from '@/lib/typography';
@@ -45,7 +45,7 @@ export default function ShopPage() {
                 />
               </div>
               <div className={`border-t border-ink/10 pt-6 ${editorial.stack.block}`}>
-                <TypographyH3 className="text-ink group-hover:text-blue">{cat.title}</TypographyH3>
+                <TypographyCard className="text-ink group-hover:text-blue">{cat.title}</TypographyCard>
                 <TypographyBody measure={false} className={`${editorial.stack.sectionToContent} text-ink/60`}>
                   {cat.description}
                 </TypographyBody>

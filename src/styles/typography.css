@@ -55,6 +55,19 @@
   font-size: clamp(1.125rem, 0.4vw + 1rem, 1.25rem);
 }
 
+/* Editorial motion — subtle, alive */
+.editorial-fade {
+  transition: opacity 700ms ease-out;
+}
+
+.editorial-image {
+  transition: transform 700ms ease-out, opacity 700ms ease-out;
+}
+
+.editorial-image:hover {
+  transform: scale(1.02);
+}
+
 .journal-article__body p em,
 .journal-article__body em {
   font-style: italic;

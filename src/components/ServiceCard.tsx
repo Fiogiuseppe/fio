@@ -1,7 +1,7 @@
 import type { Service } from '@/lib/types';
 import {
   TypographyBody,
-  TypographyH3,
+  TypographyCard,
   TypographyLabel,
 } from '@/components/typography';
 import { editorial } from '@/lib/typography';
@@ -14,7 +14,7 @@ type ServiceCardProps = {
 export function ServiceCard({ service }: ServiceCardProps) {
   return (
     <article className="flex flex-col border-t border-ink/10 py-12 md:py-16">
-      <TypographyH3>{service.title}</TypographyH3>
+      <TypographyCard>{service.title}</TypographyCard>
       <TypographyBody className={editorial.stack.sectionToContent}>{service.description}</TypographyBody>
       <div className={`grid gap-8 md:grid-cols-2 ${editorial.stack.block}`}>
         <div>

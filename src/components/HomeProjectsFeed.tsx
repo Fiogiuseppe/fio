@@ -5,7 +5,7 @@ import type { Project, ProjectMedia } from '@/lib/types';
 import {
   TypographyBody,
   TypographyButton,
-  TypographyH2,
+  TypographySection,
   TypographyLead,
   TypographyMeta,
 } from '@/components/typography';
@@ -79,9 +79,9 @@ export function HomeProjectsFeed() {
               </>
             )}
 
-            <TypographyH2 as="h2" className={styles.projectTitle}>
+            <TypographySection as="h2" className={styles.projectTitle}>
               <Link href={href}>{project.title}</Link>
-            </TypographyH2>
+            </TypographySection>
 
             {project.slug === 'desigual-sneakers-campaign' ? (
               <SneakersIntro />

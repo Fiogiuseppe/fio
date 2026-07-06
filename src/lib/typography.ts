@@ -12,10 +12,17 @@ export const editorial = {
   hero:
     'font-quartz text-[clamp(2.5rem,4vw+1.25rem,5.5rem)] font-normal leading-[1.05] tracking-[-0.02em]',
 
-  /** VOICE 02 — section titles. Always uppercase via CSS. */
+  /** VOICE 02 — section titles (36–48px). Always uppercase. */
+  section:
+    'font-helvetica text-[clamp(2.25rem,2.5vw+1rem,3rem)] font-bold uppercase leading-[1.1] tracking-[0.03em]',
+
+  /** VOICE 02 — card titles (20–24px). Always uppercase. */
+  card: 'font-helvetica text-[clamp(1.25rem,0.5vw+1.1rem,1.5rem)] font-bold uppercase leading-[1.2] tracking-[0.04em]',
+
+  /** @deprecated use editorial.section */
   h2: 'font-helvetica text-[clamp(2.25rem,2.5vw+1rem,3rem)] font-bold uppercase leading-[1.1] tracking-[0.03em]',
 
-  /** VOICE 02 — cards, services, project titles. Always uppercase. */
+  /** @deprecated use editorial.card */
   h3: 'font-helvetica text-[clamp(1.25rem,0.5vw+1.1rem,1.5rem)] font-bold uppercase leading-[1.2] tracking-[0.04em]',
 
   /** VOICE 03 — contextual intro under titles */

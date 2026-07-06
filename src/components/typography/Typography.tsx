@@ -26,7 +26,7 @@ export function TypographyLabel<T extends ElementType = 'p'>({
   );
 }
 
-/** Quartz only. Max 6 words. Hero / cover statements. */
+/** VOICE 01 — Quartz only. Max 6 words. Hero / cover statements. */
 export function TypographyHero<T extends ElementType = 'h1'>({
   as,
   className,
@@ -41,8 +41,8 @@ export function TypographyHero<T extends ElementType = 'h1'>({
   );
 }
 
-/** Section titles — Helvetica Bold, uppercase. */
-export function TypographyH2<T extends ElementType = 'h2'>({
+/** VOICE 02 — section titles. Helvetica Bold, uppercase. */
+export function TypographySection<T extends ElementType = 'h2'>({
   as,
   className,
   children,
@@ -50,14 +50,14 @@ export function TypographyH2<T extends ElementType = 'h2'>({
 }: TypographyProps<T>) {
   const Tag = (as ?? 'h2') as ElementType;
   return (
-    <Tag className={cn(editorial.h2, className)} {...props}>
+    <Tag className={cn(editorial.section, className)} {...props}>
       {children}
     </Tag>
   );
 }
 
-/** Subsection / card titles — Helvetica Bold, uppercase. */
-export function TypographyH3<T extends ElementType = 'h3'>({
+/** VOICE 02 — card / project / journal titles. Helvetica Bold, uppercase. */
+export function TypographyCard<T extends ElementType = 'h3'>({
   as,
   className,
   children,
@@ -65,11 +65,17 @@ export function TypographyH3<T extends ElementType = 'h3'>({
 }: TypographyProps<T>) {
   const Tag = (as ?? 'h3') as ElementType;
   return (
-    <Tag className={cn(editorial.h3, className)} {...props}>
+    <Tag className={cn(editorial.card, className)} {...props}>
       {children}
     </Tag>
   );
 }
+
+/** @deprecated Use TypographySection */
+export const TypographyH2 = TypographySection;
+
+/** @deprecated Use TypographyCard */
+export const TypographyH3 = TypographyCard;
 
 export function TypographyLead<T extends ElementType = 'p'>({
   as,
@@ -129,7 +135,7 @@ export function TypographyButton<T extends ElementType = 'span'>({
   );
 }
 
-/** Quartz — short centered artistic statements. */
+/** VOICE 01 — Quartz artistic statements. Centered. */
 export function TypographyQuote<T extends ElementType = 'blockquote'>({
   as,
   className,

@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { Project } from '@/lib/types';
 import { categoryLabel } from '@/lib/utils';
-import { TypographyH3, TypographyMeta } from '@/components/typography';
+import { TypographyCard, TypographyMeta } from '@/components/typography';
 import { editorial } from '@/lib/typography';
 import { Badge } from './Badge';
 
@@ -33,9 +33,9 @@ export function ProjectCard({ project, priority }: ProjectCardProps) {
           <Badge>
             {categoryLabel(project.category)} · {project.year}
           </Badge>
-          <TypographyH3 className={`${editorial.stack.labelToTitle} text-ink group-hover:text-blue`}>
+          <TypographyCard className={`${editorial.stack.labelToTitle} text-ink group-hover:text-blue`}>
             {project.title}
-          </TypographyH3>
+          </TypographyCard>
           <TypographyMeta as="p" className={editorial.stack.labelToTitle}>
             {project.subtitle}
           </TypographyMeta>

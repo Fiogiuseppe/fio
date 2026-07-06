@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 import { Badge } from '@/components/Badge';
 import {
   TypographyBody,
-  TypographyH2,
+  TypographySection,
   TypographyLead,
   TypographyMeta,
 } from '@/components/typography';
@@ -55,9 +55,9 @@ export default async function ArticlePage({ params }: Props) {
 
       <div className="mx-auto max-w-2xl px-6 py-16 md:px-10 md:py-24">
         <TypographyMeta>{formatDate(article.date)}</TypographyMeta>
-        <TypographyH2 as="h1" className={editorial.stack.labelToTitle}>
+        <TypographySection as="h1" className={editorial.stack.labelToTitle}>
           {article.title}
-        </TypographyH2>
+        </TypographySection>
         {article.excerpt ? (
           <TypographyLead className={editorial.stack.titleToLead}>{article.excerpt}</TypographyLead>
         ) : null}

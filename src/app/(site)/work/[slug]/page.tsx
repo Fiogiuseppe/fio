@@ -8,7 +8,7 @@ import { CTA } from '@/components/CTA';
 import {
   TypographyBody,
   TypographyButton,
-  TypographyH2,
+  TypographySection,
   TypographyLabel,
   TypographyLead,
   TypographyMeta,
@@ -60,9 +60,9 @@ export default async function WorkDetailPage({ params }: Props) {
         <Badge>
           {categoryLabel(project.category)} · {project.year}
         </Badge>
-        <TypographyH2 as="h1" className={editorial.stack.labelToTitle}>
+        <TypographySection as="h1" className={editorial.stack.labelToTitle}>
           {project.title}
-        </TypographyH2>
+        </TypographySection>
         <TypographyLead className={editorial.stack.titleToLead}>{project.subtitle}</TypographyLead>
 
         <dl className={`grid gap-6 border-t border-ink/10 pt-10 md:grid-cols-2 ${editorial.stack.block}`}>
@@ -110,15 +110,15 @@ export default async function WorkDetailPage({ params }: Props) {
       <div className="mx-auto max-w-3xl px-6 pb-16 md:px-10 md:pb-24">
         <div className="space-y-12 border-t border-ink/10 pt-16">
           <div>
-            <TypographyH2>Challenge</TypographyH2>
+            <TypographySection>Challenge</TypographySection>
             <TypographyBody className={editorial.stack.sectionToContent}>{project.challenge}</TypographyBody>
           </div>
           <div>
-            <TypographyH2>Solution</TypographyH2>
+            <TypographySection>Solution</TypographySection>
             <TypographyBody className={editorial.stack.sectionToContent}>{project.solution}</TypographyBody>
           </div>
           <div>
-            <TypographyH2>Outcome</TypographyH2>
+            <TypographySection>Outcome</TypographySection>
             <TypographyBody className={editorial.stack.sectionToContent}>{project.outcome}</TypographyBody>
           </div>
         </div>

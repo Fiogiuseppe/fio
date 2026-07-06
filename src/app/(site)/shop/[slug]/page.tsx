@@ -7,7 +7,7 @@ import { CTA } from '@/components/CTA';
 import {
   TypographyBody,
   TypographyButton,
-  TypographyH2,
+  TypographySection,
   TypographyLabel,
   TypographyLead,
   TypographyMeta,
@@ -69,9 +69,9 @@ export default async function ProductPage({ params }: Props) {
           <TypographyMeta className={editorial.stack.labelToTitle}>
             {categoryLabel(product.category)}
           </TypographyMeta>
-          <TypographyH2 as="h1" className={editorial.stack.labelToTitle}>
+          <TypographySection as="h1" className={editorial.stack.labelToTitle}>
             {product.title}
-          </TypographyH2>
+          </TypographySection>
           <TypographyLead measure={false} className={editorial.stack.titleToLead}>
             {product.shortDescription}
           </TypographyLead>
@@ -128,7 +128,7 @@ export default async function ProductPage({ params }: Props) {
       </div>
 
       <div className={`mx-auto max-w-3xl ${editorial.stack.page}`}>
-        <TypographyH2>The story</TypographyH2>
+        <TypographySection>The story</TypographySection>
         <TypographyBody className={editorial.stack.sectionToContent}>{product.longStory}</TypographyBody>
       </div>
 

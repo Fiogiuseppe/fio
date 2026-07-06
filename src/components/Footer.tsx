@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { SITE, NAV } from '@/data/site';
 import {
   TypographyBody,
-  TypographyH3,
+  TypographyCard,
   TypographyLabel,
   TypographyMeta,
 } from '@/components/typography';
@@ -15,7 +15,7 @@ export function Footer() {
     <footer className="border-t border-ink/10 bg-ink text-cream">
       <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 md:grid-cols-3 md:px-10 md:py-20">
         <div>
-          <TypographyH3 className="text-cream">{SITE.name}</TypographyH3>
+          <TypographyCard className="text-cream">{SITE.name}</TypographyCard>
           <TypographyBody measure={false} className={`${editorial.stack.sectionToContent} text-cream/60`}>
             Designer, art director, artist — {SITE.location}. A creative universe of brands,
             campaigns and original work.

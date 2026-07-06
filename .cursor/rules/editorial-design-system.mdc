@@ -1,0 +1,26 @@
+---
+description: Editorial design system for fiogiuseppe.com — mandatory for all UI work
+globs: src/**/*.{tsx,css},docs/**
+alwaysApply: false
+---
+
+# Editorial Design System
+
+Read `docs/EDITORIAL_DESIGN_SYSTEM.md` before any UI change.
+
+## Non-negotiables
+
+- Use `Typography*` components only — never custom font sizes
+- Helvetica ~95%, Quartz ~5% (hero + quote only, max 6 words)
+- All Helvetica titles uppercase via components
+- Spacing on 8px grid (`editorialSpace` / `editorial.stack`)
+- Compose sections with `EditorialSection` — do not repeat identical layouts
+- Typography is composition, not decoration
+
+## Components
+
+`TypographyLabel` · `TypographyHero` · `TypographySection` · `TypographyCard` · `TypographyLead` · `TypographyBody` · `TypographyMeta` · `TypographyButton` · `TypographyQuote`
+
+## Visual DNA
+
+Swiss typography · editorial grids · museum catalogue · art publication — not a template portfolio.

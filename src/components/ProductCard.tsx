@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { Product } from '@/lib/types';
 import { availabilityLabel, formatPrice, productCtaLabel } from '@/lib/utils';
-import { TypographyButton, TypographyH3, TypographyMeta } from '@/components/typography';
+import { TypographyButton, TypographyCard, TypographyMeta } from '@/components/typography';
 import { editorial } from '@/lib/typography';
 import { Badge } from './Badge';
 
@@ -37,9 +37,9 @@ export function ProductCard({ product }: ProductCardProps) {
           <Badge variant={product.availability === 'sold' ? 'sold' : 'available'}>
             {availabilityLabel(product.availability)}
           </Badge>
-          <TypographyH3 className={`${editorial.stack.labelToTitle} text-ink group-hover:text-blue`}>
+          <TypographyCard className={`${editorial.stack.labelToTitle} text-ink group-hover:text-blue`}>
             {product.title}
-          </TypographyH3>
+          </TypographyCard>
           <TypographyMeta as="p" className={editorial.stack.labelToTitle}>
             {product.shortDescription}
           </TypographyMeta>

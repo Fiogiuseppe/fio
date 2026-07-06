@@ -1,6 +1,8 @@
 export {
   TypographyLabel,
   TypographyHero,
+  TypographySection,
+  TypographyCard,
   TypographyH2,
   TypographyH3,
   TypographyLead,

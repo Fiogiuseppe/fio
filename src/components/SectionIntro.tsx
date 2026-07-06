@@ -1,8 +1,8 @@
 import {
-  TypographyH2,
   TypographyHero,
   TypographyLabel,
   TypographyLead,
+  TypographySection,
 } from '@/components/typography';
 import { editorial } from '@/lib/typography';
 
@@ -35,9 +35,9 @@ export function SectionIntro({
           {title}
         </TypographyHero>
       ) : (
-        <TypographyH2 as="h1" className={kicker ? editorial.stack.labelToTitle : undefined}>
+        <TypographySection as="h1" className={kicker ? editorial.stack.labelToTitle : undefined}>
           {title}
-        </TypographyH2>
+        </TypographySection>
       )}
       {description ? (
         <TypographyLead className={editorial.stack.titleToLead}>{description}</TypographyLead>

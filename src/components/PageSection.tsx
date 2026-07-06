@@ -1,3 +1,5 @@
+import { editorialSpace, grid } from '@/lib/editorial';
+
 type PageSectionProps = {
   children: React.ReactNode;
   className?: string;
@@ -7,11 +9,11 @@ type PageSectionProps = {
 export function PageSection({ children, className = '', tone = 'default' }: PageSectionProps) {
   return (
     <section
-      className={`px-6 py-20 md:px-10 md:py-28 ${
+      className={`${editorialSpace.sectionX} ${editorialSpace.sectionY} ${
         tone === 'soft' ? 'bg-cream-soft' : ''
       } ${className}`}
     >
-      <div className="mx-auto max-w-7xl">{children}</div>
+      <div className={grid.page}>{children}</div>
     </section>
   );
 }

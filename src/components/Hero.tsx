@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import {
-  TypographyH3,
+  TypographyCard,
   TypographyHero,
   TypographyLabel,
   TypographyLead,
@@ -40,7 +40,7 @@ export function Hero({ title, subtitle, paths }: HeroProps) {
                 href={path.href}
                 className="group border-t border-ink/20 pt-8 no-underline transition hover:border-blue"
               >
-                <TypographyH3 className="text-ink group-hover:text-blue">{path.title}</TypographyH3>
+                <TypographyCard className="text-ink group-hover:text-blue">{path.title}</TypographyCard>
                 <TypographyMeta as="p" className={editorial.stack.sectionToContent}>
                   {path.description}
                 </TypographyMeta>

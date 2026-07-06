@@ -1,75 +1,26 @@
-# Editorial Typography System — fiogiuseppe.com
+# Typography (implementation)
 
-Single source of truth for all typography on the website.
+The full visual DNA lives in **[EDITORIAL_DESIGN_SYSTEM.md](./EDITORIAL_DESIGN_SYSTEM.md)**.
 
-## Implementation
+## Quick reference
 
-| Layer | Path |
-|-------|------|
-| Tokens | `src/lib/typography.ts` |
-| Components | `src/components/typography/` |
-| Article HTML | `src/styles/typography.css` |
+| Component | Voice | Use |
+|-----------|-------|-----|
+| `TypographyLabel` | 04 | Eyebrows, form labels |
+| `TypographyHero` | 01 | Quartz — max 6 words |
+| `TypographySection` | 02 | Page/section titles |
+| `TypographyCard` | 02 | Cards, projects, journal tiles |
+| `TypographyLead` | 03 | Context under titles |
+| `TypographyBody` | 03 | Paragraphs |
+| `TypographyMeta` | 04 | Dates, credits, tags |
+| `TypographyButton` | 02 | CTA labels |
+| `TypographyQuote` | 01 | Artistic statements |
 
-**Rule:** Never define font sizes in pages or components. Always use `Typography*` components.
+`TypographyH2` / `TypographyH3` are deprecated aliases — use `TypographySection` / `TypographyCard`.
 
-## Four voices
+## Files
 
-| Voice | Font | Use |
-|-------|------|-----|
-| **01 — The Author** | Quartz | Hero statements only. Max 6 words. One sentence. |
-| **02 — The Structure** | Helvetica Bold | Section titles, card titles, navigation, buttons. Always uppercase. |
-| **03 — The Story** | Helvetica Regular | Lead paragraphs, body text. Sentence case. |
-| **04 — The Details** | Helvetica Light | Dates, credits, categories, captions. |
-
-Quartz ≈ 5% of the site. Helvetica ≈ 95%.
-
-## Components
-
-| Component | Role | Font |
-|-----------|------|------|
-| `TypographyLabel` | Eyebrow / label | Helvetica Regular, 11–12px, uppercase |
-| `TypographyHero` | H1 hero | Quartz, 40–88px |
-| `TypographyH2` | Section title | Helvetica Bold, 36–48px, uppercase |
-| `TypographyH3` | Subsection / card title | Helvetica Bold, 20–24px, uppercase |
-| `TypographyLead` | Context under titles | Helvetica Regular, 20–24px |
-| `TypographyBody` | Paragraphs | Helvetica Regular, 16–18px, max 70ch |
-| `TypographyMeta` | Dates, credits, tags | Helvetica Light, 12–14px |
-| `TypographyButton` | CTA labels | Helvetica Bold, 14–16px, uppercase |
-| `TypographyQuote` | Artistic statements | Quartz, centered |
-
-## Page rhythm
-
-```
-LABEL → HERO or H2 → LEAD → CTA → H2 → CONTENT → …
-```
-
-- One `TypographyHero` or `TypographyH2 as="h1"` per page.
-- `SectionIntro` handles label + title + lead for index pages.
-- Use `asHero` on `SectionIntro` only for short emotional titles (About).
-
-## Spacing (8px grid)
-
-Use `editorial.stack.*` from `src/lib/typography.ts`:
-
-- `labelToTitle` — 16px
-- `titleToLead` — 32px
-- `leadToContent` — 64px
-- `sectionToContent` — 32px
-- `block` — 48px
-- `page` — 96px
-
-## Quartz allowed
-
-- Hero statements
-- Cover headlines
-- Short quotes (`TypographyQuote`)
-
-## Quartz forbidden
-
-- Navigation, buttons, cards, journal previews, services, metadata, paragraphs
-
-## Capitalization
-
-- All Helvetica titles: **uppercase** (via CSS `text-transform`)
-- Body text: sentence case
-- Quartz: natural capitalization
+- Tokens: `src/lib/typography.ts`
+- Composition & spacing: `src/lib/editorial.ts`
+- Components: `src/components/typography/`
+- Layout: `src/components/editorial/EditorialSection.tsx`

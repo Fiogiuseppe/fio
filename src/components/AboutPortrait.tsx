@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import styles from './AboutPortrait.module.css';
 
 const CLOSED_PORTRAIT = '/images/about-portrait-closed.png';
-const EYES_PORTRAIT = '/images/about-portrait-eyes.png';
+const OPEN_PORTRAIT = '/images/about-portrait-open.png';
 
 function randomBetween(min: number, max: number) {
   return min + Math.random() * (max - min);
@@ -26,14 +26,14 @@ export function AboutPortrait() {
         setAwake(true);
         closeTimeoutRef.current = setTimeout(() => {
           setAwake(false);
-          scheduleBlink(randomBetween(14000, 34000));
-        }, randomBetween(1500, 2600));
+          scheduleBlink(randomBetween(12000, 28000));
+        }, randomBetween(1400, 2400));
       }, delayMs);
     }
 
     initialTimeoutRef.current = setTimeout(() => {
-      scheduleBlink(randomBetween(4000, 7000));
-    }, 2200);
+      scheduleBlink(randomBetween(3000, 5500));
+    }, 1800);
 
     return () => {
       if (initialTimeoutRef.current) clearTimeout(initialTimeoutRef.current);
@@ -43,10 +43,7 @@ export function AboutPortrait() {
   }, []);
 
   return (
-    <figure
-      className={`${styles.figure} ${awake ? styles.awake : ''}`}
-      aria-label="Giuseppe Fioretti"
-    >
+    <figure className={styles.figure} aria-label="Giuseppe Fioretti">
       <div className={styles.frame}>
         <Image
           src={CLOSED_PORTRAIT}
@@ -58,11 +55,12 @@ export function AboutPortrait() {
         />
 
         <Image
-          src={EYES_PORTRAIT}
+          src={OPEN_PORTRAIT}
           alt=""
           fill
           sizes="(max-width: 1024px) 100vw, 50vw"
-          className={styles.eyes}
+          className={styles.portraitOpen}
+          style={{ opacity: awake ? 1 : 0 }}
           aria-hidden
           unoptimized
         />

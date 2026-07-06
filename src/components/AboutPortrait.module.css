@@ -21,32 +21,36 @@
 }
 
 .portrait,
-.portraitOpen {
+.eyes {
   object-fit: contain;
   object-position: center top;
+}
+
+.portrait {
   filter: grayscale(1) contrast(1.04);
 }
 
-.portraitOpen {
+.eyes {
   opacity: 0;
-  transition: opacity 0.11s ease-out;
+  transition: opacity 0.1s ease-out;
+  pointer-events: none;
 }
 
-.awake .portraitOpen {
+.awake .eyes {
   opacity: 1;
-  transition: opacity 0.16s ease-out 0.03s;
+  transition: opacity 0.15s ease-out 0.04s;
 }
 
-.figure:not(.awake) .portraitOpen {
-  transition: opacity 0.28s ease-in;
+.figure:not(.awake) .eyes {
+  transition: opacity 0.26s ease-in;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .portraitOpen {
+  .eyes {
     transition: none;
   }
 
-  .awake .portraitOpen {
+  .awake .eyes {
     opacity: 0;
   }
 }

@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import styles from './AboutPortrait.module.css';
 
 const CLOSED_PORTRAIT = '/images/about-portrait-closed.png';
-const OPEN_PORTRAIT = '/images/about-portrait-open.png';
+const EYES_PORTRAIT = '/images/about-portrait-eyes.png';
 
 function randomBetween(min: number, max: number) {
   return min + Math.random() * (max - min);
@@ -58,12 +58,13 @@ export function AboutPortrait() {
         />
 
         <Image
-          src={OPEN_PORTRAIT}
+          src={EYES_PORTRAIT}
           alt=""
           fill
           sizes="(max-width: 1024px) 100vw, 50vw"
-          className={styles.portraitOpen}
+          className={styles.eyes}
           aria-hidden
+          unoptimized
         />
       </div>
     </figure>

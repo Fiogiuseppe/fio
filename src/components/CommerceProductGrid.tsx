@@ -18,14 +18,16 @@ export function CommerceProductCard({ product, brandLine, priceGroup }: Commerce
   return (
     <Link href={href} className={styles.card}>
       <div className={styles.media}>
-        <Image
-          src={product.images[0]}
-          alt={product.title}
-          fill
-          className={styles.image}
-          sizes="(max-width: 750px) 50vw, 25vw"
-          unoptimized={isGif}
-        />
+        <div className={styles.mediaInner}>
+          <Image
+            src={product.images[0]}
+            alt={product.title}
+            fill
+            className={styles.image}
+            sizes="(max-width: 750px) 50vw, 25vw"
+            unoptimized={isGif}
+          />
+        </div>
       </div>
 
       <div>

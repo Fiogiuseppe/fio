@@ -1,0 +1,103 @@
+.flying {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 45;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  will-change: transform;
+  touch-action: manipulation;
+}
+
+.flyingReduced {
+  right: 1rem;
+  bottom: 1rem;
+  left: auto;
+  top: auto;
+}
+
+.inner {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.45rem;
+  border: 2.5px solid var(--color-ink);
+  background: var(--color-page);
+  color: var(--color-ink);
+  font-family: var(--font-helvetica);
+  font-size: clamp(1rem, 1.2vw + 0.75rem, 1.35rem);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  box-shadow: 5px 7px 0 var(--color-blue);
+  transform: rotate(-6deg);
+  transition:
+    box-shadow 200ms ease,
+    border-color 200ms ease,
+    color 200ms ease,
+    transform 200ms ease;
+}
+
+.inner::after {
+  content: '';
+  position: absolute;
+  right: -4px;
+  bottom: -5px;
+  width: 18px;
+  height: 12px;
+  background: rgb(255 255 255 / 0.55);
+  transform: rotate(-28deg);
+  pointer-events: none;
+}
+
+.flying:hover .inner,
+.flying:focus-visible .inner {
+  border-color: var(--color-blue);
+  color: var(--color-blue);
+  box-shadow: 6px 8px 0 var(--color-ink);
+  transform: rotate(-3deg) scale(1.04);
+}
+
+.flyingPaused .inner {
+  border-color: var(--color-blue);
+  color: var(--color-blue);
+}
+
+html.contact-route .inner {
+  border-color: var(--color-on-dark);
+  background: var(--color-on-dark);
+  color: var(--color-ink);
+  box-shadow: 5px 7px 0 var(--color-blue);
+}
+
+html.contact-route .flying:hover .inner,
+html.contact-route .flying:focus-visible .inner,
+html.contact-route .flyingPaused .inner {
+  color: var(--color-blue);
+  border-color: var(--color-blue);
+}
+
+@media (max-width: 767px) {
+  .inner {
+    padding: 0.7rem 1.15rem;
+    font-size: 0.95rem;
+    letter-spacing: 0.14em;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flying {
+    transform: none !important;
+  }
+
+  .inner {
+    transform: rotate(-4deg);
+  }
+}

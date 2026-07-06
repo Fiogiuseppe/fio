@@ -44,6 +44,17 @@ const HOMEPAGE_FALLBACK = {
       'UREES® IS A LUXURY CONSCIOUS BRAND THAT TRANSFORMS USED GARMENTS INTO UNIQUE, HANDCRAFTED PIECES.',
     cta: { label: 'MANIFESTO', href: '/pages/manifesto' },
   },
+  video: {
+    mp4: `${BASE}/cdn/shop/videos/c/vp/6460d894a2504497a75ad40c9e7d1fe7/6460d894a2504497a75ad40c9e7d1fe7.HD-1080p-4.8Mbps-17201661.mp4?v=0`,
+    poster: `${BASE}/cdn/shop/files/preview_images/6460d894a2504497a75ad40c9e7d1fe7.thumbnail.0000000000_1100x.jpg?v=1691763361`,
+  },
+  podcast: {
+    title: 'PODCAST: Revive & Thrive: The Upcycling Journey',
+    body: '"Revive & Thrive: The Upcycling Journey," is a podcast dedicated to exploring the world of sustainable fashion and the art of upcycling. Join your host, William Paz, as he engages with thought leaders, designers, and advocates who are reshaping the fashion industry through innovative and environmentally conscious practices.',
+    note: '*The characters are fictional. Enjoy the content.',
+    image: `${BASE}/cdn/shop/files/podcast_urees-06.png`,
+    spotifyUrl: 'https://open.spotify.com/show/6LRQafJ5NJ0HRByCMnzVe1?si=0fc83a45d4634e5b',
+  },
   dreaming: {
     title: 'DREAMING OF OUR PANTS WORN BY THOSE WHO HAVE INSPIRED US.',
     image: `${BASE}/cdn/shop/files/2.png?v=1699637007&width=3840`,
@@ -80,11 +91,30 @@ function homepageFromHtml(html) {
   const ctaMatch = heroBlock.match(/class="button[^"]*"[^>]*>\s*([^<]+)/i);
   const ctaLabel = ctaMatch?.[1]?.trim() || HOMEPAGE_FALLBACK.hero.cta.label;
 
+  const videoBlock = html.match(/FIRST DROP UREES[\s\S]*?video-section/i)?.[0] ?? html;
+  const mp4Match = videoBlock.match(/src="(\/\/urees\.shop\/cdn\/shop\/videos[^"]+\.mp4[^"]*)"/i)
+    ?? html.match(/src="(\/\/urees\.shop\/cdn\/shop\/videos[^"]+\.mp4[^"]*)"/i);
+  const posterMatch = videoBlock.match(/poster="(\/\/urees\.shop[^"]+)"/i)
+    ?? html.match(/poster="(\/\/urees\.shop\/cdn\/shop\/files\/preview_images[^"]+)"/i);
+
+  const podcastBlock = html.match(/PODCAST: Revive[\s\S]*?Subscribe to our emails/i)?.[0] ?? '';
+  const podcastImage = podcastBlock.match(/\/\/urees\.shop\/cdn\/shop\/files\/podcast[^"\s?]+/)?.[0];
+  const spotifyUrl = podcastBlock.match(/https:\/\/open\.spotify\.com\/[^"\s]+/)?.[0];
+
   return {
     ...HOMEPAGE_FALLBACK,
     hero: {
       headline,
       cta: { label: ctaLabel, href: '/pages/manifesto' },
+    },
+    video: {
+      mp4: mp4Match ? `https:${mp4Match[1]}` : HOMEPAGE_FALLBACK.video.mp4,
+      poster: posterMatch ? `https:${posterMatch[1]}` : HOMEPAGE_FALLBACK.video.poster,
+    },
+    podcast: {
+      ...HOMEPAGE_FALLBACK.podcast,
+      image: podcastImage ? `https:${podcastImage}` : HOMEPAGE_FALLBACK.podcast.image,
+      spotifyUrl: spotifyUrl ?? HOMEPAGE_FALLBACK.podcast.spotifyUrl,
     },
   };
 }

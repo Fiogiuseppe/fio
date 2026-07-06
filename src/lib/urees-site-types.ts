@@ -25,6 +25,17 @@ export type UreesHomepageSections = {
     headline: string;
     cta: { label: string; href: string };
   };
+  video: {
+    mp4: string;
+    poster: string;
+  };
+  podcast: {
+    title: string;
+    body: string;
+    note: string;
+    image: string;
+    spotifyUrl: string;
+  };
   dreaming: {
     title: string;
     image: string;

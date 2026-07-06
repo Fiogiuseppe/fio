@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import { UreesBannerCarousel } from '@/components/urees/UreesBannerCarousel';
 import { UreesHeroBanner } from '@/components/urees/UreesHeroBanner';
+import { UreesPodcastSection } from '@/components/urees/UreesPodcastSection';
 import { UreesProductGrid } from '@/components/urees/UreesProductGrid';
+import { UreesVideoSection } from '@/components/urees/UreesVideoSection';
 import { ureesHomeCopy } from '@/data/urees/content';
 import { formatUreesDate, ureesSite } from '@/data/urees';
 import type { UreesProduct } from '@/lib/urees-types';
@@ -33,6 +35,8 @@ export function UreesHomeSections({ products }: UreesHomeSectionsProps) {
           </div>
         </div>
       </section>
+
+      <UreesVideoSection mp4={homepage.video.mp4} poster={homepage.video.poster} />
 
       <UreesBannerCarousel
         slides={[{ title: homepage.dreaming.title, image: homepage.dreaming.image }]}
@@ -93,13 +97,13 @@ export function UreesHomeSections({ products }: UreesHomeSectionsProps) {
         </div>
       </section>
 
-      <section className="urees-section urees-section--soft" id={ureesHomeCopy.podcast.id}>
-        <div className="urees-page-width urees-copy-block">
-          <h2 className="urees-section__title">{ureesHomeCopy.podcast.title}</h2>
-          <p>{ureesHomeCopy.podcast.body}</p>
-          <p className="urees-note">{ureesHomeCopy.podcast.note}</p>
-        </div>
-      </section>
+      <UreesPodcastSection
+        title={homepage.podcast.title}
+        body={homepage.podcast.body}
+        note={homepage.podcast.note}
+        image={homepage.podcast.image}
+        spotifyUrl={homepage.podcast.spotifyUrl}
+      />
 
       <section className="urees-section" id={ureesHomeCopy.instagram.id}>
         <div className="urees-page-width urees-copy-block">

@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import { DynamicFavicon } from '@/components/DynamicFavicon';
 import { SITE } from '@/data/site';
 import './globals.css';
 
@@ -32,7 +33,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <DynamicFavicon />
+        {children}
+      </body>
     </html>
   );
 }

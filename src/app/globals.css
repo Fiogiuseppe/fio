@@ -75,9 +75,24 @@ a {
 .site-header--overlay {
   position: absolute;
   inset: 0 0 auto;
+  z-index: 50;
   border: 0;
   background: transparent;
   pointer-events: none;
+}
+
+html.home-route .site-header--overlay .site-header__inner {
+  min-height: 0;
+  padding: clamp(0.85rem, 2.2vw, 1.35rem) clamp(0.85rem, 2.5vw, 1.75rem);
+}
+
+html.home-route .site-header--overlay .site-header__logo {
+  width: min(124px, 28vw);
+}
+
+html.home-route .site-header__mobile {
+  background: rgb(247 245 232 / 0.94);
+  backdrop-filter: blur(10px);
 }
 
 .site-header--overlay .site-header__inner,
@@ -233,7 +248,6 @@ a {
 }
 
 .spiritual-cover {
-  --spiritual-caption-space: 3.25rem;
   position: relative;
   width: 100%;
   min-height: 100dvh;
@@ -242,50 +256,70 @@ a {
   border-bottom: 1px solid rgb(10 10 10 / 0.08);
 }
 
-/* Home: header floats over Spiritual Design portada */
+/* Home: full-bleed portada with header floating inside the artwork */
+html.home-route .spiritual-cover {
+  min-height: 100svh;
+  min-height: 100dvh;
+  height: 100svh;
+  height: 100dvh;
+  overflow: hidden;
+  border-bottom: 0;
+}
+
 html.home-route main > .spiritual-cover:first-child {
   margin-top: 0;
   padding-top: 0;
 }
 
 html.home-route .spiritual-cover__frame {
-  min-height: 100svh;
-  min-height: 100dvh;
+  position: absolute;
+  inset: 0;
+  display: block;
+  min-height: 0;
 }
 
 html.home-route .spiritual-cover__canvas {
-  width: min(100%, calc(100svh * 1.7778));
-  width: min(100%, calc(100dvh * 1.7778));
-  max-height: 100svh;
-  max-height: 100dvh;
-  padding-top: clamp(4.25rem, 8vw, 5.5rem);
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+html.home-route .spiritual-cover__svg {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
 }
 
 .spiritual-cover__frame {
   position: relative;
   display: flex;
-  min-height: calc(100dvh - var(--spiritual-caption-space));
-  min-height: calc(100svh - var(--spiritual-caption-space));
+  width: 100%;
+  min-height: 100svh;
+  min-height: 100dvh;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: stretch;
+  justify-content: stretch;
 }
 
 .spiritual-cover__canvas {
   display: flex;
-  width: min(100%, calc((100svh - var(--spiritual-caption-space) - clamp(4.5rem, 11vw, 5.75rem)) * 1.7778));
-  width: min(100%, calc((100dvh - var(--spiritual-caption-space) - clamp(4.5rem, 11vw, 5.75rem)) * 1.7778));
-  max-width: 100%;
-  max-height: calc(100svh - var(--spiritual-caption-space) - clamp(4.5rem, 11vw, 5.75rem));
-  max-height: calc(100dvh - var(--spiritual-caption-space) - clamp(4.5rem, 11vw, 5.75rem));
+  width: 100%;
   flex: 1 1 auto;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-  padding: 0 clamp(0.75rem, 3vw, 2rem);
+  align-items: stretch;
+  justify-content: stretch;
+  margin: 0;
+  padding: 0;
   opacity: 0;
   transition: opacity 600ms ease;
-  overflow: visible;
+  overflow: hidden;
 }
 
 .spiritual-cover__canvas--ready {
@@ -296,8 +330,6 @@ html.home-route .spiritual-cover__canvas {
   display: block;
   width: 100%;
   height: 100%;
-  max-width: 100%;
-  max-height: 100%;
 }
 
 /* Legacy WordPress clone — isolated from new site */

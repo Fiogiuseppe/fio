@@ -23,7 +23,7 @@ export function SpiritualDesignCover() {
 
       svg.setAttribute('role', 'img');
       svg.setAttribute('aria-label', 'Home cover artwork');
-      svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+      svg.setAttribute('preserveAspectRatio', 'xMidYMid slice');
       svg.classList.add('spiritual-cover__svg');
       svg.removeAttribute('width');
       svg.removeAttribute('height');

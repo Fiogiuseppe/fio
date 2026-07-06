@@ -1,6 +1,6 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { UreesBannerCarousel } from '@/components/urees/UreesBannerCarousel';
+import { UreesHeroBanner } from '@/components/urees/UreesHeroBanner';
 import { UreesProductGrid } from '@/components/urees/UreesProductGrid';
 import { ureesHomeCopy } from '@/data/urees/content';
 import { formatUreesDate, ureesSite } from '@/data/urees';
@@ -16,16 +16,11 @@ export function UreesHomeSections({ products }: UreesHomeSectionsProps) {
 
   return (
     <>
-      <section className="urees-hero-banner">
-        <Image
-          src={homepage.heroImage}
-          alt="Urees"
-          fill
-          priority
-          className="object-cover"
-          sizes="100vw"
-        />
-      </section>
+      <UreesHeroBanner
+        image={homepage.heroImage}
+        headline={homepage.hero.headline}
+        cta={homepage.hero.cta}
+      />
 
       <section className="urees-section" id={ureesHomeCopy.firstDrop.id}>
         <div className="urees-page-width">
@@ -113,6 +108,18 @@ export function UreesHomeSections({ products }: UreesHomeSectionsProps) {
             {ureesHomeCopy.instagram.handle}
           </a>
           <p className="urees-instagram-tagline">{ureesHomeCopy.instagram.tagline}</p>
+        </div>
+      </section>
+
+      <section className="urees-section urees-section--soft" id="newsletter">
+        <div className="urees-page-width urees-copy-block">
+          <h2 className="urees-section__title">Subscribe to our emails</h2>
+          <Link
+            href="/urees/pages/join-our-newsletter-stay-informed-and-get-exclusive-updates"
+            className="urees-button"
+          >
+            Join newsletter
+          </Link>
         </div>
       </section>
     </>

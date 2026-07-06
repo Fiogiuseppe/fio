@@ -21,6 +21,10 @@ export type UreesArticle = {
 
 export type UreesHomepageSections = {
   heroImage: string;
+  hero: {
+    headline: string;
+    cta: { label: string; href: string };
+  };
   dreaming: {
     title: string;
     image: string;

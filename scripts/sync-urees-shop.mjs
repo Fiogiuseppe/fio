@@ -37,8 +37,13 @@ const COLLECTION_HANDLES = [
   'discover-the-best-in-sustainable-fashion-best-sellers-collection-urees',
 ];
 
-const HOMEPAGE_SECTIONS = {
+const HOMEPAGE_FALLBACK = {
   heroImage: `${BASE}/cdn/shop/files/home.jpg?v=1722951171&width=3840`,
+  hero: {
+    headline:
+      'UREES® IS A LUXURY CONSCIOUS BRAND THAT TRANSFORMS USED GARMENTS INTO UNIQUE, HANDCRAFTED PIECES.',
+    cta: { label: 'MANIFESTO', href: '/pages/manifesto' },
+  },
   dreaming: {
     title: 'DREAMING OF OUR PANTS WORN BY THOSE WHO HAVE INSPIRED US.',
     image: `${BASE}/cdn/shop/files/2.png?v=1699637007&width=3840`,
@@ -66,6 +71,23 @@ const HOMEPAGE_SECTIONS = {
     },
   ],
 };
+
+function homepageFromHtml(html) {
+  const heroBlock = html.match(/home\.jpg[\s\S]*?FIRST DROP UREES/i)?.[0] ?? html;
+  const headlineMatch = heroBlock.match(/<h2[^>]*>([\s\S]*?)<\/h2>/i);
+  const headline = headlineMatch?.[1]?.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim()
+    ?? HOMEPAGE_FALLBACK.hero.headline;
+  const ctaMatch = heroBlock.match(/class="button[^"]*"[^>]*>\s*([^<]+)/i);
+  const ctaLabel = ctaMatch?.[1]?.trim() || HOMEPAGE_FALLBACK.hero.cta.label;
+
+  return {
+    ...HOMEPAGE_FALLBACK,
+    hero: {
+      headline,
+      cta: { label: ctaLabel, href: '/pages/manifesto' },
+    },
+  };
+}
 
 async function fetchJson(url) {
   const res = await fetch(url);
@@ -206,6 +228,8 @@ async function main() {
   }
 
   const articles = await syncBlogArticles();
+  const homeHtml = await fetchText(`${BASE}/`);
+  const homepage = homepageFromHtml(homeHtml);
 
   const frontpage = collections.find((c) => c.handle === 'frontpage');
   const bestsellers = collections.find(
@@ -231,7 +255,7 @@ async function main() {
     pages,
     policies,
     articles,
-    homepage: HOMEPAGE_SECTIONS,
+    homepage,
   };
 
   await fs.mkdir(DATA_DIR, { recursive: true });

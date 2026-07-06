@@ -535,7 +535,42 @@
 
 .urees-hero-banner {
   position: relative;
-  min-height: 55vh;
+  min-height: 70vh;
+  overflow: hidden;
+}
+
+.urees-hero-banner__overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: clamp(2rem, 6vw, 4rem);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 20%, rgba(0, 0, 0, 0.5) 100%);
+}
+
+.urees-hero-banner__content {
+  max-width: 42rem;
+  color: #fff;
+}
+
+.urees-hero-banner__headline {
+  margin: 0 0 1.5rem;
+  font-size: clamp(1.25rem, 3.5vw, 2.25rem);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.urees-hero-banner__cta {
+  border-color: #fff;
+  color: #fff;
+  background: transparent;
+}
+
+.urees-hero-banner__cta:hover {
+  background: #fff;
+  color: var(--urees-text);
 }
 
 .urees-carousel {

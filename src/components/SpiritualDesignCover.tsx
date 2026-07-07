@@ -297,6 +297,8 @@ export function SpiritualDesignCover() {
             aria-label="Cacophobia — hidden project"
             title="?"
             onPointerDown={(event) => startDrag('blue-square', event)}
+            onPointerUp={(event) => finishDrag(event.pointerId)}
+            onPointerCancel={(event) => finishDrag(event.pointerId)}
             onClick={(event) => {
               if (suppressBlueSquareClick) event.preventDefault();
             }}

@@ -90,13 +90,45 @@ export function identifyConideElements(svg: SVGSVGElement): SVGGraphicsElement[]
 export function identifyBlueSquareElements(svg: SVGSVGElement): SVGGraphicsElement[] {
   const paths = Array.from(svg.querySelectorAll('path'));
 
-  return paths.filter((path) => {
+  const blueBase = paths.filter((path) => {
     if (!isBlueFill(path.getAttribute('fill') || '')) return false;
     const box = path.getBBox();
     const cx = box.x + box.width / 2;
     const cy = box.y + box.height / 2;
     return cx > 1100 && cy > 700 && box.width > 200 && box.height > 200;
   });
+
+  if (blueBase.length === 0) return [];
+
+  // Expand selection to include the eye/logo paths sitting inside the blue square,
+  // regardless of their fill colour.
+  let left = Infinity;
+  let top = Infinity;
+  let right = -Infinity;
+  let bottom = -Infinity;
+
+  for (const el of blueBase) {
+    const b = el.getBBox();
+    left = Math.min(left, b.x);
+    top = Math.min(top, b.y);
+    right = Math.max(right, b.x + b.width);
+    bottom = Math.max(bottom, b.y + b.height);
+  }
+
+  const pad = 90;
+  left -= pad;
+  top -= pad;
+  right += pad;
+  bottom += pad;
+
+  const inSquare = (path: SVGPathElement) => {
+    const b = path.getBBox();
+    const cx = b.x + b.width / 2;
+    const cy = b.y + b.height / 2;
+    return cx >= left && cx <= right && cy >= top && cy <= bottom;
+  };
+
+  return paths.filter(inSquare);
 }
 
 export function wrapElementsInDragGroup(

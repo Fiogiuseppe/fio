@@ -1,0 +1,86 @@
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .stack {
+    gap: 2.5rem;
+  }
+}
+
+.frame {
+  margin-inline: auto;
+}
+
+.landscape {
+  width: min(100%, 94vw);
+}
+
+@media (min-width: 768px) {
+  .landscape {
+    width: 85vw;
+    max-width: 85vw;
+  }
+}
+
+.portrait {
+  width: min(100%, 88vw);
+  max-width: 28rem;
+}
+
+@media (min-width: 768px) {
+  .portrait {
+    width: auto;
+    max-width: min(42vw, 28rem);
+  }
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.portraitImage {
+  width: 100%;
+  max-height: min(78vh, 52rem);
+  object-fit: contain;
+}
+
+@media (min-width: 768px) {
+  .portraitImage {
+    width: auto;
+    max-width: 100%;
+    margin-inline: auto;
+  }
+}
+
+.coverFrame {
+  position: relative;
+  overflow: hidden;
+  background: rgb(10 10 10 / 0.05);
+}
+
+.coverLandscape {
+  aspect-ratio: 16 / 9;
+}
+
+.coverPortrait {
+  aspect-ratio: 4 / 5;
+}
+
+.videoFrame {
+  position: relative;
+  overflow: hidden;
+  background: rgb(10 10 10 / 0.05);
+}
+
+.videoLandscape {
+  aspect-ratio: 16 / 9;
+}
+
+.videoPortrait {
+  aspect-ratio: 4 / 3;
+}

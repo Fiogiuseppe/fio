@@ -192,10 +192,8 @@ export default async function WorkDetailPage({ params }: Props) {
       </div>
 
       {project.media && project.media.length > 0 && (
-        <div className="border-t border-ink/10 px-6 py-16 md:px-10 md:py-24">
-          <div className="mx-auto max-w-5xl">
-            <ProjectMediaBlock items={project.media} title={project.title} />
-          </div>
+        <div className="border-t border-ink/10 py-16 md:py-24">
+          <ProjectMediaBlock items={project.media} title={project.title} />
         </div>
       )}
 

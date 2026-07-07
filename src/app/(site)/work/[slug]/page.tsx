@@ -139,13 +139,21 @@ export default async function WorkDetailPage({ params }: Props) {
         >
           <div>
             <TypographyLabel as="dt">Client</TypographyLabel>
-            <TypographyBody as="dd" measure={false} className={editorial.stack.labelToTitle}>
+            <TypographyBody
+              as="dd"
+              measure={false}
+              className={`${editorial.stack.labelToTitle} text-[1.0625rem] font-bold text-ink md:text-lg`}
+            >
               {project.client}
             </TypographyBody>
           </div>
           <div>
             <TypographyLabel as="dt">Role</TypographyLabel>
-            <TypographyBody as="dd" measure={false} className={editorial.stack.labelToTitle}>
+            <TypographyBody
+              as="dd"
+              measure={false}
+              className={`${editorial.stack.labelToTitle} text-[1.0625rem] font-bold text-ink md:text-lg`}
+            >
               {project.role}
             </TypographyBody>
           </div>

@@ -215,7 +215,7 @@ export function SpiritualDesignCover() {
 
       svg.setAttribute('role', 'img');
       svg.setAttribute('aria-label', 'Home cover artwork');
-      svg.setAttribute('preserveAspectRatio', 'xMidYMid slice');
+      svg.setAttribute('preserveAspectRatio', 'xMinYMax slice');
       svg.classList.add('spiritual-cover__svg');
       svg.removeAttribute('width');
       svg.removeAttribute('height');
@@ -229,6 +229,11 @@ export function SpiritualDesignCover() {
       setUreesOffset(storedUrees);
 
       dragLayersRef.current = setupCoverDragLayers(svg);
+      const ureesLayer = dragLayersRef.current.urees;
+      if (ureesLayer) {
+        // Stamp is rendered via the extracted overlay; keep SVG paths for hotspot math only.
+        ureesLayer.style.visibility = 'hidden';
+      }
       setLoaded(true);
       window.dispatchEvent(new Event('spiritual-cover-ready'));
 

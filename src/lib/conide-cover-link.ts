@@ -1,6 +1,6 @@
 export const CONIDE_HREF = '/the-conide';
 
-import { identifyBlueSquareElements, identifyUreesElements } from '@/lib/spiritual-cover-drag';
+import { identifyBlueSquareElements } from '@/lib/spiritual-cover-drag';
 
 export type CoverHotspot = {
   left: number;
@@ -275,33 +275,20 @@ export function measureBlueSquareHotspot(
 export function measureUreesHotspot(
   svg: SVGSVGElement,
   container: HTMLElement
-): CoverHotspot | null {
+): CoverHotspot {
   const fromGroup = measureFromDragGroup(svg, 'urees', 12);
   if (fromGroup) return fromGroup;
 
-  const frame = svg.closest('.spiritual-cover__frame')?.getBoundingClientRect();
-  if (!frame) return null;
-
-  const elements = identifyUreesElements(svg);
-  const union = unionClientRects(elements, 12);
-  if (union) {
-    return {
-      left: union.left - frame.left,
-      top: union.top - frame.top,
-      width: union.right - union.left,
-      height: union.bottom - union.top,
-    };
-  }
-
   const width = container.clientWidth;
   const height = container.clientHeight;
-  const size = Math.min(width, height) * 0.14;
+  const stamp = Math.min(width, height) * 0.1;
+  const inset = Math.min(width, height) * 0.045;
 
   return {
-    left: width * 0.22,
-    top: height * 0.72,
-    width: size,
-    height: size * 0.72,
+    left: inset,
+    top: height - inset - stamp,
+    width: stamp,
+    height: stamp,
   };
 }
 

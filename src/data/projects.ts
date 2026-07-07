@@ -198,10 +198,10 @@ export const projects: Project[] = [
     heroImage: '/work/menomale/menomale-01.jpg',
     workCoverImage: '/work/menomale-cover.jpg',
     heroLogo: {
-      src: '/work/menomale/menomale-logo.png',
-      width: 1023,
-      height: 1024,
-      alt: 'Menomale ornate M logotype',
+      src: '/work/menomale/menomale-hero-logotype.jpg',
+      width: 1349,
+      height: 1320,
+      alt: 'Menomale logotype — ornate M and MENOMALE wordmark',
     },
     gallery: [
       '/work/menomale/menomale-01.jpg',
@@ -243,15 +243,7 @@ export const projects: Project[] = [
       },
       {
         type: 'image',
-        src: '/work/menomale/menomale-07.jpg',
-        alt: 'Menomale logotype — ornate M inspired by Naples heraldic shields',
-        fit: 'contain',
-        width: 1440,
-        height: 1795,
-      },
-      {
-        type: 'image',
-        src: '/work/menomale/menomale-applications.jpg',
+        src: '/work/menomale/menomale-posters-brick.jpg',
         alt: 'Menomale applications — flag, apparel, ceramics, packaging and Instagram identity system',
         fit: 'contain',
         width: 1440,

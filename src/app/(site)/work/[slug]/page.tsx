@@ -55,7 +55,7 @@ export default async function WorkDetailPage({ params }: Props) {
             alt={heroLogo.alt ?? project.title}
             width={heroLogo.width}
             height={heroLogo.height}
-            className="h-auto w-full max-w-[min(72vw,22rem)] object-contain"
+            className="h-auto w-full max-w-[min(88vw,28rem)] object-contain"
             priority
             sizes="(max-width: 768px) 72vw, 22rem"
           />
@@ -142,7 +142,7 @@ export default async function WorkDetailPage({ params }: Props) {
             <TypographyBody
               as="dd"
               measure={false}
-              className={`${editorial.stack.labelToTitle} text-[1.0625rem] font-bold text-ink md:text-lg`}
+              className={`${editorial.stack.labelToTitle} !text-xl !font-bold leading-snug text-ink md:!text-2xl`}
             >
               {project.client}
             </TypographyBody>
@@ -152,7 +152,7 @@ export default async function WorkDetailPage({ params }: Props) {
             <TypographyBody
               as="dd"
               measure={false}
-              className={`${editorial.stack.labelToTitle} text-[1.0625rem] font-bold text-ink md:text-lg`}
+              className={`${editorial.stack.labelToTitle} !text-xl !font-bold leading-snug text-ink md:!text-2xl`}
             >
               {project.role}
             </TypographyBody>

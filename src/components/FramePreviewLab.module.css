@@ -1,0 +1,98 @@
+.root {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.controls {
+  display: grid;
+  gap: 1rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.label {
+  font-family: var(--font-helvetica);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgb(10 10 10 / 0.45);
+}
+
+.select {
+  border: 1px solid rgb(10 10 10 / 0.14);
+  background: #fff;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-helvetica);
+  font-size: 0.875rem;
+}
+
+.toggleRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.toggle {
+  border: 1px solid rgb(10 10 10 / 0.14);
+  background: transparent;
+  padding: 0.85rem 1rem;
+  font-family: var(--font-helvetica);
+  font-size: 0.8125rem;
+  cursor: pointer;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease;
+}
+
+.toggle:hover {
+  border-color: rgb(10 10 10 / 0.35);
+}
+
+.toggleActive {
+  border-color: var(--color-ink);
+  background: rgb(10 10 10 / 0.04);
+}
+
+.previewShell {
+  border: 1px solid rgb(10 10 10 / 0.1);
+  background: #fafafa;
+  padding: 1.25rem;
+}
+
+.previewCaption {
+  margin: 0 0 1rem;
+  font-family: var(--font-helvetica);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  color: rgb(10 10 10 / 0.55);
+}
+
+.preview {
+  position: relative;
+  width: min(100%, 28rem);
+  margin-inline: auto;
+  aspect-ratio: 297 / 420;
+  overflow: hidden;
+  background: #ececec;
+}
+
+.artwork {
+  object-fit: contain;
+  object-position: center;
+}
+
+.note {
+  margin: 0;
+  font-family: var(--font-helvetica);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  color: rgb(10 10 10 / 0.55);
+}
+
+.note code {
+  font-size: 0.75rem;
+}

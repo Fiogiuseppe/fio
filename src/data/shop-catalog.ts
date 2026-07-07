@@ -3,12 +3,12 @@ import type { ProductFormat } from '@/lib/types';
 import { getShopProducts } from '@/data/products';
 
 export type ShopGroup = ProductFormat;
-export type ShopGroupFilter = 'all' | ShopGroup;
+export type ShopGroupFilter = 'all' | 'printed' | 'handpainted';
 
 export const SHOP_GROUP_OPTIONS: Array<{ value: ShopGroupFilter; label: string }> = [
   { value: 'all', label: 'All' },
-  { value: 'handmade', label: 'Handmade' },
-  { value: 'digital', label: 'Digital' },
+  { value: 'printed', label: 'Printed' },
+  { value: 'handpainted', label: 'Handpainted' },
 ];
 
 export type ShopSection = {
@@ -23,8 +23,13 @@ export type ShopSection = {
 export const SKIN_CANVAS_COLLECTION_TAG = 'skin-is-the-new-canvas';
 export const HANDPAINTED_COLLECTION_TAG = 'handpainted';
 
+export function shopGroupLabel(group: ShopGroup): string {
+  return group === 'digital' ? 'Printed' : 'Handpainted';
+}
+
 export function parseShopGroupFilter(value?: string | null): ShopGroupFilter {
-  if (value === 'handmade' || value === 'digital') return value;
+  if (value === 'printed' || value === 'digital') return 'printed';
+  if (value === 'handpainted' || value === 'handmade') return 'handpainted';
   return 'all';
 }
 
@@ -57,54 +62,30 @@ export function getShopSections(filter: ShopGroupFilter = 'all'): ShopSection[] 
   const visceralPoems = shopProducts.filter((product) => product.category === 'visceral-poems');
   const handmadePoems = productsForGroup(visceralPoems, 'handmade');
   const digitalPoems = productsForGroup(visceralPoems, 'digital');
+  const printedProducts = [...skinCanvas, ...digitalPoems];
+  const handpaintedProducts = [...allHandpainted, ...handmadePoems];
   const sections: ShopSection[] = [];
 
-  if (filter === 'all' || filter === 'handmade') {
-    if (allHandpainted.length > 0) {
-      sections.push({
-        id: 'handpainted',
-        title: 'Handpainted',
-        description: 'Original handpainted works — shoes, studies and one-of-one pieces.',
-        group: 'handmade',
-        products: allHandpainted,
-      });
-    }
-
-    if (handmadePoems.length > 0) {
-      sections.push({
-        id: 'handmade-visceral-poems',
-        title: 'Visceral Poems',
-        description:
-          'Handmade ink originals from @visceralpoems — from €30 without frame, €60 with frame.',
-        group: 'handmade',
-        products: handmadePoems,
-      });
-    }
+  if ((filter === 'all' || filter === 'printed') && printedProducts.length > 0) {
+    sections.push({
+      id: 'printed',
+      title: 'Printed',
+      description:
+        'Signed prints — photography, Skin is the New Canvas with Claudia Sahuquillo, and Visceral Poems from @visceralpoems.',
+      group: 'digital',
+      products: printedProducts,
+    });
   }
 
-  if (filter === 'all' || filter === 'digital') {
-    if (skinCanvas.length > 0) {
-      sections.push({
-        id: 'skin-is-the-new-canvas',
-        title: 'Skin is the New Canvas',
-        description:
-          'Photography with Claudia Sahuquillo — body as canvas, shot by Giuseppe Fioretti. Signed digital prints.',
-        group: 'digital',
-        brandLine: 'Giuseppe Fioretti × Claudia Sahuquillo',
-        products: skinCanvas,
-      });
-    }
-
-    if (digitalPoems.length > 0) {
-      sections.push({
-        id: 'digital-visceral-poems',
-        title: 'Visceral Poems',
-        description:
-          'Signed digital prints from @visceralpoems — from €10 without frame, €40 with frame.',
-        group: 'digital',
-        products: digitalPoems,
-      });
-    }
+  if ((filter === 'all' || filter === 'handpainted') && handpaintedProducts.length > 0) {
+    sections.push({
+      id: 'handpainted',
+      title: 'Handpainted',
+      description:
+        'Original handpainted works and handmade ink originals from @visceralpoems — from €30 without frame, €60 with frame.',
+      group: 'handmade',
+      products: handpaintedProducts,
+    });
   }
 
   return sections;

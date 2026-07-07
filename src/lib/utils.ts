@@ -93,11 +93,12 @@ export function productBadgeLabel(product: Product, group?: ShopGroup) {
     return 'Request piece';
   }
   if (isVisceralPoemProduct(product.category)) {
-    if (group === 'digital') return 'Digital print';
-    if (group === 'handmade') return 'Handmade';
-    return 'Handmade · Digital';
+    if (group === 'digital') return 'Printed';
+    if (group === 'handmade') return 'Handpainted';
+    return 'Handpainted · Printed';
   }
-  if (product.formats?.includes('digital')) return 'Digital print';
+  if (product.formats?.includes('digital')) return 'Printed';
+  if (product.tags?.includes('handpainted')) return 'Handpainted';
   return 'Add to cart';
 }
 

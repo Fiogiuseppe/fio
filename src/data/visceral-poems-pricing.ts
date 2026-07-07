@@ -1,12 +1,12 @@
 export const VISCERAL_POEMS_PRICING = {
   handmade: {
-    label: 'Handmade',
+    label: 'Handpainted',
     withoutFrame: 30,
     withFrame: 60,
     frameAddon: 30,
   },
   digital: {
-    label: 'Digital print',
+    label: 'Printed',
     withoutFrame: 10,
     withFrame: 40,
     frameAddon: 30,

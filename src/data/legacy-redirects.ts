@@ -12,7 +12,7 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
   visceralpoems: '/shop',
   'art-by-giuseppe-fioretti': '/shop',
   the_conide: '/the-conide',
-  'skin-is-the-new-canvas': '/shop#skin-is-the-new-canvas',
+  'skin-is-the-new-canvas': '/shop#printed',
   'pee-pee': '/work/pee-pee',
   'tutti-in-uno': '/shop/tutti-in-uno',
   eyes: '/shop/eyes',

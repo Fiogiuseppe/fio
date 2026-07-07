@@ -8,7 +8,7 @@ import styles from './shop.module.css';
 export const metadata: Metadata = {
   title: 'Shop — Giuseppe Fioretti',
   description:
-    'Handmade paintings, Skin is the New Canvas with Claudia Sahuquillo, handpainted works, and Visceral Poems originals plus signed digital prints.',
+    'Printed and handpainted works — Skin is the New Canvas photography, Visceral Poems, and original pieces by Giuseppe Fioretti.',
 };
 
 type ShopPageProps = {
@@ -36,9 +36,6 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
           <div className={styles.pageWidth}>
             <div className={styles.sectionHead}>
               <h2 className={styles.sectionTitle}>{section.title}</h2>
-              <p className={styles.sectionGroup}>
-                {section.group === 'handmade' ? 'Handmade' : 'Digital'}
-              </p>
               {section.description ? (
                 <p className={styles.sectionDescription}>{section.description}</p>
               ) : null}

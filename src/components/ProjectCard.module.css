@@ -2,6 +2,11 @@
   color: inherit;
 }
 
+.card {
+  position: relative;
+  display: block;
+}
+
 .media {
   position: relative;
   overflow: hidden;
@@ -33,10 +38,10 @@
 
 .awardBadges {
   position: absolute;
-  z-index: 3;
-  left: 50%;
+  z-index: 4;
+  right: clamp(1rem, 3vw, 2rem);
   bottom: clamp(6.5rem, 20%, 9.5rem);
-  transform: translateX(-50%);
+  left: auto;
 }
 
 .media_large .awardBadges {

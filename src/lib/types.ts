@@ -59,7 +59,7 @@ export interface Project {
     label: string;
     href: string;
     /** Sticker-style award marks overlaid on work index media */
-    badges?: { src: string; alt: string }[];
+    badges?: { src: string; alt: string; href: string }[];
   };
   /** When set, Work card links out instead of opening a project page */
   externalUrl?: string;

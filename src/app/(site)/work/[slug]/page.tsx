@@ -80,7 +80,7 @@ export default async function WorkDetailPage({ params }: Props) {
         {project.award?.badges?.length ? (
           <AwardBadges
             badges={project.award.badges}
-            className="pointer-events-none absolute bottom-[clamp(6.5rem,22%,10rem)] left-1/2 z-20 -translate-x-1/2"
+            className="absolute right-[clamp(1rem,3vw,2rem)] bottom-[clamp(6.5rem,22%,10rem)] z-20"
           />
         ) : null}
 

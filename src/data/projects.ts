@@ -56,8 +56,16 @@ export const projects: Project[] = [
       label: 'LAUS Award 2020 / Wood Pencil 2020',
       href: 'https://www.adg-fad.org/es/laus/proyecto/rebranding-para-desigual',
       badges: [
-        { src: '/work/awards/laus-bronze-2020.png', alt: 'LAUS Bronze 2020' },
-        { src: '/work/awards/wood-pencil-2020.png', alt: 'D&AD Wood Pencil 2020' },
+        {
+          src: '/work/awards/laus-bronze-2020.png',
+          alt: 'LAUS Bronze 2020',
+          href: 'https://adg-fad.org/laus/proyecto/rebranding-para-desigual/',
+        },
+        {
+          src: '/work/awards/wood-pencil-2020.png',
+          alt: 'D&AD Wood Pencil 2020',
+          href: 'https://www.dandad.org/work/d-ad-awards-archive/desigual-logo-swap',
+        },
       ],
     },
     credits: 'Desigual Creative Team · Clara Delmuns',

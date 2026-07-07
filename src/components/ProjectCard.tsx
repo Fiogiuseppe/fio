@@ -24,6 +24,7 @@ export function ProjectCard({ project, variant = 'grid', priority }: ProjectCard
   const href = project.externalUrl ?? `/work/${project.slug}`;
   const isExternal = Boolean(project.externalUrl);
   const [titleLineOne, titleLineTwo] = splitOverlayTitle(project.title);
+  const showAwardBadges = Boolean(project.award?.badges?.length && variant !== 'grid');
 
   const sizes =
     variant === 'hero'
@@ -68,10 +69,6 @@ export function ProjectCard({ project, variant = 'grid', priority }: ProjectCard
           />
         )}
 
-        {project.award?.badges?.length && variant !== 'grid' ? (
-          <AwardBadges badges={project.award.badges} className={styles.awardBadges} />
-        ) : null}
-
         <div className={cn(styles.overlay, styles[`overlay_${variant}`])}>
           <Badge className={styles.overlayBadge}>
             {categoryLabel(project.category)} · {project.year}
@@ -91,23 +88,28 @@ export function ProjectCard({ project, variant = 'grid', priority }: ProjectCard
     </article>
   );
 
-  if (isExternal) {
-    return (
-      <a
-        href={href}
-        className={className}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label={`${project.title} — opens in a new tab`}
-      >
-        {content}
-      </a>
-    );
-  }
-
-  return (
-    <Link href={href} className={className}>
-      {content}
-    </Link>
+  const card = (
+    <div className={styles.card}>
+      {isExternal ? (
+        <a
+          href={href}
+          className={className}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${project.title} — opens in a new tab`}
+        >
+          {content}
+        </a>
+      ) : (
+        <Link href={href} className={className}>
+          {content}
+        </Link>
+      )}
+      {showAwardBadges ? (
+        <AwardBadges badges={project.award!.badges!} className={styles.awardBadges} />
+      ) : null}
+    </div>
   );
+
+  return card;
 }

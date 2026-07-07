@@ -5,6 +5,7 @@ import styles from './AwardBadges.module.css';
 type AwardBadge = {
   src: string;
   alt: string;
+  href: string;
 };
 
 type AwardBadgesProps = {
@@ -16,17 +17,25 @@ export function AwardBadges({ badges, className }: AwardBadgesProps) {
   if (!badges.length) return null;
 
   return (
-    <div className={cn(styles.root, className)} aria-hidden>
+    <div className={cn(styles.root, className)}>
       {badges.map((badge) => (
-        <div key={badge.src} className={styles.badge}>
+        <a
+          key={badge.src}
+          href={badge.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.badge}
+          aria-label={badge.alt}
+          title={badge.alt}
+        >
           <Image
             src={badge.src}
-            alt={badge.alt}
+            alt=""
             fill
             className={styles.image}
-            sizes="(max-width: 768px) 18vw, 72px"
+            sizes="(max-width: 768px) 22vw, 88px"
           />
-        </div>
+        </a>
       ))}
     </div>
   );

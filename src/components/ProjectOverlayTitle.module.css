@@ -1,0 +1,10 @@
+.title {
+  display: block;
+  margin: 0;
+  text-wrap: normal;
+}
+
+.line {
+  display: block;
+  white-space: nowrap;
+}

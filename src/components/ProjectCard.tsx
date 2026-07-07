@@ -2,12 +2,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import type { Project } from '@/lib/types';
 import { categoryLabel, cn } from '@/lib/utils';
-import { splitOverlayTitle } from '@/lib/overlay-title';
-import { TypographyCard, TypographyMeta } from '@/components/typography';
+import { TypographyMeta } from '@/components/typography';
 import { Badge } from './Badge';
 import { AwardBadges } from './AwardBadges';
 import { CleanVideoEmbed } from './CleanVideoEmbed';
 import { ProjectNewBadge } from './ProjectNewBadge';
+import { ProjectOverlayTitle } from './ProjectOverlayTitle';
 import styles from './ProjectCard.module.css';
 import badgeStyles from './AwardBadges.module.css';
 
@@ -25,7 +25,6 @@ export function ProjectCard({ project, variant = 'grid', priority }: ProjectCard
   const isSvg = coverImage.endsWith('.svg');
   const href = project.externalUrl ?? `/work/${project.slug}`;
   const isExternal = Boolean(project.externalUrl);
-  const [titleLineOne, titleLineTwo] = splitOverlayTitle(project.title);
   const showAwardBadges = Boolean(project.award?.badges?.length && variant !== 'grid');
 
   const sizes =
@@ -77,16 +76,13 @@ export function ProjectCard({ project, variant = 'grid', priority }: ProjectCard
           <Badge className={styles.overlayBadge}>
             {categoryLabel(project.category)} · {project.year}
           </Badge>
-          <TypographyCard
+          <ProjectOverlayTitle
+            title={project.title}
             className={cn(
               styles.overlayTitle,
               variant === 'hero' ? cn(styles.titleHero, '!leading-[0.86]') : '!leading-[0.9]'
             )}
-          >
-            {titleLineOne}
-            <br />
-            {titleLineTwo}
-          </TypographyCard>
+          />
           {variant !== 'grid' && (
             <TypographyMeta as="p" className={styles.overlaySubtitle}>
               {project.subtitle}

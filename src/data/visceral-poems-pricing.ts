@@ -1,3 +1,6 @@
+export const VISCERAL_POEM_SIZE = 'A3';
+export const VISCERAL_POEM_DIMENSIONS = '29.7 × 42 cm';
+
 export const VISCERAL_POEMS_PRICING = {
   handmade: {
     label: 'Handpainted',
@@ -15,8 +18,16 @@ export const VISCERAL_POEMS_PRICING = {
 
 export type VisceralPoemFormat = keyof typeof VISCERAL_POEMS_PRICING;
 
-export const VISCERAL_POEMS_FRAME_MOCKUP =
-  'https://fiogiuseppe.com/wp-content/uploads/2023/03/Poster-Mockup-Creatlon_2-scaled.jpg';
+const VISCERAL_POEM_STORY_INTRO =
+  'Born in transit — on buses between cities, on planes between countries — each Visceral Poem is a fragment of an inner landscape.';
+
+export function visceralPoemLongStory(format: VisceralPoemFormat) {
+  if (format === 'digital') {
+    return `${VISCERAL_POEM_STORY_INTRO} A3 signed print (${VISCERAL_POEM_DIMENSIONS}). Optional white frame without passepartout — the poster fills the frame edge to edge.`;
+  }
+
+  return `${VISCERAL_POEM_STORY_INTRO} Handpainted A3 original (${VISCERAL_POEM_DIMENSIONS}). Optional white frame without passepartout — the work fills the frame edge to edge.`;
+}
 
 export function visceralPoemPrice(format: VisceralPoemFormat, withFrame: boolean) {
   const tier = VISCERAL_POEMS_PRICING[format];

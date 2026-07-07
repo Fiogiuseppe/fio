@@ -6,6 +6,7 @@ import type { Product } from '@/lib/types';
 import { getProductShopGroups } from '@/data/shop-catalog';
 import {
   VISCERAL_POEMS_PRICING,
+  visceralPoemLongStory,
   visceralPoemPrice,
   type VisceralPoemFormat,
 } from '@/data/visceral-poems-pricing';
@@ -36,7 +37,7 @@ export function VisceralPoemOptions({ product }: VisceralPoemOptionsProps) {
 
   return (
     <div className={styles.root}>
-      <div className={`${styles.preview} ${withFrame ? styles.previewFramed : ''}`}>
+      <div className={styles.preview}>
         {withFrame ? (
           <FramedArtworkPreview
             src={artwork}
@@ -107,7 +108,7 @@ export function VisceralPoemOptions({ product }: VisceralPoemOptionsProps) {
 
         {withFrame ? (
           <p className={styles.frameNote}>
-            Frame preview — white frame, kraft mat, artwork centered. Final piece may vary slightly in size.
+            Frame preview — A3 white frame, no passepartout. The poster fills the frame edge to edge.
           </p>
         ) : null}
 
@@ -120,7 +121,7 @@ export function VisceralPoemOptions({ product }: VisceralPoemOptionsProps) {
         />
 
         <TypographyBody measure={false} className={styles.story}>
-          {product.longStory}
+          {visceralPoemLongStory(format)}
         </TypographyBody>
       </div>
     </div>

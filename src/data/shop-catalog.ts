@@ -91,7 +91,7 @@ export function getShopSectionGroups(filter: ShopGroupFilter = 'all'): ShopSecti
         id: 'printed-visceral-poems',
         title: 'Visceral Poems',
         description:
-          'Signed digital prints from @visceralpoems — from €10 without frame, €40 with frame.',
+          'A3 signed prints from @visceralpoems — from €10 without frame, €40 with white frame (no passepartout).',
         group: 'digital',
         products: digitalPoems,
       });
@@ -125,7 +125,7 @@ export function getShopSectionGroups(filter: ShopGroupFilter = 'all'): ShopSecti
         id: 'handpainted-visceral-poems',
         title: 'Visceral Poems',
         description:
-          'Handmade ink originals from @visceralpoems — from €30 without frame, €60 with frame.',
+          'Handpainted A3 originals from @visceralpoems — from €30 without frame, €60 with white frame (no passepartout).',
         group: 'handmade',
         products: handmadePoems,
       });

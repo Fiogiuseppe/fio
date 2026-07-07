@@ -3,6 +3,7 @@ import { getProductShopGroups } from '@/data/shop-catalog';
 import {
   isVisceralPoemProduct,
   visceralPoemPrice,
+  VISCERAL_POEM_SIZE,
   VISCERAL_POEMS_PRICING,
   type VisceralPoemFormat,
 } from '@/data/visceral-poems-pricing';
@@ -99,7 +100,7 @@ function resolveVisceralPoemCheckout(product: NonNullable<ReturnType<typeof getP
 
   return {
     amount,
-    description: `${formatLabel}${withFrame ? ' · with frame' : ' · without frame'}`,
+    description: `${formatLabel} · ${VISCERAL_POEM_SIZE}${withFrame ? ' · white frame, no passepartout' : ' · without frame'}`,
     metadata: {
       slug: product.slug,
       category: product.category,

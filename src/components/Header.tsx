@@ -14,6 +14,7 @@ import {
 export function Header() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [homeNavCompact, setHomeNavCompact] = useState(false);
   const navRef = useRef<HTMLElement>(null);
   const isHome = pathname === '/';
@@ -82,6 +83,16 @@ export function Header() {
   }, [pathname]);
 
   useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 4);
+    };
+
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [pathname]);
+
+  useEffect(() => {
     const desktop = window.matchMedia('(min-width: 768px)');
     const closeOnDesktop = () => {
       if (desktop.matches) setOpen(false);
@@ -95,7 +106,8 @@ export function Header() {
       className={cn(
         'site-header z-50 w-full',
         isHome ? 'site-header--overlay' : 'site-header--solid sticky top-0',
-        isHome && homeNavCompact && 'site-header--home-compact'
+        isHome && homeNavCompact && 'site-header--home-compact',
+        scrolled && 'site-header--scrolled'
       )}
     >
       <div className="site-header__inner">

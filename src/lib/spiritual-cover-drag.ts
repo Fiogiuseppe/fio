@@ -1,12 +1,13 @@
 export const CONIDE_OFFSET_STORAGE_KEY = 'fio-home-cover-conide-offset';
 export const BLUE_SQUARE_OFFSET_STORAGE_KEY = 'fio-home-cover-blue-square-offset';
+export const UREES_OFFSET_STORAGE_KEY = 'fio-home-cover-urees-offset';
 
 export type CoverOffset = {
   x: number;
   y: number;
 };
 
-export type CoverDragId = 'conide' | 'blue-square';
+export type CoverDragId = 'conide' | 'blue-square' | 'urees';
 
 const ZERO_OFFSET: CoverOffset = { x: 0, y: 0 };
 
@@ -41,7 +42,9 @@ export function saveCoverOffset(key: string, offset: CoverOffset) {
 }
 
 export function storageKeyForDragId(id: CoverDragId) {
-  return id === 'conide' ? CONIDE_OFFSET_STORAGE_KEY : BLUE_SQUARE_OFFSET_STORAGE_KEY;
+  if (id === 'conide') return CONIDE_OFFSET_STORAGE_KEY;
+  if (id === 'blue-square') return BLUE_SQUARE_OFFSET_STORAGE_KEY;
+  return UREES_OFFSET_STORAGE_KEY;
 }
 
 /** Black circle with dot grid — the Conide easter-egg icon. */
@@ -162,6 +165,73 @@ export function identifyBlueSquareElements(svg: SVGSVGElement): SVGGraphicsEleme
   return Array.from(selected);
 }
 
+/** UREES stamp — compact square with eye motif, bottom-left of the cover. */
+export function identifyUreesElements(svg: SVGSVGElement): SVGGraphicsElement[] {
+  const graphics = Array.from(
+    svg.querySelectorAll('path, rect, circle, ellipse, line, polyline, polygon')
+  ) as SVGGraphicsElement[];
+
+  const blueSeeds = graphics.filter((element) => {
+    if (element.tagName !== 'path') return false;
+    const path = element as SVGPathElement;
+    if (!isBlueFill(path.getAttribute('fill') || '')) return false;
+    const box = path.getBBox();
+    const cx = box.x + box.width / 2;
+    const cy = box.y + box.height / 2;
+    return (
+      cx >= 370 &&
+      cx <= 620 &&
+      cy >= 805 &&
+      cy <= 975 &&
+      box.width <= 80 &&
+      box.height <= 80
+    );
+  });
+
+  if (blueSeeds.length < 4) return [];
+
+  let left = Infinity;
+  let top = Infinity;
+  let right = -Infinity;
+  let bottom = -Infinity;
+
+  for (const element of blueSeeds) {
+    const box = element.getBBox();
+    left = Math.min(left, box.x);
+    top = Math.min(top, box.y);
+    right = Math.max(right, box.x + box.width);
+    bottom = Math.max(bottom, box.y + box.height);
+  }
+
+  const pad = 8;
+  const innerLeft = left - pad;
+  const innerTop = top - pad;
+  const innerRight = right + pad;
+  const innerBottom = bottom + pad;
+
+  const isMeasurable = (box: DOMRect) =>
+    box.width >= 0.5 && box.height >= 0.5 && Number.isFinite(box.width) && Number.isFinite(box.height);
+
+  const centerInsideStamp = (box: DOMRect) => {
+    const cx = box.x + box.width / 2;
+    const cy = box.y + box.height / 2;
+    return cx >= innerLeft && cx <= innerRight && cy >= innerTop && cy <= innerBottom;
+  };
+
+  const selected = new Set<SVGGraphicsElement>();
+
+  for (const element of graphics) {
+    const box = element.getBBox();
+    if (!isMeasurable(box)) continue;
+
+    const fill = element.getAttribute('fill') || '';
+    if (!isBlueFill(fill) && !isBlackFill(fill)) continue;
+    if (centerInsideStamp(box)) selected.add(element);
+  }
+
+  return Array.from(selected);
+}
+
 export function wrapElementsInDragGroup(
   svg: SVGSVGElement,
   elements: SVGGraphicsElement[],
@@ -222,6 +292,13 @@ export function setupCoverDragLayers(svg: SVGSVGElement) {
   if (squareGroup) {
     applyCoverGroupOffset(svg, squareGroup, loadCoverOffset(BLUE_SQUARE_OFFSET_STORAGE_KEY));
     layers['blue-square'] = squareGroup;
+  }
+
+  const ureesElements = identifyUreesElements(svg);
+  const ureesGroup = wrapElementsInDragGroup(svg, ureesElements, 'urees');
+  if (ureesGroup) {
+    applyCoverGroupOffset(svg, ureesGroup, loadCoverOffset(UREES_OFFSET_STORAGE_KEY));
+    layers.urees = ureesGroup;
   }
 
   return layers;

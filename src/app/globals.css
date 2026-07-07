@@ -89,6 +89,7 @@ a {
   border: 0;
   background: transparent;
   backdrop-filter: none;
+  transition: background-color 220ms ease, box-shadow 220ms ease;
 }
 
 .site-header--overlay {
@@ -98,6 +99,32 @@ a {
   border: 0;
   background: transparent;
   pointer-events: none;
+  transition: background-color 220ms ease, box-shadow 220ms ease;
+}
+
+.site-header--scrolled {
+  background-color: var(--color-page);
+  box-shadow: 0 1px 0 rgb(10 10 10 / 0.06);
+}
+
+.site-header--overlay.site-header--scrolled {
+  position: fixed;
+  inset: 0 auto auto 0;
+  width: 100%;
+  pointer-events: none;
+}
+
+.site-header--scrolled .site-header__mobile {
+  background-color: var(--color-page);
+}
+
+html.contact-route .site-header--scrolled {
+  background-color: var(--color-ink);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 0.08);
+}
+
+html.contact-route .site-header--scrolled .site-header__mobile {
+  background-color: var(--color-ink);
 }
 
 @media (min-width: 768px) and (max-width: 1100px) {
@@ -425,13 +452,15 @@ html.home-route .spiritual-cover__svg {
 
 .spiritual-cover__canvas--dragging-conide .spiritual-cover__drag-layer[data-cover-drag='conide'],
 .spiritual-cover__canvas--dragging-blue-square
-  .spiritual-cover__drag-layer[data-cover-drag='blue-square'] {
+  .spiritual-cover__drag-layer[data-cover-drag='blue-square'],
+.spiritual-cover__canvas--dragging-urees .spiritual-cover__drag-layer[data-cover-drag='urees'] {
   cursor: grabbing;
 }
 
 .spiritual-cover__canvas--dragging-conide .spiritual-cover__drag-layer[data-cover-drag='conide']:active,
 .spiritual-cover__canvas--dragging-blue-square
-  .spiritual-cover__drag-layer[data-cover-drag='blue-square']:active {
+  .spiritual-cover__drag-layer[data-cover-drag='blue-square']:active,
+.spiritual-cover__canvas--dragging-urees .spiritual-cover__drag-layer[data-cover-drag='urees']:active {
   cursor: grabbing;
 }
 
@@ -468,6 +497,28 @@ html.home-route .spiritual-cover__svg {
 
 .spiritual-cover__blue-square-hotspot:hover,
 .spiritual-cover__blue-square-hotspot:focus-visible {
+  background: rgb(0 31 255 / 0.08);
+  outline: 2px solid var(--color-blue);
+  outline-offset: 2px;
+}
+
+.spiritual-cover__urees-hotspot {
+  position: absolute;
+  z-index: 4;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  cursor: pointer;
+  text-decoration: none;
+  touch-action: none;
+}
+
+.spiritual-cover__urees-hotspot--dragging {
+  cursor: grabbing;
+}
+
+.spiritual-cover__urees-hotspot:hover,
+.spiritual-cover__urees-hotspot:focus-visible {
   background: rgb(0 31 255 / 0.08);
   outline: 2px solid var(--color-blue);
   outline-offset: 2px;

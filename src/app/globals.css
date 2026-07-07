@@ -473,56 +473,6 @@ html.home-route .spiritual-cover__svg {
   outline-offset: 2px;
 }
 
-.spiritual-cover__title-overlay {
-  pointer-events: auto;
-  cursor: text;
-}
-
-.spiritual-cover__title-hit {
-  position: absolute;
-  z-index: 4;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: text;
-  pointer-events: auto;
-}
-
-.spiritual-cover__title-hit:hover,
-.spiritual-cover__title-hit:focus-visible {
-  outline: 1px dashed rgb(10 10 10 / 0.18);
-  outline-offset: 4px;
-}
-
-.spiritual-cover__title-editor {
-  position: absolute;
-  inset: 0;
-  z-index: 5;
-  pointer-events: none;
-}
-
-.spiritual-cover__title-input {
-  position: absolute;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  color: var(--ink);
-  font-family: var(--font-quartz);
-  font-weight: 400;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  pointer-events: auto;
-  caret-color: var(--color-blue);
-}
-
-.spiritual-cover__title-input:focus {
-  outline: 1px dashed rgb(0 31 255 / 0.45);
-  outline-offset: 2px;
-}
-
 /* Legacy WordPress clone — isolated from new site */
 .legacy-archive {
   --cream: #e6e0d5;

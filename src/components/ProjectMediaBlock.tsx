@@ -13,11 +13,11 @@ export function ProjectMediaBlock({ items, title }: ProjectMediaBlockProps) {
   return (
     <div className="space-y-6 md:space-y-10">
       {items.map((item) => {
-        const frameClass = item.fullWidth
-          ? 'relative aspect-[16/9] w-full overflow-hidden bg-ink/5'
-          : 'relative aspect-[4/3] overflow-hidden bg-ink/5';
-
         if (item.type === 'video') {
+          const frameClass = item.fullWidth
+            ? 'relative aspect-[16/9] w-full overflow-hidden bg-ink/5'
+            : 'relative aspect-[4/3] overflow-hidden bg-ink/5';
+
           return (
             <div key={item.youtubeId} className={frameClass}>
               <CleanVideoEmbed
@@ -33,6 +33,27 @@ export function ProjectMediaBlock({ items, title }: ProjectMediaBlockProps) {
 
         const isGif = item.type === 'gif' || item.src.endsWith('.gif');
         const isSvg = item.src.endsWith('.svg');
+        const useContain = item.fit === 'contain';
+
+        if (useContain) {
+          return (
+            <div key={item.src} className="w-full bg-ink/5">
+              <Image
+                src={item.src}
+                alt={item.alt ?? title}
+                width={item.width ?? 1440}
+                height={item.height ?? 1795}
+                className="h-auto w-full"
+                sizes="100vw"
+                unoptimized={isGif || isSvg}
+              />
+            </div>
+          );
+        }
+
+        const frameClass = item.fullWidth
+          ? 'relative aspect-[16/9] w-full overflow-hidden bg-ink/5'
+          : 'relative aspect-[4/3] overflow-hidden bg-ink/5';
 
         return (
           <div key={item.src} className={frameClass}>

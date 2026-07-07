@@ -44,11 +44,18 @@ export default async function WorkDetailPage({ params }: Props) {
 
   const isGif = project.heroImage.endsWith('.gif');
   const isSvg = project.heroImage.endsWith('.svg');
+  const heroContain = project.heroImageFit === 'contain';
   const [titleLineOne, titleLineTwo] = splitOverlayTitle(project.title);
 
   return (
     <article>
-      <div className="relative aspect-[16/9] w-full overflow-hidden bg-ink/5 md:aspect-[21/9]">
+      <div
+        className={
+          heroContain
+            ? 'relative w-full overflow-hidden bg-ink/5'
+            : 'relative aspect-[16/9] w-full overflow-hidden bg-ink/5 md:aspect-[21/9]'
+        }
+      >
         {project.heroVideo?.mp4Src ? (
           <video
             className="absolute inset-0 h-full w-full bg-black object-contain"
@@ -65,6 +72,17 @@ export default async function WorkDetailPage({ params }: Props) {
             poster={project.heroVideo.poster ?? project.heroImage}
             mode="cinema"
             className="absolute inset-0 h-full w-full"
+          />
+        ) : heroContain ? (
+          <Image
+            src={project.heroImage}
+            alt={project.title}
+            width={project.heroImageWidth ?? 1440}
+            height={project.heroImageHeight ?? 1795}
+            className="h-auto w-full"
+            priority
+            sizes="100vw"
+            unoptimized={isGif || isSvg}
           />
         ) : (
           <Image

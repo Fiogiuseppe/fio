@@ -22,6 +22,10 @@ export type ProjectMedia =
       src: string;
       alt?: string;
       fullWidth?: boolean;
+      /** Show full image without cropping (default: cover in fixed frame) */
+      fit?: 'contain' | 'cover';
+      width?: number;
+      height?: number;
     }
   | {
       type: 'video';
@@ -48,6 +52,10 @@ export interface Project {
   heroImage: string;
   /** Optional square cover for Work index grid — detail page keeps heroImage */
   workCoverImage?: string;
+  /** When contain, hero shows full image without cropping */
+  heroImageFit?: 'contain' | 'cover';
+  heroImageWidth?: number;
+  heroImageHeight?: number;
   /** Optional YouTube hero — ambient loop on work index; poster used as fallback image */
   heroVideo?: ProjectHeroVideo;
   gallery: string[];

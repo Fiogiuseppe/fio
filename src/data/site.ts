@@ -72,7 +72,7 @@ export const OTHER_WORKS = [
   },
   {
     href: '/work/menomale',
-    image: `${WP}/2024/06/Screenshot-2024-06-19-at-12.00.11.png`,
+    image: '/work/menomale-cover.jpg',
     alt: 'Menomale pizza logotype',
     external: false,
   },

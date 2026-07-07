@@ -55,12 +55,6 @@ export const PROJECT_PAGES: ProjectPage[] = [
     image: 'https://fiogiuseppe.com/wp-content/uploads/2025/07/Giuseppe_Fioretti_2.png',
   },
   {
-    slug: 'cacophobia',
-    title: 'Cacophobia',
-    description: 'Art project by Giuseppe Fioretti.',
-    image: 'https://fiogiuseppe.com/wp-content/uploads/2021/05/IG-202117-scaled.jpg',
-  },
-  {
     slug: 'the_conide',
     title: 'The Conide',
     description: 'On the importance of the spectator in the art world.',

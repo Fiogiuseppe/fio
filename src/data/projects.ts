@@ -227,10 +227,10 @@ export const projects: Project[] = [
       },
       {
         type: 'image',
-        src: '/work/menomale/menomale-04.jpg',
-        alt: 'Menomale brand claim — Thank goodness Napoli exists!',
+        src: '/work/menomale/menomale-claim-campaign.jpg',
+        alt: 'Menomale brand claim and campaign — Thank goodness Napoli exists! and founders with Neapolitan pizza',
         fit: 'contain',
-        width: 1440,
+        width: 2880,
         height: 1795,
       },
       {
@@ -247,14 +247,6 @@ export const projects: Project[] = [
         alt: 'Menomale applications — flag, apparel, ceramics, packaging and Instagram identity system',
         fit: 'contain',
         width: 2880,
-        height: 1795,
-      },
-      {
-        type: 'image',
-        src: '/work/menomale/menomale-10.jpg',
-        alt: 'Menomale campaign — founders with Neapolitan pizza at the oven',
-        fit: 'contain',
-        width: 1440,
         height: 1795,
       },
     ],

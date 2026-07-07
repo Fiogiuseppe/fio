@@ -70,6 +70,8 @@ export function animateSpiritualDesignSvg(svg: SVGSVGElement) {
   let delay = 500;
 
   bluePaths.forEach((path) => {
+    if (path.closest('[data-cover-drag]')) return;
+
     const length = prepareStrokePath(path, BLUE, '2.4');
     if (!length) return;
 

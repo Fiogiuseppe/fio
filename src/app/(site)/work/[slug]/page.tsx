@@ -49,13 +49,13 @@ export default async function WorkDetailPage({ params }: Props) {
   return (
     <article>
       {heroLogo ? (
-        <div className="flex w-full justify-center bg-page px-6 py-16 md:px-10 md:py-24">
+        <div className="flex w-full justify-center bg-page px-6 py-20 md:px-10 md:py-28">
           <Image
             src={heroLogo.src}
             alt={heroLogo.alt ?? project.title}
             width={heroLogo.width}
             height={heroLogo.height}
-            className="h-auto w-full max-w-[min(88vw,24rem)] object-contain"
+            className="h-auto w-full max-w-[min(90vw,22rem)] object-contain md:max-w-[min(72vw,26rem)]"
             priority
             sizes="(max-width: 768px) 72vw, 22rem"
           />

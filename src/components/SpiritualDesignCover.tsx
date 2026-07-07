@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { CACOPHOBIA_HREF } from '@/data/cacophobia';
 import { UREES_BRAND } from '@/data/products';
@@ -9,7 +10,6 @@ import {
   conideHotspotIsRound,
   measureBlueSquareHotspot,
   measureConideHotspot,
-  measureUreesHotspot,
   type CoverHotspot,
 } from '@/lib/conide-cover-link';
 import {
@@ -25,6 +25,20 @@ import {
 import { animateSpiritualDesignSvg } from '@/lib/spiritual-design-animation';
 
 const SVG_SRC = '/images/spiritual-design-def.svg';
+const UREES_STAMP_SRC = '/images/urees-cover-stamp.svg';
+
+function defaultUreesHotspot(container: HTMLElement): CoverHotspot {
+  const width = container.clientWidth;
+  const height = container.clientHeight;
+  const stamp = Math.min(width, height) * 0.11;
+
+  return {
+    left: width * 0.035,
+    top: height - stamp - height * 0.05,
+    width: stamp,
+    height: stamp * 0.82,
+  };
+}
 
 type DragState = {
   active: boolean;
@@ -76,7 +90,15 @@ export function SpiritualDesignCover() {
     if (!frame || !container || !svg) return;
     setHotspot(measureConideHotspot(svg, frame));
     setBlueSquareHotspot(measureBlueSquareHotspot(svg, frame));
-    setUreesHotspot(measureUreesHotspot(svg, frame));
+
+    const base = defaultUreesHotspot(frame);
+    const offset = offsetsRef.current.urees;
+    setUreesHotspot({
+      left: base.left + offset.x,
+      top: base.top + offset.y,
+      width: base.width,
+      height: base.height,
+    });
   }, []);
 
   const applyOffsetToLayer = useCallback((id: CoverDragId, offset: CoverOffset) => {
@@ -98,7 +120,7 @@ export function SpiritualDesignCover() {
   const updateDragOffset = useCallback(
     (id: CoverDragId, offset: CoverOffset) => {
       offsetsRef.current = { ...offsetsRef.current, [id]: offset };
-      applyOffsetToLayer(id, offset);
+      if (id !== 'urees') applyOffsetToLayer(id, offset);
       if (id === 'conide' || id === 'blue-square' || id === 'urees') updateHotspot();
     },
     [applyOffsetToLayer, updateHotspot]
@@ -208,20 +230,28 @@ export function SpiritualDesignCover() {
 
       svg.setAttribute('role', 'img');
       svg.setAttribute('aria-label', 'Home cover artwork');
-      svg.setAttribute('preserveAspectRatio', 'xMinYMax slice');
+      svg.setAttribute('preserveAspectRatio', 'xMidYMid slice');
       svg.classList.add('spiritual-cover__svg');
       svg.removeAttribute('width');
       svg.removeAttribute('height');
 
+      dragLayersRef.current = setupCoverDragLayers(svg);
+      const ureesLayer = dragLayersRef.current.urees;
+      if (ureesLayer) {
+        ureesLayer.style.visibility = 'hidden';
+      }
+
+      applyOffsetToLayer('conide', loadCoverOffset(storageKeyForDragId('conide')));
+      applyOffsetToLayer('blue-square', loadCoverOffset(storageKeyForDragId('blue-square')));
+
       animateSpiritualDesignSvg(svg);
 
-      const storedConide = loadCoverOffset(storageKeyForDragId('conide'));
-      const storedSquare = loadCoverOffset(storageKeyForDragId('blue-square'));
       const storedUrees = loadCoverOffset(storageKeyForDragId('urees'));
-      offsetsRef.current = { conide: storedConide, 'blue-square': storedSquare, urees: storedUrees };
-
-      dragLayersRef.current = setupCoverDragLayers(svg);
-      applyOffsetToLayer('urees', storedUrees);
+      offsetsRef.current = {
+        conide: loadCoverOffset(storageKeyForDragId('conide')),
+        'blue-square': loadCoverOffset(storageKeyForDragId('blue-square')),
+        urees: storedUrees,
+      };
       setLoaded(true);
       window.dispatchEvent(new Event('spiritual-cover-ready'));
 
@@ -235,7 +265,7 @@ export function SpiritualDesignCover() {
     return () => {
       cancelled = true;
     };
-  }, [updateHotspot]);
+  }, [applyOffsetToLayer, updateHotspot]);
 
   useEffect(() => {
     if (!loaded) return;
@@ -331,7 +361,17 @@ export function SpiritualDesignCover() {
             onClick={(event) => {
               if (suppressUreesClick) event.preventDefault();
             }}
-          />
+          >
+            <Image
+              src={UREES_STAMP_SRC}
+              alt=""
+              width={104}
+              height={86}
+              className="spiritual-cover__urees-stamp"
+              draggable={false}
+              priority
+            />
+          </Link>
         ) : null}
       </div>
     </section>

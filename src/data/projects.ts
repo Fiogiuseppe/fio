@@ -199,8 +199,8 @@ export const projects: Project[] = [
     workCoverImage: '/work/menomale-cover.jpg',
     heroLogo: {
       src: '/work/menomale/menomale-hero-logotype.jpg',
-      width: 1109,
-      height: 868,
+      width: 1389,
+      height: 1056,
       alt: 'Menomale logotype — ornate M and MENOMALE wordmark',
     },
     gallery: [

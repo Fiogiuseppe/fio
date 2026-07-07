@@ -1,0 +1,19 @@
+.root {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(0.35rem, 1.1vw, 0.6rem);
+  pointer-events: none;
+}
+
+.badge {
+  position: relative;
+  width: clamp(2.65rem, 6.2vw, 4.1rem);
+  aspect-ratio: 2 / 3;
+  flex: 0 0 auto;
+  filter: drop-shadow(0 2px 10px rgb(0 0 0 / 0.28));
+}
+
+.image {
+  object-fit: contain;
+}

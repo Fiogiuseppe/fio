@@ -55,6 +55,10 @@ export const projects: Project[] = [
     award: {
       label: 'LAUS Award 2020 / Wood Pencil 2020',
       href: 'https://www.adg-fad.org/es/laus/proyecto/rebranding-para-desigual',
+      badges: [
+        { src: '/work/awards/laus-bronze-2020.png', alt: 'LAUS Bronze 2020' },
+        { src: '/work/awards/wood-pencil-2020.png', alt: 'D&AD Wood Pencil 2020' },
+      ],
     },
     credits: 'Desigual Creative Team · Clara Delmuns',
     featured: true,
@@ -128,6 +132,7 @@ export const projects: Project[] = [
       'The Urees upcycling project: Fusing artistry and sustainability in fashion @urees__',
       'Each garment is unique. Each process is visible. Each piece tells a story.',
     ],
+    externalUrl: 'https://www.instagram.com/p/CtOaVAYNWa9/?img_index=1',
     media: [
       { type: 'image', src: '/work/urees-hero.jpg', alt: 'UREES brand identity' },
       { type: 'image', src: `${WP}/2024/01/20230907_UREES02606-scaled.jpg`, alt: 'UREES piece' },
@@ -171,6 +176,7 @@ export const projects: Project[] = [
       '2021 — Logo and brand identity for Zalio, a jewelry company in Barcelona.',
       'A liquid chrome wordmark and visual system built around organic silver forms — high contrast, craft-led, unmistakably contemporary.',
     ],
+    externalUrl: 'https://www.instagram.com/p/CkyPK69N3sB/',
     featured: true,
   },
   {
@@ -189,6 +195,7 @@ export const projects: Project[] = [
       '2023 — Brand identity for Menomale, a Neapolitan pizzeria founded in 2012 and now serving Washington, DC.',
       'A bold logotype and visual language that carries Naples\' wood-fired tradition into a contemporary American dining context.',
     ],
+    externalUrl: 'https://www.instagram.com/p/C-VQc9KtioW/?img_index=1',
     website: 'https://menomale.us',
     websiteLabel: 'menomale.us',
     featured: true,
@@ -209,6 +216,7 @@ export const projects: Project[] = [
       '2020 — Logo and visual identity for Sec Brunch, a healthy brunch spot on Carrer de Lleida in Poble Sec.',
       'Campaign posters with experimental typography — ES Green, FREE rainbow, ON FIRE, Sus raíces — bringing contemporary energy to local food culture.',
     ],
+    externalUrl: 'https://www.instagram.com/p/CavSZkFNRM-/?img_index=1',
     website: 'https://secbrunch.com',
     websiteLabel: 'secbrunch.com',
     featured: true,
@@ -275,7 +283,7 @@ export const projects: Project[] = [
     heroImage: `${WP}/2021/05/Giuseppe_Fioretti_The_Magazine.jpeg`,
     description: 'Editorial design exploring magazine layout, typography and visual narrative.',
   }),
-  archiveProject({
+  {
     slug: 'marianna-carolina-sale',
     title: 'Marianna Carolina Sale',
     subtitle: 'Editorial and visual project',
@@ -283,9 +291,21 @@ export const projects: Project[] = [
     year: 2021,
     client: 'Marianna Carolina Sale',
     role: 'Creative Direction',
-    heroImage: `${WP}/2021/05/mariannacarolinasale.gif`,
+    heroImage: `${WP}/2021/05/Capa-1-1.jpg`,
+    workCoverImage: `${WP}/2021/05/mariannacarolinasale.gif`,
+    gallery: [
+      `${WP}/2021/05/Capa-1-1.jpg`,
+      `${WP}/2021/05/Capa-2-1.jpg`,
+      `${WP}/2021/05/Capa-3-1.jpg`,
+      `${WP}/2021/05/Capa-4-1.jpg`,
+    ],
     description: 'Editorial and visual project for Marianna Carolina Sale.',
-  }),
+    media: [
+      { type: 'image', src: `${WP}/2021/05/Capa-2-1.jpg`, alt: 'Marianna Carolina Sale — cover 2', fullWidth: true },
+      { type: 'image', src: `${WP}/2021/05/Capa-3-1.jpg`, alt: 'Marianna Carolina Sale — cover 3', fullWidth: true },
+      { type: 'image', src: `${WP}/2021/05/Capa-4-1.jpg`, alt: 'Marianna Carolina Sale — cover 4', fullWidth: true },
+    ],
+  },
   archiveProject({
     slug: 'dmoors',
     title: "D'MOORS",
@@ -317,6 +337,7 @@ export const projects: Project[] = [
     client: 'Academic',
     role: 'Artist & Designer',
     heroImage: `${WP}/2021/05/logompa.jpg`,
+    workCoverImage: '/work/master-en-produccion-artistica-cover.png',
     gallery: [
       `${WP}/2021/05/logompa.jpg`,
       `${WP}/2021/05/logo_2-scaled.jpg`,

@@ -21,6 +21,18 @@ import {
   type CoverOffset,
 } from '@/lib/spiritual-cover-drag';
 import { animateSpiritualDesignSvg } from '@/lib/spiritual-design-animation';
+import {
+  loadSpiritualTitle,
+  measureSpiritualTitleHotspot,
+  measureSpiritualTitleLineRects,
+  sanitizeTitleLine,
+  saveSpiritualTitle,
+  setupSpiritualTitle,
+  SPIRITUAL_TITLE_DEFAULTS,
+  type FrameRect,
+  type SpiritualTitleLines,
+} from '@/lib/spiritual-cover-title';
+import { SpiritualCoverTitleEditor } from '@/components/SpiritualCoverTitleEditor';
 
 const SVG_SRC = '/images/spiritual-design-def.svg';
 
@@ -55,10 +67,16 @@ export function SpiritualDesignCover() {
     'blue-square': { x: 0, y: 0 },
   });
   const dragLayersRef = useRef<Partial<Record<CoverDragId, SVGGElement>>>({});
+  const titleApplyRef = useRef<((lines: SpiritualTitleLines) => Promise<void>) | null>(null);
 
   const [loaded, setLoaded] = useState(false);
   const [hotspot, setHotspot] = useState<CoverHotspot | null>(null);
   const [blueSquareHotspot, setBlueSquareHotspot] = useState<CoverHotspot | null>(null);
+  const [titleHotspot, setTitleHotspot] = useState<FrameRect | null>(null);
+  const [titleLineRects, setTitleLineRects] = useState<[FrameRect, FrameRect] | null>(null);
+  const [titleLines, setTitleLines] = useState<SpiritualTitleLines>(SPIRITUAL_TITLE_DEFAULTS);
+  const [editingTitle, setEditingTitle] = useState(false);
+  const [titleDraft, setTitleDraft] = useState<SpiritualTitleLines>(SPIRITUAL_TITLE_DEFAULTS);
   const [draggingId, setDraggingId] = useState<CoverDragId | null>(null);
   const [suppressConideClick, setSuppressConideClick] = useState(false);
   const [suppressBlueSquareClick, setSuppressBlueSquareClick] = useState(false);
@@ -70,7 +88,37 @@ export function SpiritualDesignCover() {
     if (!frame || !container || !svg) return;
     setHotspot(measureConideHotspot(svg, frame));
     setBlueSquareHotspot(measureBlueSquareHotspot(svg, frame));
+    setTitleHotspot(measureSpiritualTitleHotspot(svg, frame));
+    setTitleLineRects(measureSpiritualTitleLineRects(svg, frame));
   }, []);
+
+  const commitTitleEdit = useCallback(() => {
+    const next = {
+      line1: sanitizeTitleLine(titleDraft.line1) || SPIRITUAL_TITLE_DEFAULTS.line1,
+      line2: sanitizeTitleLine(titleDraft.line2) || SPIRITUAL_TITLE_DEFAULTS.line2,
+    };
+    setTitleLines(next);
+    setTitleDraft(next);
+    saveSpiritualTitle(next);
+    void titleApplyRef.current?.(next);
+    setEditingTitle(false);
+  }, [titleDraft]);
+
+  const cancelTitleEdit = useCallback(() => {
+    setTitleDraft(titleLines);
+    setEditingTitle(false);
+  }, [titleLines]);
+
+  const openTitleEdit = useCallback(() => {
+    const frame = frameRef.current;
+    const svg = containerRef.current?.querySelector('svg');
+    if (frame && svg) {
+      setTitleHotspot(measureSpiritualTitleHotspot(svg, frame));
+      setTitleLineRects(measureSpiritualTitleLineRects(svg, frame));
+    }
+    setTitleDraft(titleLines);
+    setEditingTitle(true);
+  }, [titleLines]);
 
   const applyOffsetToLayer = useCallback((id: CoverDragId, offset: CoverOffset) => {
     const group = dragLayersRef.current[id];
@@ -202,6 +250,12 @@ export function SpiritualDesignCover() {
 
       animateSpiritualDesignSvg(svg);
 
+      const title = setupSpiritualTitle(svg);
+      titleApplyRef.current = title.applyLines;
+      const storedTitle = loadSpiritualTitle();
+      setTitleLines(storedTitle);
+      await title.applyLines(storedTitle);
+
       const storedConide = loadCoverOffset(storageKeyForDragId('conide'));
       const storedSquare = loadCoverOffset(storageKeyForDragId('blue-square'));
       offsetsRef.current = { conide: storedConide, 'blue-square': storedSquare };
@@ -211,7 +265,11 @@ export function SpiritualDesignCover() {
       window.dispatchEvent(new Event('spiritual-cover-ready'));
 
       requestAnimationFrame(() => {
-        if (!cancelled) updateHotspot();
+        if (cancelled) return;
+        updateHotspot();
+        requestAnimationFrame(() => {
+          if (!cancelled) updateHotspot();
+        });
       });
     }
 
@@ -229,6 +287,24 @@ export function SpiritualDesignCover() {
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
   }, [loaded, updateHotspot]);
+
+  useEffect(() => {
+    if (!loaded) return;
+    const svg = containerRef.current?.querySelector('svg');
+    const overlay = svg?.querySelector('[data-spiritual-title-overlay]') as SVGGElement | null;
+    if (!overlay) return;
+    overlay.classList.add('spiritual-cover__title-overlay');
+    overlay.style.opacity = editingTitle ? '0' : '1';
+
+    const onTitleClick = (event: Event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      if (!editingTitle) openTitleEdit();
+    };
+
+    overlay.addEventListener('click', onTitleClick);
+    return () => overlay.removeEventListener('click', onTitleClick);
+  }, [editingTitle, loaded, openTitleEdit]);
 
   useEffect(() => {
     const onPointerUp = (event: PointerEvent) => finishDrag(event.pointerId);
@@ -295,6 +371,30 @@ export function SpiritualDesignCover() {
             onClick={(event) => {
               if (suppressBlueSquareClick) event.preventDefault();
             }}
+          />
+        ) : null}
+        {titleHotspot && !editingTitle ? (
+          <button
+            type="button"
+            className="spiritual-cover__title-hit"
+            style={{
+              left: titleHotspot.left,
+              top: titleHotspot.top,
+              width: titleHotspot.width,
+              height: titleHotspot.height,
+            }}
+            aria-label="Edit cover title"
+            title="Click to write your own"
+            onClick={openTitleEdit}
+          />
+        ) : null}
+        {editingTitle && titleLineRects ? (
+          <SpiritualCoverTitleEditor
+            lineRects={titleLineRects}
+            draft={titleDraft}
+            onDraftChange={setTitleDraft}
+            onCommit={commitTitleEdit}
+            onCancel={cancelTitleEdit}
           />
         ) : null}
       </div>

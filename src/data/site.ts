@@ -42,18 +42,18 @@ export const FOOTER_LINKS = [
   { label: 'VISCERAL POEMS', href: '/archive/visceralpoems' },
   { label: 'SOME ART', href: '/archive/art-by-giuseppe-fioretti' },
   { label: 'THE CONIDE', href: '/the-conide' },
-  { label: 'CAREER TIMELINE', href: '/archive/giuseppe-fioretti-career-timeline' },
+  { label: 'Career timeline', href: '/about/career-timeline' },
 ] as const;
 
 export const OTHER_WORKS = [
   {
-    href: '/work/zalio',
+    href: 'https://www.instagram.com/p/CkyPK69N3sB/',
     image: `${WP}/2022/11/zalio_ig_fio-1-scaled.jpg`,
     alt: 'Zalio by Giuseppe Fió',
     external: false,
   },
   {
-    href: '/work/sec-brunch',
+    href: 'https://www.instagram.com/p/CavSZkFNRM-/?img_index=1',
     image: `${WP}/2024/06/sec-ig4-scaled.jpg`,
     alt: 'Sec Brunch branding',
     external: false,
@@ -71,7 +71,7 @@ export const OTHER_WORKS = [
     external: false,
   },
   {
-    href: '/work/menomale',
+    href: 'https://www.instagram.com/p/C-VQc9KtioW/?img_index=1',
     image: `${WP}/2024/06/Screenshot-2024-06-19-at-12.00.11.png`,
     alt: 'Menomale pizza logotype',
     external: false,

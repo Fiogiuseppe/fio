@@ -20,7 +20,7 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
   'art-hag': '/shop/drawing-hag',
   'art-ig-20213': '/shop/artwork-blue-study',
   'art-ig-2021': '/shop/artwork-visual-study',
-  'giuseppe-fioretti-career-timeline': '/about',
+  'giuseppe-fioretti-career-timeline': '/about/career-timeline',
 };
 
 export function getLegacyRedirect(slug: string): string | undefined {

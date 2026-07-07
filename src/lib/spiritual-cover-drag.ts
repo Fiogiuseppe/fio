@@ -104,35 +104,62 @@ export function identifyBlueSquareElements(svg: SVGSVGElement): SVGGraphicsEleme
 
   if (blueBase.length === 0) return [];
 
-  // Expand selection to include the eye/logo paths sitting inside the blue square,
-  // regardless of their fill colour.
   let left = Infinity;
   let top = Infinity;
   let right = -Infinity;
   let bottom = -Infinity;
 
-  for (const el of blueBase) {
-    const b = el.getBBox();
-    left = Math.min(left, b.x);
-    top = Math.min(top, b.y);
-    right = Math.max(right, b.x + b.width);
-    bottom = Math.max(bottom, b.y + b.height);
+  for (const element of blueBase) {
+    const box = element.getBBox();
+    left = Math.min(left, box.x);
+    top = Math.min(top, box.y);
+    right = Math.max(right, box.x + box.width);
+    bottom = Math.max(bottom, box.y + box.height);
   }
 
-  const pad = 90;
-  left -= pad;
-  top -= pad;
-  right += pad;
-  bottom += pad;
+  const innerPad = 10;
+  const innerLeft = left + innerPad;
+  const innerTop = top + innerPad;
+  const innerRight = right - innerPad;
+  const innerBottom = bottom - innerPad;
 
-  const inSquare = (element: SVGGraphicsElement) => {
-    const b = element.getBBox();
-    const cx = b.x + b.width / 2;
-    const cy = b.y + b.height / 2;
+  const isMeasurable = (box: DOMRect) =>
+    box.width >= 1 && box.height >= 1 && Number.isFinite(box.width) && Number.isFinite(box.height);
+
+  const centerInsideSquare = (box: DOMRect) => {
+    const cx = box.x + box.width / 2;
+    const cy = box.y + box.height / 2;
     return cx >= left && cx <= right && cy >= top && cy <= bottom;
   };
 
-  return graphics.filter(inSquare);
+  const selected = new Set<SVGGraphicsElement>();
+
+  for (const element of graphics) {
+    const box = element.getBBox();
+    if (!isMeasurable(box)) continue;
+
+    const fill = element.getAttribute('fill') || '';
+    if (isBlueFill(fill)) {
+      if (centerInsideSquare(box)) selected.add(element);
+      continue;
+    }
+
+    // Logo strokes inside the square only — never the caption below it.
+    const cx = box.x + box.width / 2;
+    const cy = box.y + box.height / 2;
+    const elementBottom = box.y + box.height;
+    if (
+      cx >= innerLeft &&
+      cx <= innerRight &&
+      cy >= innerTop &&
+      cy <= innerBottom &&
+      elementBottom <= bottom + 1
+    ) {
+      selected.add(element);
+    }
+  }
+
+  return Array.from(selected);
 }
 
 export function wrapElementsInDragGroup(

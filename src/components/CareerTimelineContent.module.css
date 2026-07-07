@@ -1,0 +1,81 @@
+.page {
+  max-width: 42rem;
+}
+
+.back {
+  display: inline-block;
+  margin-bottom: 2.5rem;
+  color: color-mix(in srgb, var(--ink) 55%, transparent);
+  font-family: var(--font-helvetica);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.back:hover {
+  color: var(--color-blue);
+}
+
+.greeting {
+  margin: 0 0 1.5rem;
+}
+
+.section {
+  margin-top: 3.5rem;
+}
+
+.sectionTitle {
+  margin: 0 0 1.75rem;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.itemOrg {
+  margin: 0 0 0.35rem;
+}
+
+.itemMeta {
+  margin: 0 0 0.2rem;
+}
+
+.itemTitle {
+  margin: 0 0 0.65rem;
+}
+
+.itemBody {
+  margin: 0;
+}
+
+.awardYear {
+  margin: 0 0 0.25rem;
+}
+
+.awardHeadline {
+  margin: 0 0 0.5rem;
+}
+
+.awardBody {
+  margin: 0;
+}
+
+.personalTitle {
+  margin: 0 0 0.5rem;
+}
+
+.personalBody {
+  margin: 0;
+}
+
+.academicPeriod {
+  margin: 0 0 0.25rem;
+}
+
+.academicBody {
+  margin: 0;
+}

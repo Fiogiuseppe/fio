@@ -56,6 +56,26 @@ const nextConfig: NextConfig = {
         destination: workToShopDestinations[slug] ?? `/shop/${slug}`,
         permanent: true,
       })),
+      {
+        source: '/work/zalio',
+        destination: 'https://www.instagram.com/p/CkyPK69N3sB/',
+        permanent: false,
+      },
+      {
+        source: '/work/sec-brunch',
+        destination: 'https://www.instagram.com/p/CavSZkFNRM-/?img_index=1',
+        permanent: false,
+      },
+      {
+        source: '/work/menomale',
+        destination: 'https://www.instagram.com/p/C-VQc9KtioW/?img_index=1',
+        permanent: false,
+      },
+      {
+        source: '/work/urees',
+        destination: 'https://www.instagram.com/p/CtOaVAYNWa9/?img_index=1',
+        permanent: false,
+      },
     ];
   },
   images: {

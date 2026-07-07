@@ -46,6 +46,8 @@ export interface Project {
   client: string;
   role: string;
   heroImage: string;
+  /** Optional square cover for Work index grid — detail page keeps heroImage */
+  workCoverImage?: string;
   /** Optional YouTube hero — ambient loop on work index; poster used as fallback image */
   heroVideo?: ProjectHeroVideo;
   gallery: string[];
@@ -53,7 +55,14 @@ export interface Project {
   body?: string[];
   media?: ProjectMedia[];
   credits?: string;
-  award?: { label: string; href: string };
+  award?: {
+    label: string;
+    href: string;
+    /** Sticker-style award marks overlaid on work index media */
+    badges?: { src: string; alt: string }[];
+  };
+  /** When set, Work card links out instead of opening a project page */
+  externalUrl?: string;
   /** External site — shown on project detail when set */
   website?: string;
   websiteLabel?: string;

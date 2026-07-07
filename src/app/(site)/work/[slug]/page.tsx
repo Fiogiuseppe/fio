@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { Gallery } from '@/components/Gallery';
+import { AwardBadges } from '@/components/AwardBadges';
 import { ProjectMediaBlock } from '@/components/ProjectMediaBlock';
 import { CleanVideoEmbed } from '@/components/CleanVideoEmbed';
 import { Badge } from '@/components/Badge';
@@ -75,6 +76,13 @@ export default async function WorkDetailPage({ params }: Props) {
             unoptimized={isGif || isSvg}
           />
         )}
+
+        {project.award?.badges?.length ? (
+          <AwardBadges
+            badges={project.award.badges}
+            className="pointer-events-none absolute bottom-[clamp(6.5rem,22%,10rem)] left-1/2 z-20 -translate-x-1/2"
+          />
+        ) : null}
 
         <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 flex flex-col items-start gap-2 bg-gradient-to-t from-ink/70 via-ink/30 to-transparent px-6 pb-8 pt-24 text-page md:gap-2.5 md:px-10 md:pb-10 md:pt-32">
           <Badge className="text-page/80">{categoryLabel(project.category)} · {project.year}</Badge>

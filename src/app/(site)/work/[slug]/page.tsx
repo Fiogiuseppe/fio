@@ -55,7 +55,7 @@ export default async function WorkDetailPage({ params }: Props) {
             alt={heroLogo.alt ?? project.title}
             width={heroLogo.width}
             height={heroLogo.height}
-            className="h-auto w-full max-w-[min(72vw,20rem)] object-contain"
+            className="h-auto w-full max-w-[min(88vw,24rem)] object-contain"
             priority
             sizes="(max-width: 768px) 72vw, 22rem"
           />

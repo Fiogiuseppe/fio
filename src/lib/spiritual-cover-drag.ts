@@ -1,6 +1,6 @@
 export const CONIDE_OFFSET_STORAGE_KEY = 'fio-home-cover-conide-offset';
 export const BLUE_SQUARE_OFFSET_STORAGE_KEY = 'fio-home-cover-blue-square-offset';
-export const UREES_OFFSET_STORAGE_KEY = 'fio-home-cover-urees-offset-v2';
+export const UREES_OFFSET_STORAGE_KEY = 'fio-home-cover-urees-offset-v3';
 
 export type CoverOffset = {
   x: number;

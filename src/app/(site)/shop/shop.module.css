@@ -23,6 +23,37 @@
   padding: 3rem 0 4rem;
 }
 
+.group {
+  padding: 3rem 0 1rem;
+}
+
+.group:first-of-type {
+  padding-top: 2rem;
+}
+
+.groupHead {
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.groupTitle {
+  margin: 0;
+  font-family: var(--font-helvetica);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.subsection {
+  padding-bottom: 3.5rem;
+}
+
+.subsection:last-child {
+  padding-bottom: 1rem;
+}
+
 .filterButton {
   border: 1px solid rgb(10 10 10 / 0.14);
   background: transparent;
@@ -60,9 +91,9 @@
 .sectionTitle {
   margin: 0;
   font-family: var(--font-helvetica);
-  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
   font-weight: 500;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.06em;
   line-height: 1.25;
   text-align: center;
   text-transform: uppercase;

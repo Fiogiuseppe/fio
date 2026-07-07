@@ -10,6 +10,14 @@ import styles from './UreesFlyingSticker.module.css';
 const EDGE_PAD = 14;
 const SPEED = 1.65;
 
+const FLYING_STICKER_HIDDEN_PREFIXES = ['/contact', '/about', '/journal', '/shop', '/urees'];
+
+function isFlyingStickerHidden(pathname: string) {
+  return FLYING_STICKER_HIDDEN_PREFIXES.some(
+    (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`)
+  );
+}
+
 export function UreesFlyingSticker() {
   const pathname = usePathname();
   const ref = useRef<HTMLAnchorElement>(null);
@@ -19,8 +27,7 @@ export function UreesFlyingSticker() {
   const [paused, setPaused] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
 
-  const isUreesRoute = pathname === '/urees' || pathname.startsWith('/urees/');
-  const isJournalRoute = pathname === '/journal' || pathname.startsWith('/journal/');
+  const hidden = isFlyingStickerHidden(pathname);
 
   useEffect(() => {
     pausedRef.current = paused;
@@ -35,7 +42,7 @@ export function UreesFlyingSticker() {
   }, []);
 
   useEffect(() => {
-    if (isUreesRoute || isJournalRoute || reducedMotion) return;
+    if (hidden || reducedMotion) return;
 
     const el = ref.current;
     if (!el) return;
@@ -110,9 +117,9 @@ export function UreesFlyingSticker() {
       window.cancelAnimationFrame(frame);
       window.removeEventListener('resize', onResize);
     };
-  }, [isUreesRoute, isJournalRoute, reducedMotion]);
+  }, [hidden, reducedMotion]);
 
-  if (isUreesRoute || isJournalRoute) return null;
+  if (hidden) return null;
 
   return (
     <Link

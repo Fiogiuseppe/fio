@@ -246,8 +246,8 @@ export const projects: Project[] = [
         src: '/work/menomale/menomale-applications.jpg',
         alt: 'Menomale applications — flag, apparel, ceramics, packaging and Instagram identity system',
         fit: 'contain',
-        width: 1440,
-        height: 3463,
+        width: 2880,
+        height: 1795,
       },
       {
         type: 'image',

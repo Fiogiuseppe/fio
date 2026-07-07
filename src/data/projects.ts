@@ -308,7 +308,7 @@ export const projects: Project[] = [
     heroImage: `${WP}/2021/05/Giuseppe_Fioretti_Naculture.jpeg`,
     description: "Brand identity exploring culture, craft and contemporary visual language.",
   }),
-  archiveProject({
+  {
     slug: 'master-en-produccion-artistica',
     title: 'Master en Producción Artística',
     subtitle: 'Academic and artistic production',
@@ -316,9 +316,23 @@ export const projects: Project[] = [
     year: 2021,
     client: 'Academic',
     role: 'Artist & Designer',
-    heroImage: `${WP}/2021/05/Giuseppe_Fioretti_MPA.jpeg`,
+    heroImage: `${WP}/2021/05/logompa.jpg`,
+    gallery: [
+      `${WP}/2021/05/logompa.jpg`,
+      `${WP}/2021/05/logo_2-scaled.jpg`,
+      `${WP}/2021/05/logo_3-scaled.jpg`,
+      `${WP}/2021/05/3-scaled.jpg`,
+      `${WP}/2021/05/4-scaled.jpg`,
+    ],
     description: 'Academic and artistic production work from the Master en Producción Artística.',
-  }),
+    media: [
+      { type: 'image', src: `${WP}/2021/05/logompa.jpg`, alt: 'MPA cover', fullWidth: true },
+      { type: 'image', src: `${WP}/2021/05/logo_2-scaled.jpg`, alt: 'MPA image', fullWidth: true },
+      { type: 'image', src: `${WP}/2021/05/logo_3-scaled.jpg`, alt: 'MPA image', fullWidth: true },
+      { type: 'image', src: `${WP}/2021/05/3-scaled.jpg`, alt: 'MPA image', fullWidth: true },
+      { type: 'image', src: `${WP}/2021/05/4-scaled.jpg`, alt: 'MPA image', fullWidth: true },
+    ],
+  },
   archiveProject({
     slug: 'gonzalo-doctor-branding',
     title: 'Gonzalo Doctor',

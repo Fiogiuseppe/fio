@@ -67,11 +67,6 @@ const nextConfig: NextConfig = {
         permanent: false,
       },
       {
-        source: '/work/menomale',
-        destination: 'https://www.instagram.com/p/C-VQc9KtioW/?img_index=1',
-        permanent: false,
-      },
-      {
         source: '/work/urees',
         destination: 'https://www.instagram.com/p/CtOaVAYNWa9/?img_index=1',
         permanent: false,

@@ -190,20 +190,82 @@ export const projects: Project[] = [
   {
     slug: 'menomale',
     title: 'Branding x Menomale',
-    subtitle: 'Neapolitan pizzeria identity — est. 2012, Washington DC',
+    subtitle: 'Thank goodness Napoli exists — Neapolitan pizzeria identity, Washington DC',
     category: 'branding',
-    year: 2023,
+    year: 2024,
     client: 'Menomale',
     role: 'Brand Identity',
     heroImage: '/work/menomale-hero.jpg',
-    gallery: ['/work/menomale-hero.jpg'],
-    description:
-      'Fresh brand identity and slogan for Menomale — authentic Neapolitan pizza with wood-fired craft and Italian soul.',
-    body: [
-      '2023 — Brand identity for Menomale, a Neapolitan pizzeria founded in 2012 and now serving Washington, DC.',
-      'A bold logotype and visual language that carries Naples\' wood-fired tradition into a contemporary American dining context.',
+    gallery: [
+      '/work/menomale/menomale-01.jpg',
+      '/work/menomale/menomale-05.jpg',
+      '/work/menomale/menomale-10.jpg',
     ],
-    externalUrl: 'https://www.instagram.com/p/C-VQc9KtioW/?img_index=1',
+    description:
+      'Brand design for Menomale — an ornate heraldic mark, a custom serif wordmark, and the claim “Thank goodness Napoli exists!” for a Neapolitan pizzeria rooted in Naples since 2012.',
+    body: [
+      'August 2024 — Brand design for Pizzeria Menomale @menomale_dc in Washington, DC.',
+      'Menomale means “thank goodness” in Italian. The identity explains that meaning in English through the claim Thank goodness Napoli exists! — gratitude to Naples as the origin of authentic Neapolitan pizza.',
+      'A baroque M logotype inspired by the heralds and ancient shields on historic doors in Naples, paired with a high-contrast serif wordmark and a custom alphabet with dotted counters.',
+      'Applied across posters, packaging, apparel, ceramics, signage and social — preserving and sharing Neapolitan pizza tradition with the world.',
+    ],
+    media: [
+      {
+        type: 'image',
+        src: '/work/menomale/menomale-01.jpg',
+        alt: 'Menomale poster — chefs at the wood-fired oven with Thank goodness Napoli exists!',
+        fullWidth: true,
+      },
+      {
+        type: 'image',
+        src: '/work/menomale/menomale-02.jpg',
+        alt: 'Menomale moodboard — mission, custom alphabet and @menomale_dc profile',
+      },
+      {
+        type: 'image',
+        src: '/work/menomale/menomale-03.jpg',
+        alt: 'Menomale heritage references — Naples, heraldry and stone carving',
+      },
+      {
+        type: 'image',
+        src: '/work/menomale/menomale-04.jpg',
+        alt: 'Menomale brand claim — Thank goodness Napoli exists!',
+      },
+      {
+        type: 'image',
+        src: '/work/menomale/menomale-05.jpg',
+        alt: 'Menomale poster mockups on brick — vintage Naples etching and ornate M',
+        fullWidth: true,
+      },
+      {
+        type: 'image',
+        src: '/work/menomale/menomale-06.jpg',
+        alt: 'Menomale poster pair — black and white versions on brick wall',
+        fullWidth: true,
+      },
+      {
+        type: 'image',
+        src: '/work/menomale/menomale-07.jpg',
+        alt: 'Menomale logotype — ornate M inspired by Naples heraldic shields',
+      },
+      {
+        type: 'image',
+        src: '/work/menomale/menomale-08.jpg',
+        alt: 'Menomale applications — flag, t-shirt, ceramics and packaging',
+        fullWidth: true,
+      },
+      {
+        type: 'image',
+        src: '/work/menomale/menomale-09.jpg',
+        alt: 'Menomale identity system — Instagram, packaging and menu mockups',
+      },
+      {
+        type: 'image',
+        src: '/work/menomale/menomale-10.jpg',
+        alt: 'Menomale campaign — founders with Neapolitan pizza at the oven',
+        fullWidth: true,
+      },
+    ],
     website: 'https://menomale.us',
     websiteLabel: 'menomale.us',
     featured: true,

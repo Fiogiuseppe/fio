@@ -16,5 +16,4 @@ export const workProjectLayout: WorkProjectRef[] = [
   { slug: 'sec-brunch', slot: 'grid' },
   { slug: 'urees', slot: 'grid' },
   { slug: 'aaaa', slot: 'grid' },
-  { slug: 'pee-pee', slot: 'grid' },
 ];

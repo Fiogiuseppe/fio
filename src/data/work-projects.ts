@@ -11,9 +11,9 @@ export const workProjectLayout: WorkProjectRef[] = [
   { slug: 'desigual-sneakers-campaign', slot: 'large' },
   { slug: 'desigual-rebranding', slot: 'large' },
   { slug: 'zalio', slot: 'grid' },
-  { slug: 'spiritual-design', slot: 'grid' },
   { slug: 'menomale', slot: 'grid' },
   { slug: 'sec-brunch', slot: 'grid' },
   { slug: 'urees', slot: 'grid' },
-  { slug: 'aaaa', slot: 'grid' },
+  { slug: 'marianna-carolina-sale', slot: 'grid' },
+  { slug: 'master-en-produccion-artistica', slot: 'grid' },
 ];

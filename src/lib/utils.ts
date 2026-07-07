@@ -97,6 +97,7 @@ export function productBadgeLabel(product: Product, group?: ShopGroup) {
     if (group === 'handmade') return 'Handmade';
     return 'Handmade · Digital';
   }
+  if (product.formats?.includes('digital')) return 'Digital print';
   return 'Add to cart';
 }
 

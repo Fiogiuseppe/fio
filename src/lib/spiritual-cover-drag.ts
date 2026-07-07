@@ -88,9 +88,13 @@ export function identifyConideElements(svg: SVGSVGElement): SVGGraphicsElement[]
 
 /** Hand-drawn blue square with eye motif — bottom-right of the cover. */
 export function identifyBlueSquareElements(svg: SVGSVGElement): SVGGraphicsElement[] {
-  const paths = Array.from(svg.querySelectorAll('path'));
+  const graphics = Array.from(
+    svg.querySelectorAll('path, rect, circle, ellipse, line, polyline, polygon')
+  ) as SVGGraphicsElement[];
 
-  const blueBase = paths.filter((path) => {
+  const blueBase = graphics.filter((element) => {
+    if (element.tagName !== 'path') return false;
+    const path = element as SVGPathElement;
     if (!isBlueFill(path.getAttribute('fill') || '')) return false;
     const box = path.getBBox();
     const cx = box.x + box.width / 2;
@@ -121,14 +125,14 @@ export function identifyBlueSquareElements(svg: SVGSVGElement): SVGGraphicsEleme
   right += pad;
   bottom += pad;
 
-  const inSquare = (path: SVGPathElement) => {
-    const b = path.getBBox();
+  const inSquare = (element: SVGGraphicsElement) => {
+    const b = element.getBBox();
     const cx = b.x + b.width / 2;
     const cy = b.y + b.height / 2;
     return cx >= left && cx <= right && cy >= top && cy <= bottom;
   };
 
-  return paths.filter(inSquare);
+  return graphics.filter(inSquare);
 }
 
 export function wrapElementsInDragGroup(
@@ -153,12 +157,27 @@ export function wrapElementsInDragGroup(
   return group;
 }
 
-export function applyCoverGroupOffset(group: SVGGElement, offset: CoverOffset) {
+/** Convert a screen-pixel drag delta into SVG user units for `transform`. */
+export function screenOffsetToSvgTranslate(svg: SVGSVGElement, offset: CoverOffset): CoverOffset {
+  const ctm = svg.getScreenCTM();
+  if (!ctm || ctm.a === 0 || ctm.d === 0) return offset;
+  return {
+    x: offset.x / ctm.a,
+    y: offset.y / ctm.d,
+  };
+}
+
+export function applyCoverGroupOffset(
+  svg: SVGSVGElement,
+  group: SVGGElement,
+  offset: CoverOffset
+) {
   if (!offset.x && !offset.y) {
     group.removeAttribute('transform');
     return;
   }
-  group.setAttribute('transform', `translate(${offset.x} ${offset.y})`);
+  const svgOffset = screenOffsetToSvgTranslate(svg, offset);
+  group.setAttribute('transform', `translate(${svgOffset.x} ${svgOffset.y})`);
 }
 
 export function setupCoverDragLayers(svg: SVGSVGElement) {
@@ -167,14 +186,14 @@ export function setupCoverDragLayers(svg: SVGSVGElement) {
   const conideElements = identifyConideElements(svg);
   const conideGroup = wrapElementsInDragGroup(svg, conideElements, 'conide');
   if (conideGroup) {
-    applyCoverGroupOffset(conideGroup, loadCoverOffset(CONIDE_OFFSET_STORAGE_KEY));
+    applyCoverGroupOffset(svg, conideGroup, loadCoverOffset(CONIDE_OFFSET_STORAGE_KEY));
     layers.conide = conideGroup;
   }
 
   const squareElements = identifyBlueSquareElements(svg);
   const squareGroup = wrapElementsInDragGroup(svg, squareElements, 'blue-square');
   if (squareGroup) {
-    applyCoverGroupOffset(squareGroup, loadCoverOffset(BLUE_SQUARE_OFFSET_STORAGE_KEY));
+    applyCoverGroupOffset(svg, squareGroup, loadCoverOffset(BLUE_SQUARE_OFFSET_STORAGE_KEY));
     layers['blue-square'] = squareGroup;
   }
 

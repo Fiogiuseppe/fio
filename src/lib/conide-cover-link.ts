@@ -1,5 +1,7 @@
 export const CONIDE_HREF = '/the-conide';
 
+import { identifyBlueSquareElements } from '@/lib/spiritual-cover-drag';
+
 export type CoverHotspot = {
   left: number;
   top: number;
@@ -198,12 +200,38 @@ function fallbackHotspot(container: HTMLElement): ConideHotspot {
   };
 }
 
+function measureFromDragGroup(
+  svg: SVGSVGElement,
+  id: 'conide' | 'blue-square',
+  pad: number
+): CoverHotspot | null {
+  const frame = svg.closest('.spiritual-cover__frame')?.getBoundingClientRect();
+  if (!frame) return null;
+
+  const dragGroup = svg.querySelector(`[data-cover-drag="${id}"]`) as SVGGElement | null;
+  if (!dragGroup) return null;
+
+  const elements = Array.from(
+    dragGroup.querySelectorAll('path, rect, circle, ellipse, line, polyline, polygon')
+  ) as SVGGraphicsElement[];
+  const union = unionClientRects(elements.length ? elements : [dragGroup], pad);
+  if (!union) return null;
+
+  return {
+    left: union.left - frame.left,
+    top: union.top - frame.top,
+    width: union.right - union.left,
+    height: union.bottom - union.top,
+  };
+}
+
 /** Locate the Conide icon on the home spiritual-design cover for a click hotspot. */
 export function measureConideHotspot(
   svg: SVGSVGElement,
   container: HTMLElement
 ): ConideHotspot {
   return (
+    measureFromDragGroup(svg, 'conide', 16) ??
     measureFromBlackDotCluster(svg) ??
     measureFromBlueDotCluster(svg) ??
     measureFromBlackCircle(svg) ??
@@ -211,12 +239,13 @@ export function measureConideHotspot(
   );
 }
 
-import { identifyBlueSquareElements } from '@/lib/spiritual-cover-drag';
-
 export function measureBlueSquareHotspot(
   svg: SVGSVGElement,
   container: HTMLElement
 ): CoverHotspot | null {
+  const fromGroup = measureFromDragGroup(svg, 'blue-square', 12);
+  if (fromGroup) return fromGroup;
+
   const frame = svg.closest('.spiritual-cover__frame')?.getBoundingClientRect();
   if (!frame) return null;
 

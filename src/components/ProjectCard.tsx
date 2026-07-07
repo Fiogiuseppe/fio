@@ -77,7 +77,12 @@ export function ProjectCard({ project, variant = 'grid', priority }: ProjectCard
           <Badge className={styles.overlayBadge}>
             {categoryLabel(project.category)} · {project.year}
           </Badge>
-          <TypographyCard className={cn(styles.overlayTitle, variant === 'hero' && styles.titleHero)}>
+          <TypographyCard
+            className={cn(
+              styles.overlayTitle,
+              variant === 'hero' ? cn(styles.titleHero, '!leading-[0.86]') : '!leading-[0.9]'
+            )}
+          >
             {titleLineOne}
             <br />
             {titleLineTwo}

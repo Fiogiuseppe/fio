@@ -87,6 +87,7 @@
   margin: 0;
   max-width: min(92%, 20ch);
   color: var(--color-page);
+  line-height: 0.9;
   text-wrap: balance;
   transition: color 220ms ease;
 }
@@ -114,4 +115,5 @@
 
 .titleHero {
   font-size: clamp(1.75rem, 3vw + 0.5rem, 3rem);
+  line-height: 0.86;
 }

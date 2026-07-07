@@ -49,7 +49,7 @@ export default async function WorkDetailPage({ params }: Props) {
       <div className="relative aspect-[16/9] w-full overflow-hidden bg-ink/5 md:aspect-[21/9]">
         {project.heroVideo?.mp4Src ? (
           <video
-            className="absolute inset-0 h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full bg-black object-contain"
             src={project.heroVideo.mp4Src}
             poster={project.heroVideo.poster ?? project.heroImage}
             controls

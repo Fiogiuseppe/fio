@@ -222,8 +222,8 @@ export const projects: Project[] = [
         src: '/work/menomale/menomale-moodboard.jpg',
         alt: 'Menomale moodboard — mission, custom alphabet, heritage and @menomale_dc profile',
         fit: 'contain',
-        width: 1440,
-        height: 2954,
+        width: 2880,
+        height: 1674,
       },
       {
         type: 'image',

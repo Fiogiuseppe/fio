@@ -228,7 +228,7 @@ export const projects: Project[] = [
         alt: 'Menomale moodboard — mission, custom alphabet, heritage and @menomale_dc profile',
         fit: 'contain',
         width: 1440,
-        height: 3590,
+        height: 2954,
       },
       {
         type: 'image',

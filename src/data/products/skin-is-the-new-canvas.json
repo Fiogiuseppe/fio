@@ -12,6 +12,7 @@
     "edition": "Limited edition",
     "productType": "print",
     "cta": "request",
+    "formats": ["digital"],
     "tags": ["skin-is-the-new-canvas", "photography"]
   }
 ]

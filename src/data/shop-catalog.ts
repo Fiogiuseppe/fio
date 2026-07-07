@@ -60,18 +60,6 @@ export function getShopSections(filter: ShopGroupFilter = 'all'): ShopSection[] 
   const sections: ShopSection[] = [];
 
   if (filter === 'all' || filter === 'handmade') {
-    if (skinCanvas.length > 0) {
-      sections.push({
-        id: 'skin-is-the-new-canvas',
-        title: 'Skin is the New Canvas',
-        description:
-          'Paintings and photography with Claudia Sahuquillo — body as canvas, shot by Giuseppe Fioretti.',
-        group: 'handmade',
-        brandLine: 'Giuseppe Fioretti × Claudia Sahuquillo',
-        products: skinCanvas,
-      });
-    }
-
     if (allHandpainted.length > 0) {
       sections.push({
         id: 'handpainted',
@@ -95,6 +83,18 @@ export function getShopSections(filter: ShopGroupFilter = 'all'): ShopSection[] 
   }
 
   if (filter === 'all' || filter === 'digital') {
+    if (skinCanvas.length > 0) {
+      sections.push({
+        id: 'skin-is-the-new-canvas',
+        title: 'Skin is the New Canvas',
+        description:
+          'Photography with Claudia Sahuquillo — body as canvas, shot by Giuseppe Fioretti. Signed digital prints.',
+        group: 'digital',
+        brandLine: 'Giuseppe Fioretti × Claudia Sahuquillo',
+        products: skinCanvas,
+      });
+    }
+
     if (digitalPoems.length > 0) {
       sections.push({
         id: 'digital-visceral-poems',

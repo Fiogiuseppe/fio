@@ -7,6 +7,7 @@ import { TypographyCard, TypographyMeta } from '@/components/typography';
 import { Badge } from './Badge';
 import { AwardBadges } from './AwardBadges';
 import { CleanVideoEmbed } from './CleanVideoEmbed';
+import { ProjectNewBadge } from './ProjectNewBadge';
 import styles from './ProjectCard.module.css';
 import badgeStyles from './AwardBadges.module.css';
 
@@ -69,6 +70,8 @@ export function ProjectCard({ project, variant = 'grid', priority }: ProjectCard
             unoptimized={isGif || isSvg}
           />
         )}
+
+        {project.isNew ? <ProjectNewBadge /> : null}
 
         <div className={cn(styles.overlay, styles[`overlay_${variant}`])}>
           <Badge className={styles.overlayBadge}>

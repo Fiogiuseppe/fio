@@ -354,6 +354,7 @@ export const projects: Project[] = [
     ],
     credits: 'Our LEGO Agency · Chaos x Magic · Stink UK',
     featured: true,
+    isNew: true,
   },
   archiveProject({
     slug: 'the-magazine',

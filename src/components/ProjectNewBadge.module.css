@@ -1,0 +1,27 @@
+.root {
+  position: absolute;
+  z-index: 5;
+  right: 0;
+  bottom: 0;
+  width: clamp(3.25rem, 7.5vw, 4.25rem);
+  height: clamp(3.25rem, 7.5vw, 4.25rem);
+  pointer-events: none;
+}
+
+.shape {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.label {
+  position: absolute;
+  right: 0.42rem;
+  bottom: 0.38rem;
+  font-family: var(--font-helvetica);
+  font-size: clamp(0.5625rem, 1.1vw, 0.6875rem);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  color: var(--color-ink);
+}

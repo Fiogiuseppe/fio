@@ -75,6 +75,8 @@ export interface Project {
   website?: string;
   websiteLabel?: string;
   featured?: boolean;
+  /** Work index — corner “NEW” triangle on the project media */
+  isNew?: boolean;
 }
 
 export interface Service {

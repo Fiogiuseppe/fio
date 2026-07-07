@@ -36,22 +36,6 @@
   object-fit: cover;
 }
 
-.awardBadges {
-  position: absolute;
-  z-index: 4;
-  right: clamp(1rem, 3vw, 2rem);
-  bottom: clamp(6.5rem, 20%, 9.5rem);
-  left: auto;
-}
-
-.media_large .awardBadges {
-  bottom: clamp(5.5rem, 18%, 8.5rem);
-}
-
-.media_hero .awardBadges {
-  bottom: clamp(7rem, 22%, 11rem);
-}
-
 .media_large {
   aspect-ratio: 16 / 7;
   min-height: 0;

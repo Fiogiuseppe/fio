@@ -8,6 +8,7 @@ import { Badge } from './Badge';
 import { AwardBadges } from './AwardBadges';
 import { CleanVideoEmbed } from './CleanVideoEmbed';
 import styles from './ProjectCard.module.css';
+import badgeStyles from './AwardBadges.module.css';
 
 export type ProjectCardVariant = 'hero' | 'large' | 'grid';
 
@@ -106,7 +107,10 @@ export function ProjectCard({ project, variant = 'grid', priority }: ProjectCard
         </Link>
       )}
       {showAwardBadges ? (
-        <AwardBadges badges={project.award!.badges!} className={styles.awardBadges} />
+        <AwardBadges
+          badges={project.award!.badges!}
+          className={badgeStyles.positionOverlay}
+        />
       ) : null}
     </div>
   );

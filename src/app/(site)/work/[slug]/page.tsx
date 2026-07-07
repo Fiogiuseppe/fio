@@ -47,7 +47,16 @@ export default async function WorkDetailPage({ params }: Props) {
   return (
     <article>
       <div className="relative aspect-[16/9] w-full overflow-hidden bg-ink/5 md:aspect-[21/9]">
-        {project.heroVideo ? (
+        {project.heroVideo?.mp4Src ? (
+          <video
+            className="absolute inset-0 h-full w-full object-cover"
+            src={project.heroVideo.mp4Src}
+            poster={project.heroVideo.poster ?? project.heroImage}
+            controls
+            playsInline
+            preload="metadata"
+          />
+        ) : project.heroVideo?.youtubeId ? (
           <CleanVideoEmbed
             youtubeId={project.heroVideo.youtubeId}
             title={project.title}

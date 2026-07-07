@@ -33,7 +33,18 @@ export function ProjectCard({ project, variant = 'grid', priority }: ProjectCard
     <Link href={href} className={cn('group block no-underline', styles.link, styles[variant])}>
       <article>
         <div className={cn(styles.media, styles[`media_${variant}`])}>
-          {project.heroVideo && variant === 'hero' ? (
+          {project.heroVideo?.mp4Src && variant === 'hero' ? (
+            <video
+              className={styles.video}
+              src={project.heroVideo.mp4Src}
+              poster={project.heroVideo.poster ?? project.heroImage}
+              muted
+              playsInline
+              autoPlay
+              loop
+              preload="metadata"
+            />
+          ) : project.heroVideo?.youtubeId && variant === 'hero' ? (
             <CleanVideoEmbed
               youtubeId={project.heroVideo.youtubeId}
               title={project.title}

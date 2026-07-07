@@ -32,7 +32,8 @@ export type ProjectMedia =
     };
 
 export type ProjectHeroVideo = {
-  youtubeId: string;
+  youtubeId?: string;
+  mp4Src?: string;
   poster?: string;
 };
 

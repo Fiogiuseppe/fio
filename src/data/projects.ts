@@ -253,7 +253,7 @@ export const projects: Project[] = [
     client: 'LEGO',
     role: 'Design Lead',
     heroImage: LEGO_PLAYMAKER_HERO,
-    heroVideo: { youtubeId: LEGO_PLAYMAKER_VIDEO_ID, poster: LEGO_PLAYMAKER_HERO },
+    heroVideo: { mp4Src: '/work/lego-playmaker-hero.mp4', poster: LEGO_PLAYMAKER_HERO },
     gallery: [LEGO_PLAYMAKER_HERO],
     description:
       'Global Never Stop Playing campaign starring Jason Momoa — a comedy-led PSA to reverse the family play deficit, culminating in World Play Day.',

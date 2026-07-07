@@ -53,6 +53,7 @@ export function getShopSections(filter: ShopGroupFilter = 'all'): ShopSection[] 
       !product.tags?.includes(SKIN_CANVAS_COLLECTION_TAG) &&
       !product.tags?.includes(HANDPAINTED_COLLECTION_TAG)
   );
+  const allHandpainted = [...handpainted, ...standalonePaintings];
   const visceralPoems = shopProducts.filter((product) => product.category === 'visceral-poems');
   const handmadePoems = productsForGroup(visceralPoems, 'handmade');
   const digitalPoems = productsForGroup(visceralPoems, 'digital');
@@ -71,23 +72,13 @@ export function getShopSections(filter: ShopGroupFilter = 'all'): ShopSection[] 
       });
     }
 
-    if (handpainted.length > 0) {
+    if (allHandpainted.length > 0) {
       sections.push({
         id: 'handpainted',
         title: 'Handpainted',
         description: 'Original handpainted works — shoes, studies and one-of-one pieces.',
         group: 'handmade',
-        products: handpainted,
-      });
-    }
-
-    if (standalonePaintings.length > 0) {
-      sections.push({
-        id: 'handmade-paintings',
-        title: 'Paintings',
-        description: 'Original handmade paintings on canvas — one-of-one pieces.',
-        group: 'handmade',
-        products: standalonePaintings,
+        products: allHandpainted,
       });
     }
 

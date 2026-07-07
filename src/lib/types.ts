@@ -1,5 +1,6 @@
 export type WorkCategory =
   | 'branding'
+  | 'digital'
   | 'rebranding'
   | 'campaign'
   | 'art-direction'

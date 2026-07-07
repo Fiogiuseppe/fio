@@ -14,7 +14,7 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
   cacophobia: '/cacophobia',
   the_conide: '/the-conide',
   'skin-is-the-new-canvas': '/shop#skin-is-the-new-canvas',
-  'pee-pee': '/shop/pee-pee',
+  'pee-pee': '/work/pee-pee',
   'tutti-in-uno': '/shop/tutti-in-uno',
   eyes: '/shop/eyes',
   'art-hag': '/shop/drawing-hag',

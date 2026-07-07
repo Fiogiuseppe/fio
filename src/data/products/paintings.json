@@ -73,20 +73,5 @@
     "productType": "original",
     "cta": "request",
     "tags": ["handpainted"]
-  },
-  {
-    "slug": "pee-pee",
-    "title": "Pee Pee",
-    "shortDescription": "Original artwork by Giuseppe Fioretti.",
-    "longStory": "A selected piece from Giuseppe Fioretti's painting practice.",
-    "images": ["https://fiogiuseppe.com/wp-content/uploads/2021/05/IG-202131-scaled.jpg"],
-    "price": 0,
-    "currency": "EUR",
-    "technique": "Mixed media",
-    "availability": "coming-soon",
-    "edition": "Original",
-    "productType": "original",
-    "cta": "request",
-    "tags": ["handpainted"]
   }
 ]

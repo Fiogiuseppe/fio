@@ -8,9 +8,18 @@
   gap: 1rem;
 }
 
-.field {
-  display: grid;
-  gap: 0.5rem;
+.fieldNote {
+  margin: 0;
+  font-family: var(--font-helvetica);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: rgb(10 10 10 / 0.7);
+}
+
+.previewWood {
+  aspect-ratio: 2 / 3;
+  max-width: 32rem;
+  background: #ebe7df;
 }
 
 .label {

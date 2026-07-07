@@ -18,6 +18,11 @@
   background: #ececec;
 }
 
+.previewWoodFrame {
+  aspect-ratio: 2 / 3;
+  background: #ebe7df;
+}
+
 .artwork {
   object-fit: contain;
   object-position: center;

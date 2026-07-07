@@ -21,8 +21,8 @@ export default function FramePreviewPage() {
           Cornice Visceral Poems
         </h1>
         <p className="mb-10 max-w-2xl text-sm leading-relaxed text-ink/65">
-          Pagina di prova — qui valutiamo il mockup prima di applicarlo a tutto il catalogo.
-          A3, cornice bianca, senza passepartout.
+          Pagina di prova — cornice legno su parete, come riferimento. A3, senza passepartout.
+          Per ora attiva solo su <strong>Visceral Poem 12</strong> (printed).
         </p>
         <FramePreviewLab />
       </div>

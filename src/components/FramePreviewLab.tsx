@@ -3,49 +3,25 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import { FramedArtworkPreview } from '@/components/FramedArtworkPreview';
+import { WOOD_FRAME_PRINTED_SLUG } from '@/data/frame-mockup';
 import styles from './FramePreviewLab.module.css';
 
-const SAMPLES = [
-  {
-    id: 'visceral-poem-12',
-    label: 'Visceral Poem 12 (printed)',
-    src: 'https://fiogiuseppe.com/wp-content/uploads/2023/03/VISCERAL-POETRY-12-scaled.jpg',
-  },
-  {
-    id: 'pain-is-inevitable',
-    label: 'Pain is inevitable… (handpainted)',
-    src: '/shop/visceral-poems/pain-is-inevitable-suffering-is-optional-1-DTH5pp7iOWJ-1.jpg',
-  },
-  {
-    id: 'amo-esta-cancion',
-    label: 'Amo esta canción (handpainted)',
-    src: '/shop/visceral-poems/amo-esta-cancion-Csa38HVKACd.jpg',
-  },
-] as const;
+const SAMPLE = {
+  slug: WOOD_FRAME_PRINTED_SLUG,
+  label: 'Visceral Poem 12 (printed)',
+  src: 'https://fiogiuseppe.com/wp-content/uploads/2023/03/VISCERAL-POETRY-12-scaled.jpg',
+};
 
 export function FramePreviewLab() {
-  const [sampleId, setSampleId] = useState<(typeof SAMPLES)[number]['id']>(SAMPLES[0].id);
   const [withFrame, setWithFrame] = useState(true);
-
-  const sample = SAMPLES.find((entry) => entry.id === sampleId) ?? SAMPLES[0];
 
   return (
     <div className={styles.root}>
       <div className={styles.controls}>
-        <label className={styles.field}>
-          <span className={styles.label}>Poster di prova</span>
-          <select
-            className={styles.select}
-            value={sampleId}
-            onChange={(event) => setSampleId(event.target.value as typeof sampleId)}
-          >
-            {SAMPLES.map((entry) => (
-              <option key={entry.id} value={entry.id}>
-                {entry.label}
-              </option>
-            ))}
-          </select>
-        </label>
+        <p className={styles.fieldNote}>
+          Prova su <strong>un solo printed</strong>: {SAMPLE.label}. Handpainted e altri printed
+          restano col mockup precedente finché non approvi questo.
+        </p>
 
         <div className={styles.toggleRow}>
           <button
@@ -60,22 +36,29 @@ export function FramePreviewLab() {
             className={`${styles.toggle} ${withFrame ? styles.toggleActive : ''}`}
             onClick={() => setWithFrame(true)}
           >
-            Con cornice
+            Con cornice legno
           </button>
         </div>
       </div>
 
       <div className={styles.previewShell}>
         <p className={styles.previewCaption}>
-          {withFrame ? 'Mockup attuale — A3, cornice bianca, no passepartout' : 'Poster nudo — A3'}
+          {withFrame
+            ? 'Mockup base — cornice legno chiaro su parete, A3, no passepartout'
+            : 'Poster nudo — A3'}
         </p>
-        <div className={styles.preview}>
+        <div className={`${styles.preview} ${withFrame ? styles.previewWood : ''}`}>
           {withFrame ? (
-            <FramedArtworkPreview src={sample.src} alt={sample.label} priority />
+            <FramedArtworkPreview
+              src={SAMPLE.src}
+              alt={SAMPLE.label}
+              priority
+              variant="wood-wall"
+            />
           ) : (
             <Image
-              src={sample.src}
-              alt={sample.label}
+              src={SAMPLE.src}
+              alt={SAMPLE.label}
               fill
               className={styles.artwork}
               sizes="(max-width:1024px) 100vw, 560px"
@@ -86,8 +69,8 @@ export function FramePreviewLab() {
       </div>
 
       <p className={styles.note}>
-        URL di questa pagina: <code>/shop/frame-preview</code> — condividila per feedback prima del
-        rollout su tutte le voci.
+        Pagina prova: <code>/shop/frame-preview</code> · Prodotto:{' '}
+        <code>/shop/{SAMPLE.slug}</code>
       </p>
     </div>
   );

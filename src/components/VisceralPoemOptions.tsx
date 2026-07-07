@@ -14,6 +14,7 @@ import { formatPrice } from '@/lib/utils';
 import { TypographyBody } from '@/components/typography';
 import { ShopCheckoutButton } from '@/components/ShopCheckoutButton';
 import { FramedArtworkPreview } from '@/components/FramedArtworkPreview';
+import { usesWoodFrameMockup } from '@/data/frame-mockup';
 import styles from './VisceralPoemOptions.module.css';
 
 type VisceralPoemOptionsProps = {
@@ -34,16 +35,20 @@ export function VisceralPoemOptions({ product }: VisceralPoemOptionsProps) {
     () => VISCERAL_POEMS_PRICING[format].label,
     [format],
   );
+  const woodFrameMockup = usesWoodFrameMockup(product.slug, format);
 
   return (
     <div className={styles.root}>
-      <div className={styles.preview}>
+      <div
+        className={`${styles.preview} ${woodFrameMockup && withFrame ? styles.previewWoodFrame : ''}`}
+      >
         {withFrame ? (
           <FramedArtworkPreview
             src={artwork}
             alt={product.title}
             unoptimized={isGif}
             priority
+            variant={woodFrameMockup ? 'wood-wall' : 'white'}
           />
         ) : (
           <Image
@@ -108,7 +113,9 @@ export function VisceralPoemOptions({ product }: VisceralPoemOptionsProps) {
 
         {withFrame ? (
           <p className={styles.frameNote}>
-            Frame preview — A3 white frame, no passepartout. The poster fills the frame edge to edge.
+            {woodFrameMockup
+              ? 'Frame preview — cornice legno chiaro su parete, A3 senza passepartout.'
+              : 'Frame preview — A3 white frame, no passepartout. The poster fills the frame edge to edge.'}
           </p>
         ) : null}
 

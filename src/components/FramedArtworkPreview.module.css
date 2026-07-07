@@ -49,3 +49,29 @@
   object-fit: contain;
   object-position: center;
 }
+
+.woodScene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #ebe7df;
+}
+
+.woodSceneImage {
+  z-index: 0;
+  object-fit: fill;
+  object-position: center;
+  pointer-events: none;
+}
+
+.woodPosterSlot {
+  position: absolute;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.woodPoster {
+  object-fit: cover;
+  object-position: center;
+}

@@ -162,7 +162,24 @@ export function HomeProjectsFeed() {
                 );
               }
 
-              if (project.heroVideo && !item) {
+              if (project.heroVideo?.mp4Src && !item) {
+                return (
+                  <Link key={`full-${blockIndex}`} href={href} className={styles.full}>
+                    <video
+                      className={styles.video}
+                      src={project.heroVideo.mp4Src}
+                      poster={project.heroVideo.poster ?? project.heroImage}
+                      muted
+                      playsInline
+                      autoPlay
+                      loop
+                      preload="metadata"
+                    />
+                  </Link>
+                );
+              }
+
+              if (project.heroVideo?.youtubeId && !item) {
                 return (
                   <Link key={`full-${blockIndex}`} href={href} className={styles.full}>
                     <CleanVideoEmbed

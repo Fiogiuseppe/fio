@@ -44,9 +44,23 @@ export default async function WorkDetailPage({ params }: Props) {
   const isGif = project.heroImage.endsWith('.gif');
   const isSvg = project.heroImage.endsWith('.svg');
   const heroContain = project.heroImageFit === 'contain';
+  const heroLogo = project.heroLogo;
 
   return (
     <article>
+      {heroLogo ? (
+        <div className="flex w-full justify-center bg-page px-6 py-16 md:px-10 md:py-24">
+          <Image
+            src={heroLogo.src}
+            alt={heroLogo.alt ?? project.title}
+            width={heroLogo.width}
+            height={heroLogo.height}
+            className="h-auto w-full max-w-[min(72vw,22rem)] object-contain"
+            priority
+            sizes="(max-width: 768px) 72vw, 22rem"
+          />
+        </div>
+      ) : (
       <div
         className={
           heroContain
@@ -108,9 +122,21 @@ export default async function WorkDetailPage({ params }: Props) {
           <TypographyLead className="m-0 max-w-2xl text-page/85">{project.subtitle}</TypographyLead>
         </div>
       </div>
+      )}
 
-      <div className="mx-auto max-w-3xl px-6 py-16 md:px-10 md:py-24">
-        <dl className={`grid gap-6 border-t border-ink/10 pt-10 md:grid-cols-2 ${editorial.stack.block}`}>
+      <div
+        className={`mx-auto max-w-3xl px-6 md:px-10 ${heroLogo ? 'pb-16 pt-10 md:pb-24 md:pt-12' : 'py-16 md:py-24'}`}
+      >
+        {heroLogo ? (
+          <header className="mb-10 flex flex-col items-start gap-2 md:mb-12 md:gap-2.5">
+            <Badge>{categoryLabel(project.category)} · {project.year}</Badge>
+            <ProjectOverlayTitle title={project.title} variant="detail" className="!leading-[0.86] text-ink" />
+            <TypographyLead className="m-0 max-w-2xl text-ink/72">{project.subtitle}</TypographyLead>
+          </header>
+        ) : null}
+        <dl
+          className={`grid gap-6 border-t border-ink/10 pt-10 md:grid-cols-2 ${heroLogo ? '' : editorial.stack.block}`}
+        >
           <div>
             <TypographyLabel as="dt">Client</TypographyLabel>
             <TypographyBody as="dd" measure={false} className={editorial.stack.labelToTitle}>

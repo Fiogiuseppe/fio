@@ -41,6 +41,13 @@ export type ProjectHeroVideo = {
   poster?: string;
 };
 
+export type ProjectHeroLogo = {
+  src: string;
+  width: number;
+  height: number;
+  alt?: string;
+};
+
 export interface Project {
   slug: string;
   title: string;
@@ -58,6 +65,8 @@ export interface Project {
   heroImageHeight?: number;
   /** Optional YouTube hero — ambient loop on work index; poster used as fallback image */
   heroVideo?: ProjectHeroVideo;
+  /** Detail page — centered mark on white instead of a full-bleed hero image */
+  heroLogo?: ProjectHeroLogo;
   gallery: string[];
   description: string;
   body?: string[];

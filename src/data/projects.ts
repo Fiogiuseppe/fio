@@ -197,9 +197,12 @@ export const projects: Project[] = [
     role: 'Brand Identity',
     heroImage: '/work/menomale/menomale-01.jpg',
     workCoverImage: '/work/menomale-cover.jpg',
-    heroImageFit: 'contain',
-    heroImageWidth: 1440,
-    heroImageHeight: 1795,
+    heroLogo: {
+      src: '/work/menomale/menomale-logo.png',
+      width: 1023,
+      height: 1024,
+      alt: 'Menomale ornate M logotype',
+    },
     gallery: [
       '/work/menomale/menomale-01.jpg',
       '/work/menomale/menomale-posters-brick.jpg',
@@ -214,14 +217,6 @@ export const projects: Project[] = [
       'Applied across posters, packaging, apparel, ceramics, signage and social — preserving and sharing Neapolitan pizza tradition with the world.',
     ],
     media: [
-      {
-        type: 'image',
-        src: '/work/menomale/menomale-01.jpg',
-        alt: 'Menomale poster — chefs at the wood-fired oven with Thank goodness Napoli exists!',
-        fit: 'contain',
-        width: 1440,
-        height: 1795,
-      },
       {
         type: 'image',
         src: '/work/menomale/menomale-moodboard.jpg',

@@ -1,18 +1,10 @@
 .article {
-  width: min(40rem, 100%);
+  width: min(52rem, 100%);
   margin: 0 auto;
 }
 
 .header {
   margin-bottom: 2rem;
-}
-
-.kicker {
-  margin: 0 0 0.75rem;
-  font-size: 0.875rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgb(10 10 10 / 0.55);
 }
 
 .title {
@@ -27,7 +19,8 @@
   margin: 2rem 0;
 }
 
-.heroImage {
+.heroImage,
+.galleryImage {
   display: block;
   width: 100%;
   height: auto;
@@ -36,10 +29,54 @@
 .body {
   display: grid;
   gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.figure {
+  margin: 0;
+}
+
+@media (max-width: 640px) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+}
+
+.watchButtons {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+}
+
+.watchButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.25rem;
+  border: 1px solid var(--ink);
+  font-family: var(--font-helvetica);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.watchButton:hover {
+  background: var(--ink);
+  color: var(--paper);
 }
 
 .back {
-  margin: 2.5rem 0 0;
+  margin: 0;
 }
 
 .backLink {

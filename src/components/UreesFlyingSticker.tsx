@@ -10,7 +10,7 @@ import styles from './UreesFlyingSticker.module.css';
 const EDGE_PAD = 14;
 const SPEED = 1.65;
 
-const FLYING_STICKER_HIDDEN_PREFIXES = ['/contact', '/about', '/journal', '/shop', '/urees'];
+const FLYING_STICKER_HIDDEN_PREFIXES = ['/', '/contact', '/about', '/journal', '/shop', '/urees'];
 
 function isFlyingStickerHidden(pathname: string) {
   return FLYING_STICKER_HIDDEN_PREFIXES.some(

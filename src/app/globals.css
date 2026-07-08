@@ -375,6 +375,34 @@ html.home-route .spiritual-cover__svg {
   justify-content: stretch;
 }
 
+.spiritual-cover__urees-badge {
+  position: absolute;
+  left: clamp(10px, 1.2vw, 20px);
+  bottom: clamp(10px, 1.2vw, 20px);
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  background: rgb(0 0 0 / 0.96);
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.12),
+    0 10px 26px rgb(10 10 10 / 0.25);
+}
+
+.spiritual-cover__urees-badge:hover {
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.22),
+    0 12px 28px rgb(10 10 10 / 0.28);
+}
+
+.spiritual-cover__urees-badge:focus-visible {
+  outline: 2px solid var(--color-blue);
+  outline-offset: 3px;
+}
+
 .spiritual-cover__canvas {
   display: flex;
   width: 100%;

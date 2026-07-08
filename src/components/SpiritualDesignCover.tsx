@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { CACOPHOBIA_HREF } from '@/data/cacophobia';
 import {
@@ -255,6 +256,37 @@ export function SpiritualDesignCover() {
             draggingId ? ` spiritual-cover__canvas--dragging-${draggingId}` : ''
           }`}
         />
+        <a
+          className="spiritual-cover__urees-badge"
+          href="https://urees.shop"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="UREES — open urees.shop"
+          title="UREES"
+          style={{
+            position: 'absolute',
+            left: 'clamp(10px, 1.2vw, 20px)',
+            bottom: 'clamp(10px, 1.2vw, 20px)',
+            zIndex: 5,
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: 56,
+            height: 56,
+            borderRadius: 999,
+            background: 'rgba(0,0,0,0.96)',
+            boxShadow:
+              '0 0 0 1px rgba(255,255,255,0.12), 0 10px 26px rgba(10,10,10,0.25)',
+          }}
+        >
+          <Image
+            src="/images/urees-yc-icon.svg"
+            alt=""
+            width={56}
+            height={56}
+            priority
+          />
+        </a>
         {hotspot ? (
           <Link
             ref={conideLinkRef}

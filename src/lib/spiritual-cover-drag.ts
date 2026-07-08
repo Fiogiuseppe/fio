@@ -57,6 +57,10 @@ export function identifyConideElements(svg: SVGSVGElement): SVGGraphicsElement[]
 
     const cx = bbox.x + bbox.width / 2;
     const cy = bbox.y + bbox.height / 2;
+    // Conide lives on the top-right of the cover in the 1920×1080 viewBox.
+    // This guard prevents accidentally selecting other black circular elements (e.g. glyphs/text)
+    // which would then become draggable and appear "floating" when offsets are applied.
+    if (cx < 1400 || cy > 520) continue;
     let dots = 0;
 
     for (const dot of paths) {
@@ -162,15 +166,24 @@ export function identifyBlueSquareElements(svg: SVGSVGElement): SVGGraphicsEleme
   return Array.from(selected);
 }
 
+function resetExistingDragGroups(svg: SVGSVGElement) {
+  const groups = Array.from(svg.querySelectorAll<SVGGElement>('g[data-cover-drag]'));
+  for (const group of groups) {
+    const parent = group.parentNode;
+    if (!parent) continue;
+    while (group.firstChild) {
+      parent.insertBefore(group.firstChild, group);
+    }
+    parent.removeChild(group);
+  }
+}
+
 export function wrapElementsInDragGroup(
   svg: SVGSVGElement,
   elements: SVGGraphicsElement[],
   id: CoverDragId
 ): SVGGElement | null {
   if (elements.length === 0) return null;
-  if (svg.querySelector(`[data-cover-drag="${id}"]`)) {
-    return svg.querySelector(`[data-cover-drag="${id}"]`);
-  }
 
   const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
   group.setAttribute('data-cover-drag', id);
@@ -209,6 +222,11 @@ export function applyCoverGroupOffset(
 
 export function setupCoverDragLayers(svg: SVGSVGElement) {
   const layers: Partial<Record<CoverDragId, SVGGElement>> = {};
+
+  // Ensure stale drag groups don't persist across code changes.
+  // If the wrong elements were wrapped previously, they could pick up stored offsets
+  // and render as "floating" fragments (commonly perceived as broken text).
+  resetExistingDragGroups(svg);
 
   const conideElements = identifyConideElements(svg);
   const conideGroup = wrapElementsInDragGroup(svg, conideElements, 'conide');

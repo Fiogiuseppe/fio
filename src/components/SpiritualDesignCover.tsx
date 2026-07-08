@@ -263,27 +263,12 @@ export function SpiritualDesignCover() {
           rel="noopener noreferrer"
           aria-label="UREES — open urees.shop"
           title="UREES"
-          style={{
-            position: 'absolute',
-            left: 'clamp(10px, 1.2vw, 20px)',
-            bottom: 'clamp(10px, 1.2vw, 20px)',
-            zIndex: 5,
-            display: 'inline-flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: 56,
-            height: 56,
-            borderRadius: 999,
-            background: 'rgba(0,0,0,0.96)',
-            boxShadow:
-              '0 0 0 1px rgba(255,255,255,0.12), 0 10px 26px rgba(10,10,10,0.25)',
-          }}
         >
           <Image
             src="/images/urees-yc-icon.svg"
             alt=""
-            width={56}
-            height={56}
+            width={84}
+            height={84}
             priority
           />
         </a>

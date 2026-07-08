@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { CommerceProductGrid } from '@/components/CommerceProductGrid';
 import { ShopGroupFilter } from '@/components/ShopGroupFilter';
-import { getShopSections, parseShopGroupFilter } from '@/data/shop-catalog';
+import { getShopSectionGroups, parseShopGroupFilter } from '@/data/shop-catalog';
 import styles from './shop.module.css';
 
 export const metadata: Metadata = {
@@ -18,7 +18,7 @@ type ShopPageProps = {
 export default async function ShopPage({ searchParams }: ShopPageProps) {
   const { group } = await searchParams;
   const filter = parseShopGroupFilter(group);
-  const sections = getShopSections(filter);
+  const sectionGroups = getShopSectionGroups(filter);
 
   return (
     <>
@@ -31,20 +31,28 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
         </div>
       </section>
 
-      {sections.map((section) => (
-        <section key={section.id} className={styles.section} id={section.id}>
+      {sectionGroups.map((sectionGroup) => (
+        <section key={sectionGroup.id} className={styles.group} id={sectionGroup.id}>
           <div className={styles.pageWidth}>
-            <div className={styles.sectionHead}>
-              <h2 className={styles.sectionTitle}>{section.title}</h2>
-              {section.description ? (
-                <p className={styles.sectionDescription}>{section.description}</p>
-              ) : null}
-            </div>
-            <CommerceProductGrid
-              products={section.products}
-              brandLine={section.brandLine ?? 'Giuseppe Fioretti'}
-              priceGroup={section.group}
-            />
+            <header className={styles.groupHead}>
+              <h2 className={styles.groupTitle}>{sectionGroup.title}</h2>
+            </header>
+
+            {sectionGroup.sections.map((section) => (
+              <div key={section.id} className={styles.subsection} id={section.id}>
+                <div className={styles.sectionHead}>
+                  <h3 className={styles.sectionTitle}>{section.title}</h3>
+                  {section.description ? (
+                    <p className={styles.sectionDescription}>{section.description}</p>
+                  ) : null}
+                </div>
+                <CommerceProductGrid
+                  products={section.products}
+                  brandLine={section.brandLine ?? 'Giuseppe Fioretti'}
+                  priceGroup={section.group}
+                />
+              </div>
+            ))}
           </div>
         </section>
       ))}

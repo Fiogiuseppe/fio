@@ -20,6 +20,13 @@ export type ShopSection = {
   brandLine?: string;
 };
 
+export type ShopSectionGroup = {
+  id: ShopGroupFilter extends infer T ? (T extends 'all' ? never : T) : never;
+  title: string;
+  group: ShopGroup;
+  sections: ShopSection[];
+};
+
 export const SKIN_CANVAS_COLLECTION_TAG = 'skin-is-the-new-canvas';
 export const HANDPAINTED_COLLECTION_TAG = 'handpainted';
 
@@ -44,7 +51,7 @@ function productsForGroup(products: Product[], group: ShopGroup) {
   return products.filter((product) => getProductShopGroups(product).includes(group));
 }
 
-export function getShopSections(filter: ShopGroupFilter = 'all'): ShopSection[] {
+export function getShopSectionGroups(filter: ShopGroupFilter = 'all'): ShopSectionGroup[] {
   const shopProducts = getShopProducts();
   const paintings = shopProducts.filter((product) => product.category === 'paintings');
   const skinCanvas = paintings.filter((product) =>
@@ -58,35 +65,86 @@ export function getShopSections(filter: ShopGroupFilter = 'all'): ShopSection[] 
       !product.tags?.includes(SKIN_CANVAS_COLLECTION_TAG) &&
       !product.tags?.includes(HANDPAINTED_COLLECTION_TAG)
   );
-  const allHandpainted = [...handpainted, ...standalonePaintings];
+  const handpaintedWorks = [...handpainted, ...standalonePaintings];
   const visceralPoems = shopProducts.filter((product) => product.category === 'visceral-poems');
   const handmadePoems = productsForGroup(visceralPoems, 'handmade');
   const digitalPoems = productsForGroup(visceralPoems, 'digital');
-  const printedProducts = [...skinCanvas, ...digitalPoems];
-  const handpaintedProducts = [...allHandpainted, ...handmadePoems];
-  const sections: ShopSection[] = [];
+  const groups: ShopSectionGroup[] = [];
 
-  if ((filter === 'all' || filter === 'printed') && printedProducts.length > 0) {
-    sections.push({
-      id: 'printed',
-      title: 'Printed',
-      description:
-        'Signed prints — photography, Skin is the New Canvas with Claudia Sahuquillo, and Visceral Poems from @visceralpoems.',
-      group: 'digital',
-      products: printedProducts,
-    });
+  if (filter === 'all' || filter === 'printed') {
+    const sections: ShopSection[] = [];
+
+    if (skinCanvas.length > 0) {
+      sections.push({
+        id: 'skin-is-the-new-canvas',
+        title: 'Skin is the New Canvas',
+        description:
+          'Photography with Claudia Sahuquillo — body as canvas, shot by Giuseppe Fioretti. Signed digital prints.',
+        group: 'digital',
+        brandLine: 'Giuseppe Fioretti × Claudia Sahuquillo',
+        products: skinCanvas,
+      });
+    }
+
+    if (digitalPoems.length > 0) {
+      sections.push({
+        id: 'printed-visceral-poems',
+        title: 'Visceral Poems',
+        description:
+          'A3 signed prints from @visceralpoems — from €10 without frame, €40 with white frame (no passepartout).',
+        group: 'digital',
+        products: digitalPoems,
+      });
+    }
+
+    if (sections.length > 0) {
+      groups.push({
+        id: 'printed',
+        title: 'Printed',
+        group: 'digital',
+        sections,
+      });
+    }
   }
 
-  if ((filter === 'all' || filter === 'handpainted') && handpaintedProducts.length > 0) {
-    sections.push({
-      id: 'handpainted',
-      title: 'Handpainted',
-      description:
-        'Original handpainted works and handmade ink originals from @visceralpoems — from €30 without frame, €60 with frame.',
-      group: 'handmade',
-      products: handpaintedProducts,
-    });
+  if (filter === 'all' || filter === 'handpainted') {
+    const sections: ShopSection[] = [];
+
+    if (handpaintedWorks.length > 0) {
+      sections.push({
+        id: 'handpainted-works',
+        title: 'Works',
+        description: 'Original handpainted pieces — shoes, studies and one-of-one objects.',
+        group: 'handmade',
+        products: handpaintedWorks,
+      });
+    }
+
+    if (handmadePoems.length > 0) {
+      sections.push({
+        id: 'handpainted-visceral-poems',
+        title: 'Visceral Poems',
+        description:
+          'Handpainted A3 originals from @visceralpoems — from €30 without frame, €60 with white frame (no passepartout).',
+        group: 'handmade',
+        products: handmadePoems,
+      });
+    }
+
+    if (sections.length > 0) {
+      groups.push({
+        id: 'handpainted',
+        title: 'Handpainted',
+        group: 'handmade',
+        sections,
+      });
+    }
   }
 
-  return sections;
+  return groups;
+}
+
+/** @deprecated Use getShopSectionGroups */
+export function getShopSections(filter: ShopGroupFilter = 'all'): ShopSection[] {
+  return getShopSectionGroups(filter).flatMap((group) => group.sections);
 }

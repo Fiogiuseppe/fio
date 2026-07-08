@@ -14,7 +14,6 @@ const OUT = path.join(__dirname, '../src/data/products/visceral-poems.json');
 const IG_CACHE = path.join(__dirname, 'data/visceral-poems-ig-handmade.json');
 const FEED_PAGES_DIR = path.join(__dirname, 'data/ig-feed-pages');
 const BASE = 'https://fiogiuseppe.com/wp-content/uploads/2023/03';
-const FRAME_MOCKUP = `${BASE}/Poster-Mockup-Creatlon_2-scaled.jpg`;
 
 const EXCLUDED_IG_CODES = new Set(['C69CZk3qIxZ', 'C69CKd5qj3w', 'C69B51MKtYc', 'C5nhdPEKiVg']);
 
@@ -87,15 +86,22 @@ function slugify(title) {
     .replace(/^-|-$/g, '');
 }
 
+function longStoryForFormats(formats) {
+  const intro =
+    'Born in transit — on buses between cities, on planes between countries — each Visceral Poem is a fragment of an inner landscape.';
+  if (formats.includes('handmade') && !formats.includes('digital')) {
+    return `${intro} Handpainted A3 original (29.7 × 42 cm). Optional white frame without passepartout — the work fills the frame edge to edge.`;
+  }
+  return `${intro} A3 signed print (29.7 × 42 cm). Optional white frame without passepartout — the poster fills the frame edge to edge.`;
+}
+
 function baseProduct({ slug, title, shortDescription, images, formats, tags = [], igCode }) {
   return {
     slug,
     title,
     shortDescription,
-    longStory:
-      'Born in transit — on buses between cities, on planes between countries — each Visceral Poem is a fragment of an inner landscape. Available as a handmade original or as a signed digital print, with an optional frame.',
+    longStory: longStoryForFormats(formats),
     images,
-    framedImage: FRAME_MOCKUP,
     price: 10,
     currency: 'EUR',
     size: 'A3',

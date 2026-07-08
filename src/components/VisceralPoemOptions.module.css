@@ -13,13 +13,14 @@
 
 .preview {
   position: relative;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 297 / 420;
   overflow: hidden;
   background: #ececec;
 }
 
-.previewFramed {
-  background: #f3f1ec;
+.previewWoodFrame {
+  aspect-ratio: 2 / 3;
+  background: #ebe7df;
 }
 
 .artwork {

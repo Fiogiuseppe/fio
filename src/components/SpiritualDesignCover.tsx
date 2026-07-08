@@ -300,6 +300,22 @@ export function SpiritualDesignCover() {
             draggingId ? ` spiritual-cover__canvas--dragging-${draggingId}` : ''
           }`}
         />
+        <a
+          className="spiritual-cover__urees-badge"
+          href="https://urees.shop"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="UREES — open urees.shop"
+          title="UREES"
+        >
+          <Image
+            src="/images/urees-yc-icon.svg"
+            alt=""
+            width={84}
+            height={84}
+            priority
+          />
+        </a>
         {hotspot ? (
           <Link
             ref={conideLinkRef}

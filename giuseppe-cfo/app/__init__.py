@@ -1,0 +1,1 @@
+"""Giuseppe CFO application package."""

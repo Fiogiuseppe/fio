@@ -6,7 +6,7 @@ from zipfile import ZIP_DEFLATED, ZipFile
 
 from app.config import ensure_local_directories, project_paths
 
-ROOT = project_paths()
+ROOT = project_paths().root
 SAFE = ("app", "scripts", "tests", "docs", "README.md", "AGENTS.md", "pyproject.toml", "requirements.txt", "Makefile", ".cursor")
 SECRET = re.compile(r"(api[_-]?key|password|secret|token|cpr|iban|swift).{0,30}[=:]", re.I)
 

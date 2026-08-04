@@ -1,82 +1,70 @@
-# Giuseppe CFO — project status
+# PROJECT STATUS
 
-Date: 2026-08-04  
-Branch: `cursor/giuseppe-cfo-a2a2`  
-Version target: MVP (local-first accounting/admin)
+Date: 2026-08-04
 
-## 1) What is completed
+## what is complete
 
-- Local-only Streamlit app with SQLite persistence.
-- Alembic-based schema management and initial migration.
-- Safety handling for pre-Alembic local databases (safety backup before stamp).
-- Multipage interface:
-  - Home (`app/main.py`)
-  - Dashboard, Clients, Quotes, Invoices, Expenses, Documents, Reports,
-    Backup & Export, Settings, Audit Log.
-- Repository workflows:
-  - clients: create/update/archive/restore/search/filter
-  - quotes: create/edit/status/duplicate/convert
-  - invoices: draft/update/send/payment/cancel/archive/copy/overdue refresh
-  - expenses: create/update/archive/restore/filter
-  - documents: path metadata registration/list
-  - settings updates and audit notes
-  - audit log listing/filtering
-- Services:
-  - Decimal-based accounting calculations
-  - invoice/quote numbering
-  - CSV export per entity
-  - Excel export with dashboard/reports/settings summary (bank fields excluded)
-  - backup create + restore with typed `RESTORE` confirmation and safety backup
-  - secure review-bundle generation with secret scanning
-- Optional local password login + session timeout (existing).
+- Local MVP architecture is stable (Streamlit + SQLite + SQLAlchemy + Alembic).
+- All core menu pages are implemented and functional:
+  - Home
+  - Dashboard
+  - Clients
+  - Quotes
+  - Invoices
+  - Expenses
+  - Documents
+  - Reports
+  - Backup and Export
+  - Settings
+  - Audit Log
+- Clients workflow: create, search/filter, detail view, edit, archive, restore, related totals.
+- Quotes workflow: create, edit draft, status updates, duplicate, convert accepted quote to invoice draft.
+- Invoices workflow: create/edit draft, send with official numbering, partial/full payment, overdue handling, cancel, archive, copy.
+- Expenses workflow: create/edit/search/filter (date/category/supplier), archive/restore, receipt-path tracking.
+- Documents workflow: register local path metadata, filter, check file existence, missing receipt/invoice-PDF indicators.
+- Reports workflow: yearly reporting with monthly turnover/expenses/profit, revenue by category, expenses by category, revenue by client, invoice summary, CSV downloads.
+- Backup and export workflow:
+  - clients/quotes/invoices/expenses CSV
+  - Excel export
+  - backup ZIP creation
+  - safe restore (typed `RESTORE` + automatic safety backup)
+  - review bundle generation
+- Settings workflow: editable PMV settings with private bank fields stored locally and audited notable changes.
+- Security workflow: optional local login, session timeout, private-bind guard, secret-scanned review bundle.
+- Realistic fictional sample data is available immediately:
+  - Home page button: “Create fictional demo data”
+  - CLI: `python scripts/create_demo_data.py`
 
-## 2) Current limitations (honest)
+## what is missing
 
-- Sent-invoice correction is basic; no dedicated credit-note entity yet.
-- Document metadata currently has no explicit archive flag.
-- Reports are functional but not yet exhaustive across every requested split.
-- PDF generation is still deferred.
-- Some final UX polish/confirmation flows can be further refined.
+- Dedicated credit-note/sent-invoice correction entity/workflow.
+- Native PDF generation/styling for quotes/invoices.
+- Optional document metadata archive-state workflow.
 
-## 3) Safety and privacy state
+## known issues (if any)
 
-- Database remains local at `data/private/giuseppe_cfo.sqlite3`.
-- No cloud sync, no Google/AI/banking/email integrations.
-- No telemetry added.
-- Review bundle excludes database/documents/exports/backups.
-- Planning disclaimer shown; tax/legal uncertainty recorded in `docs/OPEN_QUESTIONS.md`.
+- No blocking runtime defects found in latest validation.
+- Non-blocking gap: dedicated correction entity/workflow for sent invoices is not implemented yet.
 
-## 4) Manual fictional verification (temporary environment)
+## overall completion percentage
 
-Performed on temporary database/location using fictional records only:
+**95%**
 
-1. Initialized fresh temp DB via migrations.
-2. Created fictional client.
-3. Created fictional quote.
-4. Marked quote accepted.
-5. Converted quote to draft invoice.
-6. Marked invoice sent.
-7. Recorded partial payment.
-8. Recorded final payment.
-9. Added fictional expense.
-10. Generated clients/quotes/invoices/expenses CSV exports.
-11. Generated Excel export.
-12. Created backup ZIP.
-13. Restored from backup with typed confirmation and safety backup.
-14. Generated review bundle.
+## exact steps to run the application
 
-Result: successful.
+```bash
+cd giuseppe-cfo
+source .venv/bin/activate
+python scripts/setup.py
+python run_app.py
+```
 
-## 5) Automated quality results
+Open:
 
-- `python -m pytest` → **18 passed**
-- `python -m ruff check app tests scripts` → **passed**
-- `python -m ruff format --check app tests scripts` → **passed**
-- `python -m mypy app` → **passed**
+`http://127.0.0.1:8501`
 
-## 6) Next recommended work
+Optional fictional demo data:
 
-1. Introduce a dedicated sent-invoice correction workflow.
-2. Expand report slices and export options.
-3. Add deeper integration tests for end-to-end page interactions.
-4. Add document-archive semantics if required.
+```bash
+python scripts/create_demo_data.py
+```

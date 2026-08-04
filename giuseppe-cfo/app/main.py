@@ -23,6 +23,7 @@ from app.ui.authentication import require_login
 from app.ui.components import planning_disclaimer
 from app.ui.formatting import dkk
 from app.ui.navigation import page_title
+from scripts.create_demo_data import create_demo_data
 
 st.set_page_config("GIUSEPPE CFO", "💼", layout="wide")
 load_private_environment()
@@ -35,6 +36,9 @@ Session = session_factory()
 page_title("GIUSEPPE CFO", "Private local business management for Giuseppe’s PMV.")
 st.caption("All records stay on this computer. No cloud sync. No telemetry.")
 planning_disclaimer()
+if st.button("Create fictional demo data"):
+    create_demo_data()
+    st.success("Demo data created or already present. Refresh the page.")
 
 with Session() as session:
     settings = SettingsRepository(session).get_or_create()

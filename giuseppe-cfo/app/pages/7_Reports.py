@@ -4,7 +4,7 @@ from decimal import Decimal
 import pandas as pd
 import streamlit as st
 
-from app.models import Expense, Invoice
+from app.models import Client, Expense, Invoice
 from app.services.accounting import (
     category_totals,
     estimated_profit,
@@ -78,6 +78,32 @@ with Session() as session:
     if not by_category.empty:
         st.bar_chart(by_category.set_index("category"))
     download_frame(by_category, "Download revenue-by-category CSV", "revenue_by_category.csv")
+
+    st.subheader("Expenses by category")
+    expense_totals: dict[str, Decimal] = {}
+    for item in year_expenses:
+        expense_totals[item.category] = expense_totals.get(item.category, Decimal("0")) + Decimal(
+            str(item.deductible_planning_amount_dkk)
+        )
+    expense_category_frame = pd.DataFrame(
+        [{"category": key, "expenses_dkk": value} for key, value in sorted(expense_totals.items())]
+    )
+    st.dataframe(expense_category_frame, use_container_width=True)
+    download_frame(
+        expense_category_frame, "Download expenses-by-category CSV", "expenses_by_category.csv"
+    )
+
+    st.subheader("Revenue by client")
+    client_names = {item.id: item.company_name for item in session.query(Client).all()}
+    by_client: dict[str, Decimal] = {}
+    for item in year_invoices:
+        key = client_names.get(item.client_id, f"Client {item.client_id}")
+        by_client[key] = by_client.get(key, Decimal("0")) + Decimal(str(item.net_amount_dkk))
+    by_client_frame = pd.DataFrame(
+        [{"client": key, "revenue_dkk": value} for key, value in sorted(by_client.items())]
+    )
+    st.dataframe(by_client_frame, use_container_width=True)
+    download_frame(by_client_frame, "Download revenue-by-client CSV", "revenue_by_client.csv")
 
     st.subheader("Invoices summary")
     invoice_frame = pd.DataFrame(

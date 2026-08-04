@@ -8,6 +8,7 @@ from app.models import Client
 from app.repositories.quotes import QuotesRepository
 from app.schemas.quote import QuoteInput
 from app.services.exports import export_csv
+from app.ui.confirmations import typed_confirmation
 from app.ui.formatting import dkk
 from app.ui.forms import currency_and_rate_fields
 from app.ui.navigation import page_title
@@ -131,6 +132,13 @@ with Session() as session:
         )
         if st.button("Convert accepted quote to draft invoice"):
             try:
+                if not typed_confirmation(
+                    "Conversion creates an invoice draft and marks this quote as converted.",
+                    "CONVERT",
+                    f"convert_quote_{quote.id}",
+                ):
+                    st.warning("Type CONVERT to confirm quote conversion.")
+                    st.stop()
                 invoice = repo.convert_to_invoice_draft(quote, due_date)
                 session.commit()
                 st.success(f"Created draft invoice {invoice.invoice_number}")

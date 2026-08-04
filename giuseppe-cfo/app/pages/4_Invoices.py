@@ -5,6 +5,7 @@ import streamlit as st
 from pydantic import ValidationError
 
 from app.models import Client
+from app.repositories.audit_logs import AuditLogsRepository
 from app.repositories.invoices import InvoicesRepository
 from app.repositories.settings import SettingsRepository
 from app.schemas.invoice import InvoiceInput, InvoicePaymentInput
@@ -186,3 +187,15 @@ with Session() as session:
             repo.mark_archived(invoice)
             session.commit()
             st.success("Invoice archived.")
+        st.write("Payment history")
+        payments = [
+            item
+            for item in AuditLogsRepository(session).list(
+                entity_type="invoice", action="payment", limit=1000
+            )
+            if item.entity_identifier == str(invoice.id)
+        ]
+        st.table(
+            [{"Timestamp": item.timestamp, "Summary": item.summary} for item in payments]
+            or [{"Timestamp": "", "Summary": "No payments recorded."}]
+        )

@@ -1,3 +1,4 @@
+from datetime import date
 from decimal import Decimal
 
 import streamlit as st
@@ -71,6 +72,8 @@ with Session() as session:
         "Category filter", ["all"] + list({item.category for item in repo.list()})
     )
     supplier_filter = st.text_input("Supplier filter")
+    start_date = st.date_input("From date", value=date(2026, 1, 1))
+    end_date = st.date_input("To date", value=date.today())
     include_archived = st.checkbox("Include archived", value=True)
     expenses = repo.list(
         include_archived=include_archived,
@@ -78,6 +81,7 @@ with Session() as session:
         supplier=supplier_filter,
         category="" if category_filter == "all" else category_filter,
     )
+    expenses = [item for item in expenses if start_date <= item.expense_date <= end_date]
     st.dataframe(
         [
             {

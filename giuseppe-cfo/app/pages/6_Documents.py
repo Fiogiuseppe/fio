@@ -72,6 +72,17 @@ with Session() as session:
         ],
         use_container_width=True,
     )
+    selected = (
+        st.selectbox(
+            "Open local document path",
+            [item.stored_path for item in docs],
+        )
+        if docs
+        else None
+    )
+    if selected:
+        st.code(selected, language="text")
+        st.link_button("Open local file", f"file://{selected}")
     invoice_without_pdf = [
         item.invoice_number for item in session.query(Invoice).all() if not item.document_path
     ]

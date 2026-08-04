@@ -16,6 +16,11 @@ Session = bootstrap()
 page_title("Backup and Export", "Create local files and restore safely.")
 
 with Session() as session:
+    st.write(f"Database: `{project_paths().database}`")
+    st.write(f"Documents: `{project_paths().documents}`")
+    st.write(f"Backups: `{project_paths().backups}`")
+    st.write(f"Exports: `{project_paths().exports}`")
+    st.write(f"Review bundle: `{project_paths().review_bundle / 'giuseppe_cfo_review.zip'}`")
     if st.button("Create local backup ZIP"):
         backup = create_backup()
         AuditLogsRepository(session).record(

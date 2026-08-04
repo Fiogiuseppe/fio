@@ -1,10 +1,13 @@
 # PROJECT STATUS
 
-Date: 2026-08-04
+Date: 2026-08-04  
+Project: **GIUSEPPE CFO** (local-first PMV business app)  
+Branch: `cursor/giuseppe-cfo-a2a2`
 
 ## what is complete
 
 - Local MVP architecture is stable (Streamlit + SQLite + SQLAlchemy + Alembic).
+- Premium minimalist UI theme (sidebar quick manual included).
 - All core menu pages are implemented and functional:
   - Home
   - Dashboard
@@ -17,6 +20,7 @@ Date: 2026-08-04
   - Backup and Export
   - Settings
   - Audit Log
+  - Developer Dashboard
 - Clients workflow: create, search/filter, detail view, edit, archive, restore, related totals.
 - Quotes workflow: create, edit draft, status updates, duplicate, convert accepted quote to invoice draft.
 - Invoices workflow: create/edit draft, send with official numbering, partial/full payment, overdue handling, cancel, archive, copy.
@@ -34,10 +38,11 @@ Date: 2026-08-04
 - Realistic fictional sample data is available immediately:
   - Home page button: “Create fictional demo data”
   - CLI: `python scripts/create_demo_data.py`
+- Quality checks last run: pytest, ruff, mypy — passing.
 
 ## what is missing
 
-- Dedicated credit-note/sent-invoice correction entity/workflow.
+- Dedicated credit-note / sent-invoice correction entity/workflow.
 - Native PDF generation/styling for quotes/invoices.
 - Optional document metadata archive-state workflow.
 
@@ -45,6 +50,7 @@ Date: 2026-08-04
 
 - No blocking runtime defects found in latest validation.
 - Non-blocking gap: dedicated correction entity/workflow for sent invoices is not implemented yet.
+- Cloud agent cannot write directly to the user’s Mac Desktop; project lives in repo / downloadable ZIP artifacts.
 
 ## overall completion percentage
 
@@ -54,7 +60,9 @@ Date: 2026-08-04
 
 ```bash
 cd giuseppe-cfo
+python3 -m venv .venv
 source .venv/bin/activate
+pip install -e '.[dev]'
 python scripts/setup.py
 python run_app.py
 ```
@@ -68,3 +76,12 @@ Optional fictional demo data:
 ```bash
 python scripts/create_demo_data.py
 ```
+
+## key local paths
+
+- App root: `giuseppe-cfo/`
+- Database: `data/private/giuseppe_cfo.sqlite3`
+- Documents: `documents/{invoices,quotes,receipts,contracts,other}/`
+- Exports: `exports/`
+- Backups: `backups/`
+- Review bundle: `review_bundle/`

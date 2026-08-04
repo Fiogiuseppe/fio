@@ -1,6 +1,9 @@
+import os
+
 import bcrypt
 
 from app.auth import authentication_enabled, session_is_valid, timeout_seconds, verify_password
+from app.config import Paths, load_private_environment
 from app.network import is_private_bind_address
 
 
@@ -26,3 +29,13 @@ def test_only_private_or_loopback_addresses_are_allowed():
     assert is_private_bind_address("100.101.102.103")
     assert not is_private_bind_address("8.8.8.8")
     assert not is_private_bind_address("not-an-ip")
+
+
+def test_private_env_file_loads_without_overriding_shell(tmp_path, monkeypatch):
+    (tmp_path / ".env").write_text("GIUSEPPE_CFO_TEST_VALUE=file\n")
+    monkeypatch.delenv("GIUSEPPE_CFO_TEST_VALUE", raising=False)
+    load_private_environment(Paths(tmp_path))
+    assert os.environ["GIUSEPPE_CFO_TEST_VALUE"] == "file"
+    monkeypatch.setenv("GIUSEPPE_CFO_TEST_VALUE", "shell")
+    load_private_environment(Paths(tmp_path))
+    assert os.environ["GIUSEPPE_CFO_TEST_VALUE"] == "shell"

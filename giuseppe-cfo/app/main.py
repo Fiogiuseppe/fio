@@ -3,7 +3,7 @@ from decimal import Decimal
 
 import streamlit as st
 
-from app.config import ensure_local_directories
+from app.config import ensure_local_directories, load_private_environment
 from app.database import initialise_database, session_factory
 from app.models import Client, Expense, Invoice
 from app.repositories.clients import ClientsRepository
@@ -25,6 +25,7 @@ from app.services.exports import export_excel
 from app.ui.authentication import require_login
 
 st.set_page_config("GIUSEPPE CFO", "💼", layout="wide")
+load_private_environment()
 if not require_login():
     st.stop()
 ensure_local_directories()

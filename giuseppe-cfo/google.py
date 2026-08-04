@@ -8,6 +8,12 @@ from pkgutil import extend_path
 
 __path__ = extend_path([], __name__)
 
-from app.google_workspace import GoogleWorkspace
-
 __all__ = ["GoogleWorkspace"]
+
+
+def __getattr__(name: str):
+    if name == "GoogleWorkspace":
+        from app.google_workspace import GoogleWorkspace
+
+        return GoogleWorkspace
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")

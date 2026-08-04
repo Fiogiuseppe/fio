@@ -4,6 +4,8 @@ GIUSEPPE CFO is local-first. The SQLite database, documents, exports, and backup
 
 ## Network boundary
 
+The default and recommended mode is localhost (`127.0.0.1`) on the primary computer.
+
 `python run_app.py` binds to `127.0.0.1` by default. To make it available only to Giuseppe’s other Tailscale-connected personal devices, install and sign in to Tailscale on the primary computer and each personal device, then set `GIUSEPPE_CFO_USE_TAILSCALE=1` in a local, Git-ignored `.env` file or shell environment before starting the app.
 
 The launcher obtains the Tailscale IPv4 address and rejects public bind addresses. Alternatively, `GIUSEPPE_CFO_BIND_ADDRESS` may contain a loopback, RFC1918 private-LAN, or Tailscale `100.64.0.0/10` address. It rejects public IP addresses.

@@ -1,4 +1,6 @@
 alembic
+bcrypt
+email-validator
 openpyxl
 pandas
 pydantic

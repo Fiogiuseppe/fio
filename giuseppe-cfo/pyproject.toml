@@ -6,6 +6,7 @@ requires-python = ">=3.11"
 dependencies = [
   "alembic",
   "bcrypt",
+  "email-validator",
   "openpyxl",
   "pandas",
   "pydantic",

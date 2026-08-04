@@ -37,4 +37,6 @@ def timeout_seconds(value: str | None = None) -> int:
 
 
 def session_is_valid(last_activity: float | None, now: float | None = None) -> bool:
-    return last_activity is not None and (now or time.monotonic()) - last_activity < timeout_seconds()
+    return (
+        last_activity is not None and (now or time.monotonic()) - last_activity < timeout_seconds()
+    )

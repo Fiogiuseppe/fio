@@ -1,10 +1,54 @@
 # Project status
-Stage: local-first foundation, core interface, and private-device access.
 
-Completed: SQLite models, client/quote/invoice/expense entry, dashboard calculations, exports, local backups, audit records, optional bcrypt-hash login, automatic idle-session timeout, and loopback/private-network launch validation.
+## Current stage
+Stable local MVP in active hardening.
 
-Partial: document registration, correction/archive screens, quotes UI, invoice payment/sending UI, and reports need further UI work. PDF generation is deferred.
+## Completed functionality
+- Alembic migration workflow with migration-aware startup.
+- Local SQLite persistence and schema-safe initialisation.
+- Multipage Streamlit structure:
+  - Dashboard
+  - Clients
+  - Quotes
+  - Invoices
+  - Expenses
+  - Documents
+  - Reports
+  - Backup and Export
+  - Settings
+  - Audit Log
+- Core lifecycle operations:
+  - client create/edit/archive/restore
+  - quote create/edit/status/duplicate/convert
+  - invoice draft/send/payment/cancel/archive/copy
+  - expense create/edit/archive/restore
+- Local CSV and Excel exports.
+- Local backup and restore with typed confirmation and safety backup.
+- Audit log recording across major operations.
+- Secure review-bundle generation with secret scanning.
 
-Known issue: legal and tax treatment is intentionally not encoded as advice. Backup restore is not implemented. Remote access requires the primary computer to be switched on and the application running; no data is synchronised.
+## Partially completed
+- Sent-invoice correction workflow is still basic (no dedicated credit-note/correction entity).
+- Documents page stores path metadata and checks existence, but does not yet include archive state for document records.
+- Reports are functional but still compact; deeper analytical layouts can be expanded.
 
-Next: expand page-level editing and correction workflows while preserving the local-only data model.
+## Known issues / constraints
+- Tool remains a planning system and does not provide legal/tax advice.
+- VAT/tax assumptions must be verified with SKAT/accountant (see OPEN_QUESTIONS).
+- PDF generation and advanced invoice formatting remain deferred.
+
+## Last successful verification
+- Full automated suite: **18 passed**.
+- Ruff check: passed.
+- Ruff format check: passed.
+- Mypy: passed.
+- Fictional end-to-end repository verification run completed on temporary data:
+  - client created
+  - quote accepted and converted
+  - invoice sent and paid in two payments
+  - expense added
+  - CSV + Excel exported
+  - backup and restore completed
+
+## Next recommended task
+Complete a dedicated correction workflow for sent invoices and expand report detail views while keeping migration safety and audit traceability.

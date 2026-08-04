@@ -15,4 +15,4 @@ class Document(Base):
     related_entity_type: Mapped[str] = mapped_column(String(50), default="")
     related_entity_id: Mapped[int | None] = mapped_column(Integer, nullable=True)
     description: Mapped[str] = mapped_column(Text, default="")
-    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.now)

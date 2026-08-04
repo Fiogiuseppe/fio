@@ -1,26 +1,67 @@
 # GIUSEPPE CFO
-Private, local-first business management for Giuseppe Fioretti’s Danish PMV. Data stays on this computer in SQLite; no cloud services, telemetry, or external APIs are used.
 
-## Install and start (macOS)
+Local-only business-management software for Giuseppe Fioretti’s Danish PMV.
+
+Planning tool only — not tax or accounting advice.
+
+## Privacy model
+
+- SQLite database remains local.
+- No cloud database, Google APIs, email APIs, banking APIs, or telemetry.
+- Backups and exports are local files you control.
+- Review bundles exclude database/files and scan for likely secrets.
+
+## Install
+
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -e '.[dev]'
+```
+
+## Initialize database and migrations
+
+```bash
 python scripts/setup.py
+alembic upgrade head
+```
+
+## Run
+
+```bash
 python run_app.py
 ```
-Open `http://localhost:8501`; localhost is only this computer, not a public website. Stop with `Ctrl+C`.
 
-## Daily use
-Use the visual interface to create clients, drafts, quotes and expenses; view planning metrics; export CSV/Excel; and create a local ZIP backup. The tax reserve is a planning estimate, not a tax calculation. The PMV threshold monitor uses issue-date turnover and does not perform VAT registration.
+Open `http://127.0.0.1:8501` (localhost only). Stop with `Ctrl+C`.
 
-## Commands
+## Common commands
+
 ```bash
 python -m pytest
+python -m ruff check app tests scripts
+python -m ruff format --check app tests scripts
+python -m mypy app
 python scripts/create_backup.py
 python scripts/create_review_bundle.py
 ```
-The database is `data/private/giuseppe_cfo.sqlite3`. Documents are under `documents/`, exports under `exports/`, backups under `backups/`, and the review ZIP is `review_bundle/giuseppe_cfo_review.zip`.
+
+## Storage locations
+
+- Database: `data/private/giuseppe_cfo.sqlite3`
+- Documents: `documents/`
+- Invoices documents: `documents/invoices/`
+- Quotes documents: `documents/quotes/`
+- Receipts: `documents/receipts/`
+- Exports: `exports/`
+- Backups: `backups/`
+- Review ZIP: `review_bundle/giuseppe_cfo_review.zip`
+
+## Recovery
+
+Use the Backup & Export page to restore from a ZIP. The app requires typed confirmation (`RESTORE`) and creates a safety backup before replacing current state.
 
 ## Troubleshooting
-Run `python scripts/setup.py` to initialise the local database. If port 8501 is busy, stop the earlier local app and run again. Backups are local files: protect them with your normal device security.
+
+- If schema is outdated, run `alembic upgrade head`.
+- If port 8501 is busy, stop the old process and restart.
+- Keep frequent local backups before entering real business records.

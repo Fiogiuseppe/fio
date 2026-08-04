@@ -1,32 +1,71 @@
 # Giuseppe CFO user guide
 
-## Start on the primary computer
+Planning tool only — not tax or accounting advice.
 
-The primary computer holds the only database, documents, exports, and backups. It must be switched on, connected to Tailscale if remote access is needed, and running GIUSEPPE CFO before another device can connect.
+## Start the app
 
 ```bash
 cd giuseppe-cfo
 source .venv/bin/activate
+python scripts/setup.py
 python run_app.py
 ```
 
-On the primary computer, open `http://127.0.0.1:8501`.
+Open `http://127.0.0.1:8501` in your browser.
 
-## Optional Tailscale access from another personal computer
+To stop the app: return to the terminal and press `Ctrl+C`.
 
-1. Install Tailscale and sign in on both personal computers.
-2. On the primary computer, create a local `.env` file from `.env.example`.
-3. Add `GIUSEPPE_CFO_USE_TAILSCALE=1`; optionally add `GIUSEPPE_CFO_PASSWORD_HASH`.
-4. Start the app using the command above.
-5. Find the primary computer’s Tailscale IPv4 address with `tailscale ip -4`.
-6. On the other personal device, while connected to the same Tailscale account/tailnet, open `http://TAILSCALE-IP:8501`.
+## Daily workflow
 
-This is private device-to-device access, not public hosting. Do not enable Tailscale Funnel or router port forwarding.
+1. **Home/Dashboard**: review turnover, expenses, estimated profit, tax-reserve planning, and threshold warning.
+2. **Clients**: create or edit a client before creating quotes/invoices.
+3. **Quotes**:
+   - create a quote;
+   - set status to sent/accepted/rejected/expired;
+   - convert accepted quotes into draft invoices.
+4. **Invoices**:
+   - create draft invoices;
+   - mark drafts as sent (official number assigned);
+   - record partial/full payments;
+   - cancel or archive when needed.
+5. **Expenses**:
+   - add expenses;
+   - set category and business-use percentage;
+   - register receipt paths;
+   - archive/restore entries.
+6. **Documents**:
+   - register local file paths for invoice PDF, quote PDF, receipt, contract, or other.
+7. **Reports**:
+   - choose a year;
+   - view monthly turnover/expenses/profit and category summaries.
+8. **Backup & Export**:
+   - create CSV/Excel exports;
+   - create backup ZIP;
+   - restore from backup (requires typing `RESTORE`);
+   - create review bundle ZIP.
+9. **Settings**:
+   - update business profile, VAT status, threshold, and prefixes.
+10. **Audit Log**:
+    - review recorded actions and filters.
 
-## Login and timeout
+## Backup and restore
 
-If a local password hash has been configured, enter the corresponding password on the login screen. A session expires after 30 minutes of inactivity unless the primary computer uses a different local timeout setting.
+- Create backups often from **Backup & Export**.
+- Restore requires typed confirmation (`RESTORE`) and creates a safety backup first.
+- Only restore from backups you trust.
 
-## Important
+## Review bundle safety
 
-Closing the terminal or putting the primary computer to sleep stops access from other devices. No data is copied to the other device; it remains on the primary computer.
+`review_bundle/giuseppe_cfo_review.zip` is for code review only.  
+Do not put database files, customer files, contracts, receipts, or exports into the bundle.
+
+## Where data is stored
+
+- Database: `data/private/giuseppe_cfo.sqlite3`
+- Documents: `documents/`
+- Invoices folder: `documents/invoices/`
+- Quotes folder: `documents/quotes/`
+- Receipts folder: `documents/receipts/`
+- Exports: `exports/`
+- Backups: `backups/`
+- Review ZIP: `review_bundle/giuseppe_cfo_review.zip`

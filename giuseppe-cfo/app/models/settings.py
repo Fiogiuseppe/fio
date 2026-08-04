@@ -13,7 +13,9 @@ class BusinessSettings(Base):
     business_name: Mapped[str] = mapped_column(String(200), default="Giuseppe Fioretti")
     business_type: Mapped[str] = mapped_column(String(50), default="PMV")
     main_industry_code: Mapped[str] = mapped_column(String(30), default="74.12.00")
-    main_industry_description: Mapped[str] = mapped_column(String(200), default="Graphic design and visual communication")
+    main_industry_description: Mapped[str] = mapped_column(
+        String(200), default="Graphic design and visual communication"
+    )
     start_date: Mapped[date] = mapped_column(Date, default=date(2026, 8, 4))
     business_address: Mapped[str] = mapped_column(String(250), default="")
     postal_code: Mapped[str] = mapped_column(String(30), default="")

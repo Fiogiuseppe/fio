@@ -13,7 +13,11 @@ def is_private_bind_address(value: str) -> bool:
         address = ipaddress.ip_address(value)
     except ValueError:
         return False
-    return address.is_loopback or address.is_private or address in ipaddress.ip_network("100.64.0.0/10")
+    return (
+        address.is_loopback
+        or address.is_private
+        or address in ipaddress.ip_network("100.64.0.0/10")
+    )
 
 
 def tailscale_address() -> str:
@@ -28,7 +32,9 @@ def bind_address() -> str:
     configured = os.getenv(BIND_ADDRESS_ENV, "").strip()
     if configured:
         if not is_private_bind_address(configured):
-            raise ValueError("GIUSEPPE_CFO_BIND_ADDRESS must be loopback, private LAN, or Tailscale CGNAT.")
+            raise ValueError(
+                "GIUSEPPE_CFO_BIND_ADDRESS must be loopback, private LAN, or Tailscale CGNAT."
+            )
         return configured
     if os.getenv(USE_TAILSCALE_ENV) == "1":
         return tailscale_address()

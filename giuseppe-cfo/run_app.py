@@ -1,9 +1,14 @@
-"""Start the local Streamlit application at http://localhost:8501."""
+"""Start Streamlit only on loopback or an approved private-network address."""
 import subprocess
 import sys
+
 from app.config import ensure_local_directories
 from app.database import initialise_database
+from app.network import bind_address
 
 if __name__ == "__main__":
-    ensure_local_directories(); initialise_database()
-    raise SystemExit(subprocess.call([sys.executable, "-m", "streamlit", "run", "app/main.py"]))
+    ensure_local_directories()
+    initialise_database()
+    address = bind_address()
+    command = [sys.executable, "-m", "streamlit", "run", "app/main.py", "--server.address", address]
+    raise SystemExit(subprocess.call(command))

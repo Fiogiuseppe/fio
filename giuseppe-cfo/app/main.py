@@ -22,8 +22,11 @@ from app.services.accounting import (
 )
 from app.services.backups import create_backup
 from app.services.exports import export_excel
+from app.ui.authentication import require_login
 
 st.set_page_config("GIUSEPPE CFO", "💼", layout="wide")
+if not require_login():
+    st.stop()
 ensure_local_directories()
 initialise_database()
 Session = session_factory()

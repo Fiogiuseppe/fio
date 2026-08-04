@@ -1,0 +1,7 @@
+alembic
+openpyxl
+pandas
+pydantic
+reportlab
+sqlalchemy
+streamlit

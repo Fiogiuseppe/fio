@@ -3,7 +3,6 @@
 __pycache__/
 *.py[cod]
 .env
-<<<<<<< HEAD
 .env.*
 !.env.example
 *.db
@@ -17,14 +16,11 @@ logs/
 review_bundle/*.zip
 credentials.json
 token.json
+service-account*.json
+generated-invoices/
 *.pem
 *.key
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
 .DS_Store
-=======
-service-account*.json
-generated-invoices/
-.pytest_cache/
->>>>>>> origin/main

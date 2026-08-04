@@ -9,6 +9,7 @@ dependencies = [
   "email-validator",
   "openpyxl",
   "pandas",
+  "playwright",
   "pydantic",
   "reportlab",
   "sqlalchemy",

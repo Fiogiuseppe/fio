@@ -8,7 +8,7 @@ import styles from './shop.module.css';
 export const metadata: Metadata = {
   title: 'Shop — Giuseppe Fioretti',
   description:
-    'Printed and handpainted works — Skin is the New Canvas photography, Visceral Poems, and original pieces by Giuseppe Fioretti.',
+    'Handpainted artworks and Visceral Poems — signed prints and originals by Giuseppe Fioretti.',
 };
 
 type ShopPageProps = {

@@ -27,7 +27,6 @@ export type ShopSectionGroup = {
   sections: ShopSection[];
 };
 
-export const SKIN_CANVAS_COLLECTION_TAG = 'skin-is-the-new-canvas';
 export const HANDPAINTED_COLLECTION_TAG = 'handpainted';
 
 export function shopGroupLabel(group: ShopGroup): string {
@@ -53,19 +52,7 @@ function productsForGroup(products: Product[], group: ShopGroup) {
 
 export function getShopSectionGroups(filter: ShopGroupFilter = 'all'): ShopSectionGroup[] {
   const shopProducts = getShopProducts();
-  const paintings = shopProducts.filter((product) => product.category === 'paintings');
-  const skinCanvas = paintings.filter((product) =>
-    product.tags?.includes(SKIN_CANVAS_COLLECTION_TAG)
-  );
-  const handpainted = paintings.filter((product) =>
-    product.tags?.includes(HANDPAINTED_COLLECTION_TAG)
-  );
-  const standalonePaintings = paintings.filter(
-    (product) =>
-      !product.tags?.includes(SKIN_CANVAS_COLLECTION_TAG) &&
-      !product.tags?.includes(HANDPAINTED_COLLECTION_TAG)
-  );
-  const handpaintedWorks = [...handpainted, ...standalonePaintings];
+  const handpaintedWorks = shopProducts.filter((product) => product.category === 'paintings');
   const visceralPoems = shopProducts.filter((product) => product.category === 'visceral-poems');
   const handmadePoems = productsForGroup(visceralPoems, 'handmade');
   const digitalPoems = productsForGroup(visceralPoems, 'digital');
@@ -73,18 +60,6 @@ export function getShopSectionGroups(filter: ShopGroupFilter = 'all'): ShopSecti
 
   if (filter === 'all' || filter === 'printed') {
     const sections: ShopSection[] = [];
-
-    if (skinCanvas.length > 0) {
-      sections.push({
-        id: 'skin-is-the-new-canvas',
-        title: 'Skin is the New Canvas',
-        description:
-          'Photography with Claudia Sahuquillo — body as canvas, shot by Giuseppe Fioretti. Signed digital prints.',
-        group: 'digital',
-        brandLine: 'Giuseppe Fioretti × Claudia Sahuquillo',
-        products: skinCanvas,
-      });
-    }
 
     if (digitalPoems.length > 0) {
       sections.push({

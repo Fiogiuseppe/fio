@@ -95,7 +95,7 @@ export const OTHER_WORKS = [
 
 export const HOBBY_IMAGES = [
   { href: '/shop/drawing-hag', image: `${WP}/2021/05/HAG-scaled.jpg`, alt: 'Drawing by Giuseppe Fió' },
-  { href: '/shop#printed', image: `${WP}/2021/05/IG-202114-scaled.jpg`, alt: 'Skin is the new canvas' },
+  { href: '/shop#handpainted', image: `${WP}/2021/05/IG-202114-scaled.jpg`, alt: 'Handpainted artwork' },
   { href: '/archive/inchiodiamo-il-passato', image: `${WP}/2021/05/SACRA-BIBLIA-scaled.jpg`, alt: 'Inchiodiamo il passato' },
   { href: '/work/pee-pee', image: `${WP}/2021/05/IG-202131-scaled.jpg`, alt: 'Pee Pee' },
 ] as const;

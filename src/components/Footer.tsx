@@ -49,19 +49,9 @@ export function Footer() {
           <TypographyLabel className="text-on-dark-subtle">Connect</TypographyLabel>
           <ul className={`${editorial.stack.block} space-y-2`}>
             <li>
-              <a href={`mailto:${SITE.email}`} className="no-underline hover:text-blue">
-                <TypographyMeta className="text-on-dark/80">{SITE.email}</TypographyMeta>
-              </a>
-            </li>
-            <li>
-              <a
-                href={SITE.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="no-underline hover:text-blue"
-              >
-                <TypographyMeta className="text-on-dark/80">Instagram</TypographyMeta>
-              </a>
+              <Link href="/contact" className="no-underline hover:text-blue">
+                <TypographyMeta className="text-on-dark/80">Contact</TypographyMeta>
+              </Link>
             </li>
           </ul>
         </div>

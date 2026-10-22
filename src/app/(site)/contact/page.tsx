@@ -23,23 +23,6 @@ export default function ContactPage() {
           />
           <div className={`${editorial.stack.leadToContent} space-y-8`}>
             <div>
-              <TypographyLabel>Email</TypographyLabel>
-              <a href={`mailto:${SITE.email}`} className={`${editorial.stack.labelToTitle} block text-blue no-underline hover:underline`}>
-                <TypographyBody measure={false}>{SITE.email}</TypographyBody>
-              </a>
-            </div>
-            <div>
-              <TypographyLabel>Instagram</TypographyLabel>
-              <a
-                href={SITE.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`${editorial.stack.labelToTitle} block text-blue no-underline hover:underline`}
-              >
-                <TypographyBody measure={false}>@fiogiuseppe</TypographyBody>
-              </a>
-            </div>
-            <div>
               <TypographyLabel>Based in</TypographyLabel>
               <TypographyBody measure={false} className={editorial.stack.labelToTitle}>
                 {SITE.location}

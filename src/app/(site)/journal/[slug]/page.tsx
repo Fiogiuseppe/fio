@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const article = getArticle(slug);
   if (!article) return {};
   return {
-    title: `${article.title} — Journal`,
+    title: `${article.title} | Journal`,
     description: article.excerpt,
   };
 }

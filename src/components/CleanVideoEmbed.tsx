@@ -10,7 +10,7 @@ type CleanVideoEmbedProps = {
   youtubeId: string;
   title: string;
   poster?: string;
-  /** Ambient: autoplay muted loop, cropped — no YouTube chrome. Cinema: poster + play. */
+  /** Ambient: autoplay muted loop, cropped: no YouTube chrome. Cinema: poster + play. */
   mode?: 'ambient' | 'cinema';
   className?: string;
 };

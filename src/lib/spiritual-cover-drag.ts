@@ -47,7 +47,7 @@ export function storageKeyForDragId(id: CoverDragId) {
   return UREES_OFFSET_STORAGE_KEY;
 }
 
-/** Black circle with dot grid — the Conide easter-egg icon. */
+/** Black circle with dot grid: the Conide easter-egg icon. */
 export function identifyConideElements(svg: SVGSVGElement): SVGGraphicsElement[] {
   const paths = Array.from(svg.querySelectorAll('path'));
   let best: { path: SVGPathElement; dots: number } | null = null;
@@ -93,7 +93,7 @@ export function identifyConideElements(svg: SVGSVGElement): SVGGraphicsElement[]
   });
 }
 
-/** Hand-drawn blue square with eye motif — bottom-right of the cover. */
+/** Hand-drawn blue square with eye motif: bottom-right of the cover. */
 export function identifyBlueSquareElements(svg: SVGSVGElement): SVGGraphicsElement[] {
   const graphics = Array.from(
     svg.querySelectorAll('path, rect, circle, ellipse, line, polyline, polygon')
@@ -151,7 +151,7 @@ export function identifyBlueSquareElements(svg: SVGSVGElement): SVGGraphicsEleme
       continue;
     }
 
-    // Logo strokes inside the square only — never the caption below it.
+    // Logo strokes inside the square only: never the caption below it.
     const cx = box.x + box.width / 2;
     const cy = box.y + box.height / 2;
     const elementBottom = box.y + box.height;
@@ -169,7 +169,7 @@ export function identifyBlueSquareElements(svg: SVGSVGElement): SVGGraphicsEleme
   return Array.from(selected);
 }
 
-/** UREES stamp — compact square with eye motif, bottom-left of the cover. */
+/** UREES stamp: compact square with eye motif, bottom-left of the cover. */
 export function identifyUreesElements(svg: SVGSVGElement): SVGGraphicsElement[] {
   const graphics = Array.from(
     svg.querySelectorAll('path, rect, circle, ellipse, line, polyline, polygon')

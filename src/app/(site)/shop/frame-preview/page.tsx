@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { FramePreviewLab } from '@/components/FramePreviewLab';
 
 export const metadata: Metadata = {
-  title: 'Frame mockup preview — Giuseppe Fioretti',
+  title: 'Frame mockup preview | Giuseppe Fioretti',
   description: 'Internal preview for the Visceral Poems frame mockup.',
   robots: {
     index: false,
@@ -21,7 +21,7 @@ export default function FramePreviewPage() {
           Cornice Visceral Poems
         </h1>
         <p className="mb-10 max-w-2xl text-sm leading-relaxed text-ink/65">
-          Pagina di prova — cornice legno su parete, come riferimento. A3, senza passepartout.
+          Pagina di prova, cornice legno su parete, come riferimento. A3, senza passepartout.
           Per ora attiva solo su <strong>Visceral Poem 12</strong> (printed).
         </p>
         <FramePreviewLab />

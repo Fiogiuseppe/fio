@@ -22,7 +22,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { handle } = await params;
   return {
-    title: `${COLLECTION_TITLES[handle] ?? 'Collection'} — Urees Store`,
+    title: `${COLLECTION_TITLES[handle] ?? 'Collection'} | Urees Store`,
   };
 }
 

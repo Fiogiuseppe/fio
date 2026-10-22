@@ -22,7 +22,7 @@ export function ServiceCard({ service }: ServiceCardProps) {
           <ul className={`${editorial.stack.labelToTitle} space-y-2`}>
             {service.includes.map((item) => (
               <li key={item}>
-                <TypographyBody measure={false}>— {item}</TypographyBody>
+                <TypographyBody measure={false}>{item}</TypographyBody>
               </li>
             ))}
           </ul>

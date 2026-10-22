@@ -19,7 +19,7 @@ export function ConidePageContent() {
           The Conide
         </TypographySection>
         <TypographyLead className={styles.lead}>
-          &ldquo;Conide. The xoxo of art&rdquo; — &ldquo;I have seen a Conide&rdquo;
+          &ldquo;Conide. The xoxo of art&rdquo; &ldquo;I have seen a Conide&rdquo;
         </TypographyLead>
       </header>
 
@@ -60,18 +60,18 @@ export function ConidePageContent() {
       <figure className={styles.figure}>
         <Image
           src={CONIDE_IMAGES.illustration}
-          alt="I HAVE SEEN A CONIDE (Ho visto un Conide) — Illustration Claudia Sahuquillo"
+          alt="I HAVE SEEN A CONIDE (Ho visto un Conide): Illustration Claudia Sahuquillo"
           width={900}
           height={900}
           className={styles.exampleImage}
         />
         <figcaption className={styles.caption}>
-          I HAVE SEEN A CONIDE (Ho visto un Conide) — Illustration Claudia Sahuquillo
+          I HAVE SEEN A CONIDE (Ho visto un Conide), Illustration Claudia Sahuquillo
         </figcaption>
       </figure>
 
       <blockquote className={styles.quote}>
-        &ldquo;The tricks (conide) of today are the truths (Artist) of tomorrow&rdquo; — original
+        &ldquo;The tricks (conide) of today are the truths (Artist) of tomorrow&rdquo; original
         phrase by @toiletpapermagazineofficial
       </blockquote>
     </article>

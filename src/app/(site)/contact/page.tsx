@@ -7,7 +7,7 @@ import { editorial } from '@/lib/typography';
 import { SITE } from '@/data/site';
 
 export const metadata: Metadata = {
-  title: 'Contact — Giuseppe Fioretti',
+  title: 'Contact | Giuseppe Fioretti',
   description: 'Service inquiries, artwork requests, UREES and collaborations.',
 };
 
@@ -19,7 +19,7 @@ export default function ContactPage() {
           <SectionIntro
             kicker="Contact"
             title="Start a conversation"
-            description="Whether it's a brand project, an artwork or a UREES piece — every collaboration begins here."
+            description="Write to me about a project, an artwork or a possible collaboration."
           />
           <div className={`${editorial.stack.leadToContent} space-y-8`}>
             <div>

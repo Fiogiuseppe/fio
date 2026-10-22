@@ -1,10 +1,11 @@
 import catalogData from './catalog.json';
 import siteData from './site.json';
+import { normalizeImportedCopy } from '@/lib/website-copy';
 import type { UreesCatalog, UreesProduct } from '@/lib/urees-types';
 import type { UreesArticle, UreesPage, UreesPolicy, UreesSiteData } from '@/lib/urees-site-types';
 
 const catalog = catalogData as UreesCatalog;
-const site = siteData as UreesSiteData;
+const site = normalizeImportedCopy(siteData) as UreesSiteData;
 
 export const ureesCatalog = catalog;
 export const ureesSite = site;

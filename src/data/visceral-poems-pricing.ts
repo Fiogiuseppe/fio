@@ -19,14 +19,14 @@ export const VISCERAL_POEMS_PRICING = {
 export type VisceralPoemFormat = keyof typeof VISCERAL_POEMS_PRICING;
 
 const VISCERAL_POEM_STORY_INTRO =
-  'Born in transit — on buses between cities, on planes between countries — each Visceral Poem is a fragment of an inner landscape.';
+  'Visceral Poems combines writing and drawing on paper. The series began on bus journeys and flights between cities.';
 
 export function visceralPoemLongStory(format: VisceralPoemFormat) {
   if (format === 'digital') {
-    return `${VISCERAL_POEM_STORY_INTRO} A3 signed print (${VISCERAL_POEM_DIMENSIONS}). Optional white frame without passepartout — the poster fills the frame edge to edge.`;
+    return `${VISCERAL_POEM_STORY_INTRO} A3 signed print (${VISCERAL_POEM_DIMENSIONS}). An optional white frame holds the poster edge to edge, without a mount.`;
   }
 
-  return `${VISCERAL_POEM_STORY_INTRO} Handpainted A3 original (${VISCERAL_POEM_DIMENSIONS}). Optional white frame without passepartout — the work fills the frame edge to edge.`;
+  return `${VISCERAL_POEM_STORY_INTRO} Handpainted A3 original (${VISCERAL_POEM_DIMENSIONS}). An optional white frame holds the work edge to edge, without a mount.`;
 }
 
 export function visceralPoemPrice(format: VisceralPoemFormat, withFrame: boolean) {

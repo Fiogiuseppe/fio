@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props) {
   const page = getProjectPage(slug);
   if (!page) return {};
   return {
-    title: `${page.title} — Archive`,
+    title: `${page.title} | Archive`,
     description: page.description,
     robots: { index: false },
   };

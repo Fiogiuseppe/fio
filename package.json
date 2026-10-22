@@ -12,7 +12,9 @@
     "generate:visceral-poems": "node scripts/generate-visceral-poems.mjs",
     "sync:visceral-poems": "node scripts/sync-visceral-poems-ig.mjs",
     "host:visceral-poem-images": "node scripts/host-visceral-poem-images.mjs",
-    "sync:urees": "node scripts/sync-urees-shop.mjs"
+    "sync:urees": "node scripts/sync-urees-shop.mjs",
+    "check:copy": "node scripts/check-copy.mjs",
+    "prebuild": "npm run check:copy"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.3.2",

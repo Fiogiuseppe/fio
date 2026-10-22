@@ -2,9 +2,11 @@
   {
     "slug": "skin-is-the-new-canvas",
     "title": "Skin is the New Canvas",
-    "shortDescription": "Body as canvas — collaborative series with Claudia Sahuquillo, photographed by Giuseppe Fioretti.",
-    "longStory": "Claudia Sahuquillo is a Barcelona-based artist who works on the human body as canvas. Giuseppe Fioretti photographed the series Skin is the New Canvas — celebrating form, colour and presence through painting and photography.",
-    "images": ["https://fiogiuseppe.com/wp-content/uploads/2021/05/IG-202114-scaled.jpg"],
+    "shortDescription": "Body as canvas, collaborative series with Claudia Sahuquillo, photographed by Giuseppe Fioretti.",
+    "longStory": "Claudia Sahuquillo is a Barcelona-based artist who works on the human body as canvas. Giuseppe Fioretti photographed the series Skin is the New Canvas, celebrating form, colour and presence through painting and photography.",
+    "images": [
+      "https://fiogiuseppe.com/wp-content/uploads/2021/05/IG-202114-scaled.jpg"
+    ],
     "price": 0,
     "currency": "EUR",
     "technique": "Photography",
@@ -12,7 +14,12 @@
     "edition": "Limited edition",
     "productType": "print",
     "cta": "request",
-    "formats": ["digital"],
-    "tags": ["skin-is-the-new-canvas", "photography"]
+    "formats": [
+      "digital"
+    ],
+    "tags": [
+      "skin-is-the-new-canvas",
+      "photography"
+    ]
   }
 ]

@@ -2,9 +2,11 @@
   {
     "slug": "urees-piece-026",
     "title": "UREES 026",
-    "shortDescription": "One-of-one upcycled wearable piece — hand-altered, never repeated.",
-    "longStory": "Each UREES piece begins as a found garment. Through cutting, stitching and intention, it becomes something entirely new — a wearable poem.",
-    "images": ["https://fiogiuseppe.com/wp-content/uploads/2024/01/20230907_UREES02632.jpg"],
+    "shortDescription": "One-off garment made by reworking an existing piece of clothing.",
+    "longStory": "Each UREES piece begins as a found garment. I cut, alter and stitch the garment to make a one-off piece.",
+    "images": [
+      "https://fiogiuseppe.com/wp-content/uploads/2024/01/20230907_UREES02632.jpg"
+    ],
     "price": 350,
     "currency": "EUR",
     "size": "M / adjustable",
@@ -13,14 +15,18 @@
     "edition": "One of one",
     "productType": "one-of-one",
     "cta": "buy",
-    "tags": ["jacket"]
+    "tags": [
+      "jacket"
+    ]
   },
   {
     "slug": "urees-drop-02",
-    "title": "UREES Drop 02 — Piece VII",
-    "shortDescription": "From the second UREES drop — a collector piece.",
+    "title": "UREES Drop 02: Piece VII",
+    "shortDescription": "A one-off piece from the second UREES drop.",
     "longStory": "Part of an ongoing series of upcycled garments. This piece carries the memory of its previous life and the mark of its transformation.",
-    "images": ["https://fiogiuseppe.com/wp-content/uploads/2024/01/20230907_UREES02632.jpg"],
+    "images": [
+      "https://fiogiuseppe.com/wp-content/uploads/2024/01/20230907_UREES02632.jpg"
+    ],
     "price": 420,
     "currency": "EUR",
     "size": "L",
@@ -29,6 +35,9 @@
     "edition": "One of one",
     "productType": "wearable",
     "cta": "request",
-    "tags": ["pants", "denim"]
+    "tags": [
+      "pants",
+      "denim"
+    ]
   }
 ]

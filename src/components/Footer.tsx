@@ -15,8 +15,8 @@ export function Footer() {
         <div>
           <TypographyCard>{SITE.name}</TypographyCard>
           <TypographyBody measure={false} className={`${editorial.stack.sectionToContent} text-on-dark-muted`}>
-            Designer, art director, artist — {SITE.location}. A creative universe of brands,
-            campaigns and original work.
+            Designer, art director and artist based in {SITE.location}. Brand identities,
+            campaigns and personal projects.
           </TypographyBody>
         </div>
 

@@ -5,6 +5,7 @@
  */
 
 import fs from 'node:fs/promises';
+import { normalizeWebsiteCopy } from './lib/website-copy.mjs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -31,7 +32,7 @@ const CATALOG = [
   { file: 'IG-STORIES-106-scaled.jpg', title: 'Escribujo 106' },
   {
     file: 'IG-STORIES_Mesa-de-trabajo-1-copia-2-scaled.jpg',
-    title: 'Escribujo — Mesa de trabajo',
+    title: 'Escribujo: Mesa de trabajo',
   },
 ];
 
@@ -51,9 +52,9 @@ const products = CATALOG.map(({ file, title }) => {
     title,
     shortDescription: isEscribujo
       ? 'Signed digital print of an escribujo from the Visceral Poems street series.'
-      : 'Signed digital print — a visceral poem where language meets ink and emotion.',
+      : 'Signed digital print of a Visceral Poem.',
     longStory:
-      'Born in transit — on buses between cities, on planes between countries — each Visceral Poem is a fragment of an inner landscape. Available as a handmade original or as a signed digital print, with an optional frame.',
+      'Visceral Poems combines writing and drawing on paper. The series began on bus journeys and flights between cities. Available as a handmade original or a signed print, with an optional frame.',
     images: [`${BASE}/${file}`],
     framedImage: FRAME_MOCKUP,
     price: 10,
@@ -68,5 +69,5 @@ const products = CATALOG.map(({ file, title }) => {
   };
 });
 
-await fs.writeFile(OUT, `${JSON.stringify(products, null, 2)}\n`);
+await fs.writeFile(OUT, `${JSON.stringify(normalizeWebsiteCopy(products), null, 2)}\n`);
 console.log(`Wrote ${products.length} visceral poems → ${OUT}`);

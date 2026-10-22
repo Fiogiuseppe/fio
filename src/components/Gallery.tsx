@@ -17,7 +17,7 @@ export function Gallery({ images, alt }: GalleryProps) {
           <div key={src} className="relative aspect-[4/3] overflow-hidden bg-ink/5">
             <Image
               src={src}
-              alt={`${alt} — ${i + 1}`}
+              alt={`${alt}: ${i + 1}`}
               fill
               className="object-cover"
               sizes="(max-width:768px) 100vw, 50vw"

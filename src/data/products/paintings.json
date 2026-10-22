@@ -2,69 +2,93 @@
   {
     "slug": "eyes",
     "title": "Eyes",
-    "shortDescription": "A study of gaze and perception — original handpainted work on canvas.",
-    "longStory": "Eyes holds the viewer in a fixed exchange. Painted by Giuseppe Fioretti, the work treats the gaze as both subject and material: repetition, intensity, and the quiet pressure of being looked at. An original painting — offered as a single piece.",
-    "images": ["https://fiogiuseppe.com/wp-content/uploads/2021/05/EYES-scaled.jpg"],
+    "shortDescription": "Original painting on canvas, focused on the gaze.",
+    "longStory": "Eyes is an original painting on canvas by Giuseppe Fioretti. The gaze is the focus of the work.",
+    "images": [
+      "https://fiogiuseppe.com/wp-content/uploads/2021/05/EYES-scaled.jpg"
+    ],
     "price": 0,
     "currency": "EUR",
     "year": 2021,
     "technique": "Painting on canvas",
     "availability": "coming-soon",
-    "edition": "Original — 1 of 1",
+    "edition": "Original: 1 of 1",
     "productType": "original",
     "cta": "request",
-    "tags": ["handpainted"],
-    "formats": ["handmade"]
+    "tags": [
+      "handpainted"
+    ],
+    "formats": [
+      "handmade"
+    ]
   },
   {
     "slug": "tutti-in-uno",
     "title": "Tutti in Uno",
-    "shortDescription": "Mixed media on canvas — form, colour and composition held in one surface.",
-    "longStory": "Tutti in Uno gathers opposing energies into a single field. Layers of mixed media build a dense, restless composition where figure and ground refuse to settle. An original work by Giuseppe Fioretti — one canvas, one presence.",
-    "images": ["https://fiogiuseppe.com/wp-content/uploads/2021/08/tutti-in-uno.jpg"],
+    "shortDescription": "Original mixed-media work on canvas.",
+    "longStory": "Tutti in Uno is a mixed-media work on canvas by Giuseppe Fioretti. Layers of colour and marks form a dense composition.",
+    "images": [
+      "https://fiogiuseppe.com/wp-content/uploads/2021/08/tutti-in-uno.jpg"
+    ],
     "price": 0,
     "currency": "EUR",
     "year": 2021,
     "technique": "Mixed media on canvas",
     "availability": "coming-soon",
-    "edition": "Original — 1 of 1",
+    "edition": "Original: 1 of 1",
     "productType": "original",
     "cta": "request",
-    "tags": ["handpainted"],
-    "formats": ["handmade"]
+    "tags": [
+      "handpainted"
+    ],
+    "formats": [
+      "handmade"
+    ]
   },
   {
     "slug": "artwork-blue-study",
     "title": "Blue Study",
-    "shortDescription": "Ink and colour on paper — a handpainted study of line, blue and the eye.",
-    "longStory": "Blue Study isolates a fragment of vision. Ink and acrylic on paper trace a motif that is both anatomical and abstract: the eye as mark, as colour, as pause. A handpainted original — intimate in scale, absolute in presence.",
-    "images": ["https://fiogiuseppe.com/wp-content/uploads/2021/05/IG-20213-scaled.jpg"],
+    "shortDescription": "Ink and acrylic on paper with an eye motif.",
+    "longStory": "Blue Study is an original work in ink and acrylic on paper, built around an eye motif.",
+    "images": [
+      "https://fiogiuseppe.com/wp-content/uploads/2021/05/IG-20213-scaled.jpg"
+    ],
     "price": 0,
     "currency": "EUR",
     "year": 2021,
     "technique": "Ink and acrylic on paper",
     "availability": "coming-soon",
-    "edition": "Original — 1 of 1",
+    "edition": "Original: 1 of 1",
     "productType": "original",
     "cta": "request",
-    "tags": ["handpainted"],
-    "formats": ["handmade"]
+    "tags": [
+      "handpainted"
+    ],
+    "formats": [
+      "handmade"
+    ]
   },
   {
     "slug": "drawing-hag",
     "title": "Grid",
-    "shortDescription": "Ink on paper — texture, repetition and the body as material.",
-    "longStory": "Grid explores the body through structure. Dense ink marks build a field of texture and repetition until the figure becomes pattern and the pattern becomes skin. An original drawing — now in a private collection.",
-    "images": ["https://fiogiuseppe.com/wp-content/uploads/2021/05/HAG-scaled.jpg"],
+    "shortDescription": "Original ink drawing on paper.",
+    "longStory": "Grid is an ink drawing on paper built from repeated marks. This original has been sold.",
+    "images": [
+      "https://fiogiuseppe.com/wp-content/uploads/2021/05/HAG-scaled.jpg"
+    ],
     "price": 0,
     "currency": "EUR",
     "year": 2021,
     "technique": "Ink on paper",
     "availability": "sold",
-    "edition": "Original — 1 of 1",
+    "edition": "Original: 1 of 1",
     "productType": "original",
     "cta": "sold",
-    "tags": ["handpainted"],
-    "formats": ["handmade"]
+    "tags": [
+      "handpainted"
+    ],
+    "formats": [
+      "handmade"
+    ]
   }
 ]

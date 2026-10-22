@@ -7,9 +7,9 @@ import { TypographyBody } from '@/components/typography';
 import { editorial } from '@/lib/typography';
 
 export const metadata: Metadata = {
-  title: 'About — Giuseppe Fioretti',
+  title: 'About | Giuseppe Fioretti',
   description:
-    'Designer and art director from Naples, shaped in Barcelona, based in Copenhagen — brands, campaigns, teaching, and personal artistic practice.',
+    'Giuseppe Fioretti is a designer and art director from Naples, based in Copenhagen. His work includes LEGO, Desigual, Nike and independent art projects.',
 };
 
 export default function AboutPage() {
@@ -20,32 +20,26 @@ export default function AboutPage() {
           <SectionIntro asHero kicker="About" title="I'm Giuseppe Fioretti." />
           <div className={`${editorial.stack.leadToContent} space-y-6`}>
             <TypographyBody>
-              I was born in Naples, spent more than a decade in Barcelona, and now live in
-              Copenhagen. Those three cities are not just places I lived — they are chapters in how
-              I learned to see.
+              I was born in Naples, lived in Barcelona for more than ten years, and am now based
+              in Copenhagen.
             </TypographyBody>
             <TypographyBody>
-              I work as a designer and art director. Day to day, that means building brands,
-              shaping campaigns, and finding the image or sentence that makes a story feel true.
-              For the past years I have been part of the creative team at LEGO, where I develop
-              campaign and art-direction concepts around marketing innovation.
+              I work on brand identities and campaigns, from the first idea to the final image.
+              At LEGO, I develop campaign and art-direction concepts as part of the creative team.
             </TypographyBody>
             <TypographyBody>
-              Before that, I led brand design at Desigual — including a global identity redesign —
-              and collaborated with Nike on cultural initiatives in Barcelona. Earlier, as a
-              freelance art director and graphic designer, I worked across fashion, retail, and
-              culture for more than a decade. Alongside client and studio work, I teach branding
-              at BAU in Barcelona, and I continue independent projects: UREES, visual poems, and
-              what I call Spiritual Design.
+              Before LEGO, I was Head of Brand Design at Desigual, where I worked on its global
+              visual identity. I also collaborated with Nike on cultural initiatives in Barcelona
+              and spent more than a decade working independently across fashion, retail and culture.
+              Alongside this work, I teach branding at BAU in Barcelona and develop my own
+              projects, including UREES and Visceral Poems.
             </TypographyBody>
             <TypographyBody>
-              Spiritual Design is my personal compass — alignment between purpose, emotion, and
-              form. Design and art are the languages I use; what drives me is still the same: ideas
-              that help people see, feel, and connect differently with the world around them.
+              I call my independent approach Spiritual Design. It connects the purpose of a
+              project with how it looks and feels.
             </TypographyBody>
             <TypographyBody>
-              I do not chase work that only looks different. I am interested in work that helps
-              people see differently. That is the practice I keep returning to.
+              I want my work to give people something to notice, think about or feel.
             </TypographyBody>
           </div>
           <div className={editorial.stack.leadToContent}>

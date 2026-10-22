@@ -1,9 +1,9 @@
 /**
- * Editorial composition tokens — fiogiuseppe.com
+ * Editorial composition tokens: fiogiuseppe.com
  * Spacing, motion, layout variants. See docs/EDITORIAL_DESIGN_SYSTEM.md
  */
 
-/** 8px spacing system — never use arbitrary values */
+/** 8px spacing system: never use arbitrary values */
 export const space = {
   xs: '0.5rem',   // 8
   sm: '1rem',     // 16
@@ -30,7 +30,7 @@ export const editorialSpace = {
   gutter: 'gap-8 md:gap-12',
 } as const;
 
-/** Subtle editorial motion — alive, not animated */
+/** Subtle editorial motion: alive, not animated */
 export const motion = {
   fade: 'transition-opacity duration-700 ease-out',
   image: 'transition-transform duration-700 ease-out',

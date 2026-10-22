@@ -11,7 +11,7 @@ const jost = Jost({
 });
 
 export const metadata: Metadata = {
-  title: 'Urees® Barcelona — Handmade clothes created with upcycling',
+  title: 'Urees® Barcelona | Handmade clothes created with upcycling',
   description:
     'Explore handmade pants from Barcelona. At UREES, we breathe new life into pre-loved garments through upcycling.',
   icons: {

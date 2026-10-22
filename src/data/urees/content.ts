@@ -4,7 +4,7 @@ export const UREES_LOGO =
 export const UREES_CART_URL = 'https://urees.shop/cart';
 export const UREES_CONTACT_EMAIL = 'info.urees@gmail.com';
 
-/** Main navigation — matches urees.shop header */
+/** Main navigation: matches urees.shop header */
 export const ureesMainNav = [
   {
     label: 'Best sellers',

@@ -5,6 +5,7 @@
  */
 
 import fs from 'node:fs/promises';
+import { normalizeWebsiteCopy } from './lib/website-copy.mjs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -69,7 +70,7 @@ function excerptFromHtml(html, title) {
     const text = plainText(match[1]);
     if (text.length < 40) continue;
     if (/^about the author$/i.test(text)) continue;
-    if (text.startsWith('—')) continue;
+    if (text.startsWith(String.fromCodePoint(0x2014))) continue;
     return text.length > 220 ? `${text.slice(0, 217)}…` : text;
   }
 
@@ -97,7 +98,7 @@ async function main() {
   const xml = await res.text();
 
   const chunks = xml.split('<item>').slice(1);
-  const articles = chunks.map((chunk) => {
+  const articles = normalizeWebsiteCopy(chunks.map((chunk) => {
     const item = `<item>${chunk.split('</item>')[0]}</item>`;
     const title = cdata(item, 'title');
     const link = tagValue(item, 'link');
@@ -119,11 +120,11 @@ async function main() {
       contentHtml,
       mediumUrl: link.split('?')[0],
     };
-  });
+  }));
 
   const file = `import type { Article } from '@/lib/types';
 
-/** Imported from https://medium.com/@fiogiuseppe — run scripts/import-medium-articles.mjs to refresh */
+/** Imported from https://medium.com/@fiogiuseppe: run scripts/import-medium-articles.mjs to refresh */
 export const articles: Article[] = [
 ${articles
   .map(

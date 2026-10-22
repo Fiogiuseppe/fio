@@ -6,7 +6,7 @@ import { ContactSection } from '@/components/ContactSection';
 import { SiteFooter } from '@/components/SiteFooter';
 
 export const metadata = {
-  title: 'Archive — Original WordPress clone',
+  title: 'Archive | Original WordPress clone',
   robots: { index: false },
 };
 

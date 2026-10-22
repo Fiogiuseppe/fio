@@ -5,35 +5,35 @@ export const services: Service[] = [
     slug: 'brand-identity',
     title: 'Brand Identity',
     description:
-      'Build a distinctive visual and verbal identity that reflects who you are — and who you are becoming.',
+      'I develop brand identities, from positioning and the first sketches to a complete visual system.',
     includes: [
       'Brand strategy & positioning',
       'Logo & visual identity system',
       'Typography, colour & art direction',
       'Brand guidelines',
     ],
-    forWho: 'Founders, studios and brands ready to define or refine their visual soul.',
+    forWho: 'Founders, studios and brands creating or updating an identity.',
     ctaLabel: 'Start a project',
   },
   {
     slug: 'rebranding',
     title: 'Rebranding',
     description:
-      'Return to your origins — or evolve into something new — with clarity, courage and craft.',
+      'I help brands decide what to keep, what to change and how to bring a new identity into use.',
     includes: [
       'Brand audit & discovery',
       'Identity refresh or full rebrand',
       'Campaign & touchpoint rollout',
       'Internal alignment workshops',
     ],
-    forWho: 'Established brands seeking relevance without losing their essence.',
+    forWho: 'Established brands rethinking their identity.',
     ctaLabel: 'Let\'s build something together',
   },
   {
     slug: 'creative-direction',
     title: 'Creative Direction',
     description:
-      'Lead the creative vision across campaigns, products and culture — from concept to execution.',
+      'I guide creative teams from the initial concept through design and production.',
     includes: [
       'Creative strategy',
       'Art direction & visual language',
@@ -47,21 +47,21 @@ export const services: Service[] = [
     slug: 'art-direction',
     title: 'Art Direction',
     description:
-      'Shape the visual narrative of your brand through photography, motion, layout and spatial thinking.',
+      'I develop the look of a project through photography, film, typography and layout.',
     includes: [
       'Campaign art direction',
       'Photography & motion briefs',
       'Editorial & digital layouts',
       'Production oversight',
     ],
-    forWho: 'Fashion, lifestyle and culture brands with a story to tell.',
+    forWho: 'Fashion, lifestyle and culture brands planning a visual project.',
     ctaLabel: 'Start a project',
   },
   {
     slug: 'campaign-design',
     title: 'Campaign Design',
     description:
-      'Launch campaigns that feel cinematic, emotional and unmistakably yours.',
+      'I turn campaign ideas into key visuals and materials for digital, print and outdoor use.',
     includes: [
       'Campaign concept & narrative',
       'Key visuals & asset systems',
@@ -75,28 +75,28 @@ export const services: Service[] = [
     slug: 'visual-systems',
     title: 'Visual Systems',
     description:
-      'Scalable design systems that keep your brand coherent across every touchpoint.',
+      'I build design systems that teams can use across digital and printed materials.',
     includes: [
       'Design system architecture',
       'Component libraries',
       'Documentation & governance',
       'Digital & print application',
     ],
-    forWho: 'Growing teams that need consistency without creative stagnation.',
+    forWho: 'Teams working with a shared identity across different formats.',
     ctaLabel: 'Contact me',
   },
   {
     slug: 'brand-consulting',
     title: 'Brand Consulting',
     description:
-      'Strategic guidance on brand positioning, creative culture and long-term visual direction.',
+      'I review brand positioning and visual direction, then work with teams on the next steps.',
     includes: [
       'Brand workshops',
       'Competitive & cultural analysis',
       'Creative roadmap',
       'Ongoing advisory',
     ],
-    forWho: 'Leaders navigating growth, pivot or creative transformation.',
+    forWho: 'Founders and creative teams deciding where to take a brand.',
     ctaLabel: 'Start a project',
   },
 ];

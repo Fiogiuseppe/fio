@@ -1,5 +1,5 @@
 /**
- * Editorial typography — fiogiuseppe.com
+ * Editorial typography: fiogiuseppe.com
  * Components: src/components/typography/
  * Tokens: src/lib/typography.ts
  */
@@ -17,7 +17,7 @@
   font-family: var(--font-quartz);
 }
 
-/* Journal article HTML — Helvetica story voice */
+/* Journal article HTML: Helvetica story voice */
 .journal-article__body {
   font-family: var(--font-helvetica);
   font-size: 1rem;
@@ -55,7 +55,7 @@
   font-size: clamp(1.125rem, 0.4vw + 1rem, 1.25rem);
 }
 
-/* Editorial motion — subtle, alive */
+/* Editorial motion: subtle, alive */
 .editorial-fade {
   transition: opacity 700ms ease-out;
 }

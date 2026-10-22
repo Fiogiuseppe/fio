@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { handle } = await params;
   const page = getUreesPage(handle);
   if (!page) return {};
-  return { title: `${page.title} — Urees Store` };
+  return { title: `${page.title} | Urees Store` };
 }
 
 export default async function UreesContentPage({ params }: Props) {

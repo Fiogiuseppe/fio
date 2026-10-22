@@ -3,7 +3,7 @@ import { MuseumCollection } from '@/components/MuseumCollection';
 import { getMuseumCollection, MUSEUM_COLLECTION } from '@/data/shop-catalog';
 
 export const metadata: Metadata = {
-  title: 'Collection — Giuseppe Fioretti',
+  title: 'Collection | Giuseppe Fioretti',
   description: MUSEUM_COLLECTION.lead,
 };
 

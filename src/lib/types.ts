@@ -57,15 +57,15 @@ export interface Project {
   client: string;
   role: string;
   heroImage: string;
-  /** Optional square cover for Work index grid — detail page keeps heroImage */
+  /** Optional square cover for Work index grid: detail page keeps heroImage */
   workCoverImage?: string;
   /** When contain, hero shows full image without cropping */
   heroImageFit?: 'contain' | 'cover';
   heroImageWidth?: number;
   heroImageHeight?: number;
-  /** Optional YouTube hero — ambient loop on work index; poster used as fallback image */
+  /** Optional YouTube hero: ambient loop on work index; poster used as fallback image */
   heroVideo?: ProjectHeroVideo;
-  /** Detail page — centered mark on white instead of a full-bleed hero image */
+  /** Detail page: centered mark on white instead of a full-bleed hero image */
   heroLogo?: ProjectHeroLogo;
   gallery: string[];
   description: string;
@@ -80,11 +80,11 @@ export interface Project {
   };
   /** When set, Work card links out instead of opening a project page */
   externalUrl?: string;
-  /** External site — shown on project detail when set */
+  /** External site: shown on project detail when set */
   website?: string;
   websiteLabel?: string;
   featured?: boolean;
-  /** Work index — corner “NEW” triangle on the project media */
+  /** Work index: corner “NEW” triangle on the project media */
   isNew?: boolean;
 }
 
@@ -115,11 +115,11 @@ export interface Product {
   edition?: string;
   productType: ProductType;
   cta: ProductCta;
-  /** Optional labels for filtering — e.g. pants, denim, print */
+  /** Optional labels for filtering: e.g. pants, denim, print */
   tags?: string[];
-  /** Optional legacy field — frame preview is rendered in the UI */
+  /** Optional legacy field: frame preview is rendered in the UI */
   framedImage?: string;
-  /** Shop availability by format — defaults to digital for legacy visceral poems */
+  /** Shop availability by format: defaults to digital for legacy visceral poems */
   formats?: ProductFormat[];
 }
 
@@ -132,12 +132,12 @@ export interface Article {
   date: string;
   excerpt: string;
   coverImage: string;
-  /** @deprecated Legacy plain-text articles — prefer contentHtml */
+  /** @deprecated Legacy plain-text articles: prefer contentHtml */
   content?: string;
   contentHtml?: string;
   mediumUrl?: string;
   tags: string[];
-  /** Editorial feature — shown first on the journal index */
+  /** Editorial feature: shown first on the journal index */
   special?: boolean;
 }
 

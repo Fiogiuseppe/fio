@@ -91,14 +91,14 @@ export function VisceralPoemOptions({ product }: VisceralPoemOptionsProps) {
               className={`${styles.choice} ${!withFrame ? styles.choiceActive : ''}`}
               onClick={() => setWithFrame(false)}
             >
-              Without frame — {formatPrice(VISCERAL_POEMS_PRICING[format].withoutFrame)}
+              Without frame: {formatPrice(VISCERAL_POEMS_PRICING[format].withoutFrame)}
             </button>
             <button
               type="button"
               className={`${styles.choice} ${withFrame ? styles.choiceActive : ''}`}
               onClick={() => setWithFrame(true)}
             >
-              With frame — {formatPrice(VISCERAL_POEMS_PRICING[format].withFrame)}
+              With frame: {formatPrice(VISCERAL_POEMS_PRICING[format].withFrame)}
             </button>
           </div>
         </fieldset>
@@ -107,15 +107,15 @@ export function VisceralPoemOptions({ product }: VisceralPoemOptionsProps) {
           <span className={styles.priceLabel}>Selected</span>
           <span>
             {formatLabel}
-            {withFrame ? ' · with frame' : ' · without frame'} — {formatPrice(price)}
+            {withFrame ? ' · with frame' : ' · without frame'}: {formatPrice(price)}
           </span>
         </p>
 
         {withFrame ? (
           <p className={styles.frameNote}>
             {woodFrameMockup
-              ? 'Frame preview — cornice legno chiaro su parete, A3 senza passepartout.'
-              : 'Frame preview — A3 white frame, no passepartout. The poster fills the frame edge to edge.'}
+              ? 'Frame preview: cornice legno chiaro su parete, A3 senza passepartout.'
+              : 'Frame preview: A3 white frame, no passepartout. The poster fills the frame edge to edge.'}
           </p>
         ) : null}
 

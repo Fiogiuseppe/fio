@@ -37,7 +37,7 @@ function splitCollabTitle(left: string, client: string): [string, string] {
   return [lineOne, lineTwoPrefix ? `${lineTwoPrefix} ${right}` : right];
 }
 
-/** Split a project title into exactly two overlay lines — never a third wrap. */
+/** Split a project title into exactly two overlay lines: never a third wrap. */
 export function splitOverlayTitle(title: string): [string, string] {
   const text = title.trim();
   if (!text) return ['', ''];
@@ -47,13 +47,13 @@ export function splitOverlayTitle(title: string): [string, string] {
     return splitCollabTitle(collabMatch[1].trim(), collabMatch[2].trim());
   }
 
-  const dashMatch = text.match(/^(.+?)\s[—–-]\s+(.+)$/);
+  const dashMatch = text.match(/^(.+?)(?:\s[–-]\s+|:\s+)(.+)$/);
   if (dashMatch) {
     const left = dashMatch[1].trim();
     const right = dashMatch[2].trim();
     if (left.length <= MAX_SINGLE_LINE_CHARS) return [left, right];
     const [lineOne, lineTwoPrefix] = balanceWords(left.split(/\s+/));
-    return [lineOne, lineTwoPrefix ? `${lineTwoPrefix} — ${right}` : right];
+    return [lineOne, lineTwoPrefix ? `${lineTwoPrefix}: ${right}` : right];
   }
 
   return balanceWords(text.split(/\s+/).filter(Boolean));

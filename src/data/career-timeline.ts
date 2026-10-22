@@ -24,7 +24,7 @@ export type CareerAcademicEntry = {
 export const CAREER_TIMELINE_INTRO = {
   greeting: 'Hello!',
   paragraphs: [
-    'Throughout my career, I have cultivated a diverse skill set in design and brand direction, marked by key milestones such as launching my own sustainable fashion brand and leading creative teams at international companies. From 2011 to 2021, I worked as a freelance art director and graphic designer, collaborating with brands like @Nike, @Desigual, and @LEGO—experiences that enriched my creative approach and deepened my passion for innovation and visual storytelling.',
+    'Throughout my career, I have cultivated a diverse skill set in design and brand direction, marked by key milestones such as launching my own sustainable fashion brand and leading creative teams at international companies. From 2011 to 2021, I worked as a freelance art director and graphic designer, collaborating with brands like @Nike, @Desigual, and @LEGO, experiences that enriched my creative approach and deepened my passion for innovation and visual storytelling.',
     'Most recently, I served as Head of Brand Design at Desigual, and I am currently part of the creative team at LEGO, where I develop campaigns and art direction concepts focused on marketing innovation.',
   ],
 };
@@ -141,7 +141,7 @@ export const CAREER_TIMELINE_AWARDS: CareerAward[] = [
     year: '2020',
     headline: 'Winner of the D&AD Wooden Pencil for the Rebranding of Desigual.',
     description:
-      'Recognised for the bold and unconventional redesign of Desigual’s logo, which flipped the brand’s name to reflect its DNA—literally. This identity shift celebrated the brand’s essence of being “different,” turning asymmetry and playfulness into a powerful statement. The project challenged conventions and gained global attention for its originality.',
+      'Recognised for the bold and unconventional redesign of Desigual’s logo, which flipped the brand’s name to reflect its DNA, literally. This identity shift celebrated the brand’s essence of being “different,” turning asymmetry and playfulness into a powerful statement. The project challenged conventions and gained global attention for its originality.',
   },
   {
     year: '2015',

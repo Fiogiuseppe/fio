@@ -26,7 +26,7 @@ export function TypographyLabel<T extends ElementType = 'p'>({
   );
 }
 
-/** VOICE 01 — Quartz only. Max 6 words. Hero / cover statements. */
+/** VOICE 01: Quartz only. Max 6 words. Hero / cover statements. */
 export function TypographyHero<T extends ElementType = 'h1'>({
   as,
   className,
@@ -41,7 +41,7 @@ export function TypographyHero<T extends ElementType = 'h1'>({
   );
 }
 
-/** VOICE 02 — section titles. Helvetica Bold, uppercase. */
+/** VOICE 02: section titles. Helvetica Bold, uppercase. */
 export function TypographySection<T extends ElementType = 'h2'>({
   as,
   className,
@@ -56,7 +56,7 @@ export function TypographySection<T extends ElementType = 'h2'>({
   );
 }
 
-/** VOICE 02 — card / project / journal titles. Helvetica Bold, uppercase. */
+/** VOICE 02: card / project / journal titles. Helvetica Bold, uppercase. */
 export function TypographyCard<T extends ElementType = 'h3'>({
   as,
   className,
@@ -135,7 +135,7 @@ export function TypographyButton<T extends ElementType = 'span'>({
   );
 }
 
-/** VOICE 01 — Quartz artistic statements. Centered. */
+/** VOICE 01: Quartz artistic statements. Centered. */
 export function TypographyQuote<T extends ElementType = 'blockquote'>({
   as,
   className,

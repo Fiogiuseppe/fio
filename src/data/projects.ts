@@ -26,7 +26,7 @@ export const projects: Project[] = [
   {
     slug: 'desigual-rebranding',
     title: 'Re-branding x Desigual',
-    subtitle: 'Go back to the origins of Desigual — what it really meant to be 100% Desigual',
+    subtitle: 'Go back to the origins of Desigual: what it really meant to be 100% Desigual',
     category: 'rebranding',
     year: 2019,
     client: 'Desigual',
@@ -38,9 +38,9 @@ export const projects: Project[] = [
       `${WP}/2025/07/laus-pencil-fio-03.png`,
     ],
     description:
-      'Logo and visual identity for Desigual — a return to the soul of the brand, launched across campaign, communications and product seasons from 2019 to 2020.',
+      'Logo and visual identity for Desigual, a return to the soul of the brand, launched across campaign, communications and product seasons from 2019 to 2020.',
     body: [
-      '2019 — Logo and visual identity for @Desigual.',
+      '2019, Logo and visual identity for @Desigual.',
       'The logo with the visual identity in 2019. We used it for the launch of the logo campaign, in all communications and in product season from 2019 to 2020.',
       'Some products created together with the incredible product department of @Desigual led by Clara Delmuns.',
     ],
@@ -85,7 +85,7 @@ export const projects: Project[] = [
       `${WP}/2022/03/DESIGUAL_SOCIAL_CONTENT_NY_CLEAN_H264_50MB-Compressed-with-FlexClip.gif`,
     ],
     description:
-      'Launch campaign for Desigual\'s first sneakers collection — bold, playful and unmistakably Desigual.',
+      'Launch campaign for Desigual\'s first sneakers collection.',
     body: [
       'Sneakers collection campaign for @desigual in collaboration with @olimpic.tv.',
       'Panoramic web assets, social content and motion-led storytelling across cities and channels.',
@@ -135,7 +135,7 @@ export const projects: Project[] = [
     heroImage: '/work/urees-hero.jpg',
     gallery: ['/work/urees-hero.jpg'],
     description:
-      'The UREES upcycling project — one-of-one wearable pieces where artistry meets sustainability.',
+      'UREES is my clothing project, making one-off garments from existing clothes.',
     body: [
       'The Urees upcycling project: Fusing artistry and sustainability in fashion @urees__',
       'Each garment is unique. Each process is visible. Each piece tells a story.',
@@ -161,7 +161,7 @@ export const projects: Project[] = [
     heroImage: '/work/spiritual-design-hero.jpg',
     gallery: ['/work/spiritual-design-hero.jpg'],
     description:
-      'I do not design to impress — I design to align. Spiritual Design is the practice of creating with awareness.',
+      'I do not design to impress. I design to align. Spiritual Design is the practice of creating with awareness.',
     body: [
       'I do not design to impress, I design to align. To align what I feel with what the world needs.',
       'Design becomes sacred when we create with awareness. That is Spiritual Design.',
@@ -171,7 +171,7 @@ export const projects: Project[] = [
   {
     slug: 'zalio',
     title: 'Branding x Zalio',
-    subtitle: 'Organic silver jewelry — liquid metal identity on black',
+    subtitle: 'Organic silver jewelry: liquid metal identity on black',
     category: 'branding',
     year: 2021,
     client: 'Zalio',
@@ -179,10 +179,10 @@ export const projects: Project[] = [
     heroImage: '/work/zalio-hero.jpg',
     gallery: ['/work/zalio-hero.jpg'],
     description:
-      'Logo and brand identity for Zalio — a jewelry brand crafting organic silver pieces with a raw, sculptural edge.',
+      'Logo and brand identity for Zalio, a jewelry brand working with organic silver forms.',
     body: [
-      '2021 — Logo and brand identity for Zalio, a jewelry company in Barcelona.',
-      'A liquid chrome wordmark and visual system built around organic silver forms — high contrast, craft-led, unmistakably contemporary.',
+      '2021, Logo and brand identity for Zalio, a jewelry company in Barcelona.',
+      'A liquid chrome wordmark and visual system based on the shape of the silver pieces.',
     ],
     externalUrl: 'https://www.instagram.com/p/CkyPK69N3sB/',
     featured: true,
@@ -190,7 +190,7 @@ export const projects: Project[] = [
   {
     slug: 'menomale',
     title: 'Branding x Menomale',
-    subtitle: 'Thank goodness Napoli exists — Neapolitan pizzeria identity, Washington DC',
+    subtitle: 'Thank goodness Napoli exists: Neapolitan pizzeria identity, Washington DC',
     category: 'branding',
     year: 2024,
     client: 'Menomale',
@@ -201,7 +201,7 @@ export const projects: Project[] = [
       src: '/work/menomale/menomale-hero-logotype.jpg',
       width: 1389,
       height: 1056,
-      alt: 'Menomale logotype — ornate M and MENOMALE wordmark',
+      alt: 'Menomale logotype: ornate M and MENOMALE wordmark',
     },
     gallery: [
       '/work/menomale/menomale-01.jpg',
@@ -209,18 +209,18 @@ export const projects: Project[] = [
       '/work/menomale/menomale-10.jpg',
     ],
     description:
-      'Brand design for Menomale — an ornate heraldic mark, a custom serif wordmark, and the claim “Thank goodness Napoli exists!” for a Neapolitan pizzeria rooted in Naples since 2012.',
+      'Brand design for Menomale, an ornate heraldic mark, a custom serif wordmark, and the claim “Thank goodness Napoli exists!” for a Neapolitan pizzeria rooted in Naples since 2012.',
     body: [
-      'August 2024 — Brand design for Pizzeria Menomale @menomale_dc in Washington, DC.',
-      'Menomale means “thank goodness” in Italian. The identity explains that meaning in English through the claim Thank goodness Napoli exists! — gratitude to Naples as the origin of authentic Neapolitan pizza.',
+      'August 2024, Brand design for Pizzeria Menomale @menomale_dc in Washington, DC.',
+      'Menomale means “thank goodness” in Italian. The identity explains that meaning in English through the claim Thank goodness Napoli exists! gratitude to Naples as the origin of authentic Neapolitan pizza.',
       'A baroque M logotype inspired by the heralds and ancient shields on historic doors in Naples, paired with a high-contrast serif wordmark and a custom alphabet with dotted counters.',
-      'Applied across posters, packaging, apparel, ceramics, signage and social — preserving and sharing Neapolitan pizza tradition with the world.',
+      'Applied across posters, packaging, apparel, ceramics, signage and social, preserving and sharing Neapolitan pizza tradition with the world.',
     ],
     media: [
       {
         type: 'image',
         src: '/work/menomale/menomale-moodboard.jpg',
-        alt: 'Menomale moodboard — mission, custom alphabet, heritage and @menomale_dc profile',
+        alt: 'Menomale moodboard: mission, custom alphabet, heritage and @menomale_dc profile',
         fit: 'contain',
         width: 2880,
         height: 1674,
@@ -228,7 +228,7 @@ export const projects: Project[] = [
       {
         type: 'image',
         src: '/work/menomale/menomale-claim-campaign.jpg',
-        alt: 'Menomale brand claim and campaign — Thank goodness Napoli exists! and founders with Neapolitan pizza',
+        alt: 'Menomale brand claim and campaign: Thank goodness Napoli exists! and founders with Neapolitan pizza',
         fit: 'contain',
         width: 2880,
         height: 1795,
@@ -236,7 +236,7 @@ export const projects: Project[] = [
       {
         type: 'image',
         src: '/work/menomale/menomale-posters-brick.jpg',
-        alt: 'Menomale poster mockups on brick — etching, gold and white versions',
+        alt: 'Menomale poster mockups on brick: etching, gold and white versions',
         fit: 'contain',
         width: 2880,
         height: 1795,
@@ -244,7 +244,7 @@ export const projects: Project[] = [
       {
         type: 'image',
         src: '/work/menomale/menomale-applications.jpg',
-        alt: 'Menomale applications — flag, apparel, ceramics, packaging and Instagram identity system',
+        alt: 'Menomale applications: flag, apparel, ceramics, packaging and Instagram identity system',
         fit: 'contain',
         width: 2880,
         height: 1795,
@@ -257,7 +257,7 @@ export const projects: Project[] = [
   {
     slug: 'sec-brunch',
     title: 'Branding x Sec',
-    subtitle: 'Brunch & Bar in Poble Sec — experimental poster campaigns',
+    subtitle: 'Brunch & Bar in Poble Sec: experimental poster campaigns',
     category: 'branding',
     year: 2020,
     client: 'Sec Brunch',
@@ -265,10 +265,10 @@ export const projects: Project[] = [
     heroImage: '/work/sec-brunch-hero.jpg',
     gallery: ['/work/sec-brunch-hero.jpg'],
     description:
-      'Logo and identity for Sec Brunch — healthy, local food culture in the heart of Barcelona\'s Poble Sec.',
+      'Logo and identity for Sec Brunch, healthy, local food culture in the heart of Barcelona\'s Poble Sec.',
     body: [
-      '2020 — Logo and visual identity for Sec Brunch, a healthy brunch spot on Carrer de Lleida in Poble Sec.',
-      'Campaign posters with experimental typography — ES Green, FREE rainbow, ON FIRE, Sus raíces — bringing contemporary energy to local food culture.',
+      '2020, Logo and visual identity for Sec Brunch, a healthy brunch spot on Carrer de Lleida in Poble Sec.',
+      'Campaign posters with experimental typography, ES Green, FREE rainbow, ON FIRE, Sus raíces, bringing contemporary energy to local food culture.',
     ],
     externalUrl: 'https://www.instagram.com/p/CavSZkFNRM-/?img_index=1',
     website: 'https://secbrunch.com',
@@ -278,7 +278,7 @@ export const projects: Project[] = [
   {
     slug: 'aaaa',
     title: 'AAAA',
-    subtitle: 'Bold geometric identity — teal accent on raw photography',
+    subtitle: 'Bold geometric identity: teal accent on raw photography',
     category: 'branding',
     year: 2021,
     client: 'AAAA',
@@ -286,7 +286,7 @@ export const projects: Project[] = [
     heroImage: '/work/aaaa-hero.jpg',
     gallery: ['/work/aaaa-hero.jpg'],
     description:
-      'A stark geometric wordmark — four letters, one accent — layered over gritty black-and-white photography.',
+      'A stark geometric wordmark, four letters, one accent, layered over gritty black-and-white photography.',
     body: [
       'Identity system built on repetition and contrast: block letterforms, a single teal accent, and raw photographic texture.',
     ],
@@ -295,21 +295,21 @@ export const projects: Project[] = [
   {
     slug: 'pee-pee',
     title: 'Pee Pee',
-    subtitle: 'Digital work — playful composition and visceral humour',
+    subtitle: 'Digital work: playful composition and visceral humour',
     category: 'digital',
     year: 2021,
     client: 'Personal',
     role: 'Digital Artwork',
     heroImage: `${WP}/2021/05/IG-202131-scaled.jpg`,
     gallery: [`${WP}/2021/05/IG-202131-scaled.jpg`],
-    description: 'A digital piece from Giuseppe Fioretti’s visual experiments — bold, minimal and intentionally absurd.',
-    body: ['Digital artwork — a small icon of the personal universe.'],
+    description: 'A digital work by Giuseppe Fioretti.',
+    body: ['Digital artwork, a small icon of the personal universe.'],
     featured: false,
   },
   {
     slug: 'lego-playmaker-jason-momoa',
     title: 'The Play Maker x LEGO',
-    subtitle: 'Never Stop Playing — Jason Momoa as LEGO Playmaker for World Play Day',
+    subtitle: 'Never Stop Playing: Jason Momoa as LEGO Playmaker for World Play Day',
     category: 'campaign',
     year: 2026,
     client: 'LEGO',
@@ -318,9 +318,9 @@ export const projects: Project[] = [
     heroVideo: { mp4Src: '/work/lego-playmaker-hero.mp4', poster: LEGO_PLAYMAKER_HERO },
     gallery: [LEGO_PLAYMAKER_HERO],
     description:
-      'Global Never Stop Playing campaign starring Jason Momoa — a comedy-led PSA to reverse the family play deficit, culminating in World Play Day.',
+      'Global Never Stop Playing campaign starring Jason Momoa, a comedy-led PSA to reverse the family play deficit, culminating in World Play Day.',
     body: [
-      'Design Lead at Our LEGO Agency on The Play Maker — LEGO\'s first brand campaign built entirely through a comedy lens.',
+      'Design Lead at Our LEGO Agency on The Play Maker, LEGO\'s first brand campaign built entirely through a comedy lens.',
       'Jason Momoa crashes a brick-built boardroom to remind the world why play matters. Created with Chaos x Magic, directed by Rhys Thomas.',
     ],
     credits: 'Our LEGO Agency · Chaos x Magic · Stink UK',
@@ -356,9 +356,9 @@ export const projects: Project[] = [
     ],
     description: 'Editorial and visual project for Marianna Carolina Sale.',
     media: [
-      { type: 'image', src: `${WP}/2021/05/Capa-2-1.jpg`, alt: 'Marianna Carolina Sale — cover 2', fullWidth: true },
-      { type: 'image', src: `${WP}/2021/05/Capa-3-1.jpg`, alt: 'Marianna Carolina Sale — cover 3', fullWidth: true },
-      { type: 'image', src: `${WP}/2021/05/Capa-4-1.jpg`, alt: 'Marianna Carolina Sale — cover 4', fullWidth: true },
+      { type: 'image', src: `${WP}/2021/05/Capa-2-1.jpg`, alt: 'Marianna Carolina Sale: cover 2', fullWidth: true },
+      { type: 'image', src: `${WP}/2021/05/Capa-3-1.jpg`, alt: 'Marianna Carolina Sale: cover 3', fullWidth: true },
+      { type: 'image', src: `${WP}/2021/05/Capa-4-1.jpg`, alt: 'Marianna Carolina Sale: cover 4', fullWidth: true },
     ],
   },
   archiveProject({
@@ -419,7 +419,7 @@ export const projects: Project[] = [
     role: 'Brand Identity',
     heroImage: `${WP}/2021/08/IG-2021-scaled.jpg`,
     description:
-      'Brand identity for Gonzalo Doctor — personal brand and business ventures for a client who became a creative collaborator.',
+      'Brand identity for Gonzalo Doctor, personal brand and business ventures for a client who became a creative collaborator.',
   }),
 ];
 

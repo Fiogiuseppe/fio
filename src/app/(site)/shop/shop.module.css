@@ -1,4 +1,4 @@
-/* Legacy shop filters — museum collection uses MuseumCollection.module.css */
+/* Legacy shop filters: museum collection uses MuseumCollection.module.css */
 .pageWidth {
   width: min(120rem, calc(100% - 3rem));
   margin-inline: auto;

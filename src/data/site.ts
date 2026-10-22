@@ -1,8 +1,8 @@
 export const SITE = {
   name: 'Fiogiuseppe',
-  title: 'Giuseppe Fioretti — Designer, Art Director, Artist',
+  title: 'Giuseppe Fioretti | Designer, Art Director, Artist',
   description:
-    'The creative universe of Giuseppe Fioretti — branding, campaigns, art direction, original artworks and UREES.',
+    'Brand identities, campaigns and artworks by Giuseppe Fioretti, designer and art director based in Copenhagen.',
   url: 'https://fiogiuseppe.vercel.app',
   email: 'hey@fiogiuseppe.com',
   contactEmail: 'fiogiuseppe@gmail.com',
@@ -14,7 +14,7 @@ export const SITE = {
 export const JOURNAL_AUTHOR_PORTRAIT =
   'https://fiogiuseppe.com/wp-content/uploads/2025/07/Giuseppe_Fioretti.png';
 
-/** Giuseppe's Medium profile photo — from https://medium.com/@fiogiuseppe RSS */
+/** Giuseppe's Medium profile photo: from https://medium.com/@fiogiuseppe RSS */
 export const MEDIUM_AUTHOR_PORTRAIT =
   'https://cdn-images-1.medium.com/fit/c/300/300/0*zk9JlJODJoO6qCUh';
 
@@ -23,7 +23,7 @@ export type NavItem = {
   readonly href: string;
 };
 
-/** Primary site navigation — designer portfolio, not agency menu. */
+/** Primary site navigation: designer portfolio, not agency menu. */
 export const NAV: readonly NavItem[] = [
   { label: 'Work', href: '/work' },
   { label: 'Shop', href: '/shop' },
@@ -33,14 +33,14 @@ export const NAV: readonly NavItem[] = [
 ] as const;
 
 /**
- * Secondary links — kept out of the main header so the site reads as a
+ * Secondary links: kept out of the main header so the site reads as a
  * personal designer presence. Shown in the footer only.
  */
 export const SECONDARY_NAV: readonly NavItem[] = [
   { label: 'Services', href: '/services' },
 ] as const;
 
-/** Legacy WordPress clone data — used by /archive */
+/** Legacy WordPress clone data: used by /archive */
 export const WP = 'https://fiogiuseppe.com/wp-content/uploads';
 
 export const FOOTER_LINKS = [

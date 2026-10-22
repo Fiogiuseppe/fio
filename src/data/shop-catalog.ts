@@ -5,7 +5,7 @@ import { getShopProducts } from '@/data/products';
 export type ShopGroup = ProductFormat;
 export type ShopGroupFilter = 'all' | 'printed' | 'handpainted';
 
-/** @deprecated Filters removed — shop is a single museum collection */
+/** @deprecated Filters removed: shop is a single museum collection */
 export const SHOP_GROUP_OPTIONS: Array<{ value: ShopGroupFilter; label: string }> = [
   { value: 'all', label: 'All' },
   { value: 'printed', label: 'Printed' },
@@ -33,7 +33,7 @@ export const HANDPAINTED_COLLECTION_TAG = 'handpainted';
 export const MUSEUM_COLLECTION = {
   artist: 'Giuseppe Fioretti',
   title: 'Collection',
-  lead: 'A small selection of original handpainted works. Each piece is unique — presented as it would hang in a gallery.',
+  lead: 'A small selection of original handpainted works. Each piece is unique, presented as it would hang in a gallery.',
 } as const;
 
 export function shopGroupLabel(group: ShopGroup): string {
@@ -53,7 +53,7 @@ export function getProductShopGroups(product: Product): ShopGroup[] {
   return [];
 }
 
-/** Curated museum collection — handpainted originals only */
+/** Curated museum collection: handpainted originals only */
 export function getMuseumCollection(): Product[] {
   return getShopProducts();
 }

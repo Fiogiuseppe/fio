@@ -101,7 +101,7 @@ export function ProjectCard({ project, variant = 'grid', priority }: ProjectCard
           className={className}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label={`${project.title} — opens in a new tab`}
+          aria-label={`${project.title}: opens in a new tab`}
         >
           {content}
         </a>

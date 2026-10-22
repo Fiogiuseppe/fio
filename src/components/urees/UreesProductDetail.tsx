@@ -89,7 +89,7 @@ export function UreesProductDetail({ product }: UreesProductDetailProps) {
               {product.variants.map((variant) => (
                 <option key={variant.id} value={variant.id} disabled={!variant.available}>
                   {variant.title}
-                  {!variant.available ? ' — Sold out' : ''}
+                  {!variant.available ? ' · Sold out' : ''}
                 </option>
               ))}
             </select>

@@ -5,6 +5,7 @@
  */
 
 import fs from 'node:fs/promises';
+import { normalizeWebsiteCopy } from './lib/website-copy.mjs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -374,8 +375,8 @@ async function main() {
 
   await fs.mkdir(DATA_DIR, { recursive: true });
   await Promise.all([
-    fs.writeFile(path.join(DATA_DIR, 'catalog.json'), `${JSON.stringify(catalog, null, 2)}\n`),
-    fs.writeFile(path.join(DATA_DIR, 'site.json'), `${JSON.stringify(site, null, 2)}\n`),
+    fs.writeFile(path.join(DATA_DIR, 'catalog.json'), `${JSON.stringify(normalizeWebsiteCopy(catalog), null, 2)}\n`),
+    fs.writeFile(path.join(DATA_DIR, 'site.json'), `${JSON.stringify(normalizeWebsiteCopy(site), null, 2)}\n`),
   ]);
 
   console.log(`Synced ${products.length} products`);

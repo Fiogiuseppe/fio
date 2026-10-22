@@ -33,7 +33,7 @@ export const PROJECT_PAGES: ProjectPage[] = [
   {
     slug: 'desigual-rebranding-giuseppe-fioretti',
     title: 'Re-branding x Desigual',
-    description: 'Go back to the origins of Desigual — what it really meant to be 100% Desigual.',
+    description: 'Go back to the origins of Desigual, what it really meant to be 100% Desigual.',
     image: 'https://fiogiuseppe.com/wp-content/uploads/2021/10/Desigual-HQ-Timelapse-1.gif',
   },
   {

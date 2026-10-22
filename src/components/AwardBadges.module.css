@@ -31,7 +31,7 @@
   object-fit: contain;
 }
 
-/** Shared overlay placement — matches ProjectCard / work hero text inset */
+/** Shared overlay placement: matches ProjectCard / work hero text inset */
 .positionOverlay {
   position: absolute;
   z-index: 4;

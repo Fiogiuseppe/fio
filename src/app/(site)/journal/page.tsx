@@ -8,7 +8,7 @@ import { getJournalArticles } from '@/data/articles';
 import gridStyles from '@/components/JournalGrid.module.css';
 
 export const metadata: Metadata = {
-  title: 'Journal — Giuseppe Fioretti',
+  title: 'Journal | Giuseppe Fioretti',
   description: 'Essays, reflections and ideas on design, art, creativity and culture.',
 };
 
@@ -23,7 +23,7 @@ export default function JournalPage() {
         align="center"
         kicker="Writing"
         title="Journal"
-        description="Essays on design, art, culture and creativity."
+        description="I write about design, art and the questions that come up in my work."
       />
       <JournalAuthorMark />
       {specialArticles.map((article) => (

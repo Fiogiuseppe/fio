@@ -44,8 +44,8 @@ export function FramePreviewLab() {
       <div className={styles.previewShell}>
         <p className={styles.previewCaption}>
           {withFrame
-            ? 'Mockup base — cornice legno chiaro su parete, A3, no passepartout'
-            : 'Poster nudo — A3'}
+            ? 'Mockup base, cornice legno chiaro su parete, A3, no passepartout'
+            : 'Poster nudo, A3'}
         </p>
         <div className={`${styles.preview} ${withFrame ? styles.previewWood : ''}`}>
           {withFrame ? (

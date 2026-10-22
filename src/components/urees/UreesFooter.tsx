@@ -33,7 +33,7 @@ export function UreesFooter() {
         </div>
 
         <div className="urees-footer__portal">
-          <span>UREES is a creative universe by </span>
+          <span>UREES is a project by </span>
           <Link href={FIO_PORTAL.href}>{FIO_PORTAL.label}</Link>
         </div>
       </div>

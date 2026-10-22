@@ -14,7 +14,7 @@ export type HomeProjectConfig = {
   showAward?: boolean;
 };
 
-/** Home order and layout — mirrors fiogiuseppe.com editorial stack */
+/** Home order and layout: mirrors fiogiuseppe.com editorial stack */
 export const homeProjectConfigs: HomeProjectConfig[] = [
   {
     slug: 'urees',

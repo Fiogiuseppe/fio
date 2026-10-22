@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 import { formatUreesDate, ureesSite } from '@/data/urees';
 
 export const metadata: Metadata = {
-  title: 'Urees news — Urees Store',
+  title: 'Urees news | Urees Store',
 };
 
 export default function UreesBlogIndexPage() {

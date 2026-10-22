@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { handle } = await params;
   const article = getUreesArticle(handle);
   if (!article) return {};
-  return { title: `${article.title} — Urees Store` };
+  return { title: `${article.title} | Urees Store` };
 }
 
 export default async function UreesBlogArticlePage({ params }: Props) {

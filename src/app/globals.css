@@ -538,7 +538,7 @@ html.home-route .spiritual-cover__svg {
   outline-offset: 2px;
 }
 
-/* Legacy WordPress clone — isolated from new site */
+/* Legacy WordPress clone: isolated from new site */
 .legacy-archive {
   --cream: #e6e0d5;
   --cream-soft: #ffffff;

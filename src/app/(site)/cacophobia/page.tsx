@@ -3,8 +3,8 @@ import { PageSection } from '@/components/PageSection';
 import { CacophobiaPageContent } from '@/components/CacophobiaPageContent';
 
 export const metadata: Metadata = {
-  title: 'Cacophobia — Giuseppe Fioretti',
-  description: 'A hidden painting project — found through the home cover.',
+  title: 'Cacophobia | Giuseppe Fioretti',
+  description: 'A hidden painting project, found through the home cover.',
   robots: {
     index: false,
     follow: false,

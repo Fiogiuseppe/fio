@@ -9,7 +9,7 @@ export const UREES_BRAND = {
   slug: 'urees',
   title: 'UREES',
   description:
-    'One-of-one upcycled wearable pieces — a separate universe where fashion, art and sustainability meet.',
+    'One-off garments made by reworking existing clothes.',
   image: `${WP}/2024/01/20230907_UREES02632.jpg`,
   href: '/urees',
   instagram: 'https://www.instagram.com/urees__/',
@@ -62,7 +62,7 @@ export function getProductsByCategory(category: ProductCategory) {
   return products.filter((p) => p.category === category);
 }
 
-/** Gallery shop — curated handpainted originals only; UREES at /urees */
+/** Gallery shop: curated handpainted originals only; UREES at /urees */
 export function getShopProducts() {
   return products.filter((p) => p.category === 'paintings');
 }

@@ -18,15 +18,14 @@ export function BioSection() {
             They call me{' '}
             <span className={styles.underline}>Giuseppe Fioretti.</span> I was born in Italy, lived
             in Barcelona for over 10 years, and now I&apos;m based in Copenhagen. Currently,
-            I&apos;m part of the creative team @LEGO, where I help shape the future of play through
-            branding, storytelling, and visual experimentation. Previously, I was Head of Brand
-            Design at Desigual, leading the brand&apos;s global visual direction.
+            I&apos;m part of the creative team at LEGO, working on branding, campaigns and art
+            direction. Before that, I was Head of Brand Design at Desigual.
           </p>
           <p className={styles.strong}>
             I&apos;m an <span className={styles.underline}>artist</span> in soul and{' '}
             <span className={styles.underline}>Graphic Designer</span> &amp; Art director in
-            practice. I love bringing brand identities and campaigns to life—for brands that want to
-            break the rules.
+            practice. I work on brand identities and campaigns, alongside my own drawings,
+            writing and wearable pieces.
           </p>
           <p className={styles.quote}>
             I would like to have lunch with the surrealists and the dadaists

@@ -12,7 +12,7 @@ export function SpiritualHero() {
           <Image
             className={styles.artwork}
             src="/images/spiritual-design-def.svg"
-            alt="Spiritual design — When design serves something greater, it becomes sacred."
+            alt="Spiritual design: When design serves something greater, it becomes sacred."
             width={1920}
             height={1080}
             priority

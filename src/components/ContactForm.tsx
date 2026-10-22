@@ -23,7 +23,7 @@ export function ContactForm() {
       <div className="contact-form__success border border-ink/10 p-8 md:p-12">
         <TypographyCard>Message received</TypographyCard>
         <TypographyLead measure={false} className={editorial.stack.labelToTitle}>
-          Thank you — Giuseppe will be in touch soon.
+          Thank you. Giuseppe will be in touch soon.
         </TypographyLead>
       </div>
     );

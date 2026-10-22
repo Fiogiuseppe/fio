@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const product = getProduct(slug);
   if (!product || product.category === 'urees') return {};
   return {
-    title: `${product.title} — ${MUSEUM_COLLECTION.artist}`,
+    title: `${product.title} | ${MUSEUM_COLLECTION.artist}`,
     description: product.shortDescription,
   };
 }

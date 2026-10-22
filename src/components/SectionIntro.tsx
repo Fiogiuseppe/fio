@@ -11,7 +11,7 @@ type SectionIntroProps = {
   title: string;
   description?: string;
   align?: 'left' | 'center';
-  /** Use Quartz hero voice — only for short emotional statements (max ~6 words). */
+  /** Use Quartz hero voice: only for short emotional statements (max ~6 words). */
   asHero?: boolean;
 };
 

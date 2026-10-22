@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const product = getUreesProduct(handle);
   if (!product) return {};
   return {
-    title: `${product.title} — Urees Store`,
+    title: `${product.title} | Urees Store`,
     description: product.title,
   };
 }

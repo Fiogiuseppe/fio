@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = getProject(slug);
   if (!project) return {};
   return {
-    title: `${project.title} — Giuseppe Fioretti`,
+    title: `${project.title} | Giuseppe Fioretti`,
     description: project.description,
   };
 }

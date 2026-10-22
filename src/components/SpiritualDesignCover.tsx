@@ -204,7 +204,7 @@ export function SpiritualDesignCover() {
       svg.removeAttribute('height');
 
       dragLayersRef.current = setupCoverDragLayers(svg);
-      // Keep the SVG UREES stamp hidden — no longer linked from the home cover.
+      // Keep the SVG UREES stamp hidden: no longer linked from the home cover.
       const ureesLayer = dragLayersRef.current.urees;
       if (ureesLayer) {
         ureesLayer.style.visibility = 'hidden';
@@ -280,7 +280,7 @@ export function SpiritualDesignCover() {
               width: hotspot.width,
               height: hotspot.height,
             }}
-            aria-label="The Conide — I have seen a Conide"
+            aria-label="The Conide: I have seen a Conide"
             title="The Conide"
             onPointerDown={(event) => startDrag('conide', event)}
             onClick={(event) => {
@@ -301,7 +301,7 @@ export function SpiritualDesignCover() {
               width: blueSquareHotspot.width,
               height: blueSquareHotspot.height,
             }}
-            aria-label="Cacophobia — hidden project"
+            aria-label="Cacophobia: hidden project"
             title="?"
             onPointerDown={(event) => startDrag('blue-square', event)}
             onClick={(event) => {

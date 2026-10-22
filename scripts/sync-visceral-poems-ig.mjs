@@ -5,6 +5,7 @@
  */
 
 import fs from 'node:fs/promises';
+import { normalizeWebsiteCopy } from './lib/website-copy.mjs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { spawn } from 'node:child_process';
@@ -26,7 +27,7 @@ const HEADERS = {
   Referer: 'https://www.instagram.com/visceralpoems/',
 };
 
-/** Signed digital prints from the Visceral Poems archive — not one-of-one handmade originals. */
+/** Signed digital prints from the Visceral Poems archive: not one-of-one handmade originals. */
 const WP_DIGITAL_POEM_PRINTS = [
   { file: 'VISCERAL-POETRY-12-scaled.jpg', title: 'Visceral Poem 12' },
   { file: 'VISCERAL-POETRY-92-scaled.jpg', title: 'Visceral Poem 92' },
@@ -38,7 +39,7 @@ const WP_DIGITAL_POEM_PRINTS = [
   { file: 'VISCERAL-POETRY-138-scaled.jpg', title: 'Visceral Poem 138' },
 ];
 
-/** Digital escribujo prints — handmade originals live on @visceralpoems (#escribujos). */
+/** Digital escribujo prints: handmade originals live on @visceralpoems (#escribujos). */
 const WP_DIGITAL_ESCRIJUJOS = [
   { file: 'IG-STORIES-29-scaled.jpg', title: 'Escribujo 29' },
   { file: 'IG-STORIES-38-scaled.jpg', title: 'Escribujo 38' },
@@ -50,7 +51,7 @@ const WP_DIGITAL_ESCRIJUJOS = [
   { file: 'IG-STORIES-106-scaled.jpg', title: 'Escribujo 106' },
   {
     file: 'IG-STORIES_Mesa-de-trabajo-1-copia-2-scaled.jpg',
-    title: 'Escribujo — Mesa de trabajo',
+    title: 'Escribujo: Mesa de trabajo',
   },
 ];
 
@@ -58,22 +59,22 @@ const WP_HANDMADE_POSTERS = [
   {
     file: 'Poster-Mockup-Creatlon_2-scaled.jpg',
     title: 'Amor',
-    shortDescription: 'Handmade poster — Amor by Visceral Poems.',
+    shortDescription: 'Handmade poster, Amor by Visceral Poems.',
   },
   {
     file: 'Poster-Mockup-Creatlon-copia-scaled.jpg',
-    title: 'Visceral Poem — Poster',
+    title: 'Visceral Poem: Poster',
     shortDescription: 'Handmade signed poster from the Visceral Poems series.',
   },
   {
     file: 'Poster-Mockup-Creatlon_3-scaled.jpg',
     title: 'Jamás',
-    shortDescription: 'Handmade poster — Jamás by Visceral Poems.',
+    shortDescription: 'Handmade poster, Jamás by Visceral Poems.',
   },
   {
     file: 'Poster-Mockup-Creatlon_4-scaled.jpg',
     title: 'Still Loving You',
-    shortDescription: 'Handmade poster — Still Loving You by Visceral Poems.',
+    shortDescription: 'Handmade poster, Still Loving You by Visceral Poems.',
   },
 ];
 
@@ -88,11 +89,11 @@ function slugify(title) {
 
 function longStoryForFormats(formats) {
   const intro =
-    'Born in transit — on buses between cities, on planes between countries — each Visceral Poem is a fragment of an inner landscape.';
+    'Visceral Poems combines writing and drawing on paper. The series began on bus journeys and flights between cities.';
   if (formats.includes('handmade') && !formats.includes('digital')) {
-    return `${intro} Handpainted A3 original (29.7 × 42 cm). Optional white frame without passepartout — the work fills the frame edge to edge.`;
+    return `${intro} Handpainted A3 original (29.7 × 42 cm). An optional white frame holds the work edge to edge, without a mount.`;
   }
-  return `${intro} A3 signed print (29.7 × 42 cm). Optional white frame without passepartout — the poster fills the frame edge to edge.`;
+  return `${intro} A3 signed print (29.7 × 42 cm). An optional white frame holds the poster edge to edge, without a mount.`;
 }
 
 function baseProduct({ slug, title, shortDescription, images, formats, tags = [], igCode }) {
@@ -124,7 +125,7 @@ function wpProduct({ file, title, shortDescription, formats, tags }) {
       shortDescription ??
       (isEscribujo
         ? 'Signed digital print of an escribujo from the Visceral Poems street series.'
-        : 'Signed digital print — a visceral poem where language meets ink and emotion.'),
+        : 'Signed digital print of a Visceral Poem.'),
     images: [`${BASE}/${file}`],
     formats,
     tags: tags ?? (isEscribujo ? ['escribujo'] : ['poem']),
@@ -204,7 +205,7 @@ async function fetchWithRetry(url, options, retries = 4) {
     const res = await fetch(url, options);
     if (res.status === 429) {
       const wait = 4000 * 2 ** attempt;
-      console.warn(`Instagram rate limit (429) — retrying in ${wait / 1000}s…`);
+      console.warn(`Instagram rate limit (429), retrying in ${wait / 1000}s…`);
       await sleep(wait);
       continue;
     }
@@ -299,7 +300,7 @@ async function loadIgCache() {
 
 async function saveIgCache(products) {
   await fs.mkdir(path.dirname(IG_CACHE), { recursive: true });
-  await fs.writeFile(IG_CACHE, `${JSON.stringify(products, null, 2)}\n`);
+  await fs.writeFile(IG_CACHE, `${JSON.stringify(normalizeWebsiteCopy(products), null, 2)}\n`);
 }
 
 function normalizeItem(item) {
@@ -332,7 +333,7 @@ function buildProductsFromItem(item, tag, seenUrls) {
     seenUrls.add(url);
 
     const title =
-      slides.length > 1 ? `${titleFromCaption(caption)} — ${index + 1}` : titleFromCaption(caption);
+      slides.length > 1 ? `${titleFromCaption(caption)}, ${index + 1}` : titleFromCaption(caption);
     const slug = `${slugify(title)}-${code}${slides.length > 1 ? `-${index + 1}` : ''}`;
 
     products.push(
@@ -360,7 +361,7 @@ async function buildProductsFromHtml(code, caption, tag, seenUrls) {
     if (seenUrls.has(url)) return;
     seenUrls.add(url);
     const title =
-      urls.length > 1 ? `${titleFromCaption(caption)} — ${index + 1}` : titleFromCaption(caption);
+      urls.length > 1 ? `${titleFromCaption(caption)}, ${index + 1}` : titleFromCaption(caption);
     const slug = `${slugify(title)}-${code}${urls.length > 1 ? `-${index + 1}` : ''}`;
     products.push(
       baseProduct({
@@ -433,7 +434,7 @@ async function fetchInstagramHandmade(cachedProducts = []) {
       await sleep(2500);
     }
   } else {
-    console.warn(`Instagram profile API returned ${profileRes.status} — using saved feed pages.`);
+    console.warn(`Instagram profile API returned ${profileRes.status}, using saved feed pages.`);
   }
 
   for (const item of await loadSavedFeedPages()) enqueue(item);
@@ -511,12 +512,12 @@ async function main() {
     await saveIgCache(igProducts);
     console.log(`Cached ${igProducts.length} handmade pieces from @visceralpoems.`);
   } else {
-    console.warn('No handmade pieces found — check Instagram access or saved feed pages.');
+    console.warn('No handmade pieces found, check Instagram access or saved feed pages.');
   }
 
   const catalog = mergeUniqueProducts(products, igProducts);
 
-  await fs.writeFile(OUT, `${JSON.stringify(catalog, null, 2)}\n`);
+  await fs.writeFile(OUT, `${JSON.stringify(normalizeWebsiteCopy(catalog), null, 2)}\n`);
 
   await new Promise((resolve, reject) => {
     const child = spawn(process.execPath, [path.join(__dirname, 'host-visceral-poem-images.mjs')], {

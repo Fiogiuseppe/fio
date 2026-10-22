@@ -11,6 +11,7 @@
  */
 
 import fs from 'node:fs/promises';
+import { normalizeWebsiteCopy } from './lib/website-copy.mjs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -206,7 +207,7 @@ async function main() {
     products.sort((a, b) => a.title.localeCompare(b.title));
 
     const filePath = path.join(PRODUCTS_DIR, `${category}.json`);
-    await fs.writeFile(filePath, `${JSON.stringify(products, null, 2)}\n`, 'utf8');
+    await fs.writeFile(filePath, `${JSON.stringify(normalizeWebsiteCopy(products), null, 2)}\n`, 'utf8');
     console.log(`  ✓ ${category}: ${products.length} products → ${path.relative(ROOT, filePath)}`);
   }
 

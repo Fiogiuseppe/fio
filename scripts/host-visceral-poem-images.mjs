@@ -5,6 +5,7 @@
  */
 
 import fs from 'node:fs/promises';
+import { normalizeWebsiteCopy } from './lib/website-copy.mjs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -171,19 +172,19 @@ async function main() {
 
   const catalog = JSON.parse(await fs.readFile(CATALOG, 'utf8'));
   const catalogStats = await hostProductImages(catalog, feedIndex);
-  await fs.writeFile(CATALOG, `${JSON.stringify(catalog, null, 2)}\n`);
+  await fs.writeFile(CATALOG, `${JSON.stringify(normalizeWebsiteCopy(catalog), null, 2)}\n`);
 
   let cacheStats = { hosted: 0, failed: 0 };
   try {
     const cache = JSON.parse(await fs.readFile(IG_CACHE, 'utf8'));
     cacheStats = await hostProductImages(cache, feedIndex);
-    await fs.writeFile(IG_CACHE, `${JSON.stringify(cache, null, 2)}\n`);
+    await fs.writeFile(IG_CACHE, `${JSON.stringify(normalizeWebsiteCopy(cache), null, 2)}\n`);
   } catch {
     // cache optional
   }
 
   console.log(
-    `Done — catalog ${catalogStats.hosted} hosted (${catalogStats.failed} failed), cache ${cacheStats.hosted} hosted (${cacheStats.failed} failed)`,
+    `Done, catalog ${catalogStats.hosted} hosted (${catalogStats.failed} failed), cache ${cacheStats.hosted} hosted (${cacheStats.failed} failed)`,
   );
 }
 

@@ -29,7 +29,7 @@ export function ContactSection() {
     }
 
     const subject = encodeURIComponent(`Message from ${name || 'fiogiuseppe.com'}`);
-    const body = encodeURIComponent(`${message}\n\n— ${name}\n${email}`);
+    const body = encodeURIComponent(`${message}\n\n${name}\n${email}`);
     window.location.href = `mailto:${SITE.contactEmail}?subject=${subject}&body=${body}`;
     setStatus('sent');
     form.reset();

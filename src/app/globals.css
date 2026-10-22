@@ -452,15 +452,13 @@ html.home-route .spiritual-cover__svg {
 
 .spiritual-cover__canvas--dragging-conide .spiritual-cover__drag-layer[data-cover-drag='conide'],
 .spiritual-cover__canvas--dragging-blue-square
-  .spiritual-cover__drag-layer[data-cover-drag='blue-square'],
-.spiritual-cover__canvas--dragging-urees .spiritual-cover__drag-layer[data-cover-drag='urees'] {
+  .spiritual-cover__drag-layer[data-cover-drag='blue-square'] {
   cursor: grabbing;
 }
 
 .spiritual-cover__canvas--dragging-conide .spiritual-cover__drag-layer[data-cover-drag='conide']:active,
 .spiritual-cover__canvas--dragging-blue-square
-  .spiritual-cover__drag-layer[data-cover-drag='blue-square']:active,
-.spiritual-cover__canvas--dragging-urees .spiritual-cover__drag-layer[data-cover-drag='urees']:active {
+  .spiritual-cover__drag-layer[data-cover-drag='blue-square']:active {
   cursor: grabbing;
 }
 
@@ -497,37 +495,6 @@ html.home-route .spiritual-cover__svg {
 
 .spiritual-cover__blue-square-hotspot:hover,
 .spiritual-cover__blue-square-hotspot:focus-visible {
-  background: rgb(0 31 255 / 0.08);
-  outline: 2px solid var(--color-blue);
-  outline-offset: 2px;
-}
-
-.spiritual-cover__urees-hotspot {
-  position: absolute;
-  z-index: 5;
-  border: 0;
-  border-radius: 0;
-  background: transparent;
-  cursor: grab;
-  text-decoration: none;
-  touch-action: none;
-  filter: drop-shadow(0 2px 8px rgb(0 0 0 / 0.15));
-}
-
-.spiritual-cover__urees-stamp {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  pointer-events: none;
-}
-
-.spiritual-cover__urees-hotspot--dragging {
-  cursor: grabbing;
-}
-
-.spiritual-cover__urees-hotspot:hover,
-.spiritual-cover__urees-hotspot:focus-visible {
   background: rgb(0 31 255 / 0.08);
   outline: 2px solid var(--color-blue);
   outline-offset: 2px;

@@ -1,10 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { CACOPHOBIA_HREF } from '@/data/cacophobia';
-import { UREES_BRAND } from '@/data/products';
 import {
   CONIDE_HREF,
   conideHotspotIsRound,
@@ -25,20 +23,6 @@ import {
 import { animateSpiritualDesignSvg } from '@/lib/spiritual-design-animation';
 
 const SVG_SRC = '/images/spiritual-design-def.svg';
-const UREES_STAMP_SRC = '/images/urees-cover-stamp.svg';
-
-function defaultUreesHotspot(container: HTMLElement): CoverHotspot {
-  const width = container.clientWidth;
-  const height = container.clientHeight;
-  const stamp = Math.min(width, height) * 0.11;
-
-  return {
-    left: width * 0.035,
-    top: height - stamp - height * 0.05,
-    width: stamp,
-    height: stamp * 0.82,
-  };
-}
 
 type DragState = {
   active: boolean;
@@ -56,7 +40,6 @@ export function SpiritualDesignCover() {
   const containerRef = useRef<HTMLDivElement>(null);
   const conideLinkRef = useRef<HTMLAnchorElement>(null);
   const blueSquareLinkRef = useRef<HTMLAnchorElement>(null);
-  const ureesLinkRef = useRef<HTMLAnchorElement>(null);
   const dragState = useRef<DragState>({
     active: false,
     moved: false,
@@ -67,21 +50,18 @@ export function SpiritualDesignCover() {
     originY: 0,
     pointerId: -1,
   });
-  const offsetsRef = useRef<Record<CoverDragId, CoverOffset>>({
+  const offsetsRef = useRef<Record<'conide' | 'blue-square', CoverOffset>>({
     conide: { x: 0, y: 0 },
     'blue-square': { x: 0, y: 0 },
-    urees: { x: 0, y: 0 },
   });
   const dragLayersRef = useRef<Partial<Record<CoverDragId, SVGGElement>>>({});
 
   const [loaded, setLoaded] = useState(false);
   const [hotspot, setHotspot] = useState<CoverHotspot | null>(null);
   const [blueSquareHotspot, setBlueSquareHotspot] = useState<CoverHotspot | null>(null);
-  const [ureesHotspot, setUreesHotspot] = useState<CoverHotspot | null>(null);
   const [draggingId, setDraggingId] = useState<CoverDragId | null>(null);
   const [suppressConideClick, setSuppressConideClick] = useState(false);
   const [suppressBlueSquareClick, setSuppressBlueSquareClick] = useState(false);
-  const [suppressUreesClick, setSuppressUreesClick] = useState(false);
 
   const updateHotspot = useCallback(() => {
     const frame = frameRef.current;
@@ -90,15 +70,6 @@ export function SpiritualDesignCover() {
     if (!frame || !container || !svg) return;
     setHotspot(measureConideHotspot(svg, frame));
     setBlueSquareHotspot(measureBlueSquareHotspot(svg, frame));
-
-    const base = defaultUreesHotspot(frame);
-    const offset = offsetsRef.current.urees;
-    setUreesHotspot({
-      left: base.left + offset.x,
-      top: base.top + offset.y,
-      width: base.width,
-      height: base.height,
-    });
   }, []);
 
   const applyOffsetToLayer = useCallback((id: CoverDragId, offset: CoverOffset) => {
@@ -119,9 +90,10 @@ export function SpiritualDesignCover() {
 
   const updateDragOffset = useCallback(
     (id: CoverDragId, offset: CoverOffset) => {
+      if (id === 'urees') return;
       offsetsRef.current = { ...offsetsRef.current, [id]: offset };
-      if (id !== 'urees') applyOffsetToLayer(id, offset);
-      if (id === 'conide' || id === 'blue-square' || id === 'urees') updateHotspot();
+      applyOffsetToLayer(id, offset);
+      if (id === 'conide' || id === 'blue-square') updateHotspot();
     },
     [applyOffsetToLayer, updateHotspot]
   );
@@ -131,7 +103,7 @@ export function SpiritualDesignCover() {
       const state = dragState.current;
       if (!state.active || !state.id || pointerId !== state.pointerId) return;
 
-      if (state.moved) {
+      if (state.moved && state.id !== 'urees') {
         persistOffset(state.id, offsetsRef.current[state.id]);
       }
 
@@ -153,18 +125,13 @@ export function SpiritualDesignCover() {
       if (state.id === 'blue-square' && state.moved) {
         window.setTimeout(() => setSuppressBlueSquareClick(false), 0);
       }
-      if (state.id === 'urees' && state.moved) {
-        window.setTimeout(() => setSuppressUreesClick(false), 0);
-      }
 
       const captureTarget =
         state.id === 'conide'
           ? conideLinkRef.current
           : state.id === 'blue-square'
             ? blueSquareLinkRef.current
-            : state.id === 'urees'
-              ? ureesLinkRef.current
-              : dragLayersRef.current[state.id];
+            : dragLayersRef.current[state.id];
 
       if (captureTarget?.hasPointerCapture(pointerId)) {
         captureTarget.releasePointerCapture(pointerId);
@@ -177,6 +144,7 @@ export function SpiritualDesignCover() {
     (event: PointerEvent) => {
       const state = dragState.current;
       if (!state.active || !state.id || event.pointerId !== state.pointerId) return;
+      if (state.id === 'urees') return;
 
       const dx = event.clientX - state.startX;
       const dy = event.clientY - state.startY;
@@ -186,7 +154,6 @@ export function SpiritualDesignCover() {
         state.moved = true;
         if (state.id === 'conide') setSuppressConideClick(true);
         if (state.id === 'blue-square') setSuppressBlueSquareClick(true);
-        if (state.id === 'urees') setSuppressUreesClick(true);
       }
 
       updateDragOffset(state.id, {
@@ -199,6 +166,7 @@ export function SpiritualDesignCover() {
 
   const startDrag = useCallback(
     (id: CoverDragId, event: React.PointerEvent<HTMLElement>) => {
+      if (id === 'urees') return;
       dragState.current = {
         active: true,
         moved: false,
@@ -236,6 +204,7 @@ export function SpiritualDesignCover() {
       svg.removeAttribute('height');
 
       dragLayersRef.current = setupCoverDragLayers(svg);
+      // Keep the SVG UREES stamp hidden — no longer linked from the home cover.
       const ureesLayer = dragLayersRef.current.urees;
       if (ureesLayer) {
         ureesLayer.style.visibility = 'hidden';
@@ -246,11 +215,9 @@ export function SpiritualDesignCover() {
 
       animateSpiritualDesignSvg(svg);
 
-      const storedUrees = loadCoverOffset(storageKeyForDragId('urees'));
       offsetsRef.current = {
         conide: loadCoverOffset(storageKeyForDragId('conide')),
         'blue-square': loadCoverOffset(storageKeyForDragId('blue-square')),
-        urees: storedUrees,
       };
       setLoaded(true);
       window.dispatchEvent(new Event('spiritual-cover-ready'));
@@ -341,37 +308,6 @@ export function SpiritualDesignCover() {
               if (suppressBlueSquareClick) event.preventDefault();
             }}
           />
-        ) : null}
-        {ureesHotspot ? (
-          <Link
-            ref={ureesLinkRef}
-            href={UREES_BRAND.href}
-            className={`spiritual-cover__urees-hotspot${
-              draggingId === 'urees' ? ' spiritual-cover__urees-hotspot--dragging' : ''
-            }`}
-            style={{
-              left: ureesHotspot.left,
-              top: ureesHotspot.top,
-              width: ureesHotspot.width,
-              height: ureesHotspot.height,
-            }}
-            aria-label="UREES — enter the brand"
-            title="UREES"
-            onPointerDown={(event) => startDrag('urees', event)}
-            onClick={(event) => {
-              if (suppressUreesClick) event.preventDefault();
-            }}
-          >
-            <Image
-              src={UREES_STAMP_SRC}
-              alt=""
-              width={104}
-              height={86}
-              className="spiritual-cover__urees-stamp"
-              draggable={false}
-              priority
-            />
-          </Link>
         ) : null}
       </div>
     </section>

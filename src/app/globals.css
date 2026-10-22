@@ -114,23 +114,42 @@ a {
   pointer-events: none;
 }
 
-/* Work: keep the menu transparent over hero video / imagery */
-html.work-route .site-header--overlay,
-html.work-route .site-header--overlay.site-header--scrolled {
+/* Keep the existing overlay treatment on individual Work project pages. */
+html.work-route .site-header--overlay:not(.site-header--work-index),
+html.work-route .site-header--overlay.site-header--scrolled:not(.site-header--work-index) {
   background-color: transparent;
   box-shadow: none;
   backdrop-filter: none;
 }
 
-html.work-route .site-header--overlay .site-header__logo,
-html.work-route .site-header--overlay .site-header__nav-link,
-html.work-route .site-header--overlay .site-header__menu-line {
+html.work-route .site-header--overlay:not(.site-header--work-index) .site-header__logo,
+html.work-route .site-header--overlay:not(.site-header--work-index) .site-header__nav-link,
+html.work-route .site-header--overlay:not(.site-header--work-index) .site-header__menu-line {
   filter: drop-shadow(0 1px 1px rgb(255 255 255 / 0.55))
     drop-shadow(0 1px 8px rgb(255 255 255 / 0.35));
 }
 
-html.work-route .site-header--scrolled .site-header__mobile {
+html.work-route .site-header--scrolled:not(.site-header--work-index) .site-header__mobile {
   background-color: transparent;
+}
+
+/* Work index: white navigation over the video, solid white after scrolling. */
+.site-header--work-index:not(.site-header--scrolled) .site-header__logo {
+  filter: brightness(0) invert(1);
+}
+
+.site-header--work-index:not(.site-header--scrolled) .site-header__nav-link,
+.site-header--work-index:not(.site-header--scrolled) .site-header__mobile-link {
+  color: var(--color-on-dark);
+}
+
+.site-header--work-index:not(.site-header--scrolled) .site-header__menu-line {
+  background-color: var(--color-on-dark);
+}
+
+.site-header--work-index.site-header--scrolled {
+  background-color: var(--color-page);
+  box-shadow: 0 1px 0 rgb(10 10 10 / 0.06);
 }
 
 .site-header--scrolled .site-header__mobile {

@@ -115,6 +115,7 @@ export function Header() {
       className={cn(
         'site-header z-50 w-full',
         useOverlayHeader ? 'site-header--overlay' : 'site-header--solid sticky top-0',
+        pathname === '/work' && 'site-header--work-index',
         isHome && homeNavCompact && 'site-header--home-compact',
         scrolled && 'site-header--scrolled'
       )}

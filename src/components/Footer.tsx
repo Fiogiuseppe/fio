@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { SITE, NAV } from '@/data/site';
+import { SITE, NAV, SECONDARY_NAV } from '@/data/site';
 import {
   TypographyBody,
   TypographyCard,
@@ -9,8 +9,6 @@ import {
 import { editorial } from '@/lib/typography';
 
 export function Footer() {
-  const explore = NAV;
-
   return (
     <footer className="surface-dark border-t border-white/10">
       <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 md:grid-cols-3 md:px-10 md:py-20">
@@ -25,7 +23,19 @@ export function Footer() {
         <div>
           <TypographyLabel className="text-on-dark-subtle">Explore</TypographyLabel>
           <ul className={`${editorial.stack.block} space-y-2`}>
-            {explore.map((item) => (
+            {NAV.map((item) => (
+              <li key={item.href}>
+                <Link href={item.href} className="no-underline hover:text-blue">
+                  <TypographyMeta className="text-on-dark/80">{item.label}</TypographyMeta>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <TypographyLabel className={`${editorial.stack.block} text-on-dark-subtle`}>
+            More
+          </TypographyLabel>
+          <ul className={`${editorial.stack.block} space-y-2`} aria-label="Secondary">
+            {SECONDARY_NAV.map((item) => (
               <li key={item.href}>
                 <Link href={item.href} className="no-underline hover:text-blue">
                   <TypographyMeta className="text-on-dark/80">{item.label}</TypographyMeta>

@@ -9,7 +9,7 @@ import { editorial } from '@/lib/typography';
 export const metadata: Metadata = {
   title: 'About — Giuseppe Fioretti',
   description:
-    'Designer and creative director based in Copenhagen — LEGO, Desigual, Nike, and work that helps people see differently.',
+    'Designer and art director from Naples, shaped in Barcelona, based in Copenhagen — brands, campaigns, teaching, and personal artistic practice.',
 };
 
 export default function AboutPage() {
@@ -21,42 +21,32 @@ export default function AboutPage() {
           <div className={`${editorial.stack.leadToContent} space-y-6`}>
             <TypographyBody>
               I was born in Naples, spent more than a decade in Barcelona, and now live in
-              Copenhagen, where I&apos;m part of the creative team at LEGO.
+              Copenhagen. Those three cities are not just places I lived — they are chapters in how
+              I learned to see.
             </TypographyBody>
             <TypographyBody>
-              Over the last 15 years, I&apos;ve had the opportunity to work with brands such as LEGO,
-              Desigual and Nike, lead international creative teams, teach branding at university,
-              launch my own fashion label, and develop independent artistic projects. Each experience
-              has shaped the way I think, create and collaborate.
+              I work as a designer and art director. Day to day, that means building brands,
+              shaping campaigns, and finding the image or sentence that makes a story feel true.
+              For the past years I have been part of the creative team at LEGO, where I develop
+              campaign and art-direction concepts around marketing innovation.
             </TypographyBody>
             <TypographyBody>
-              But what has always driven me goes beyond design itself.
+              Before that, I led brand design at Desigual — including a global identity redesign —
+              and collaborated with Nike on cultural initiatives in Barcelona. Earlier, as a
+              freelance art director and graphic designer, I worked across fashion, retail, and
+              culture for more than a decade. Alongside client and studio work, I teach branding
+              at BAU in Barcelona, and I continue independent projects: UREES, visual poems, and
+              what I call Spiritual Design.
             </TypographyBody>
             <TypographyBody>
-              I&apos;m interested in ideas that can change the way people see, feel and connect with
-              the world around them.
+              Spiritual Design is my personal compass — alignment between purpose, emotion, and
+              form. Design and art are the languages I use; what drives me is still the same: ideas
+              that help people see, feel, and connect differently with the world around them.
             </TypographyBody>
             <TypographyBody>
-              Design and art simply became the language through which I explore those ideas.
+              I do not chase work that only looks different. I am interested in work that helps
+              people see differently. That is the practice I keep returning to.
             </TypographyBody>
-            <TypographyBody>
-              Over time, this way of thinking evolved into what I call{' '}
-              <strong>Spiritual Design</strong> — a personal approach that seeks alignment between
-              purpose, emotion and form. For me, design is not only about what we create, but also why
-              we create it and how it resonates with people.
-            </TypographyBody>
-            <TypographyBody>
-              Whether I&apos;m building a brand, creating a campaign, writing a visual poem or
-              experimenting with technology, I&apos;m always searching for work that feels honest,
-              meaningful and deeply human.
-            </TypographyBody>
-            <TypographyBody>
-              I don&apos;t think creativity is about making things look different.
-            </TypographyBody>
-            <TypographyBody>
-              I believe its real value lies in helping people see things differently.
-            </TypographyBody>
-            <TypographyBody>That&apos;s the work I&apos;m most interested in.</TypographyBody>
           </div>
           <div className={editorial.stack.leadToContent}>
             <CTA href="/about/career-timeline" label="Career timeline" variant="ghost" />

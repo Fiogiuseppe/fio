@@ -1,19 +1,40 @@
 [project]
 name = "giuseppe-cfo"
-version = "0.1.0"
-description = "Personal CFO assistant for a Danish PMV"
+version = "0.2.0"
+description = "Private local-first business management for a Danish PMV"
 requires-python = ">=3.11"
 dependencies = [
-  "google-api-python-client",
-  "google-auth",
-  "openai",
+  "alembic",
+  "bcrypt",
+  "email-validator",
+  "openpyxl",
+  "pandas",
+  "playwright",
+  "pydantic",
   "reportlab",
+  "sqlalchemy",
   "streamlit",
 ]
 
 [project.optional-dependencies]
-dev = ["pytest"]
+dev = ["mypy", "pytest", "ruff"]
+
+[tool.setuptools.packages.find]
+include = ["app*"]
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
 testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+ignore = ["E501", "E701", "E702"]
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+check_untyped_defs = true

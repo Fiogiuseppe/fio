@@ -1,0 +1,10 @@
+alembic
+bcrypt
+email-validator
+openpyxl
+pandas
+playwright
+pydantic
+reportlab
+sqlalchemy
+streamlit

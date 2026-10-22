@@ -1,21 +1,24 @@
-from datetime import date, timedelta
 from decimal import Decimal
 
-from app.accounting import VAT_REGISTRATION_THRESHOLD, rolling_revenue, vat_status
+from app.services.accounting import (
+    business_use_amount,
+    convert_to_dkk,
+    estimated_profit,
+    remaining_threshold,
+    suggested_tax_reserve,
+    threshold_percentage,
+    threshold_warning,
+)
 
 
-def test_rolling_revenue_uses_last_twelve_months() -> None:
-    today = date(2026, 8, 4)
-    invoices = [
-        (today - timedelta(days=1), Decimal("12500")),
-        (today - timedelta(days=365), Decimal("500")),
-        (today - timedelta(days=366), Decimal("999")),
-    ]
-    assert rolling_revenue(invoices, today) == Decimal("13000")
+def test_calculations_use_decimal():
+    assert convert_to_dkk(Decimal("10"), Decimal("7.5")) == Decimal("75.00")
+    assert business_use_amount(Decimal("100"), Decimal("60")) == Decimal("60.00")
+    assert estimated_profit(Decimal("200"), Decimal("50")) == Decimal("150.00")
+    assert suggested_tax_reserve(Decimal("150"), Decimal("40")) == Decimal("60.00")
 
 
-def test_vat_status_marks_threshold_as_reached() -> None:
-    today = date(2026, 8, 4)
-    status = vat_status([(today, VAT_REGISTRATION_THRESHOLD)], today)
-    assert status["registration_required"] is True
-    assert status["remaining"] == Decimal("0")
+def test_threshold_states():
+    assert threshold_percentage(Decimal("35000"), Decimal("50000")) == Decimal("70.00")
+    assert remaining_threshold(Decimal("35000"), Decimal("50000")) == Decimal("15000.00")
+    assert threshold_warning(Decimal("70")) == "Watch closely"

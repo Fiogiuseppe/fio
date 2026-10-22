@@ -1,31 +1,67 @@
-# Giuseppe CFO
+# GIUSEPPE CFO
 
-A personal CFO app for a Danish PMV. It keeps a client database, records invoices and expenses in Google Sheets, uploads invoice PDFs to Google Drive, and tracks the Danish VAT registration threshold of 50,000 DKK over a rolling 12-month period.
+Local-only business-management software for Giuseppe Fioretti’s Danish PMV.
 
-## Setup
+Planning tool only — not tax or accounting advice.
 
-1. Create a Google Cloud service account and enable the **Google Sheets API** and **Google Drive API**.
-2. Download its JSON key. Share both your accounting spreadsheet and the destination Drive folder with the service-account email address.
-3. Create three tabs in the spreadsheet or let the app create them: `Clients`, `Invoices`, and `Expenses`.
-4. Export the variables from `.env.example` in your shell. Do not commit the service-account JSON or an `.env` file.
-5. Install and run:
+## Privacy model
+
+- SQLite database remains local.
+- No cloud database, Google APIs, email APIs, banking APIs, or telemetry.
+- Backups and exports are local files you control.
+- Review bundles exclude database/files and scan for likely secrets.
+
+## Install
 
 ```bash
 python3 -m venv .venv
-. .venv/bin/activate
-python3 -m pip install -e '.[dev]'
-streamlit run app/main.py
+source .venv/bin/activate
+python -m pip install -e '.[dev]'
 ```
 
-## What it does
+## Initialize database and migrations
 
-- **Kunder:** writes customer records to the `Clients` tab.
-- **Udgifter:** writes expenses, VAT amount, category, and receipt link to `Expenses`.
-- **Fakturaer:** creates a PDF, uploads it to Drive, and writes the invoice totals and URL to `Invoices`.
-- **Chat:** `VAT`/`moms` reports the threshold status. Other questions use the OpenAI Responses API when `OPENAI_API_KEY` is configured.
+```bash
+python scripts/setup.py
+alembic upgrade head
+```
 
-The OpenAI conversation is read-only: it cannot create, alter, or delete accounting entries. Use the forms for those actions.
+## Run
 
-## Important accounting note
+```bash
+python run_app.py
+```
 
-This is an operational aid, not binding tax advice. Danish VAT rules have exceptions and the timing of VAT registration can matter; confirm decisions with SKAT or an accountant.
+Open `http://127.0.0.1:8501` (localhost only). Stop with `Ctrl+C`.
+
+## Common commands
+
+```bash
+python -m pytest
+python -m ruff check app tests scripts
+python -m ruff format --check app tests scripts
+python -m mypy app
+python scripts/create_backup.py
+python scripts/create_review_bundle.py
+```
+
+## Storage locations
+
+- Database: `data/private/giuseppe_cfo.sqlite3`
+- Documents: `documents/`
+- Invoices documents: `documents/invoices/`
+- Quotes documents: `documents/quotes/`
+- Receipts: `documents/receipts/`
+- Exports: `exports/`
+- Backups: `backups/`
+- Review ZIP: `review_bundle/giuseppe_cfo_review.zip`
+
+## Recovery
+
+Use the Backup & Export page to restore from a ZIP. The app requires typed confirmation (`RESTORE`) and creates a safety backup before replacing current state.
+
+## Troubleshooting
+
+- If schema is outdated, run `alembic upgrade head`.
+- If port 8501 is busy, stop the old process and restart.
+- Keep frequent local backups before entering real business records.

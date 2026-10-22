@@ -109,6 +109,7 @@ export interface Product {
   price: number;
   currency: 'EUR';
   size?: string;
+  year?: number;
   technique?: string;
   availability: ProductAvailability;
   edition?: string;

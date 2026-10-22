@@ -62,9 +62,9 @@ export function getProductsByCategory(category: ProductCategory) {
   return products.filter((p) => p.category === category);
 }
 
-/** Gallery shop — handmade works only; UREES lives at /urees */
+/** Gallery shop — curated handpainted originals only; UREES at /urees */
 export function getShopProducts() {
-  return products.filter((p) => p.category !== 'urees');
+  return products.filter((p) => p.category === 'paintings');
 }
 
 export function getTagsForCategory(category: ProductCategory) {

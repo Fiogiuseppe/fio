@@ -5,6 +5,7 @@ import { getShopProducts } from '@/data/products';
 export type ShopGroup = ProductFormat;
 export type ShopGroupFilter = 'all' | 'printed' | 'handpainted';
 
+/** @deprecated Filters removed — shop is a single museum collection */
 export const SHOP_GROUP_OPTIONS: Array<{ value: ShopGroupFilter; label: string }> = [
   { value: 'all', label: 'All' },
   { value: 'printed', label: 'Printed' },
@@ -29,6 +30,12 @@ export type ShopSectionGroup = {
 
 export const HANDPAINTED_COLLECTION_TAG = 'handpainted';
 
+export const MUSEUM_COLLECTION = {
+  artist: 'Giuseppe Fioretti',
+  title: 'Collection',
+  lead: 'A small selection of original handpainted works. Each piece is unique — presented as it would hang in a gallery.',
+} as const;
+
 export function shopGroupLabel(group: ShopGroup): string {
   return group === 'digital' ? 'Printed' : 'Handpainted';
 }
@@ -46,80 +53,35 @@ export function getProductShopGroups(product: Product): ShopGroup[] {
   return [];
 }
 
-function productsForGroup(products: Product[], group: ShopGroup) {
-  return products.filter((product) => getProductShopGroups(product).includes(group));
+/** Curated museum collection — handpainted originals only */
+export function getMuseumCollection(): Product[] {
+  return getShopProducts();
 }
 
-export function getShopSectionGroups(filter: ShopGroupFilter = 'all'): ShopSectionGroup[] {
-  const shopProducts = getShopProducts();
-  const handpaintedWorks = shopProducts.filter((product) => product.category === 'paintings');
-  const visceralPoems = shopProducts.filter((product) => product.category === 'visceral-poems');
-  const handmadePoems = productsForGroup(visceralPoems, 'handmade');
-  const digitalPoems = productsForGroup(visceralPoems, 'digital');
-  const groups: ShopSectionGroup[] = [];
+export function getShopSectionGroups(_filter: ShopGroupFilter = 'all'): ShopSectionGroup[] {
+  const works = getMuseumCollection();
+  if (works.length === 0) return [];
 
-  if (filter === 'all' || filter === 'printed') {
-    const sections: ShopSection[] = [];
-
-    if (digitalPoems.length > 0) {
-      sections.push({
-        id: 'printed-visceral-poems',
-        title: 'Visceral Poems',
-        description:
-          'A3 signed prints from @visceralpoems — from €10 without frame, €40 with white frame (no passepartout).',
-        group: 'digital',
-        products: digitalPoems,
-      });
-    }
-
-    if (sections.length > 0) {
-      groups.push({
-        id: 'printed',
-        title: 'Printed',
-        group: 'digital',
-        sections,
-      });
-    }
-  }
-
-  if (filter === 'all' || filter === 'handpainted') {
-    const sections: ShopSection[] = [];
-
-    if (handpaintedWorks.length > 0) {
-      sections.push({
-        id: 'handpainted-works',
-        title: 'Works',
-        description: 'Original handpainted pieces — shoes, studies and one-of-one objects.',
-        group: 'handmade',
-        products: handpaintedWorks,
-      });
-    }
-
-    if (handmadePoems.length > 0) {
-      sections.push({
-        id: 'handpainted-visceral-poems',
-        title: 'Visceral Poems',
-        description:
-          'Handpainted A3 originals from @visceralpoems — from €30 without frame, €60 with white frame (no passepartout).',
-        group: 'handmade',
-        products: handmadePoems,
-      });
-    }
-
-    if (sections.length > 0) {
-      groups.push({
-        id: 'handpainted',
-        title: 'Handpainted',
-        group: 'handmade',
-        sections,
-      });
-    }
-  }
-
-  return groups;
+  return [
+    {
+      id: 'handpainted',
+      title: MUSEUM_COLLECTION.title,
+      group: 'handmade',
+      sections: [
+        {
+          id: 'museum-collection',
+          title: MUSEUM_COLLECTION.title,
+          description: MUSEUM_COLLECTION.lead,
+          group: 'handmade',
+          products: works,
+          brandLine: MUSEUM_COLLECTION.artist,
+        },
+      ],
+    },
+  ];
 }
 
-/** @deprecated Use getShopSectionGroups */
+/** @deprecated Use getMuseumCollection / getShopSectionGroups */
 export function getShopSections(filter: ShopGroupFilter = 'all'): ShopSection[] {
   return getShopSectionGroups(filter).flatMap((group) => group.sections);
 }

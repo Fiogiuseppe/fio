@@ -23,19 +23,28 @@ export type NavItem = {
   readonly href: string;
 };
 
+/** Primary site navigation — designer portfolio, not agency menu. */
 export const NAV: readonly NavItem[] = [
   { label: 'Work', href: '/work' },
-  { label: 'Services', href: '/services' },
   { label: 'Shop', href: '/shop' },
   { label: 'Journal', href: '/journal' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ] as const;
 
+/**
+ * Secondary links — kept out of the main header so the site reads as a
+ * personal designer presence. Shown in the footer only.
+ */
+export const SECONDARY_NAV: readonly NavItem[] = [
+  { label: 'Services', href: '/services' },
+] as const;
+
 /** Legacy WordPress clone data — used by /archive */
 export const WP = 'https://fiogiuseppe.com/wp-content/uploads';
 
 export const FOOTER_LINKS = [
+  { label: 'SERVICES', href: '/services' },
   { label: 'BLOG', href: '/archive/blog' },
   { label: 'SPIRITUAL DESIGN', href: '/archive/spiritual-design' },
   { label: 'UREES', href: '/urees' },

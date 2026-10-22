@@ -114,6 +114,25 @@ a {
   pointer-events: none;
 }
 
+/* Work: keep the menu transparent over hero video / imagery */
+html.work-route .site-header--overlay,
+html.work-route .site-header--overlay.site-header--scrolled {
+  background-color: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+html.work-route .site-header--overlay .site-header__logo,
+html.work-route .site-header--overlay .site-header__nav-link,
+html.work-route .site-header--overlay .site-header__menu-line {
+  filter: drop-shadow(0 1px 1px rgb(255 255 255 / 0.55))
+    drop-shadow(0 1px 8px rgb(255 255 255 / 0.35));
+}
+
+html.work-route .site-header--scrolled .site-header__mobile {
+  background-color: transparent;
+}
+
 .site-header--scrolled .site-header__mobile {
   background-color: var(--color-page);
 }

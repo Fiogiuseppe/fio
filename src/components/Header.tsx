@@ -20,6 +20,8 @@ export function Header() {
   const isHome = pathname === '/';
   const isContact = pathname === '/contact';
   const isShop = pathname === '/shop' || pathname.startsWith('/shop/');
+  const isWork = pathname === '/work' || pathname.startsWith('/work/');
+  const useOverlayHeader = isHome || isWork;
 
   const updateHomeNavPlacement = useCallback(() => {
     if (!isHome || !navRef.current) return;
@@ -52,6 +54,13 @@ export function Header() {
       document.documentElement.classList.remove('shop-route');
     };
   }, [isShop]);
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('work-route', isWork);
+    return () => {
+      document.documentElement.classList.remove('work-route');
+    };
+  }, [isWork]);
 
   useEffect(() => {
     if (!isHome) {
@@ -105,7 +114,7 @@ export function Header() {
     <header
       className={cn(
         'site-header z-50 w-full',
-        isHome ? 'site-header--overlay' : 'site-header--solid sticky top-0',
+        useOverlayHeader ? 'site-header--overlay' : 'site-header--solid sticky top-0',
         isHome && homeNavCompact && 'site-header--home-compact',
         scrolled && 'site-header--scrolled'
       )}
